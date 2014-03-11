@@ -51,7 +51,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="$HOME/bin/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/sbin"
+export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/usr/sbin:/sbin"
 
 export EDITOR=vim
 
@@ -69,11 +69,11 @@ export MAVEN_OPTS="-Xms256m -Xmx512m"
 export PATH=$MAVEN_OPTS:$PATH
 
 # Groovy
-export GROOVY_HOME=$HOME/bin/groovy-2.2.1
+export GROOVY_HOME=$HOME/bin/groovy-2.2.2
 export PATH=$GROOVY_HOME/bin:$PATH
 
 # Grails
-export GRAILS_HOME=$HOME/bin/grails-2.3.6
+export GRAILS_HOME=$HOME/bin/grails-2.3.7
 export PATH=$GRAILS_HOME/bin:$PATH
 
 # Gradle
