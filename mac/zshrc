@@ -7,10 +7,6 @@ export ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell"
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -26,8 +22,8 @@ ZSH_THEME="robbyrussell"
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
-# Uncomment the following line to disable command auto-correction.
-# DISABLE_CORRECTION="true"
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -48,43 +44,16 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(gem git gradle grails mvn osx rails rake ruby rvm)
-
-source $ZSH/oh-my-zsh.sh
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(bower brew bundler composer gem git mvn node npm osx rails rake ruby sublime sudo)
 
 # User configuration
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin":$PATH
+# export MANPATH="/usr/local/man:$MANPATH"
 
-# Java
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home
-export PATH=$JAVA_HOME:$PATH
+source $ZSH/oh-my-zsh.sh
 
-# Maven Stuff
-export M2_HOME=$HOME/bin/apache-maven-3.0.5
-export PATH=$M2_HOME:$PATH
-export M2=$M2_HOME/bin
-export PATH=$M2:$PATH
-export MAVEN_OPTS="-Xms256m -Xmx512m"
-export PATH=$MAVEN_OPTS:$PATH
-
-# Groovy
-export GROOVY_HOME=$HOME/bin/groovy-2.3.2
-export PATH=$GROOVY_HOME/bin:$PATH
-
-# Grails
-export GRAILS_HOME=$HOME/bin/grails-2.4.0
-export PATH=$GRAILS_HOME/bin:$PATH
-
-# Gradle
-export GRADLE_HOME=$HOME/bin/gradle-1.12
-export PATH=$GRADLE_HOME/bin:$PATH
-
-# Android SDK
-export ANDROID_HOME=$HOME/bin/android-sdk/sdk
-export PATH=$ANDROID_HOME/tools:$PATH
-export PATH=$ANDROID_HOME/platform-tools:$PATH
-
-# Misc system info
+# You may need to manually set your language environment
 export LANG=en_US.UTF-8
 export EDITOR=vim
