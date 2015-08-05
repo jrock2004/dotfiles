@@ -1,0 +1,14 @@
+--recurse=yes
+--tag-relative=yes
+--exclude=.git
+--exclude=node_modules
+
+--langdef=css
+--langmap=css:.css.less.scss
+--regex-css=/^[ \t]*@([A-Za-z0-9_-]+)/@\1/v,var,variables/
+--regex-css=/^[ \t]*\.([A-Za-z0-9_-]+)/.\1/c,class,classes/
+--regex-css=/^[ \t]*#([A-Za-z0-9_-]+)/#\1/i,id,ids/
+--regex-css=/^[ \t]*(([A-Za-z0-9_-]+[ \t\n,]+)+)\{/\1/t,tag,tags/
+--regex-css=/^[ \t]*@media\s+([A-Za-z0-9_-]+)/\1/m,media,medias/
+
+--langmap=php:.engine.inc.module.theme.install.php --PHP-kinds=+cf-v
