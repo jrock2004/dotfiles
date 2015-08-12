@@ -2,7 +2,6 @@
 # ---------------------------------------------------
 $date = Get-Date;
 $day = $date.DayOfWeek;
-#$username = (get-content env:\userdomain) + "\" + (get-content env:\username);
 
 $todayis = "========================================================================
 Today is $day - $date
@@ -29,9 +28,9 @@ function nlog {omnisharp -s C:\Users\costa\Development\Work\ApplicationManagemen
 function vnext {omnisharp  -s C:\Users\costa\Development\Work\VendorNext\}
 function vnextauto {omnisharp  -s C:\Users\costa\Development\Work\VendorNextAutomation\}
 
-function omnisharpserver {
-	Param([string]$dir)
-	echo $dir
+#### Take the bookmarks from edge and import to IE
+function updatebookmarks {
+	Copy-Item C:\Users\costa\AppData\Local\Packages\Microsoft.MicrosoftEdge_8wekyb3d8bbwe\AC\MicrosoftEdge\User\Default\Favorites\Links\* -recurse -destination C:\Users\costa\Favorites\Links	
 }
 
 
