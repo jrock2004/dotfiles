@@ -1,1 +1,0 @@
-NeoBundle 'tacahiroy/ctrlp-funky'

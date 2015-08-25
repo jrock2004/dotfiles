@@ -1,1 +1,0 @@
-NeoBundle 'OrangeT/vim-csharp'
