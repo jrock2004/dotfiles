@@ -1,10 +1,10 @@
 if &compatible
-	  set nocompatible
-	end
+	set nocompatible
+end
 
-	filetype off
-	set rtp+=~/.vim/bundle/Vundle.vim/
-	call vundle#begin()
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 Plugin 'christoomey/vim-tmux-navigator'
