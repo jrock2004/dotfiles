@@ -26,8 +26,6 @@ Plugin 'Slava/vim-spacebars'
 Plugin 'groenewege/vim-less'
 Plugin 'godlygeek/tabular'
 
-"Plugin 'altercation/vim-colors-solarized'
-"Plugin 'xero/sourcerer.vim'
 Plugin 'romainl/Apprentice'
 Plugin 'morhetz/gruvbox'
 Plugin 'bling/vim-airline' "Awesome looking meta at bottom

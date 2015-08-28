@@ -44,15 +44,24 @@ set scrolloff=8
 set sidescrolloff=15
 set sidescroll=1
 
-"if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-"  syntax on
-"	set t_Co=256
-"	set background=dark
-"endif
-
 " Load up all of our plugins
 if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
+	source ~/.vimrc.bundles
 endif
 
 filetype plugin indent on
+
+" Dynamic line numbers
+set rnu
+function! ToggleNumbersOn()
+	set nu!
+	set rnu
+endfunction
+function! ToggleRelativeOn()
+	set rnu!
+	set nu
+endfunction
+autocmd FocusLost * call ToggleRelativeOn()
+autocmd FocusGained * call ToggleRelativeOn()
+autocmd InsertEnter * call ToggleRelativeOn()
+autocmd InsertLeave * call ToggleRelativeOn()
