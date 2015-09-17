@@ -16,8 +16,8 @@ set autoread
 set ignorecase
 set smartcase
 
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set shiftround
 
 set list listchars=tab:»·,trail:·,nbsp:·
