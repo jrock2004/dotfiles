@@ -42,9 +42,12 @@ Plugin 'mattn/calendar-vim'
 call vundle#end()
 filetype on
 
-set t_Co=256
-set background=dark
-colorscheme gruvbox
+if has("gui_running")
+	set t_Co=256
+	set background=dark
+	colorscheme gruvbox
+endif
+
 syntax enable
 
 " Plugin Tweaks

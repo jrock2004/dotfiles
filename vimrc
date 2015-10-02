@@ -20,20 +20,15 @@ set tabstop=4
 set shiftwidth=4
 set shiftround
 
-set list listchars=tab:Â»Â·,trail:Â·,nbsp:Â·
+set list listchars=tab:»·,trail:·,nbsp:·
 
 set textwidth=80
 set colorcolumn=+1
 
-"set number
+set number
 
 set splitbelow
 set splitright
-
-set winwidth=84
-set winheight=5
-set winminheight=5
-set winheight=999
 
 set matchpairs+=<:>
 
@@ -65,3 +60,11 @@ autocmd FocusLost * call ToggleRelativeOn()
 autocmd FocusGained * call ToggleRelativeOn()
 autocmd InsertEnter * call ToggleRelativeOn()
 autocmd InsertLeave * call ToggleRelativeOn()
+
+if has("gui_running")
+	set guifont=InputMono:h14:cANSI
+	set lines=30 columns=85
+	set guioptions-=m
+	set guioptions-=T
+	set guioptions-=r
+endif
