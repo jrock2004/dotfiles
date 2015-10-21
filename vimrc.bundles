@@ -42,7 +42,7 @@ Plugin 'mattn/calendar-vim'
 call vundle#end()
 filetype on
 
-if has("gui_running")
+if has("gui_running") || has("unix")
 	set t_Co=256
 	set background=dark
 	colorscheme gruvbox

@@ -1,4 +1,5 @@
 set nocompatible
+set encoding=utf-8
 
 let mapleader = ","
 
@@ -61,7 +62,7 @@ autocmd FocusGained * call ToggleRelativeOn()
 autocmd InsertEnter * call ToggleRelativeOn()
 autocmd InsertLeave * call ToggleRelativeOn()
 
-if has("gui_running")
+if has("gui_running") || has("unix")
 	set guifont=InputMono:h14:cANSI
 	set lines=30 columns=85
 	set guioptions-=m
