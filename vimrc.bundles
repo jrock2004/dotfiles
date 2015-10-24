@@ -38,6 +38,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'vim-scripts/matchit.zip'
 Plugin 'vimwiki/vimwiki'
 Plugin 'mattn/calendar-vim'
+Plugin 'editorconfig/editorconfig-vim'
 
 call vundle#end()
 filetype on
@@ -72,7 +73,19 @@ autocmd FileType vimwiki map <leader>c :call ToggleCalendar() <cr>
 let g:vimwiki_list = [{'path':'$HOME/Dropbox/vimwiki'}]
 
 let g:airline_powerline_fonts = 1
-let g:syntastic_check_on_open=1
+
+" Syntastic Settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+""" checkers
+let g:syntastic_js_checkers = ["eslint"]
 
 map <Leader>ct :!ctags -R .<CR>
 
