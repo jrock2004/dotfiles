@@ -1,0 +1,6 @@
+.netrwhist
+npm-debug.log
+vim/vim.symlink/plugged/
+nvim/nvim.symlink/plugged/
+plug.vim.old
+.DS_Store

@@ -1,3 +1,3 @@
 dotfiles
 ========
-Just a place to store the dotfiles I use on my linux environments
+Have to give a shout out to https://github.com/nicknisi/dotfiles as this is now being built like his
