@@ -34,6 +34,3 @@ brew install --HEAD neovim
 
 # communication tools
 brew install irssi
-
-
-exit 0

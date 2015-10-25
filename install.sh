@@ -11,8 +11,8 @@ if [ "$(uname)" == "Darwin" ]; then
 	echo "Running OSX"
 
 	echo "Creating needed directories"
-	mkdir -p /User/jcostanzo/Development
-	mkdir -p /User/jcostanzo/Development/Work
+	mkdir -p /Users/jcostanzo/Development
+	mkdir -p /Users/jcostanzo/Development/Work
 
 	echo "Brewing all the things"
     source install/brew.sh

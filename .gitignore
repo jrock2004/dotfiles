@@ -2,5 +2,6 @@
 npm-debug.log
 vim/vim.symlink/plugged/
 nvim/nvim.symlink/plugged/
+nvim/nvim.symlink/shada/
 plug.vim.old
 .DS_Store
