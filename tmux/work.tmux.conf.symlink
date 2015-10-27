@@ -1,0 +1,33 @@
+source-file ~/.tmux.conf
+# Order Validations
+new-session -s work -n orderValidation
+send-keys -t work 'cd ~/Development/Work/orderValidationReturn' C-m
+split-window -h -p 10 -t work
+send-keys -t work 'cd ~/Development/Work/orderValidationReturn' C-m
+send-keys -t work 'npm install' C-m
+send-keys -t work 'bower install' C-m
+select-pane -t 1
+send-keys -t work 'vim' C-m
+
+# JDA Lookup app
+new-window -n jdalookup -t work
+send-keys -t work 'cd ~/Development/Work/jda-lookup' C-m
+split-window -v -p 10 -t work
+send-keys -t work 'cd ~/Development/Work/jda-lookup' C-m
+send-keys -t work 'npm install' C-m
+send-keys -t work 'bower install' C-m
+select-pane -t 1
+send-keys -t work 'vim' C-m
+
+# Nimbus Solution
+new-window -n nimbus -t work
+send-keys -t work 'cd ~/Development/Work/Nimbus' C-m
+split-window -v -p 10 -t work
+send-keys -t work 'cd ~/Development/Work/Nimbus' C-m
+send-keys -t work 'npm install' C-m
+send-keys -t work 'bower install' C-m
+select-pane -t 1
+send-keys -t work 'vim' C-m
+
+# Go back to the first window
+select-window -t work:1
