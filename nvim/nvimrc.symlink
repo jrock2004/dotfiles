@@ -362,3 +362,4 @@ let g:OmniSharp_timeout = 1
 " Mapping keys
 """""""""""""""""""""""""""""""""
 map <Leader>l oconsole.log('debugging');<esc><cr>
+nmap <Leader>gp :Dispatch git push origin master<cr>
