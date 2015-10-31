@@ -159,6 +159,9 @@ set visualbell
 set t_vb=
 set tm=500
 
+" Add margins
+set colorcolumn=86
+
 " Dynamic line numbers
 set rnu
 function! ToggleNumbersOn()
@@ -299,17 +302,17 @@ let g:ctrlp_map='<leader>t'
 let g:ctrlp_dotfiles=1
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-let g:ctrlp_custom_ignore = 'node_modules\|bower_components\|git'
+let g:ctrlp_custom_ignore = 'node_modules|bower_components|git'
 
 " search the nearest ancestor that contains .git, .hg, .svn
-let g:ctrlp_working_path_mode = 2
+"let g:ctrlp_working_path_mode = 2
 
 """"" Fugitive
 nmap <silent> <leader>gs :Gstatus<cr>
 nmap <leader>ge :Gedit<cr>
 nmap <silent><leader>gr :Gread<cr>
 nmap <silent><leader>gb :Gblame<cr>
-
+nmap <silent><leader>gc :Gcommit<cr>
 nmap <leader>m :MarkedOpen!<cr>
 nmap <leader>mq :MarkedQuit<cr>
 
@@ -354,3 +357,8 @@ let g:vimwiki_list = [{'path':'$HOME/Dropbox/vimwiki'}]
 let g:OmniSharp_selector_ui = 'ctrlp'
 let g:OmniSharp_server_type = 'roslyn'
 let g:OmniSharp_timeout = 1
+
+
+" Mapping keys
+"""""""""""""""""""""""""""""""""
+map <Leader>l oconsole.log('debugging');<esc><cr>

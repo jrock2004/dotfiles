@@ -79,3 +79,5 @@ fi
 BASE16_SHELL="$DOTFILES/.config/base16-shell/$THEME.$BACKGROUND.sh"
 # [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 source $BASE16_SHELL
+
+[ -s "/Users/jcostanzo/.dnx/dnvm/dnvm.sh" ] && . "/Users/jcostanzo/.dnx/dnvm/dnvm.sh" # Load dnvm
