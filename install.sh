@@ -29,9 +29,9 @@ if [ "$(uname)" == "Darwin" ]; then
     ln -s ~/.dotfiles/nginx/nginx.conf /usr/local/etc/nginx/nginx.conf
     # symlink the code.dev from dotfiles
     ln -s ~/.dotfiles/nginx/sites-available/code.dev /usr/local/etc/nginx/sites-enabled/code.dev
-fi
+# fi
 
-echo "creating vim directories"
+# echo "creating vim directories"
 mkdir -p ~/.vim-tmp
 
 echo "Configuring zsh as default shell"
