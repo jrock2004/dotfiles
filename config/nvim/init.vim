@@ -49,9 +49,9 @@ Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'ap/vim-css-color', { 'for': 'css' }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
-Plug 'OmniSharp/omnisharp-vim', { 'for': 'csharp' }
-Plug 'OmniSharp/omnisharp-roslyn', { 'for': 'csharp' }
-Plug 'OrangeT/vim-csharp', { 'for': 'csharp' }
+Plug 'OmniSharp/omnisharp-vim', { 'for': 'cs' }
+Plug 'OmniSharp/omnisharp-roslyn', { 'for': 'cs' }
+Plug 'OrangeT/vim-csharp', { 'for': 'cs' }
 
 
 call plug#end()
@@ -160,7 +160,7 @@ set t_vb=
 set tm=500
 
 " Add margins
-set colorcolumn=86
+set colorcolumn=81
 
 " Dynamic line numbers
 set rnu
@@ -363,3 +363,7 @@ let g:OmniSharp_timeout = 1
 """""""""""""""""""""""""""""""""
 map <Leader>l oconsole.log('debugging');<esc><cr>
 nmap <Leader>gp :Dispatch git push origin master<cr>
+map <up> :echo "Stop being stupid"<cr>
+map <down> :echo "Stop being stupid"<cr>
+map <left> :echo "Stop being stupid"<cr>
+map <right> :echo "Stop being stupid"<cr>
