@@ -18,7 +18,6 @@ send-keys -t work 'cd ~/Development/Work/jda-lookup' C-m
 send-keys -t work 'npm install' C-m
 send-keys -t work 'bower install' C-m
 select-pane -t 1
-send-keys -t work 'vim' C-m
 
 # Nimbus Solution
 new-window -n nimbus -t work
@@ -28,7 +27,6 @@ send-keys -t work 'cd ~/Development/Work/Nimbus' C-m
 send-keys -t work 'npm install' C-m
 send-keys -t work 'bower install' C-m
 select-pane -t 1
-send-keys -t work 'vim' C-m
 
 # Nlog
 new-window -n nlog -t work
@@ -38,7 +36,6 @@ send-keys -t work 'cd ~/Development/Work/ApplicationManagement/LogManager.Web' C
 send-keys -t work 'npm install' C-m
 send-keys -t work 'bower install' C-m
 select-pane -t 1
-send-keys -t work 'vim' C-m
 
 # Vendor Next
 new-window -n vnext -t work
@@ -48,7 +45,6 @@ send-keys -t work 'cd ~/Development/Work/VendorNext/VendorNext.Web' C-m
 send-keys -t work 'npm install' C-m
 send-keys -t work 'bower install' C-m
 select-pane -t 1
-send-keys -t work 'vim' C-m
 
 # Dotfiles
 new-window -n dotfiles -t work

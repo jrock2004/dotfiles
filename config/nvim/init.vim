@@ -268,6 +268,18 @@ nmap \s :set ts=4 sts=4 sw=4 et<cr>
 " always use vertical diffs
 set diffopt+=vertical
 
+" Using the Silver Searcher
+if executable('ag')
+	" Use Ag over Grep
+	set grepprg=ag\ --nogroup\ --nocolor
+
+	" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+	let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+
+	" ag is fast enough that CtrlP doesn't need to cache
+	let g:ctrlp_use_caching = 0
+endif
+
 " => Functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -304,7 +316,7 @@ nmap <silent> <leader>r :CtrlPBuffer<cr>
 let g:ctrlp_map='<leader>t'
 let g:ctrlp_dotfiles=1
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+"let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_custom_ignore = 'node_modules|bower_components|git'
 
 " search the nearest ancestor that contains .git, .hg, .svn
