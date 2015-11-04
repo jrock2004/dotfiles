@@ -265,6 +265,9 @@ nnoremap <C-y> 3<C-y>
 nmap \t :set ts=4 sts=4 sw=4 noet<cr>
 nmap \s :set ts=4 sts=4 sw=4 et<cr>
 
+" always use vertical diffs
+set diffopt+=vertical
+
 " => Functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -358,12 +361,10 @@ let g:OmniSharp_selector_ui = 'ctrlp'
 let g:OmniSharp_server_type = 'roslyn'
 let g:OmniSharp_timeout = 1
 
-
 " Mapping keys
 """""""""""""""""""""""""""""""""
-map <Leader>l oconsole.log('debugging');<esc><cr>
 nmap <Leader>gp :Dispatch git push origin master<cr>
-map <up> :echo "Stop being stupid"<cr>
-map <down> :echo "Stop being stupid"<cr>
-map <left> :echo "Stop being stupid"<cr>
-map <right> :echo "Stop being stupid"<cr>
+nnoremap <up> :echo "Stop being stupid"<cr>
+nnoremap <down> :echo "Stop being stupid"<cr>
+nnoremap <left> :echo "Stop being stupid"<cr>
+nnoremap <right> :echo "Stop being stupid"<cr>
