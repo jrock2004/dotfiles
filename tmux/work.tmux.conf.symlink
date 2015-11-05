@@ -23,16 +23,16 @@ select-pane -t 1
 new-window -n nimbus -t work
 send-keys -t work 'cd ~/Development/Work/Nimbus' C-m
 split-window -v -p 10 -t work
-send-keys -t work 'cd ~/Development/Work/Nimbus' C-m
+send-keys -t work 'cd ~/Development/Work/Nimbus/apps/Nimbus.Apps.Web.Site' C-m
 send-keys -t work 'npm install' C-m
 send-keys -t work 'bower install' C-m
 select-pane -t 1
 
 # Nlog
 new-window -n nlog -t work
-send-keys -t work 'cd ~/Development/Work/ApplicationManagement' C-m
+send-keys -t work 'cd ~/Development/Work/Nlog' C-m
 split-window -v -p 10 -t work
-send-keys -t work 'cd ~/Development/Work/ApplicationManagement/LogManager.Web' C-m
+send-keys -t work 'cd ~/Development/Work/Nlog/LogManager.Web' C-m
 send-keys -t work 'npm install' C-m
 send-keys -t work 'bower install' C-m
 select-pane -t 1
