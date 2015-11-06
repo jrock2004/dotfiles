@@ -11,6 +11,7 @@ echo "Installing homebrew packages..."
 brew install ack
 brew install tree
 brew install wget
+brew install caskroom/cask/brew-cask
 
 # development server setup
 brew install nginx
