@@ -1,9 +1,19 @@
 {
 	"color_scheme": "Packages/Colorsublime - Themes/1337.tmTheme",
-	"font_size": 15,
+	"font_face": "Input Mono",
+	"font_size": 13,
+	"rulers": [ 80 ],
+	"highlight_line": true,
+	"line_padding_top": 2,
+	"line_padding_bottom": 2,
+	"scroll_past_end": false,
+	"trim_trailing_white_space_on_save": true,
+	"ensure_newline_at_eof_on_save": true,
 	"ignored_packages":
 	[
 		"Vintage"
 	],
-	"theme": "predawn.sublime-theme"
+	"theme": "predawn.sublime-theme",
+	"bold_folder_labels": true,
+	"show_line_endings": true
 }
