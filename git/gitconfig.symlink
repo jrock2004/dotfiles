@@ -1,0 +1,7 @@
+[user]
+	name = John Costanzo
+	email = jrock2004@gmail.com
+[credential]
+	helper = osxkeychain
+[url "https://"]
+	insteadOf = git://
