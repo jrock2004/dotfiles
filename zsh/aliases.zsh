@@ -45,3 +45,4 @@ alias chrome="/Applications/Google\\ \\Chrome.app/Contents/MacOS/Google\\ \\Chro
 
 # Work stuff
 alias startwork="tmux -f ~/.work.tmux.conf attach"
+alias jda="java -jar ~/bin/tn5250/tn5250j.jar"
