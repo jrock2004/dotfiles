@@ -1,4 +1,4 @@
-call plug#begin()
+call plug#begin('~/.vim/plugged')
 
 " colorschemes
 Plug 'chriskempson/base16-vim'

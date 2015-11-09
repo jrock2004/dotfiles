@@ -26,8 +26,10 @@ compinit
 for config ($ZSH/**/*completion.sh) source $config
 
 export EDITOR='vim'
+export ANDROID_SDK='/Users/jcostanzo/Library/Android/sdk'
 
-export PATH=/usr/local/bin:/Users/jcostanzo/.npm-packages/bin:/usr/local/tee:$PATH
+export PATH=/usr/local/bin:/Users/jcostanzo/.npm-packages/bin:/usr/local/tee:$ANDROID_SDK/platform-tools:$ANDROID_SDK/tools:$PATH
+
 
 # add /usr/local/sbin
 if [[ -d /usr/local/sbin ]]; then

@@ -9,6 +9,7 @@ else # OS X `ls`
 fi
 
 alias vim="nvim"
+alias rvim="vim"
 
 # Helpers
 alias df='df -h' # disk free, in Gigabytes, not bytes
