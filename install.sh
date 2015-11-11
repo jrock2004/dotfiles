@@ -31,8 +31,17 @@ if [ "$(uname)" == "Darwin" ]; then
     ln -s ~/.dotfiles/nginx/sites-available/code.dev /usr/local/etc/nginx/sites-enabled/code.dev
 fi
 
-# echo "creating vim directories"
-mkdir -p ~/.vim-tmp
+if [ "$(uname)" == "Linux" ]; then
+	echo "Running Linux"
+
+	source install/installlinux.sh
+	source ~/.bashrc
+
+	npm install -g gulp grunt grunt-cli bower yo browser-sync nodemon express-generator cordova
+	npm install -g eslint jscs jshint jsxhint jsonlint pylint shellcheck tsc
+	npm install -g osacompile csslint prettycss handlebars jade-lint less phplint
+	npm install -g sass tslint
+fi
 
 echo "Configuring zsh as default shell"
 chsh -s $(which zsh)
