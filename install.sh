@@ -41,6 +41,9 @@ if [ "$(uname)" == "Linux" ]; then
 	npm install -g eslint jscs jshint jsxhint jsonlint pylint shellcheck tsc
 	npm install -g osacompile csslint prettycss handlebars jade-lint less phplint
 	npm install -g sass tslint
+
+	sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf-orig
+	sudo ln -s ~/.dotfiles/nginx/sites-available/code-linux.dev /etc/nginx/sites-enabled/code.dev
 fi
 
 echo "Configuring zsh as default shell"
