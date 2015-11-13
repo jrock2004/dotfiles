@@ -37,13 +37,12 @@ if [ "$(uname)" == "Linux" ]; then
 	source install/installlinux.sh
 	source ~/.bashrc
 
-	npm install -g gulp bower yo browser-sync nodemon express-generator cordova
-	npm install -g eslint jscs jshint jsxhint jsonlint shellcheck tsc
-	npm install -g csslint handlebars jade-lint less phplint sass tslint
-
 	sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf-orig
 	sudo ln -s ~/.dotfiles/nginx/sites-available/code-linux.dev /etc/nginx/sites-enabled/code.dev
 fi
+
+echo "Installing some node modules"
+source install/node.sh
 
 echo "Configuring zsh as default shell"
 chsh -s $(which zsh)
