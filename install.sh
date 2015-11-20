@@ -13,6 +13,9 @@ if [ "$(uname)" == "Darwin" ]; then
 	echo "Creating needed directories"
 	mkdir -p /Users/jcostanzo/Development
 	mkdir -p /Users/jcostanzo/Development/Work
+	
+	echo "Fixing some things"
+	rm ~/.npmrc
 
 	echo "Brewing all the things"
     source install/brew.sh
