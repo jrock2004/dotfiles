@@ -28,7 +28,7 @@ for config ($ZSH/**/*completion.sh) source $config
 export EDITOR='vim'
 export ANDROID_SDK='/Users/jcostanzo/Library/Android/sdk'
 
-export PATH=/usr/local/bin:/Users/jcostanzo/.npm-packages/bin:/usr/local/tee:$ANDROID_SDK/platform-tools:$ANDROID_SDK/tools:$PATH
+export PATH=/usr/local/bin:/Users/jcostanzo/.npm-packages/bin:/usr/local/tee:$ANDROID_SDK/platform-tools:$ANDROID_SDK/tools:$HOME/bin/phantomjs/bin:$PATH
 
 
 # add /usr/local/sbin
@@ -83,3 +83,5 @@ BASE16_SHELL="$DOTFILES/.config/base16-shell/$THEME.$BACKGROUND.sh"
 source $BASE16_SHELL
 
 [ -s "/Users/jcostanzo/.dnx/dnvm/dnvm.sh" ] && . "/Users/jcostanzo/.dnx/dnvm/dnvm.sh" # Load dnvm
+
+source /usr/local/lib/dnx/bin/dnvm.sh

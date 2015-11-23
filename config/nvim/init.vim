@@ -52,6 +52,7 @@ Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 Plug 'OmniSharp/omnisharp-vim', { 'for': 'cs' }
 Plug 'OmniSharp/omnisharp-roslyn', { 'for': 'cs' }
 Plug 'OrangeT/vim-csharp', { 'for': 'cs' }
+Plug 'mustache/vim-mustache-handlebars'
 
 
 call plug#end()
