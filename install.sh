@@ -23,8 +23,8 @@ if [ "$(uname)" == "Darwin" ]; then
     echo "Updating OSX settings"
     source install/installosx.sh
 
-    echo "Installing node (from nvm)"
-    source install/nvm.sh
+    #echo "Installing node (from nvm)"
+    #source install/nvm.sh
 
     echo "Configuring nginx"
     # create a backup of the original nginx.conf

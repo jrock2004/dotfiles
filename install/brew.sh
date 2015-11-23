@@ -12,6 +12,7 @@ brew install ack
 brew install tree
 brew install wget
 brew install caskroom/cask/brew-cask
+brew install node
 
 # development server setup
 brew install nginx
