@@ -2,10 +2,25 @@
 
 echo "Installing dotfiles"
 
+source install/link.sh
+
+echo "Generating SSH Keys"
+ssh-keygen -t rsa -b 4096 -C "jrock2004@gmail.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+pbcopy < ~/.ssh/id_rsa.pub
+
+# Lets put a hold on things until we put the key in github
+while true; do
+	read -p "Copy your key to github" yn
+	case $yn in
+		[Yy]* ) break;;
+	esac
+done
+
 echo "Initializing submodule(s)"
 git submodule update --init --recursive
 
-source install/link.sh
 
 if [ "$(uname)" == "Darwin" ]; then
 	echo "Running OSX"
@@ -14,9 +29,6 @@ if [ "$(uname)" == "Darwin" ]; then
 	mkdir -p /Users/jcostanzo/Development
 	mkdir -p /Users/jcostanzo/Development/Work
 	
-	echo "Fixing some things"
-	rm ~/.npmrc
-
 	echo "Brewing all the things"
     source install/brew.sh
 
