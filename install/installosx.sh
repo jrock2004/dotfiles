@@ -48,7 +48,7 @@ echo "Installing iTerm"
 brew cask install iterm2
 
 echo "Installing Office"
-brew cask install microsoft-office365
+brew cask install microsoft-office
 
 echo "Installing Parallels"
 brew cask install parallels-desktop
@@ -67,3 +67,6 @@ brew cask install spotify
 
 echo "Installing Java"
 brew cask install java
+
+echo "Install Visual Code"
+brew cask install visual-studio-code
