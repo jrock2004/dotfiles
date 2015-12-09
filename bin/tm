@@ -20,9 +20,6 @@ do
 			tmux new -s "$SESSION_NAME"
 			break
 			;;
-		"zsh")
-			zsh --login
-			break;;
 		*)
 			tmux attach-session -t $opt
 			break

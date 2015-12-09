@@ -3,3 +3,5 @@
 	email = jrock2004@gmail.com
 [url "https://"]
 	insteadOf = git://
+[credential]
+	helper = osxkeychain
