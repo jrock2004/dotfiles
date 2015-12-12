@@ -14,6 +14,7 @@ brew install wget
 brew install caskroom/cask/brew-cask
 brew install node
 brew install watchman
+brew install ngrep
 
 # development server setup
 brew install nginx

@@ -275,7 +275,7 @@ if executable('ag')
 	set grepprg=ag\ --nogroup\ --nocolor
 
 	" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-	let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden 
+	let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden
 		\ --ignore=".git" --ignore="public" --ignore="node_modules"
 		\ --ignore="bower_components" -g ""'
 

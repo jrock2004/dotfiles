@@ -9,7 +9,7 @@ else # OS X `ls`
 fi
 
 alias vim="nvim"
-alias rvim="vim"
+alias rvim="/usr/bin/vim"
 
 # Helpers
 alias df='df -h' # disk free, in Gigabytes, not bytes
@@ -26,7 +26,7 @@ alias flush="dscacheutil -flushcache"
 
 # View HTTP traffic
 alias sniff="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
-alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+alias httpdump="sudo tcpdump -i en0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
