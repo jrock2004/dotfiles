@@ -1,83 +1,40 @@
 call plug#begin('~/.nvim/plugged')
 
 " colorschemes
-Plug 'chriskempson/base16-vim'
-"Plug 'morhetz/gruvbox'
+Plug 'flazz/vim-colorschemes'
 
 " utilities
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-vinegar'
-" Plug 'mileszs/ack.vim'
-" Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
-" Plug 'tpope/vim-ragtag'
-" Plug 'tpope/vim-surround'
-" Plug 'benmills/vimux'
 Plug 'bling/vim-airline'
-" Plug 'scrooloose/syntastic'
 Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'garbas/vim-snipmate'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'editorconfig/editorconfig-vim'
-" Plug 'tomtom/tlib_vim'
-" Plug 'sotte/presenting.vim'
-" Plug 'ervandew/supertab'
-" Plug 'tpope/vim-dispatch'
-" Plug 'AndrewRadev/splitjoin.vim'
-" Plug 'tpope/vim-sleuth'
-" Plug 'sickill/vim-pasta'
-" Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
-" Plug 'vimwiki/vimwiki'
-" Plug 'mattn/calendar-vim'
 
-" language specific plugins
+" language specific
 Plug 'mattn/emmet-vim'
-" Plug 'gregsexton/MatchTag', { 'for': 'html' }
-" Plug 'othree/html5.vim', { 'for': 'html' }
-" Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-" Plug 'moll/vim-node', { 'for': 'javascript' }
-" Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
-" Plug 'elzr/vim-json', { 'for': 'json' }
-" Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm install' }
-" Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-" Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
-" Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
-" Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] }
-" Plug 'groenewege/vim-less', { 'for': 'less' }
-" Plug 'ap/vim-css-color', { 'for': 'css' }
-" Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
-" Plug 'tpope/vim-markdown', { 'for': 'markdown' }
-" Plug 'OmniSharp/omnisharp-vim', { 'for': 'cs' }
-" Plug 'OmniSharp/omnisharp-roslyn', { 'for': 'cs' }
-" Plug 'OrangeT/vim-csharp', { 'for': 'cs' }
-" Plug 'mustache/vim-mustache-handlebars'
-
+Plug 'othree/html5.vim'
 
 call plug#end()
-
 
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Abbreviations
-abbr teh the
+set nocompatible
+set autoread
 
-set nocompatible " not compatible with vi
-set autoread " detect when a file is changed
-
-" make backspace behave in a sane manner
 set backspace=indent,eol,start
 
-" set a map leader for more key combos
 let mapleader = ','
 let g:mapleader = ','
 
 set history=1000 " change history to 1000
 set textwidth=120
 
-" Tab control
 set noexpandtab " insert tabs rather than spaces for <Tab>
 set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
 set tabstop=4 " the visible width of tabs
@@ -94,11 +51,8 @@ set ttyfast
 " highlight conflicts
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-" file type specific settings
 if has('autocmd') && !exists('autocommands_loaded')
 	let autocommands_loaded = 1
-	" autocmd FileType html setlocal ts=4 sts=4 sw=4 noexpandtab indentkeys-=*<return>
-    " autocmd FileType jade setlocal ts=2 sts=2 sw=2 noexpandtab
 
     " automatically resize panes on resize
     autocmd VimResized * exe 'normal! \<c-w>='
@@ -182,13 +136,12 @@ autocmd InsertLeave * call ToggleRelativeOn()
 syntax on
 
 set encoding=utf8
-let base16colorspace=256  " Access colors present in 256 colorspace"
-set t_Co=256 " Explicitly tell vim that the terminal supports 256 colors"
-execute "set background=".$BACKGROUND
-execute "colorscheme ".$THEME
 
-" set number " show line numbers
-" set relativenumber " show relative line numbers
+set t_Co=256
+
+set background=dark
+colorscheme gruvbox
+
 set number " show the current line number"
 
 set wrap "turn on line wrapping
@@ -213,13 +166,6 @@ set laststatus=2 " show the satus line all the time
 
 " => Mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" remap esc
-inoremap jk <esc>
-
-" markdown to html
-nmap <leader>md :%!markdown --html4tags <cr>
-
 " shortcut to save
 nmap <leader>, :w<cr>
 
@@ -231,12 +177,6 @@ set pastetoggle=<F6>
 
 " toggle paste mode
 map <leader>v :set paste!<cr>
-
-" edit ~/.nvimrc
-map <leader>env :e! ~/.config/nvim/init.vim<cr>
-
-" edit ~/.vimrc
-map <leader>ev :e! ~/.vimrc<cr>
 
 " clear highlighted search
 noremap <space> :set hlsearch! hlsearch?<cr>
@@ -302,9 +242,6 @@ endfunction
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""" Emmet
-let g:user_emmet_mode='a'
-
 """"" CtrlP
 nmap <silent> <leader>r :CtrlPBuffer<cr>
 let g:ctrlp_map='<leader>t'
@@ -320,9 +257,6 @@ nmap <silent><leader>gc :Gcommit<cr>
 nmap <leader>m :MarkedOpen!<cr>
 nmap <leader>mq :MarkedQuit<cr>
 
-""""" Limelight
-" nmap <leader>f :Limelight!!<cr>
-
 """"" NeoMake
 let g:neomake_javascript_jshint_maker = {
     \ 'args': ['--verbose'],
@@ -334,33 +268,10 @@ let g:neomake_javascript_enabled_markers = ['jshint', 'jscs']
 let g:airline_powerline_fonts=1
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_theme='base16'
+let g:airline_theme='dark'
 
-" don't hide quotes in json files
-" let g:vim_json_syntax_conceal = 0
-
-""""" Super Tab
-" let g:SuperTabCrMapping = 0
-
-" if (has("gui_running"))
-	" set guioptions=egmrt
-    " set background=light
-    " colorscheme solarized
-    " let g:airline_left_sep=''
-    " let g:airline_right_sep=''
-    " let g:airline_powerline_fonts=0
-    " let g:airline_theme='solarized'
-" endif
-
-""""" Vimwiki
-" autocmd FileType vimwiki map <leader>c :call ToggleCalendar() <cr>
-
-" let g:vimwiki_list = [{'path':'$HOME/Dropbox/vimwiki'}]
-
-""""" Omnisharp
-" let g:OmniSharp_selector_ui = 'ctrlp'
-" let g:OmniSharp_server_type = 'roslyn'
-"let g:OmniSharp_timeout = 1
+""""" netrw
+let g:netrw_localrmdir='rm -r'
 
 " Mapping keys
 """""""""""""""""""""""""""""""""

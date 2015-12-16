@@ -4,8 +4,6 @@ export ZSH=$DOTFILES/zsh
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
 
-[[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
-
 # define the code directory
 if [[ -d ~/Development ]]; then
     export CODE_DIR=~/Development
@@ -68,20 +66,3 @@ if hash brew 2>/dev/null; then
     source $(brew --prefix nvm)/nvm.sh
     source `brew --prefix`/etc/profile.d/z.sh
 fi
-
-
-# Base16 Shell
-# if [ -z "$THEME" ]; then
-    export THEME="base16-eighties"
-# fi
-if [ -z "$BACKGROUND" ]; then
-    export BACKGROUND="dark"
-fi
-
-BASE16_SHELL="$DOTFILES/.config/base16-shell/$THEME.$BACKGROUND.sh"
-# [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
-source $BASE16_SHELL
-
-[ -s "/Users/jcostanzo/.dnx/dnvm/dnvm.sh" ] && . "/Users/jcostanzo/.dnx/dnvm/dnvm.sh" # Load dnvm
-
-source /usr/local/lib/dnx/bin/dnvm.sh

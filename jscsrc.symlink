@@ -1,9 +1,0 @@
-{
-	"disallowAnonymousFunctions": false,
-	"disallowArrowFunctions": true,
-	"disallowCommaBeforeLineBreak": false,
-	"disallowCurlyBraces": false,
-	"disallowEmptyBlocks": true,
-	"disallowFunctionDeclarations": true,
-	"disallowIdenticalDestructuringNames": true
-}

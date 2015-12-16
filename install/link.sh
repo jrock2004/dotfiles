@@ -1,13 +1,19 @@
 #!/bin/bash
 
 DOTFILES=$HOME/.dotfiles
+OS=`uname`
 
 echo "creating symlinks"
 linkables=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )
 for file in $linkables ; do
     target="$HOME/.$( basename $file ".symlink" )"
-    echo "creating symlink for $file to $target"
-    ln -s $file $target
+
+    if [ -f $target ]; then
+    	echo "$target already exists"
+    else
+    	echo "creating symlink for $file to $target"
+	ln -s $file $target
+    fi
 done
 
 echo -e "\n\ninstalling to ~/.config"

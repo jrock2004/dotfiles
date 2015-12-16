@@ -43,7 +43,3 @@ alias pumpitup="osascript -e 'set volume 10'"
 alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
 
 alias chrome="/Applications/Google\\ \\Chrome.app/Contents/MacOS/Google\\ \\Chrome"
-
-# Work stuff
-alias startwork="tmux -f ~/.work.tmux.conf attach"
-alias jda="java -jar ~/bin/tn5250/tn5250j.jar"
