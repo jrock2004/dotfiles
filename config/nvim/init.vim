@@ -6,53 +6,53 @@ Plug 'chriskempson/base16-vim'
 
 " utilities
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] } | Plug 'Xuyuanp/nerdtree-git-plugin' | Plug 'ryanoasis/vim-devicons'
-Plug 'mileszs/ack.vim'
-Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-vinegar'
+" Plug 'mileszs/ack.vim'
+" Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-ragtag'
-Plug 'tpope/vim-surround'
-Plug 'benmills/vimux'
+" Plug 'tpope/vim-ragtag'
+" Plug 'tpope/vim-surround'
+" Plug 'benmills/vimux'
 Plug 'bling/vim-airline'
 " Plug 'scrooloose/syntastic'
 Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'garbas/vim-snipmate'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'sotte/presenting.vim'
-Plug 'ervandew/supertab'
-Plug 'tpope/vim-dispatch'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'tpope/vim-sleuth'
-Plug 'sickill/vim-pasta'
-Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
-Plug 'vimwiki/vimwiki'
-Plug 'mattn/calendar-vim'
+Plug 'editorconfig/editorconfig-vim'
+" Plug 'tomtom/tlib_vim'
+" Plug 'sotte/presenting.vim'
+" Plug 'ervandew/supertab'
+" Plug 'tpope/vim-dispatch'
+" Plug 'AndrewRadev/splitjoin.vim'
+" Plug 'tpope/vim-sleuth'
+" Plug 'sickill/vim-pasta'
+" Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
+" Plug 'vimwiki/vimwiki'
+" Plug 'mattn/calendar-vim'
 
 " language specific plugins
-Plug 'mattn/emmet-vim', { 'for': 'html' }
-Plug 'gregsexton/MatchTag', { 'for': 'html' }
-Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'moll/vim-node', { 'for': 'javascript' }
-Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
-Plug 'elzr/vim-json', { 'for': 'json' }
-Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm install' }
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
-Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
-Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] }
-Plug 'groenewege/vim-less', { 'for': 'less' }
-Plug 'ap/vim-css-color', { 'for': 'css' }
-Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
-Plug 'tpope/vim-markdown', { 'for': 'markdown' }
-Plug 'OmniSharp/omnisharp-vim', { 'for': 'cs' }
-Plug 'OmniSharp/omnisharp-roslyn', { 'for': 'cs' }
-Plug 'OrangeT/vim-csharp', { 'for': 'cs' }
-Plug 'mustache/vim-mustache-handlebars'
+Plug 'mattn/emmet-vim'
+" Plug 'gregsexton/MatchTag', { 'for': 'html' }
+" Plug 'othree/html5.vim', { 'for': 'html' }
+" Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+" Plug 'moll/vim-node', { 'for': 'javascript' }
+" Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+" Plug 'elzr/vim-json', { 'for': 'json' }
+" Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm install' }
+" Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+" Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+" Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+" Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] }
+" Plug 'groenewege/vim-less', { 'for': 'less' }
+" Plug 'ap/vim-css-color', { 'for': 'css' }
+" Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+" Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+" Plug 'OmniSharp/omnisharp-vim', { 'for': 'cs' }
+" Plug 'OmniSharp/omnisharp-roslyn', { 'for': 'cs' }
+" Plug 'OrangeT/vim-csharp', { 'for': 'cs' }
+" Plug 'mustache/vim-mustache-handlebars'
 
 
 call plug#end()
@@ -97,8 +97,8 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " file type specific settings
 if has('autocmd') && !exists('autocommands_loaded')
 	let autocommands_loaded = 1
-	autocmd FileType html setlocal ts=4 sts=4 sw=4 noexpandtab indentkeys-=*<return>
-    autocmd FileType jade setlocal ts=2 sts=2 sw=2 noexpandtab
+	" autocmd FileType html setlocal ts=4 sts=4 sw=4 noexpandtab indentkeys-=*<return>
+    " autocmd FileType jade setlocal ts=2 sts=2 sw=2 noexpandtab
 
     " automatically resize panes on resize
     autocmd VimResized * exe 'normal! \<c-w>='
@@ -233,7 +233,7 @@ set pastetoggle=<F6>
 map <leader>v :set paste!<cr>
 
 " edit ~/.nvimrc
-map <leader>env :e! ~/.nvimrc<cr>
+map <leader>env :e! ~/.config/nvim/init.vim<cr>
 
 " edit ~/.vimrc
 map <leader>ev :e! ~/.vimrc<cr>
@@ -302,17 +302,8 @@ endfunction
 " => Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-""""" NERDTree
-" close NERDTree after a file is opened
-let g:NERDTreeQuitOnOpen=1
-" show hidden files in NERDTree
-let NERDTreeShowHidden=1
-" remove some files by extension
-let NERDTreeIgnore = ['\.js.map$']
-" Toggle NERDTree
-nmap <silent> <leader>k :NERDTreeToggle<cr>
-" expand to the path of the file in the current buffer
-nmap <silent> <leader>y :NERDTreeFind<cr>
+""""" Emmet
+let g:user_emmet_mode='a'
 
 """"" CtrlP
 nmap <silent> <leader>r :CtrlPBuffer<cr>
@@ -330,7 +321,7 @@ nmap <leader>m :MarkedOpen!<cr>
 nmap <leader>mq :MarkedQuit<cr>
 
 """"" Limelight
-nmap <leader>f :Limelight!!<cr>
+" nmap <leader>f :Limelight!!<cr>
 
 """"" NeoMake
 let g:neomake_javascript_jshint_maker = {
@@ -346,30 +337,30 @@ let g:airline_right_sep=''
 let g:airline_theme='base16'
 
 " don't hide quotes in json files
-let g:vim_json_syntax_conceal = 0
+" let g:vim_json_syntax_conceal = 0
 
 """"" Super Tab
-let g:SuperTabCrMapping = 0
+" let g:SuperTabCrMapping = 0
 
-if (has("gui_running"))
-	set guioptions=egmrt
-    set background=light
-    colorscheme solarized
-    let g:airline_left_sep=''
-    let g:airline_right_sep=''
-    let g:airline_powerline_fonts=0
-    let g:airline_theme='solarized'
-endif
+" if (has("gui_running"))
+	" set guioptions=egmrt
+    " set background=light
+    " colorscheme solarized
+    " let g:airline_left_sep=''
+    " let g:airline_right_sep=''
+    " let g:airline_powerline_fonts=0
+    " let g:airline_theme='solarized'
+" endif
 
 """"" Vimwiki
-autocmd FileType vimwiki map <leader>c :call ToggleCalendar() <cr>
+" autocmd FileType vimwiki map <leader>c :call ToggleCalendar() <cr>
 
-let g:vimwiki_list = [{'path':'$HOME/Dropbox/vimwiki'}]
+" let g:vimwiki_list = [{'path':'$HOME/Dropbox/vimwiki'}]
 
 """"" Omnisharp
-let g:OmniSharp_selector_ui = 'ctrlp'
-let g:OmniSharp_server_type = 'roslyn'
-let g:OmniSharp_timeout = 1
+" let g:OmniSharp_selector_ui = 'ctrlp'
+" let g:OmniSharp_server_type = 'roslyn'
+"let g:OmniSharp_timeout = 1
 
 " Mapping keys
 """""""""""""""""""""""""""""""""
