@@ -26,7 +26,7 @@ for config ($ZSH/**/*completion.sh) source $config
 export EDITOR='vim'
 export ANDROID_SDK='/Users/jcostanzo/Library/Android/sdk'
 
-export PATH=/usr/local/bin:/Users/jcostanzo/.npm-packages/bin:/usr/local/git-tf:$ANDROID_SDK/platform-tools:$ANDROID_SDK/tools:$HOME/bin/phantomjs/bin:$HOME/bin/jmeter/bin:$PATH
+export PATH=/usr/local/bin:$HOME/.npm-packages/bin:$HOME/.composer/vendor/bin:$HOME/.gem/ruby/2.2.0/bin:$PATH
 
 
 # add /usr/local/sbin
@@ -66,3 +66,5 @@ if hash brew 2>/dev/null; then
     source $(brew --prefix nvm)/nvm.sh
     source `brew --prefix`/etc/profile.d/z.sh
 fi
+
+[ -s "/home/jcostanzo/.dnx/dnvm/dnvm.sh" ] && . "/home/jcostanzo/.dnx/dnvm/dnvm.sh" # Load dnvm

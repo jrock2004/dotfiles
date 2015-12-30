@@ -13,7 +13,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'garbas/vim-snipmate'
 Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'marijnh/tern_for_vim'
+Plug 'Valloric/YouCompleteMe'
 
 " language specific
 Plug 'mattn/emmet-vim'
@@ -272,6 +275,9 @@ let g:airline_theme='dark'
 
 """"" netrw
 let g:netrw_localrmdir='rm -r'
+
+""""" YouCompleteMe
+let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 
 " Mapping keys
 """""""""""""""""""""""""""""""""
