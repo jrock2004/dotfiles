@@ -277,7 +277,7 @@ let g:airline_theme='dark'
 let g:netrw_localrmdir='rm -r'
 
 """"" YouCompleteMe
-let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
+"let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 
 " Mapping keys
 """""""""""""""""""""""""""""""""
