@@ -1,0 +1,9 @@
+{
+	"camelcase" : true,
+	"latedef": true,
+	"quotmark": true,
+	"globals": {
+		"require": true,
+		"define": true
+	}
+}
