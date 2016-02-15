@@ -9,6 +9,7 @@ echo "Installing homebrew packages..."
 
 # cli tools
 brew install ack
+brew install ag
 brew install tree
 brew install wget
 brew install caskroom/cask/brew-cask

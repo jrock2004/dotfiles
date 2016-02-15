@@ -7,7 +7,8 @@ Plug 'flazz/vim-colorschemes'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -19,8 +20,13 @@ Plug 'marijnh/tern_for_vim'
 Plug 'Valloric/YouCompleteMe'
 
 " language specific
-Plug 'mattn/emmet-vim'
-Plug 'othree/html5.vim'
+Plug 'mattn/emmet-vim', { 'for': 'html' }
+Plug 'othree/html5.vim', { 'for': 'html' }
+Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'elzr/vim-json', { 'for': 'json' }
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
 
 call plug#end()
 
@@ -265,7 +271,12 @@ let g:neomake_javascript_jshint_maker = {
     \ 'args': ['--verbose'],
     \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
 \ }
+let g:neomake_scss_csslint_maker = {
+    \ 'args': ['--verbose'],
+    \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
+\ }
 let g:neomake_javascript_enabled_markers = ['jshint', 'jscs']
+let g:neomake_scss_enabled_markers = ['csslint']
 
 """"" Airline
 let g:airline_powerline_fonts=1
@@ -275,9 +286,6 @@ let g:airline_theme='dark'
 
 """"" netrw
 let g:netrw_localrmdir='rm -r'
-
-""""" YouCompleteMe
-"let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
 
 " Mapping keys
 """""""""""""""""""""""""""""""""
