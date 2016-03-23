@@ -1,0 +1,7 @@
+[user]
+	name = John Costanzo
+	email = jrock2004@gmail.com
+[github]
+	user = jrock2004
+[credential]
+	helper = osxkeychain

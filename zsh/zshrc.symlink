@@ -1,0 +1,69 @@
+export DOTFILES=$HOME/.dotfiles
+export ZSH=$DOTFILES/zsh
+
+# display how long all tasks over 10 seconds take
+export REPORTTIME=10
+
+# define the code directory
+if [[ -d ~/Development ]]; then
+    export CODE_DIR=~/Development
+fi
+
+# load all zsh config files
+for config ($ZSH/**/*.zsh) source $config
+
+if [[ -a ~/.localrc ]]; then
+    source ~/.localrc
+fi
+
+
+# initialize autocomplete
+autoload -U compinit
+compinit
+
+for config ($ZSH/**/*completion.sh) source $config
+
+export EDITOR='vim'
+export PATH=/usr/local/bin:$HOME/.npm-packages/bin:$PATH
+
+
+# add /usr/local/sbin
+if [[ -d /usr/local/sbin ]]; then
+    export PATH=/usr/local/sbin:$PATH
+fi
+
+# adding path directory for custom scripts
+export PATH=$DOTFILES/bin:$PATH
+
+# check for custom bin directory and add to path
+if [[ -d ~/bin ]]; then
+    export PATH=~/bin:$PATH
+fi
+
+[ -z "$TMUX" ] && export TERM=xterm-256color
+
+# install rbenv
+if hash rbenv 2>/dev/null; then
+    eval "$(rbenv init -)"
+fi
+
+if [[ -d ~/.rvm ]]; then
+    PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
+    source ~/.rvm/scripts/rvm
+fi
+
+# alias git to hub
+if hash hub 2>/dev/null; then
+    eval "$(hub alias -s)"
+fi
+
+# source nvm
+export NVM_DIR=~/.nvm
+
+if hash brew 2>/dev/null; then
+    source `brew --prefix`/etc/profile.d/z.sh
+fi
+
+[ -s "/home/jcostanzo/.dnx/dnvm/dnvm.sh" ] && . "/home/jcostanzo/.dnx/dnvm/dnvm.sh" # Load dnvm
+
+source /usr/local/lib/dnx/bin/dnvm.sh
