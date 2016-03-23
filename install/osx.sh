@@ -29,6 +29,8 @@ echo "Lets install the apps we need"
 echo "Installing pip"
 sudo easy_install pip
 
+brew tap caskroom/versions
+
 echo "Installing Google Chrome"
 brew cask install google-chrome
 
@@ -38,7 +40,7 @@ brew cask install 1password
 echo "Installing Alfred"
 brew cask install alfred
 
-echo "Installing Alfred"
+echo "Installing Bartender"
 brew cask install bartender
 
 echo "Installing Dropbox"
@@ -50,8 +52,8 @@ brew cask install firefox
 echo "Installing iTerm"
 brew cask install iterm2
 
-echo "Installing Office"
-brew cask install microsoft-office
+#echo "Installing Office"
+#brew cask install microsoft-office
 
 echo "Installing Parallels"
 brew cask install parallels-desktop
@@ -68,5 +70,5 @@ brew cask install spotify
 echo "Installing Java"
 brew cask install java
 
-echo "Install Visual Code"
-brew cask install visual-studio-code
+echo "Install Sublime Text 3"
+brew cask install sublime-text3

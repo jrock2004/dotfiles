@@ -18,8 +18,6 @@ while true; do
 done
 
 echo "Initializing submodule(s)"
-git submodule update --init --recursive
-
 if [ "$(uname)" == "Darwin" ]; then
 	echo "Running OSX"
 
@@ -28,18 +26,20 @@ if [ "$(uname)" == "Darwin" ]; then
 	mkdir -p /Users/jcostanzo/Development/Work
 
 	echo "Brewing all the things"
-    source install/brew.sh
+	source install/brew.sh
 
-    echo "Updating OSX settings"
-    source install/osx.sh
+	echo "Updating OSX settings"
+	source install/osx.sh
 
 	echo "Installing Node Apps"
 	source install/node.sh
 
 	echo "Configuring nginx"
-    # create a backup of the original nginx.conf
-    mv /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/nginx.original
-    ln -s ~/.dotfiles/nginx/nginx.conf /usr/local/etc/nginx/nginx.conf
+	mv /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/nginx.original
+	ln -s ~/.dotfiles/nginx/nginx.conf /usr/local/etc/nginx/nginx.conf
+
+	echo "Install some Python stuff"
+	source install/python.sh
 fi
 
 echo "Configuring zsh as default shell"

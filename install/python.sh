@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Let's pip some things
+echo "Let's pip some things"
 
 sudo pip install Django
 pip install --user neovim
