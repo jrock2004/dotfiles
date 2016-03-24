@@ -20,7 +20,7 @@ Plug 'marijnh/tern_for_vim'
 Plug 'Valloric/YouCompleteMe'
 
 " language specific
-Plug 'mattn/emmet-vim', { 'for': 'html' }
+Plug 'mattn/emmet-vim'
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'moll/vim-node', { 'for': 'javascript' }
@@ -257,6 +257,9 @@ let g:ctrlp_map='<leader>t'
 let g:ctrlp_dotfiles=1
 let g:ctrlp_working_path_mode = 'ra'
 
+""""" Emmet
+let g:user_emmet_mode='a'
+
 """"" Fugitive
 nmap <silent> <leader>gs :Gstatus<cr>
 nmap <leader>ge :Gedit<cr>
@@ -286,6 +289,9 @@ let g:airline_theme='dark'
 
 """"" netrw
 let g:netrw_localrmdir='rm -r'
+
+""""" YouCompleteMe
+let g:ycm_path_to_python_interpreter = '/usr/bin/python2.7'
 
 " Mapping keys
 """""""""""""""""""""""""""""""""

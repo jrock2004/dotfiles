@@ -20,6 +20,7 @@ brew install ngrep
 # development server setup
 brew install nginx
 brew install dnsmasq
+brew install go
 
 # development tools
 brew install git

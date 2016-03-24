@@ -72,3 +72,6 @@ brew cask install java
 
 echo "Install Sublime Text 3"
 brew cask install sublime-text3
+
+echo "Install Spectacle"
+brew cask install Spectacle

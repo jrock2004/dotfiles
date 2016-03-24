@@ -26,6 +26,11 @@ for config ($ZSH/**/*completion.sh) source $config
 export EDITOR='vim'
 export PATH=/usr/local/bin:$HOME/.npm-packages/bin:$PATH
 
+# Setup Go stuff
+export GOROOT=/usr/local/opt/go/libexec
+export GOPATH=$HOME/.go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
 
 # add /usr/local/sbin
 if [[ -d /usr/local/sbin ]]; then
