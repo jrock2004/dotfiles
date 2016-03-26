@@ -12,9 +12,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
-Plug 'garbas/vim-snipmate'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
+"Plug 'garbas/vim-snipmate'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'marijnh/tern_for_vim'
 Plug 'Valloric/YouCompleteMe'
@@ -292,6 +294,11 @@ let g:netrw_localrmdir='rm -r'
 
 """"" YouCompleteMe
 let g:ycm_path_to_python_interpreter = '/usr/bin/python2.7'
+
+""""" Ultisnips
+let g:UltiSnipsExpandTrigger="<c-a>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " Mapping keys
 """""""""""""""""""""""""""""""""

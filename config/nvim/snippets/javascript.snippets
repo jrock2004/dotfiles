@@ -1,0 +1,28 @@
+snippet :
+	${1:key}: ${2:value}
+snippet actions
+	actions: {
+		${1:action_name}(${2}) {
+			${3}
+		}
+	}
+snippet attr
+	${1:key}: DS.attr('${2:value}')
+snippet belongsTo
+	${1:key}: DS.belongsTo('${2:value}')
+snippet hasMany
+	${1:key}: DS.hasMany('${2:value}')
+snippet findRecord
+	this.store.findRecord('${1:model}'${2:params});
+snippet findAll
+	this.store.findAll('{1:model}');
+snippet model
+	model(${1}) {
+		${2}
+	},
+snippet log
+	console.log(${1});
+snippet doc
+	/**
+	 * ${1}
+	 */
