@@ -6,16 +6,18 @@ snippet actions
 			${3}
 		}
 	}
-snippet attr
+snippet emattr
 	${1:key}: DS.attr('${2:value}')
 snippet belongsTo
 	${1:key}: DS.belongsTo('${2:value}')
 snippet hasMany
 	${1:key}: DS.hasMany('${2:value}')
+snippet createRecord
+	this.store.createRecord('${1:model}');
 snippet findRecord
 	this.store.findRecord('${1:model}'${2:params});
 snippet findAll
-	this.store.findAll('{1:model}');
+	this.store.findAll('${1:model}');
 snippet model
 	model(${1}) {
 		${2}
