@@ -14,15 +14,15 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
-"Plug 'garbas/vim-snipmate'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'marijnh/tern_for_vim'
 Plug 'Valloric/YouCompleteMe'
+Plug 'tpope/vim-surround'
 
 " language specific
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', { 'for': ['html', 'html.handlebars'] }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'moll/vim-node', { 'for': 'javascript' }
@@ -146,7 +146,7 @@ autocmd InsertLeave * call ToggleRelativeOn()
 " switch syntax highlighting on
 syntax on
 
-set encoding=utf8
+"set encoding=utf8
 
 set t_Co=256
 
@@ -259,6 +259,9 @@ let g:ctrlp_map='<leader>t'
 let g:ctrlp_dotfiles=1
 let g:ctrlp_working_path_mode = 'ra'
 
+""""" Editorconfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
 """"" Emmet
 let g:user_emmet_mode='a'
 
@@ -276,11 +279,21 @@ let g:neomake_javascript_jshint_maker = {
     \ 'args': ['--verbose'],
     \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
 \ }
+let g:neomake_json_jsonlint_maker = {
+	\ 'args': ['--compact'],
+        \ 'errorformat':
+            \ '%ELine %l:%c,'.
+            \ '%Z\\s%#Reason: %m,'.
+            \ '%C%.%#,'.
+            \ '%f: line %l\, col %c\, %m,'.
+				\ '%-G%.%#'
+\ }
 let g:neomake_scss_csslint_maker = {
     \ 'args': ['--verbose'],
     \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
 \ }
 let g:neomake_javascript_enabled_markers = ['jshint', 'jscs']
+let g:neomake_json_enabled_markers = ['jsonlint']
 let g:neomake_scss_enabled_markers = ['csslint']
 
 """"" Airline
@@ -288,9 +301,13 @@ let g:airline_powerline_fonts=1
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_theme='dark'
+let g:airline#extensions#tabline#enabled = 1
 
 """"" netrw
 let g:netrw_localrmdir='rm -r'
+
+""""" Mustache
+let g:mustache_abbreviations = 1
 
 """"" YouCompleteMe
 let g:ycm_path_to_python_interpreter = '/usr/bin/python2.7'
@@ -302,7 +319,8 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " Mapping keys
 """""""""""""""""""""""""""""""""
-nmap <Leader>gp :Dispatch git push origin master<cr>
+
+""""" Stop using the arrow keys
 nnoremap <up> :echo "Stop being stupid"<cr>
 nnoremap <down> :echo "Stop being stupid"<cr>
 nnoremap <left> :echo "Stop being stupid"<cr>

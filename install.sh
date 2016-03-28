@@ -40,6 +40,9 @@ if [ "$(uname)" == "Darwin" ]; then
 
 	echo "Install some Python stuff"
 	source install/python.sh
+
+	echo "Installing some Gems"
+	sudo gem install scss_lint
 fi
 
 echo "Configuring zsh as default shell"
