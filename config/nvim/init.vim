@@ -20,6 +20,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'marijnh/tern_for_vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'tpope/vim-surround'
+Plug 'sotte/presenting.vim', { 'for': 'markdown' }
+Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] }
 
 " language specific
 Plug 'mattn/emmet-vim', { 'for': ['html', 'html.handlebars'] }
@@ -29,6 +31,7 @@ Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
+Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 
 call plug#end()
 
@@ -104,7 +107,7 @@ set wildmode=list:longest " complete files like a shell
 set scrolloff=3 " lines of text around cursor
 set shell=$SHELL
 set cmdheight=1 " command bar height
-
+set mouse=
 set title " set terminal title
 
 " Searching
