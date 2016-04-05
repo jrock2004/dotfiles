@@ -1,3 +1,4 @@
+" Set where plugins will be installed
 call plug#begin('~/.nvim/plugged')
 
 " colorschemes
@@ -94,6 +95,9 @@ set foldmethod=syntax " fold based on indent
 set foldnestmax=10 " deepest fold is 10 levels
 set nofoldenable " don't fold by default
 set foldlevel=1
+
+" Fixing CSS hyphens
+au! FileType css,scss setl iskeyword+=-
 
 " => User Interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
