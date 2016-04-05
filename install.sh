@@ -41,8 +41,14 @@ if [ "$(uname)" == "Darwin" ]; then
 	echo "Install some Python stuff"
 	source install/python.sh
 
+	echo "Installing and setting Ruby version"
+	rbenv install 2.2.3
+	rbenv global 2.2.3
+
 	echo "Installing some Gems"
 	sudo gem install scss_lint
+	sudo gem install rails
+	rebenv rehash
 fi
 
 echo "Configuring zsh as default shell"

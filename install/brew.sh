@@ -21,6 +21,7 @@ brew install ngrep
 brew install nginx
 brew install dnsmasq
 brew install go
+brew install rbenv ruby-build
 
 # development tools
 brew install git

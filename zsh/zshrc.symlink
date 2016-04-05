@@ -74,3 +74,4 @@ bindkey -e
 [ -s "/home/jcostanzo/.dnx/dnvm/dnvm.sh" ] && . "/home/jcostanzo/.dnx/dnvm/dnvm.sh" # Load dnvm
 
 source /usr/local/lib/dnx/bin/dnvm.sh
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
