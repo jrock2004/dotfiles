@@ -33,6 +33,7 @@ Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars' }
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+Plug 'alexlafroscia/vim-ember-cli'
 
 call plug#end()
 
