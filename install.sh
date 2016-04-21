@@ -3,6 +3,7 @@
 # Setting up some variables
 EMAIL="jrock2004@gmail.com"
 DEVFOLDER="~/Development"
+NPMFOLDER="~/.npm-packages"
 OS=""
 
 echo "Symlinking dotfiles"
@@ -70,6 +71,7 @@ if [ "$(uname)" == "Linux" ]; then
 	case "$NEWOS" in
 		*Arch*)
 			source install/arch.sh
+			npm config set prefix $NPMFOLDER
 			sudo ln -s /usr/bin/pip2 /usr/bin/pip
 			;;
 		*Ubuntu*)
@@ -80,6 +82,7 @@ fi
 
 echo "Creating needed directories"
 mkdir -p $DEVFOLDER
+mkdir -p $NPMFOLDER
 
 echo "Installing Node Apps"
 source install/node.sh
