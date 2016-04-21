@@ -8,7 +8,6 @@ OS=""
 echo "Symlinking dotfiles"
 source install/link.sh
 
-echo "Creating SSH key for github"
 if [ "$(uname)" == "Linux" ]; then
 	echo "Running Linux"
 
@@ -52,7 +51,6 @@ if [ "$(uname)" == "Darwin" ]; then
 	done
 fi
 
-echo "Now setting up your mac"
 if [ "$(uname)" == "Darwin" ]; then
 	echo "Brewing all the things"
 	source install/brew.sh
@@ -65,17 +63,16 @@ if [ "$(uname)" == "Darwin" ]; then
 	ln -s ~/.dotfiles/nginx/nginx.conf /usr/local/etc/nginx/nginx.conf
 fi
 
-echo "Now setting up your linux"
 if [ "$(uname)" == "Linux" ]; then
 	# Lets get the linux distro
 	OS=$(cat /etc/os-release | grep -sw NAME)
 	NEWOS=$(echo "$OS" | cut -d \" -f2)
 
-	if [[ $NEWOS == *"Arch"*]]; then
+	if [[ $NEWOS == "*Arch*"]]; then
 		source install/arch.sh
 	fi
 
-	if [[ $NEWOS == *"Ubuntu"*]]; then
+	if [[ $NEWOS == "*Ubuntu*"]]; then
 		source install/debian.sh
 	fi
 fi
