@@ -1,21 +1,5 @@
 #!/bin/bash
 
-sudo su
-
-echo "[archlinuxfr]
-SigLevel = Never
-Server = http://repo.archlinux.fr/$arch" >> /etc/pacman.conf
-
-echo "[testing]
-Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-
-echo "[multilib]
-Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
-
-exit
-
-sudo pacman -Sy
-
 sudo pacman -S gnome xf86-video-intel networkmanager network-manager-applet
 sudo systemctl enable gdm
 sudo systemctl disable dhcpcd
