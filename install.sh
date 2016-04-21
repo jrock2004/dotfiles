@@ -1,54 +1,113 @@
 #!/bin/bash
 
+# Setting up some variables
+EMAIL="jrock2004@gmail.com"
+DEVFOLDER="~/Development"
+OS=""
+
 echo "Symlinking dotfiles"
 source install/link.sh
 
-echo "Generating SSH Keys"
-ssh-keygen -t rsa -b 4096 -C "jrock2004@gmail.com"
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_rsa
-pbcopy < ~/.ssh/id_rsa.pub
+echo "Creating SSH key for github"
+if [ "$(uname)" == "Linux" ]; then
+	echo "Running Linux"
 
-# Lets put a hold on things until we put the key in github
-while true; do
-	read -p "Copy your key to github" yn
-	case $yn in
-		[Yy]* ) break;;
-	esac
-done
+	# Set up SSH keys
+	while true; do
+		read -p "Copy your key to github" yn
+		case $yn in
+			[Yy]* )
+				ssh-keygen -t rsa -b 4096 -C $EMAIL
+				eval "$(ssh-agent -s)"
+				ssh-add ~/.ssh/id_rsa
+				xclip -sel clip < ~/.ssh/id_rsa.pub
+				break
+				;;
+			[Nn]* )
+				break
+				;;
+		esac
+	done
+fi
 
-echo "Initializing submodule(s)"
+echo "Check if we are using Mac"
 if [ "$(uname)" == "Darwin" ]; then
 	echo "Running OSX"
 
-	echo "Creating needed directories"
-	mkdir -p /Users/jcostanzo/Development
-	mkdir -p /Users/jcostanzo/Development/Work
+	# Set up SSH keys
+	while true; do
+		read -p "Copy your key to github" yn
+		case $yn in
+			[Yy]* )
+				ssh-keygen -t rsa -b 4096 -C $EMAIL
+				eval "$(ssh-agent -s)"
+				ssh-add ~/.ssh/id_rsa
+				pbcopy < ~/.ssh/id_rsa.pub
+				break
+				;;
+			[Nn]* )
+				break
+				;;
+		esac
+	done
+fi
 
+echo "Now setting up your mac"
+if [ "$(uname)" == "Darwin" ]; then
 	echo "Brewing all the things"
 	source install/brew.sh
 
 	echo "Updating OSX settings"
 	source install/osx.sh
 
-	echo "Installing Node Apps"
-	source install/node.sh
-
 	echo "Configuring nginx"
 	mv /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/nginx.original
 	ln -s ~/.dotfiles/nginx/nginx.conf /usr/local/etc/nginx/nginx.conf
+fi
 
-	echo "Install some Python stuff"
-	source install/python.sh
+echo "Now setting up your linux"
+if [ "$(uname)" == "Linux" ]; then
+	# Lets get the linux distro
+	OS=$(cat /etc/os-release | grep -sw NAME)
+	NEWOS=$(echo "$OS" | cut -d \" -f2)
 
-	echo "Installing and setting Ruby version"
-	rbenv install 2.2.3
-	rbenv global 2.2.3
+	if [[ $NEWOS == *"Arch"*]]; then
+		source install/arch.sh
+	fi
 
-	echo "Installing some Gems"
-	sudo gem install scss_lint
-	sudo gem install rails
-	rebenv rehash
+	if [[ $NEWOS == *"Ubuntu"*]]; then
+		source install/debian.sh
+	fi
+fi
+
+echo "Creating needed directories"
+mkdir -p $DEVFOLDER
+
+echo "Installing Node Apps"
+source install/node.sh
+
+echo "Install some Python stuff"
+source install/python.sh
+
+echo "Installing and setting Ruby version"
+rbenv install 2.2.3
+rbenv global 2.2.3
+
+echo "Installing some Gems"
+sudo gem install scss_lint
+sudo gem install rails
+rebenv rehash
+
+
+
+echo "Now setting up your mac"
+if [ "$(uname)" == "Darwin" ]; then
+
+fi
+
+echo "Now setting up your linux"
+if [ "$(uname)" == "Linux" ]; then
+
 fi
 
 echo "Configuring zsh as default shell"
