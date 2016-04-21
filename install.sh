@@ -98,8 +98,8 @@ rbenv install 2.2.3
 rbenv global 2.2.3
 
 echo "Installing some Gems"
-sudo gem install scss_lint
-sudo gem install rails
+gem install scss_lint
+gem install rails
 rbenv rehash
 
 echo "Configuring zsh as default shell"
