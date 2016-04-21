@@ -1,12 +1,18 @@
 #!/bin/bash
 
-sudo echo "[archlinuxfr] SigLevel = Never Server = http://repo.archlinux.fr/$arch" >> /etc/pacman.conf
+sudo su
 
-sudo echo "[testing]
+echo "[archlinuxfr]
+SigLevel = Never
+Server = http://repo.archlinux.fr/$arch" >> /etc/pacman.conf
+
+echo "[testing]
 Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
 
-sudo echo "[multilib]
+echo "[multilib]
 Include = /etc/pacman.d/mirrorlist" >> /etc/pacman.conf
+
+exit
 
 sudo pacman -Sy
 
