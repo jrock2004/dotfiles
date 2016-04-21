@@ -13,7 +13,7 @@ if [ "$(uname)" == "Linux" ]; then
 
 	# Set up SSH keys
 	while true; do
-		read -p "Copy your key to github" yn
+		read -p "Copy your key to github: " yn
 		case $yn in
 			[Yy]* )
 				ssh-keygen -t rsa -b 4096 -C $EMAIL
@@ -29,13 +29,12 @@ if [ "$(uname)" == "Linux" ]; then
 	done
 fi
 
-echo "Check if we are using Mac"
 if [ "$(uname)" == "Darwin" ]; then
 	echo "Running OSX"
 
 	# Set up SSH keys
 	while true; do
-		read -p "Copy your key to github" yn
+		read -p "Copy your key to github: " yn
 		case $yn in
 			[Yy]* )
 				ssh-keygen -t rsa -b 4096 -C $EMAIL
@@ -67,14 +66,15 @@ if [ "$(uname)" == "Linux" ]; then
 	# Lets get the linux distro
 	OS=$(cat /etc/os-release | grep -sw NAME)
 	NEWOS=$(echo "$OS" | cut -d \" -f2)
-
-	if [[ $NEWOS == "*Arch*"]]; then
-		source install/arch.sh
-	fi
-
-	if [[ $NEWOS == "*Ubuntu*"]]; then
-		source install/debian.sh
-	fi
+	
+	case "$NEWOS" in
+		*Arch*)
+			source install/arch.sh
+			;;
+		*Ubuntu*)
+			source install/debian.sh
+			;;
+	esac
 fi
 
 echo "Creating needed directories"
