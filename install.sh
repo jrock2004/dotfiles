@@ -90,22 +90,13 @@ echo "Installing and setting Ruby version"
 rbenv install 2.2.3
 rbenv global 2.2.3
 
+source ~/.bashrc
+source ~/.bash_profile
+
 echo "Installing some Gems"
 sudo gem install scss_lint
 sudo gem install rails
-rebenv rehash
-
-
-
-echo "Now setting up your mac"
-if [ "$(uname)" == "Darwin" ]; then
-
-fi
-
-echo "Now setting up your linux"
-if [ "$(uname)" == "Linux" ]; then
-
-fi
+rbenv rehash
 
 echo "Configuring zsh as default shell"
 chsh -s $(which zsh)
