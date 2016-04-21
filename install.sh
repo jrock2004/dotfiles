@@ -70,6 +70,7 @@ if [ "$(uname)" == "Linux" ]; then
 	case "$NEWOS" in
 		*Arch*)
 			source install/arch.sh
+			sudo ln -s /usr/bin/pip2 /usr/bin/pip
 			;;
 		*Ubuntu*)
 			source install/debian.sh
@@ -86,12 +87,12 @@ source install/node.sh
 echo "Install some Python stuff"
 source install/python.sh
 
+source ~/.bashrc
+source ~/.bash_profile
+
 echo "Installing and setting Ruby version"
 rbenv install 2.2.3
 rbenv global 2.2.3
-
-source ~/.bashrc
-source ~/.bash_profile
 
 echo "Installing some Gems"
 sudo gem install scss_lint
