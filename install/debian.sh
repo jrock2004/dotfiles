@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Lets install our Linux Stuff
+echo "Lets install our Linux Stuff"
 
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
