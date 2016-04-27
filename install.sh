@@ -76,6 +76,8 @@ if [ "$(uname)" == "Linux" ]; then
 			;;
 		*Ubuntu*)
 			source install/debian.sh
+			npm config set prefix $NPMFOLDER
+			sudo ln -s /usr/bin/pip2 /usr/bin/pip
 			;;
 	esac
 fi
