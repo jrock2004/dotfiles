@@ -75,3 +75,9 @@ brew cask install sublime-text3
 
 echo "Install Spectacle"
 brew cask install Spectacle
+
+echo "Install Twitch"
+brew cask install twitch
+
+echo "Install iShowU HD"
+brew cask install ishowu-hd
