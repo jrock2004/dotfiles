@@ -81,6 +81,10 @@ bind -r L resize-pane -R 10
 setw -g mouse on
 # set-option -g -q mouse on
 
+# Move windows left or right
+bind-key -n C-S-Left swap-window -t -1
+bind-key -n C-S-Right swap-window -t +1
+
 bind-key -T root PPage if-shell -F "#{alternate_on}" "send-keys PPage" "copy-mode -e; send-keys PPage"
 bind-key -t vi-copy PPage page-up
 bind-key -t vi-copy NPage page-down
