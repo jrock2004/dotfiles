@@ -37,6 +37,10 @@ if [[ -d /usr/local/sbin ]]; then
     export PATH=/usr/local/sbin:$PATH
 fi
 
+if [[ -d $HOME/.gem/ruby/2.2.0/bin ]]; then
+		export PATH=$HOME/.gem/ruby/2.2.0/bin:$PATH
+fi
+
 # adding path directory for custom scripts
 export PATH=$DOTFILES/bin:$PATH
 
@@ -66,7 +70,4 @@ fi
 
 bindkey -e
 
-[ -s "/home/jcostanzo/.dnx/dnvm/dnvm.sh" ] && . "/home/jcostanzo/.dnx/dnvm/dnvm.sh" # Load dnvm
-
-source /usr/local/lib/dnx/bin/dnvm.sh
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

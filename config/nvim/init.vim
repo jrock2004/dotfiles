@@ -333,3 +333,6 @@ nnoremap <up> :echo "Stop being stupid"<cr>
 nnoremap <down> :echo "Stop being stupid"<cr>
 nnoremap <left> :echo "Stop being stupid"<cr>
 nnoremap <right> :echo "Stop being stupid"<cr>
+
+""""" Enter current Date
+inoremap <F5> <C-R>=strftime("%m/%d/%y")<CR>
