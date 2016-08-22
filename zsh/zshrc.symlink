@@ -23,22 +23,12 @@ compinit
 
 for config ($ZSH/**/*completion.sh) source $config
 
-export EDITOR='vim'
+export EDITOR='nvim'
 export PATH=/usr/local/bin:$HOME/.npm-packages/bin:$PATH
-
-# Setup Go stuff
-export GOROOT=/usr/local/opt/go/libexec
-export GOPATH=$HOME/.go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
-
 
 # add /usr/local/sbin
 if [[ -d /usr/local/sbin ]]; then
     export PATH=/usr/local/sbin:$PATH
-fi
-
-if [[ -d $HOME/.gem/ruby/2.2.0/bin ]]; then
-		export PATH=$HOME/.gem/ruby/2.2.0/bin:$PATH
 fi
 
 # adding path directory for custom scripts
@@ -64,10 +54,29 @@ fi
 # source nvm
 export NVM_DIR=~/.nvm
 
+load-nvmrc() {
+    if [[ -f .nvmrc && -r .nvmrc ]]; then
+        nvm use
+    fi
+}
+add-zsh-hook chpwd load-nvmrc
+
 if hash brew 2>/dev/null; then
+    source $(brew --prefix nvm)/nvm.sh
     source `brew --prefix`/etc/profile.d/z.sh
+    # when sourcing, check and ensure that the correct Node version is set
+    load-nvmrc
 fi
 
 bindkey -e
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+if [ -z ${DOTFILES_LOADED+x} ]; then
+    # install zsh-syntax-highlighting
+    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    # install zsh autosuggestions
+    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+DOTFILES_LOADED=1
