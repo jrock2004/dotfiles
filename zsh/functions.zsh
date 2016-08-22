@@ -39,6 +39,11 @@ function ng-restart() {
      sudo launchctl start homebrew.mxcl.nginx
 }
 
+function dns-restart() {
+    sudo launchctl stop homebrew.mxcl.dnsmasq
+    sudo launchctl start homebrew.mxcl.dnsmasq
+}
+
 
 # Start an HTTP server from a directory, optionally specifying the port
 function server() {
@@ -104,9 +109,9 @@ function extract() {
 }
 
 function scpp() {
-    scp "$1" nicknisi@nicknisi.com:/var/www/nicknisi.com/public_html/i;
-    echo "http://nicknisi.com/i/$1" | pbcopy;
-    echo "Copied to clipboard: http://nicknisi.com/i/$1"
+    scp "$1" nicknisi@nicknisi.com:/var/www/nicknisi.com/public_html/share;
+    echo "http://nicknisi.com/share/$1" | pbcopy;
+    echo "Copied to clipboard: http://nicknisi.com/share/$1"
 }
 
 # syntax highlight the contents of a file or the clipboard and place the result on the clipboard
@@ -124,13 +129,4 @@ function hl() {
     fi
 
     echo $src | highlight -O rtf --syntax $1 --font Inconsoloata --style $style --line-number --font-size 24 | pbcopy
-}
-
-# set the background color to light
-function light() {
-    export BACKGROUND="light" && reload!
-}
-
-function dark() {
-    export BACKGROUND="dark" && reload!
 }
