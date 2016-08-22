@@ -26,9 +26,6 @@ defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool
 
 echo "Lets install the apps we need"
 
-echo "Installing pip"
-sudo easy_install pip
-
 brew tap caskroom/versions
 
 echo "Installing Google Chrome"
@@ -70,9 +67,6 @@ brew cask install spotify
 echo "Installing Java"
 brew cask install java
 
-echo "Install Sublime Text 3"
-brew cask install sublime-text3
-
 echo "Install Spectacle"
 brew cask install Spectacle
 
@@ -81,3 +75,6 @@ brew cask install twitch
 
 echo "Install iShowU HD"
 brew cask install ishowu-hd
+
+echo "Install Visual Studio Code"
+brew cask install visual-studio-code
