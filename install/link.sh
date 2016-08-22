@@ -42,14 +42,15 @@ done
 echo "\nCreating vim symlinks"
 echo "=============================="
 
-typeset -A vimfiles=(~/.vim $DOTFILES/config/nvim ~/.vimrc $DOTFILES/config/nvim/init.vim)
+typeset -A vimfiles
+vimfiles[~/.vim]=$DOTFILES/config/nvim
+vimfiles[~/.vimrc]=$DOTFILES/config/nvim/init.vim
 
-for file in "${(@k)vimfiles}"; do
-    # echo "$file -> $vimfiles[$file]"
+for file in "${!vimfiles[@]}"; do
     if [ -e ${file} ]; then
         echo "${file} already exists... skipping"
     else
         echo "Creating symlink for $file"
-        ln -s $vimfiles[$file] $file
+        ln -s ${vimfiles[$file]} $file
     fi
 done
