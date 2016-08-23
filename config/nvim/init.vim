@@ -15,6 +15,8 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+"set rtp+=~/.fzf
+
 " }}}
 
 " Section User Interface {{{
@@ -272,5 +274,9 @@ nnoremap <up> :echo "Stop being stupid"<cr>
 nnoremap <down> :echo "Stop being stupid"<cr>
 nnoremap <left> :echo "Stop being stupid"<cr>
 nnoremap <right> :echo "Stop being stupid"<cr>
+
+" YouCompleteMe
+"""""""""""""""""""""""""""""""""""""
+nnoremap <leader>f :YcmCompleter GoToDefinition<CR>
 
 " }}}
