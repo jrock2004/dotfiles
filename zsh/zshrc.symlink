@@ -18,7 +18,7 @@ fi
 
 
 # initialize autocomplete
-autoload -U compinit
+autoload -U compinit add-zsh-hook
 compinit
 
 for config ($ZSH/**/*completion.sh) source $config
@@ -60,6 +60,8 @@ load-nvmrc() {
     fi
 }
 add-zsh-hook chpwd load-nvmrc
+
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 if hash brew 2>/dev/null; then
     source $(brew --prefix nvm)/nvm.sh

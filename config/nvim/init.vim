@@ -116,6 +116,9 @@ nmap \s :set ts=4 sts=4 sw=4 et<cr>
 " disable Ex mode
 noremap Q <NOP>
 
+" shortcut to save
+nmap <leader>, :w<cr>
+
 " }}}
 
 " Section AutoGroups {{{
@@ -184,13 +187,13 @@ nmap <leader>* *<c-o>:%s///gn<cr>
 " Neomake
 """""""""""""""""""""""""""""""""""""
 
-# Javascript
+" Javascript
 let g:neomake_javascript_jshint_maker = {
     \ 'args': ['--verbose'],
     \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
 \ }
 
-# Typescript
+" Typescript
 let g:neomake_typescript_tsc_maker = {
     \ 'args': ['-m', 'commonjs', '--noEmit' ],
     \ 'append_file': 0,
@@ -201,7 +204,7 @@ let g:neomake_typescript_tsc_maker = {
         \ '%C%\s%\+%m'
 \ }
 
-# Json
+" Json
 let g:neomake_json_jsonlint_maker = {
 	\ 'args': ['--compact'],
         \ 'errorformat':
@@ -212,7 +215,7 @@ let g:neomake_json_jsonlint_maker = {
 				\ '%-G%.%#'
 \ }
 
-# SCSS / CSS
+" SCSS / CSS
 let g:neomake_scss_csslint_maker = {
     \ 'args': ['--verbose'],
     \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
@@ -227,7 +230,7 @@ let g:neomake_scss_enabled_markers = ['csslint']
 let g:airline_powerline_fonts=1
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_theme='dracula'
+let g:airline_theme='tomorrow'
 let g:airline#extensions#tabline#enabled = 1 " enable airline tabline
 let g:airline#extensions#tabline#tab_min_count = 2 " only show tabline if tabs are being used (more than 1 tab open)
 let g:airline#extensions#tabline#show_buffers = 0 " do not show open buffers in tabline
