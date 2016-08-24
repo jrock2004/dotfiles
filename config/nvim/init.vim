@@ -31,6 +31,7 @@ highlight Comment cterm=italic
 highlight htmlArg cterm=italic
 
 set number
+set relativenumber
 
 set wrap
 set wrapmargin=8
@@ -148,6 +149,8 @@ augroup configgroup
 
     autocmd! BufWritePost * Neomake
 augroup END
+
+au BufRead,BufNewFile *.cshtml set filetype=cshtml
 
 " }}}
 

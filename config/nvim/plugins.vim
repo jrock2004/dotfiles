@@ -4,7 +4,8 @@ call plug#begin('~/.nvim/plugged')
 Plug 'flazz/vim-colorschemes'
 
 " utilities
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim' " fuzzy file finder and so much more
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+" Plug '~/.fzf/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'jiangmiao/auto-pairs'
 " Plug 'tpope/vim-vinegar'
@@ -34,6 +35,7 @@ Plug 'gregsexton/MatchTag', { 'for': 'html' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+Plug 'OrangeT/vim-csharp', { 'for': 'cshtml' }
 
 " JavaScript
 Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
