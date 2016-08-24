@@ -264,8 +264,15 @@ let g:vim_json_syntax_conceal = 0
 """""""""""""""""""""""""""""""""""""
 let g:ycm_path_to_python_interpreter = '/usr/bin/python2.7'
 
-""""" Emmet
+" Emmet
+"""""""""""""""""""""""""""""""""""""
 let g:user_emmet_mode='a'
+
+" UltiSnips
+"""""""""""""""""""""""""""""""""""""
+let g:UltiSnipsExpandTrigger="<c-a>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " }}}
 
