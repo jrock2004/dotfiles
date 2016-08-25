@@ -2,20 +2,17 @@ source ~/.config/nvim/plugins.vim
 
 " Section General {{{
 
-set nocompatible            " not compatible with vi
-set autoread                " detect when a file is changed
+set nocompatible
+set autoread
 
-set history=1000            " change history to 1000
+set history=1000
 set textwidth=120
-
-set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
 set nobackup
 set nowritebackup
 set noswapfile
 
-"set rtp+=~/.fzf
+" set rtp+=~/.fzf
 
 " }}}
 
@@ -95,6 +92,9 @@ set visualbell
 set t_vb=
 set tm=500
 
+" mouse
+set mouse=
+
 " }}}
 
 " Section Mappings {{{
@@ -129,21 +129,15 @@ nmap <leader>, :w<cr>
 augroup configgroup
     autocmd!
 
-    " automatically resize panes on resize
     autocmd VimResized * exe 'normal! \<c-w>='
     autocmd BufWritePost .vimrc,.vimrc.local,init.vim source %
     autocmd BufWritePost .vimrc.local source %
-    " save all files on focus lost, ignoring warnings about untitled buffers
     autocmd FocusLost * silent! wa
 
-    " make quickfix windows take all the lower section of the screen
-    " when there are multiple windows open
     autocmd FileType qf wincmd J
 
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
     let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript', 'stylus', 'html']
-
-    " autocmd! BufEnter * call functions#ApplyLocalSettings(expand('<afile>:p:h'))
 
     autocmd BufNewFile,BufRead,BufWrite *.md syntax match Comment /\%^---\_.\{-}---$/
 
@@ -159,10 +153,8 @@ au BufRead,BufNewFile *.cshtml set filetype=cshtml
 let g:fzf_layout = { 'down': '~25%' }
 
 if isdirectory(".git")
-    " if in a git project, use :GFiles
     nmap <silent> <leader>t :GFiles<cr>
 else
-    " otherwise, use :FZF
     nmap <silent> <leader>t :FZF<cr>
 endif
 
@@ -191,7 +183,8 @@ command! FZFMru call fzf#run({
 \  'source':  v:oldfiles,
 \  'sink':    'e',
 \  'options': '-m -x +s',
-\  'down':    '40%'})
+\  'down':    '40%'
+\ })
 
 " Fugitive Shortcuts
 """""""""""""""""""""""""""""""""""""
@@ -226,13 +219,13 @@ let g:neomake_typescript_tsc_maker = {
 
 " Json
 let g:neomake_json_jsonlint_maker = {
-	\ 'args': ['--compact'],
-        \ 'errorformat':
-            \ '%ELine %l:%c,'.
-            \ '%Z\\s%#Reason: %m,'.
-            \ '%C%.%#,'.
-            \ '%f: line %l\, col %c\, %m,'.
-				\ '%-G%.%#'
+    \ 'args': ['--compact'],
+    \ 'errorformat':
+        \ '%ELine %l:%c,'.
+        \ '%Z\\s%#Reason: %m,'.
+        \ '%C%.%#,'.
+        \ '%f: line %l\, col %c\, %m,'.
+        \ '%-G%.%#'
 \ }
 
 " SCSS / CSS

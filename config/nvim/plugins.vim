@@ -4,8 +4,8 @@ call plug#begin('~/.nvim/plugged')
 Plug 'flazz/vim-colorschemes'
 
 " utilities
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-" Plug '~/.fzf/fzf' | Plug 'junegunn/fzf.vim'
+" Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug '~/.fzf/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
