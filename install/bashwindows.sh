@@ -8,7 +8,7 @@ sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58
 sudo apt-get install -y bash-completion vim vim-scripts python-dev python-pip
 sudo apt-get install -y python3-dev python3-pip neovim build-essential
 sudo apt-get install -y nodejs npm ack-grep tree wget nginx rbenv ruby-build
-sudo apt-get install -y tmux mardown irssi irssi-scripts
+sudo apt-get install -y tmux mardown irssi irssi-scripts zsh
 
 # Fixes
 sudo ln -s /usr/bin/nodejs /usr/bin/node

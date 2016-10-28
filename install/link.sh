@@ -15,6 +15,7 @@ for file in $linkables ; do
         echo "~${target#$HOME} already exists... Skipping."
     else
         echo "Creating symlink for $file"
+        echo "Target  for $target"
         ln -s $file $target
     fi
 done
@@ -32,6 +33,7 @@ for config in $DOTFILES/config/*; do
         echo "~${target#$HOME} already exists... Skipping."
     else
         echo "Creating symlink for $config"
+
         ln -s $config $target
     fi
 done
