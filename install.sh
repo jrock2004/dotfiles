@@ -4,7 +4,6 @@
 EMAIL="jrock2004@gmail.com"
 DEVFOLDER="~/Development"
 NPMFOLDER="~/.npm-packages"
-OS=""
 
 echo "Symlinking dotfiles"
 source install/link.sh
@@ -13,22 +12,18 @@ echo "Creating needed directories"
 mkdir -p $DEVFOLDER
 mkdir -p $NPMFOLDER
 
-if [ "$(uname)" == "Darwin" ]; then
-	source install/brew.sh
-	source install/osx.sh
-	source install/nvm.sh
-	source install/python.sh
-	source install/node.sh
-	
+source install/brew.sh
+source install/osx.sh
+source install/nvm.sh
+source install/python.sh
+source install/node.sh
 
-	echo "Configuring nginx"
-	mv /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/nginx.original
-	ln -s ~/.dotfiles/nginx/nginx.conf /usr/local/etc/nginx/nginx.conf
-fi
+echo "Configuring nginx"
+mv /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/nginx.original
+ln -s ~/.dotfiles/nginx/nginx.conf /usr/local/etc/nginx/nginx.conf
 
 echo "Installing Node Apps"
 source install/node.sh
-
 
 echo "Installing and setting Ruby version"
 rbenv install 2.2.3
