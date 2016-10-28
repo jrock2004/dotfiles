@@ -1,6 +1,14 @@
 My Dotfiles
-============
+=
 
-Before running the installer. Please edit the file and update the variables on the top of the page to match your liking
+This repo is used to store my dotfiles for the applications that I use on my machine
 
-I have to thank Nick Nisi(https://github.com/nicknisi)
+## Branches
+- master - Bash on Windows
+- mac - Used on Apple [Tested on El Capitan]
+
+## How to use
+Clone the repo to your home directory and run the install.sh script
+
+## Thanks
+I did not build this from scratch. I had help and started with a template. Thanks Nick Nisi(https://github.com/nicknisi)
