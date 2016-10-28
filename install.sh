@@ -4,7 +4,7 @@
 EMAIL="jrock2004@gmail.com"
 DEVFOLDER="~/Development"
 NPMFOLDER="~/.npm-packages"
-OS=""
+BIN="~/bin"
 
 echo "Symlinking dotfiles"
 source install/link.sh
@@ -12,23 +12,21 @@ source install/link.sh
 echo "Creating needed directories"
 mkdir -p $DEVFOLDER
 mkdir -p $NPMFOLDER
+mkdir -p $BIN
 
-if [ "$(uname)" == "Darwin" ]; then
-	source install/brew.sh
-	source install/osx.sh
-	source install/nvm.sh
-	source install/python.sh
-	source install/node.sh
-	
+echo "Installing the apps that we need"
+source install/bashwindows.sh
 
-	echo "Configuring nginx"
-	mv /usr/local/etc/nginx/nginx.conf /usr/local/etc/nginx/nginx.original
-	ln -s ~/.dotfiles/nginx/nginx.conf /usr/local/etc/nginx/nginx.conf
-fi
+source ~/.bashrc
+
+echo "Using nvm for better node support"
+source install/nvm.sh
+
+echo "Installing some python modules"
+source install/python.sh
 
 echo "Installing Node Apps"
 source install/node.sh
-
 
 echo "Installing and setting Ruby version"
 rbenv install 2.2.3
@@ -39,7 +37,4 @@ gem install scss_lint
 gem install rails
 rbenv rehash
 
-echo "Configuring zsh as default shell"
-chsh -s $(which zsh)
-
-echo "Done."
+echo "Done. Close window and re-open to enjoy"
