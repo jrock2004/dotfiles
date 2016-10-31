@@ -37,7 +37,6 @@
     # do not warn about missing whitespace at EOF
     whitespace = nowarn
 [core]
-    autocrlf = true
     excludesfile = ~/.gitignore_global
     pager = less -FXRS -x2
     editor = vim
