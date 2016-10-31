@@ -2,9 +2,9 @@
 
 # Setting up some variables
 EMAIL="jrock2004@gmail.com"
-DEVFOLDER="~/Development"
-NPMFOLDER="~/.npm-packages"
-BIN="~/bin"
+DEVFOLDER="$HOME/Development"
+NPMFOLDER="$HOME/.npm-packages"
+BIN="$HOME/bin"
 
 echo "Symlinking dotfiles"
 source install/link.sh
@@ -17,7 +17,7 @@ mkdir -p $BIN
 echo "Installing the apps that we need"
 source install/bashwindows.sh
 
-source ~/.bashrc
+source $HOME/.bashrc
 
 echo "Using nvm for better node support"
 source install/nvm.sh

@@ -3,7 +3,7 @@
 DOTFILES=$HOME/.dotfiles
 
 # Before starting lets backup the existing bashrc
-mv ~/.bashrc ~/.bashrc.bak
+mv $HOME/.bashrc $HOME/.bashrc.bak
 
 echo -e "\nCreating symlinks"
 echo "=============================="
@@ -14,7 +14,6 @@ for file in $linkables ; do
         echo "~${target#$HOME} already exists... Skipping."
     else
         echo "Creating symlink for $file"
-        echo "Target  for $target"
         ln -s $file $target
     fi
 done
