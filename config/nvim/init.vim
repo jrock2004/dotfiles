@@ -12,7 +12,7 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-" set rtp+=~/.fzf
+set rtp+=~/.fzf
 
 " }}}
 
