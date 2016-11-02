@@ -9,6 +9,7 @@ BIN="$HOME/bin"
 echo "Symlinking dotfiles"
 source install/link.sh
 
+
 echo "Creating needed directories"
 mkdir -p $DEVFOLDER
 mkdir -p $NPMFOLDER
@@ -36,5 +37,13 @@ echo "Installing some Gems"
 gem install scss_lint
 gem install rails
 rbenv rehash
+
+# Setup SSH key
+ssh-keygen -t rsa -b 4096 -C "$EMAIL"
+eval "$(ssh-agent -s)"
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_rsa
+
+
 
 echo "Done. Close window and re-open to enjoy"
