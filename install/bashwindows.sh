@@ -28,15 +28,11 @@ $HOME/.fzf/install
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/bin/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/bin/zsh-autosuggestions
 
-curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh -o $HOME/bin/git-completion.zsh
-
 sudo cp -a $HOME/bin/zsh-syntax-highlighting /usr/local/share
 sudo cp -a $HOME/bin/zsh-autosuggestions /usr/local/share
-sudo cp -a $HOME/bin/git-completion.zsh /usr/local/share
 
 rm -Rf $HOME/bin/zsh-syntax-highlighting
 rm -Rf $HOME/bin/zsh-autosuggestions
-rm -Rf $HOME/bin/git-completion.zsh
 
 mkdir -p $HOME/.rbenv/plugins
 git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build
