@@ -39,13 +39,11 @@
 [core]
     excludesfile = ~/.gitignore_global
     pager = less -FXRS -x2
-    editor = vim
+    editor = nvim
     whitespace = cr-at-eol
 [grep]
     extendRegexp = true
     lineNumber = true
-[credential]
-	helper = osxkeychain
 [pager]
     diff = "diff-so-fancy | less --tabs=4 -RFX"
     show = "diff-so-fancy | less --tabs=4 -RFX"
