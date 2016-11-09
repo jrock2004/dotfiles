@@ -14,15 +14,34 @@ set noswapfile
 
 set rtp+=~/.fzf
 
+let g:python_host_prog = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
+
 " }}}
 
 " Section User Interface {{{
+
+" switch cursor to line when in insert mode, and block when not
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+if &term =~ '256color'
+    " disable background color erase
+    set t_ut=
+endif
+
+" enable 24 bit color support if supported
+if (empty($TMUX) && has("termguicolors"))
+    set termguicolors
+endif
+
+let g:onedark_termcolors=16
+let g:onedark_terminal_italics=1
 
 syntax on
 
 set t_Co=256 
 set background=dark
-colorscheme gruvbox
+colorscheme onedark
 
 highlight Comment cterm=italic
 highlight htmlArg cterm=italic
@@ -94,6 +113,9 @@ set tm=500
 
 " mouse
 set mouse=
+
+" switch cursor to line when in insert mode, and block when not
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " }}}
 
