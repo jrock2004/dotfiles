@@ -2,9 +2,9 @@
 
 # Setting up some variables
 EMAIL="jrock2004@gmail.com"
-DEVFOLDER="$HOME/Development"
-NPMFOLDER="$HOME/.npm-packages"
-BIN="$HOME/bin"
+DEVFOLDER="~/Development"
+NPMFOLDER="~/.npm-packages"
+BIN="~/bin"
 
 echo "Symlinking dotfiles"
 source install/link.sh
@@ -16,9 +16,9 @@ mkdir -p $NPMFOLDER
 mkdir -p $BIN
 
 echo "Installing the apps that we need"
-source install/bashwindows.sh
+source install/linux.sh
 
-source $HOME/.bashrc
+source ~/.bashrc
 
 echo "Using nvm for better node support"
 source install/nvm.sh
@@ -44,6 +44,7 @@ eval "$(ssh-agent -s)"
 eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_rsa
 
-
+# Setting env to zsh instead of bash
+chsh -s /bin/zsh
 
 echo "Done. Close window and re-open to enjoy"
