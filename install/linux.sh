@@ -3,7 +3,7 @@
 echo "Lets install our Linux Stuff"
 
 # Need to install add-apt-repository
-sudo apt-get install -y add-apt-repository
+sudo apt-get install -y software-properties-common
 source ~/.bashrc
 
 # Sources for Neovim
@@ -37,3 +37,9 @@ rm -Rf $HOME/bin/zsh-autosuggestions
 
 mkdir -p $HOME/.rbenv/plugins
 git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build
+
+# Install google chrome
+curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o ~/Downloads/google-chrome-stable_current_amd64.deb
+
+sudo dpkg -i ~/Downloads/google-chrome-stable_current_amd64.deb
+sudo apt-get -f install

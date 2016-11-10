@@ -45,6 +45,7 @@ eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_rsa
 
 # Setting env to zsh instead of bash
+echo "Switching to ZSH"
 chsh -s /bin/zsh
 
 echo "Done. Close window and re-open to enjoy"
