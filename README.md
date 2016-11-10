@@ -5,19 +5,20 @@ This repo is used to store my dotfiles for the applications that I use on my mac
 
 ## Branches
 - master - Bash on Windows
+- linux - Used when you are running Linux [Debian based, tested on elementary os]
 - mac - Used on Apple [Tested on El Capitan]
 
 ## Pre-req
 You need to just install git so you can clone the repo
 
 ## How to use
-To use this, its pretty simple. Clone this to ~/.dotfiles. Open the following file and edit the variables to match what you want
+To use this, its pretty simple. Clone this to ~/.dotfiles. Switch to the branch you need, see above. Open the following file and edit the variables on the top of the file to match what you want
 
 ```
 ~/.dotfiles/install.sh
 ```
 
-After you edit that, go into the .dotfiles directory and run the following command
+After you save that, make sure you are in the .dotfiles directory and run the following command
 
 ```
 $ ./install.sh
