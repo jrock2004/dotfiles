@@ -7,6 +7,7 @@ This repo is used to store my dotfiles for the applications that I use on my mac
 - master - Bash on Windows
 - linux - Used when you are running Linux [Debian based, tested on elementary os]
 - mac - Used on Apple [Tested on El Capitan]
+- bashonwindows - Bash on Windows
 
 ## Pre-req
 You need to just install git so you can clone the repo
