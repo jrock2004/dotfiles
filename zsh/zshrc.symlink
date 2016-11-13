@@ -48,6 +48,10 @@ if hash rbenv 2>/dev/null; then
     eval "$(rbenv init - zsh)"
 fi
 
+if [[ -d ~/.gem/ruby/2.2.0/bin ]]; then
+    export PATH=~/.gem/ruby/2.2.0/bin:$PATH
+fi
+
 # source nvm
 export NVM_DIR=~/.nvm
 
