@@ -22,7 +22,7 @@ syntax on
 
 set t_Co=256 
 set background=dark
-colorscheme gruvbox
+colorscheme onedark
 
 highlight Comment cterm=italic
 highlight htmlArg cterm=italic
