@@ -17,7 +17,7 @@ echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee
 # Lets updated so we can get new sources
 sudo apt-get update
 
-sudo apt-get install -y bash-completion vim vim-scripts python-dev python-pip python3-dev python3-pip neovim build-essential ack-grep tree wget nginx ruby-build tmux markdown irssi irssi-scripts zsh xclip cmake mono-complete
+sudo apt-get install -y bash-completion vim vim-scripts python-dev python-pip python3-dev python3-pip neovim build-essential ack-grep tree wget nginx tmux markdown irssi irssi-scripts zsh xclip cmake mono-complete
 
 # Install some extra tools
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
@@ -32,5 +32,7 @@ sudo cp -a $HOME/bin/zsh-autosuggestions /usr/local/share
 rm -Rf $HOME/bin/zsh-syntax-highlighting
 rm -Rf $HOME/bin/zsh-autosuggestions
 
+# Lets install rbenv
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 mkdir -p $HOME/.rbenv/plugins
 git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build
