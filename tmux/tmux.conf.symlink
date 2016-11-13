@@ -1,6 +1,6 @@
-set -g default-command "login-shell"
+#set -g default-command "login-shell"
 # tmux display things in 256 colors
-set -g default-terminal "tmux-256color-italic"
+#set -g default-terminal "tmux-256color-italic"
 
 set -g history-limit 20000
 
@@ -32,9 +32,9 @@ unbind =
 bind = select-layout tiled
 
 # cycle through panes
-# unbind C-a
-# unbind o # this is the default key for cycling panes
-# bind ^A select-pane -t:.+
+unbind C-a
+unbind o # this is the default key for cycling panes
+bind ^A select-pane -t:.+
 
 # make window/pane index start with 1
 set -g base-index 1
@@ -42,7 +42,7 @@ setw -g pane-base-index 1
 
 set-option -g set-titles on
 set-option -g set-titles-string "#T - #W"
-# set-window-option -g automatic-rename on
+set-window-option -g automatic-rename on
 
 ######################
 #### Key Bindings ####
@@ -76,7 +76,7 @@ bind -r J resize-pane -D 10
 bind -r K resize-pane -U 10
 bind -r L resize-pane -R 10
 
-bind-key -T root PPage if-shell -F "#{alternate_on}" "send-keys PPage" "copy-mode -e; send-keys PPage"
+#bind-key -T root PPage if-shell -F "#{alternate_on}" "send-keys PPage" "copy-mode -e; send-keys PPage"
 bind-key -t vi-copy PPage page-up
 bind-key -t vi-copy NPage page-down
 

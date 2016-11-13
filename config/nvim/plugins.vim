@@ -1,7 +1,7 @@
 call plug#begin('~/.nvim/plugged')
 
 " colorschemes
-Plug 'flazz/vim-colorschemes'
+Plug 'joshdick/onedark.vim'
 
 " utilities
 " Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
