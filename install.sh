@@ -2,18 +2,17 @@
 
 # Setting up some variables
 EMAIL="jrock2004@gmail.com"
-DEVFOLDER="$HOME/Development"
 NPMFOLDER="$HOME/.npm-packages"
 BIN="$HOME/bin"
 
 echo "Symlinking dotfiles"
 source install/link.sh
 
-
 echo "Creating needed directories"
-mkdir -p $DEVFOLDER
 mkdir -p $NPMFOLDER
 mkdir -p $BIN
+# Need to do this because linux and windows are not friendly
+ln -s /mnt/c/Development $HOME/Development
 
 echo "Installing the apps that we need"
 source install/bashwindows.sh
@@ -29,21 +28,28 @@ source install/python.sh
 echo "Installing Node Apps"
 source install/node.sh
 
-echo "Installing and setting Ruby version"
-rbenv install 2.2.3
-rbenv global 2.2.3
-
-echo "Installing some Gems"
-gem install scss_lint
-gem install rails
-rbenv rehash
+echo "Installing Ruby stuff"
+source install/ruby.sh
 
 # Setup SSH key
-ssh-keygen -t rsa -b 4096 -C "$EMAIL"
-eval "$(ssh-agent -s)"
-eval $(ssh-agent -s)
-ssh-add ~/.ssh/id_rsa
+if ~ [ -d $HOME/.ssh ]; then
+    mkdir $HOME/.ssh
+    chmod 700 $HOME/.ssh
+    ssh-keygen -t rsa -b 4096 -C "$EMAIL"
+    chmod 600 $HOME/.ssh/id_rsa
+    eval "$(ssh-agent -s)"
+    eval $(ssh-agent -s)
+    ssh-add ~/.ssh/id_rsa
 
+    GITHUB_SSH_URL=https://github.com/settings/ssh
 
+    cat $HOME/.ssh/id_rsa.pub
+    echo
+    echo $GITHUB_SSH_URL
+
+    read -p "Hit ENTER after adding to Github"
+else
+    echo ".ssh directory already exists, not generating"
+fi
 
 echo "Done. Close window and re-open to enjoy"
