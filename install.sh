@@ -29,15 +29,29 @@ source install/python.sh
 echo "Installing Node Apps"
 source install/node.sh
 
-echo "Installing and setting Ruby version"
-rbenv install 2.2.3
-rbenv global 2.2.3
+echo "Installing Ruby stuff"
+source install/ruby.sh
 
-echo "Installing some Gems"
-gem install scss_lint
-gem install rails
-rbenv rehash
+# Setup SSH key
+if ~ [ -d ~/.ssh  ]; then
+    mkdir ~/.ssh
+    chmod 700 ~/.ssh
+    ssh-keygen -t rsa -b 4096 -C "$EMAIL"
+    chmod 600 ~/.ssh/id_rsa
+    eval "$(ssh-agent -s)"
+    eval $(ssh-agent -s)
+    ssh-add ~/.ssh/id_rsa
 
+    GITHUB_SSH_URL=https://github.com/settings/ssh
+
+    cat $HOME/.ssh/id_rsa.pub
+    echo
+    echo $GITHUB_SSH_URL
+
+    read -p "Hit ENTER after adding to Github"
+else
+    echo ".ssh directory already exists, not generating"
+fi
 # Setup SSH key
 ssh-keygen -t rsa -b 4096 -C "$EMAIL"
 eval "$(ssh-agent -s)"
