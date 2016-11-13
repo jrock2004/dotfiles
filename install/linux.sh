@@ -17,15 +17,10 @@ sudo apt-key adv --keyserver apt-mo.trafficmanager.net --recv-keys 417A0893
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
 echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
 
-# Add sources for corebird
-sudo add-apt-repository ppa:ubuntuhandbook1/corebird
-
 # Lets updated so we can get new sources
 sudo apt-get update
 
-sudo apt-get install -y bash-completion vim vim-scripts python-dev python-pip python3-dev python3-pip neovim
-build-essential ack-grep tree wget nginx ruby-build tmux markdown irssi irssi-scripts zsh xclip cmake
-dotnet-dev-1.0.0-preview2-003131 mono-complete corebird
+sudo apt-get install -y bash-completion vim vim-scripts python-dev python-pip python3-dev python3-pip neovim build-essential ack-grep tree wget nginx tmux markdown irssi irssi-scripts zsh xclip cmake dotnet-dev-1.0.0-preview2-003131 mono-complete
 
 # Install some extra tools
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
@@ -40,6 +35,8 @@ sudo cp -a $HOME/bin/zsh-autosuggestions /usr/local/share
 rm -Rf $HOME/bin/zsh-syntax-highlighting
 rm -Rf $HOME/bin/zsh-autosuggestions
 
+# Lets install rbenv
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 mkdir -p $HOME/.rbenv/plugins
 git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build
 
