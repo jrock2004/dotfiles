@@ -20,7 +20,7 @@ echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /
 # Lets updated so we can get new sources
 sudo apt-get update
 
-sudo apt-get install -y bash-completion vim vim-scripts python-dev python-pip python3-dev python3-pip neovim build-essential ack-grep tree wget nginx tmux markdown irssi irssi-scripts zsh xclip cmake dotnet-dev-1.0.0-preview2-003131 mono-complete
+sudo apt-get install -y bash-completion vim vim-scripts python-dev python-pip python3-dev python3-pip neovim build-essential ack-grep tree wget nginx tmux markdown irssi irssi-scripts zsh xclip cmake dotnet-dev-1.0.0-preview2-003131 mono-complete exuberant-ctags
 
 # Install some extra tools
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
