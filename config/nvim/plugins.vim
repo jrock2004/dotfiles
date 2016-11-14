@@ -29,6 +29,7 @@ Plug 'sickill/vim-pasta'
 Plug 'marijnh/tern_for_vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'tpope/vim-vinegar'
+Plug 'pct/present.vim'
 
 " html / templates
 Plug 'mattn/emmet-vim', { 'for': 'html' }

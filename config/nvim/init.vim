@@ -20,7 +20,7 @@ set rtp+=~/.fzf
 
 syntax on
 
-set t_Co=256 
+set t_Co=256
 set background=dark
 colorscheme onedark
 
@@ -139,6 +139,7 @@ augroup configgroup
     autocmd FileType qf wincmd J
 
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+	autocmd BufNewFile,BufReadPost *.rst set filetype=markdown
     let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript', 'stylus', 'html']
 
     autocmd BufNewFile,BufRead,BufWrite *.md syntax match Comment /\%^---\_.\{-}---$/
