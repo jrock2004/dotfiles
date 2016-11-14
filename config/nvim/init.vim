@@ -144,6 +144,9 @@ noremap Q <NOP>
 " shortcut to save
 nmap <leader>, :w<cr>
 
+" Generate/update ctags
+command! MakeTags !ctags -R .
+
 " }}}
 
 " Section AutoGroups {{{
