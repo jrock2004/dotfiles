@@ -31,8 +31,11 @@ source install/node.sh
 echo "Installing Ruby stuff"
 source install/ruby.sh
 
+# Before starting lets backup the existing bashrc
+mv $HOME/.bashrc $HOME/.bashrc.bak
+
 # Setup SSH key
-if ~ [ -d $HOME/.ssh ]; then
+if [ ! -d $HOME/.ssh ]; then
     mkdir $HOME/.ssh
     chmod 700 $HOME/.ssh
     ssh-keygen -t rsa -b 4096 -C "$EMAIL"
