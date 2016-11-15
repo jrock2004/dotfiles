@@ -33,7 +33,7 @@ echo "Installing Ruby stuff"
 source install/ruby.sh
 
 # Setup SSH key
-if ~ [ -d ~/.ssh  ]; then
+if [ ! -d ~/.ssh  ]; then
     mkdir ~/.ssh
     chmod 700 ~/.ssh
     ssh-keygen -t rsa -b 4096 -C "$EMAIL"
