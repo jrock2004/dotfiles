@@ -32,6 +32,9 @@ source install/node.sh
 echo "Installing Ruby stuff"
 source install/ruby.sh
 
+echo "Installing Fonts"
+source install/fonts.sh
+
 # Setup SSH key
 if [ ! -d ~/.ssh  ]; then
     mkdir ~/.ssh

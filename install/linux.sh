@@ -20,7 +20,10 @@ echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /
 # Lets updated so we can get new sources
 sudo apt-get update
 
-sudo apt-get install -y bash-completion vim vim-scripts python-dev python-pip python3-dev python3-pip neovim build-essential ack-grep tree wget nginx tmux markdown irssi irssi-scripts zsh xclip cmake dotnet-dev-1.0.0-preview2-003131 mono-complete exuberant-ctags
+sudo apt-get install -y bash-completion vim vim-scripts python-dev python-pip python3-dev
+sudo apt-get install -y python3-pip neovim build-essential ack-grep tree wget nginx tmux
+sudo apt-get install -y markdown irssi irssi-scripts zsh xclip cmake dotnet-dev-1.0.0-preview2-003131
+sudo apt-get install -y mono-complete exuberant-ctags dconf-tools firefox-dev
 
 # Install some extra tools
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
@@ -46,3 +49,14 @@ curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -
 sudo dpkg -i ~/Downloads/google-chrome-stable_current_amd64.deb
 sudo apt-get -f install
 rm ~/Downloads/google-chrome*
+
+# Install Zoom
+curl https://zoom.us/client/latest/zoom_amd64.deb -o ~/Downloads/zoom.deb
+sudo dpkg -i ~/Downloads/zoom.deb
+sudo apt-get -f install
+rm ~/Downloads/zoom.deb
+
+# Install slack
+curl https://downloads.slack-edge.com/linux_releases/slack-desktop-2.2.1-amd64.deb -o ~/Downloads/slack.deb
+sudo dpkg -i ~/Downloads/slack.deb
+rm ~/Downloads/slack.deb
