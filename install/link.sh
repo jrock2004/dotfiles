@@ -2,9 +2,6 @@
 
 DOTFILES=$HOME/.dotfiles
 
-# Before starting lets backup the existing bashrc
-mv $HOME/.bashrc $HOME/.bashrc.bak
-
 echo -e "\nCreating symlinks"
 echo "=============================="
 linkables=$( find -H "$DOTFILES" -maxdepth 3 -name '*.symlink' )
