@@ -35,3 +35,9 @@ rm -Rf $HOME/bin/zsh-autosuggestions
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 mkdir -p $HOME/.rbenv/plugins
 git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build
+
+curl -o $HOME/bin/code.deb -L http://go.microsoft.com/fwlink/?LinkID=760868
+sudo dpkg -i $HOME/bin/code.deb
+sudo apt-get -f install
+
+rm -Rf $HOME/bin/code.deb
