@@ -60,3 +60,7 @@ rm ~/Downloads/zoom.deb
 curl https://downloads.slack-edge.com/linux_releases/slack-desktop-2.2.1-amd64.deb -o ~/Downloads/slack.deb
 sudo dpkg -i ~/Downloads/slack.deb
 rm ~/Downloads/slack.deb
+
+# Install dropbox
+git clone https://github.com/zant95/elementary-dropbox /tmp/elementary-dropbox
+/tmp/elementary-dropbox/install.sh
