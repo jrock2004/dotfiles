@@ -25,14 +25,19 @@ echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sourc
 # Sources for OBS
 sudo apt-add-repository ppa:obsproject/obs-studio
 
+# Sources for Docker
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list
+
 # Lets updated so we can get new sources
 sudo apt-get update
 
 sudo apt-get install -y bash-completion vim vim-scripts python-dev python-pip python3-dev
 sudo apt-get install -y python3-pip neovim build-essential ack-grep tree wget nginx tmux
-sudo apt-get install -y markdown irssi irssi-scripts zsh xclip cmake dotnet-dev-1.0.0-preview2-003131
+sudo apt-get install -y markdown irssi irssi-scripts zsh xclip cmake
 sudo apt-get install -y mono-complete exuberant-ctags dconf-tools firefox-dev spotify-client
-sudo apt-get install -y ffmpeg obs-studio
+sudo apt-get install -y ffmpeg obs-studio apt-transport-https ca-certificates 
+sudo apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual docker docker-compose
 
 # Install some extra tools
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
@@ -74,4 +79,45 @@ rm ~/Downloads/slack.deb
 git clone https://github.com/zant95/elementary-dropbox /tmp/elementary-dropbox
 /tmp/elementary-dropbox/install.sh
 
+# Install Visual Studio code
+curl -o $HOME/bin/code.deb -L http://go.microsoft.com/fwlink/?LinkID=760868
+sudo dpkg -i $HOME/bin/code.deb
 
+rm -Rf $HOME/bin/code.deb
+
+# Setup groups
+sudo groupadd docker
+sudo usermod -aG docker $USER
+
+
+#### Linux settings
+
+# Lock on lid close
+gsettings set apps.light-locker lock-on-lid true
+
+# Set screenshot settings
+gsettings set net.launchpad.screenshot format jpg
+
+# Set clock
+gsettings set org.gnome.desktop.interface clock-format 12h
+
+# Touchpad settings
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+
+# Screensaver settings
+gsettings set org.gnome.desktop.screensaver lack-enabled true
+
+# File roller Settings
+gsettings set org.gnome.FileRoller.FileSelector show-hidden true
+
+# Nautilus settings
+gsettings set org.gnome.nautilus.preferences show-hidden-files true
+
+# Mouse Settings
+gsettings set org.gnome.settings-daemon.peripherals.mouse locate-pointer true
+
+# Battery Settings
+gsettings set org.pantheon.desktop.wingpanel.indicators.power show-percentage true
+
+# Pant Files Settings
+gsettings set org.pantheon.files.preferences single-click false
