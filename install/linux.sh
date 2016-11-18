@@ -22,6 +22,8 @@ echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
 echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
 
+# Sources for OBS
+sudo apt-add-repository ppa:obsproject/obs-studio
 
 # Lets updated so we can get new sources
 sudo apt-get update
@@ -30,6 +32,7 @@ sudo apt-get install -y bash-completion vim vim-scripts python-dev python-pip py
 sudo apt-get install -y python3-pip neovim build-essential ack-grep tree wget nginx tmux
 sudo apt-get install -y markdown irssi irssi-scripts zsh xclip cmake dotnet-dev-1.0.0-preview2-003131
 sudo apt-get install -y mono-complete exuberant-ctags dconf-tools firefox-dev spotify-client
+sudo apt-get install -y ffmpeg obs-studio
 
 # Install some extra tools
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
@@ -70,3 +73,5 @@ rm ~/Downloads/slack.deb
 # Install dropbox
 git clone https://github.com/zant95/elementary-dropbox /tmp/elementary-dropbox
 /tmp/elementary-dropbox/install.sh
+
+
