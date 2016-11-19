@@ -26,7 +26,7 @@ compinit
 for config ($ZSH/**/*completion.sh) source $config
 
 export EDITOR='nvim'
-export PATH=/usr/local/bin:$HOME/.npm-packages/bin:$PATH
+export PATH=/usr/local/bin:$HOME/.npm-packages/bin:$HOME/.composer/vendor/bin:$PATH
 
 # add /usr/local/sbin
 if [[ -d /usr/local/sbin ]]; then

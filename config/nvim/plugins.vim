@@ -39,6 +39,9 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'OrangeT/vim-csharp', { 'for': 'cshtml' }
 
+" php
+Plug 'jwalton512/vim-blade'
+
 " JavaScript
 Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
 Plug 'moll/vim-node', { 'for': 'javascript' }
