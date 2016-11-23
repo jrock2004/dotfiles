@@ -14,6 +14,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'benekastah/neomake'
 Plug 'tpope/vim-fugitive'
+Plug 'rhysd/committia.vim'
 Plug 'tpope/vim-repeat'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -27,6 +28,8 @@ Plug 'tpope/vim-sleuth'
 Plug 'sickill/vim-pasta'
 Plug 'marijnh/tern_for_vim'
 Plug 'Valloric/YouCompleteMe'
+Plug 'tpope/vim-vinegar'
+Plug 'pct/present.vim'
 
 " html / templates
 Plug 'mattn/emmet-vim', { 'for': 'html' }
@@ -36,6 +39,9 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'OrangeT/vim-csharp', { 'for': 'cshtml' }
 
+" php
+Plug 'jwalton512/vim-blade'
+
 " JavaScript
 Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
 Plug 'moll/vim-node', { 'for': 'javascript' }
@@ -43,6 +49,8 @@ Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
 
 " TypeScript
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm install' }
+Plug 'clausreinke/typescript-tools.vim', { 'for': 'typescript' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 
 " Styles
