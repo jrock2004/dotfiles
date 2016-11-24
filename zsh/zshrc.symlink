@@ -8,8 +8,8 @@ export REPORTTIME=10
 
 # define the code directory
 # This is where my code exists and where I want the `c` autocomplete to work from exclusively
-if [[ -d ~/code ]]; then
-    export CODE_DIR=~/code
+if [[ -d ~/Development ]]; then
+    export CODE_DIR=~/Development
 fi
 
 # source all .zsh files inside of the zsh/ directory
@@ -19,6 +19,8 @@ if [[ -a ~/.localrc ]]; then
     source ~/.localrc
 fi
 
+# source all .zsh files inside of the zsh/ directory
+for config ($ZSH/**/*.zsh) source $config
 
 # initialize autocomplete
 autoload -U compinit add-zsh-hook
