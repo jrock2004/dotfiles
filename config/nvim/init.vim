@@ -44,7 +44,6 @@ let g:onedark_terminal_italics=1
 syntax on
 
 "set t_Co=256
-set background=dark
 colorscheme onedark
 
 highlight Comment cterm=italic
@@ -218,8 +217,7 @@ command! FZFMru call fzf#run({
 \  'source':  v:oldfiles,
 \  'sink':    'e',
 \  'options': '-m -x +s',
-\  'down':    '40%'
-\ })
+\  'down':    '40%'})
 
 " Fugitive Shortcuts
 """""""""""""""""""""""""""""""""""""
@@ -284,13 +282,16 @@ let g:airline#extensions#tabline#tab_min_count = 2 " only show tabline if tabs a
 let g:airline#extensions#tabline#show_buffers = 0 " do not show open buffers in tabline
 let g:airline#extensions#tabline#show_splits = 0
 
+" tsuquyomi options
+"""""""""""""""""""""""""""""""""""""
+let g:tsuquyomi_disable_default_mappings = 1
 
 " don't hide quotes in json files
 let g:vim_json_syntax_conceal = 0
 
 " YouCompleteMe
 """""""""""""""""""""""""""""""""""""
-let g:ycm_path_to_python_interpreter = '/usr/bin/python2.7'
+let g:ycm_path_to_python_interpreter = '/usr/local/bin/python2.7'
 
 " Emmet
 """""""""""""""""""""""""""""""""""""
@@ -304,7 +305,6 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " Committia.vim
 """""""""""""""""""""""""""""""""""""
-
 let g:committia_hooks = {}
 function! g:committia_hooks.edit_open(info)
 	" Additional settings

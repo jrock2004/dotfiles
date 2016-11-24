@@ -1,7 +1,6 @@
 call plug#begin('~/.nvim/plugged')
 
 " colorschemes
-" Plug 'flazz/vim-colorschemes'
 Plug 'joshdick/onedark.vim'
 
 " utilities
@@ -10,6 +9,7 @@ Plug 'mileszs/ack.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-ragtag'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'benekastah/neomake'
@@ -30,6 +30,7 @@ Plug 'marijnh/tern_for_vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'tpope/vim-vinegar'
 Plug 'pct/present.vim'
+Plug 'tpope/vim-sleuth'
 
 " html / templates
 Plug 'mattn/emmet-vim', { 'for': 'html' }
@@ -47,6 +48,7 @@ Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
 Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': ['jsx', 'javascript'] }
 
 " TypeScript
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm install' }

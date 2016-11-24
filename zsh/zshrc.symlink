@@ -8,11 +8,12 @@ export REPORTTIME=10
 export DISPLAY=:0
 
 # define the code directory
+# This is where my code exists and where I want the `c` autocomplete to work from exclusively
 if [[ -d ~/Development ]]; then
     export CODE_DIR=~/Development
 fi
 
-# load all zsh config files
+# source all .zsh files inside of the zsh/ directory
 for config ($ZSH/**/*.zsh) source $config
 
 if [[ -a ~/.localrc ]]; then
@@ -28,6 +29,8 @@ for config ($ZSH/**/*completion.sh) source $config
 export EDITOR='nvim'
 export PATH=/usr/local/bin:$HOME/.npm-packages/bin:$HOME/.composer/vendor/bin:$PATH
 
+export PATH=/usr/local/bin:$PATH
+
 # add /usr/local/sbin
 if [[ -d /usr/local/sbin ]]; then
     export PATH=/usr/local/sbin:$PATH
@@ -41,7 +44,7 @@ if [[ -d ~/bin ]]; then
     export PATH=~/bin:$PATH
 fi
 
-[ -z "$TMUX" ] && export TERM=xterm-256color
+[ -z "$TMUX" ] && export TERM=xterm-256color-italic
 
 # install rbenv
 export PATH=$HOME/.rbenv/bin:$PATH
