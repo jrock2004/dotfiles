@@ -4,12 +4,12 @@ call plug#begin('~/.nvim/plugged')
 Plug 'joshdick/onedark.vim'
 
 " utilities
-" Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
-Plug '~/.fzf/fzf' | Plug 'junegunn/fzf.vim'
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-ragtag'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'benekastah/neomake'
@@ -30,6 +30,7 @@ Plug 'marijnh/tern_for_vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'tpope/vim-vinegar'
 Plug 'pct/present.vim'
+Plug 'tpope/vim-sleuth'
 
 " html / templates
 Plug 'mattn/emmet-vim', { 'for': 'html' }
@@ -39,13 +40,19 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'OrangeT/vim-csharp', { 'for': 'cshtml' }
 
+" php
+Plug 'jwalton512/vim-blade'
+
 " JavaScript
 Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
 Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': ['jsx', 'javascript'] }
 
 " TypeScript
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm install' }
+Plug 'clausreinke/typescript-tools.vim', { 'for': 'typescript' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 
 " Styles
