@@ -2,6 +2,10 @@ source ~/.config/nvim/plugins.vim
 
 " Section General {{{
 
+" Abbreviations
+abbr funciton function
+abbr teh the
+
 set nocompatible
 set autoread
 
@@ -12,20 +16,41 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-" set rtp+=~/.fzf
+set rtp+=~/.fzf
+
+let g:python_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 
 " }}}
 
 " Section User Interface {{{
 
+" switch cursor to line when in insert mode, and block when not
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+if &term =~ '256color'
+    " disable background color erase
+    set t_ut=
+endif
+
+" enable 24 bit color support if supported
+if (empty($TMUX) && has("termguicolors"))
+    set termguicolors
+endif
+
+let g:onedark_termcolors=16
+let g:onedark_terminal_italics=1
+
 syntax on
 
-set t_Co=256 
-set background=dark
-colorscheme gruvbox
+"set t_Co=256
+colorscheme onedark
 
 highlight Comment cterm=italic
 highlight htmlArg cterm=italic
+
+highlight SpecialKey ctermbg=none ctermfg=8
+highlight NonText ctermbg=none ctermfg=8
 
 set number
 set relativenumber
@@ -122,6 +147,9 @@ noremap Q <NOP>
 " shortcut to save
 nmap <leader>, :w<cr>
 
+" Generate/update ctags
+command! MakeTags !ctags -R .
+
 " }}}
 
 " Section AutoGroups {{{
@@ -137,6 +165,7 @@ augroup configgroup
     autocmd FileType qf wincmd J
 
     autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+    autocmd BufNewFile,BufReadPost *.rst set filetype=markdown
     let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript', 'stylus', 'html']
 
     autocmd BufNewFile,BufRead,BufWrite *.md syntax match Comment /\%^---\_.\{-}---$/
@@ -150,6 +179,8 @@ au BufRead,BufNewFile *.cshtml set filetype=cshtml
 
 " Section Plugins {{{
 
+" FZF plugin
+"""""""""""""""""""""""""""""""""""""
 let g:fzf_layout = { 'down': '~25%' }
 
 if isdirectory(".git")
@@ -159,7 +190,7 @@ else
 endif
 
 nmap <silent> <leader>r :Buffers<cr>
-nmap <silent> <leader>e :GFiles?<cr>
+nmap <silent> <leader>e :FZF<cr>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
@@ -183,8 +214,7 @@ command! FZFMru call fzf#run({
 \  'source':  v:oldfiles,
 \  'sink':    'e',
 \  'options': '-m -x +s',
-\  'down':    '40%'
-\ })
+\  'down':    '40%'})
 
 " Fugitive Shortcuts
 """""""""""""""""""""""""""""""""""""
@@ -243,19 +273,22 @@ let g:neomake_scss_enabled_markers = ['csslint']
 let g:airline_powerline_fonts=1
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_theme='tomorrow'
+let g:airline_theme='onedark'
 let g:airline#extensions#tabline#enabled = 1 " enable airline tabline
 let g:airline#extensions#tabline#tab_min_count = 2 " only show tabline if tabs are being used (more than 1 tab open)
 let g:airline#extensions#tabline#show_buffers = 0 " do not show open buffers in tabline
 let g:airline#extensions#tabline#show_splits = 0
 
+" tsuquyomi options
+"""""""""""""""""""""""""""""""""""""
+let g:tsuquyomi_disable_default_mappings = 1
 
 " don't hide quotes in json files
 let g:vim_json_syntax_conceal = 0
 
 " YouCompleteMe
 """""""""""""""""""""""""""""""""""""
-let g:ycm_path_to_python_interpreter = '/usr/bin/python2.7'
+let g:ycm_path_to_python_interpreter = '/usr/local/bin/python2.7'
 
 " Emmet
 """""""""""""""""""""""""""""""""""""
@@ -267,8 +300,25 @@ let g:UltiSnipsExpandTrigger="<c-a>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
-" }}}
+" Committia.vim
+"""""""""""""""""""""""""""""""""""""
+let g:committia_hooks = {}
+function! g:committia_hooks.edit_open(info)
+	" Additional settings
+	setlocal spell
+	" If no commit message, start with insert mode
+	if a:info.vcs ==# 'git' && getline(1) ==# ''
+		startinsert
+	end
 
+	" Scroll the diff window from insert mode
+	" Map <C-n> and <C-p>
+	imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
+	imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
+			"
+endfunction
+
+" }}}
 
 " Section Keymaps {{{
 
@@ -283,3 +333,5 @@ nnoremap <right> :echo "Stop being stupid"<cr>
 nnoremap <leader>f :YcmCompleter GoToDefinition<CR>
 
 " }}}
+
+" vim:foldmethod=marker:foldlevel=0

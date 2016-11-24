@@ -12,6 +12,28 @@ snippet iife
 		${1}
 	})();
 
+snippet timeout
+	setTimeout(function () {
+		${2}
+	}, ${1});
+
+snippet log
+	console.log(${1});
+snippet lred
+	console.log('%c${1}', 'font-weight:bold;color:red;');
+snippet lgreen
+	console.log('%c${1}', 'font-weight:bold;color:green;');
+snippet lblue
+	console.log('%c${1}', 'font-weight:bold;color:blue;');
+snippet lpurple
+	console.log('%c${1}', 'font-weight:bold;color:purple;');
+snippet lor
+	console.log('%c${1}', 'font-weight:bold;color:orange;');
+snippet doc
+	/**
+	 * ${1}
+	 */
+
 # Ember stuff
 snippet :
 	${1:key}: ${2:value}
@@ -37,9 +59,3 @@ snippet model
 	model(${1}) {
 		${2}
 	},
-snippet log
-	console.log(${1});
-snippet doc
-	/**
-	 * ${1}
-	 */
