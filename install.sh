@@ -2,8 +2,8 @@
 
 # Setting up some variables
 EMAIL="jrock2004@gmail.com"
-DEVFOLDER="~/Development"
-NPMFOLDER="~/.npm-packages"
+DEVFOLDER="$HOME/Development"
+NPMFOLDER="$HOME/.npm-packages"
 
 echo "Symlinking dotfiles"
 source install/link.sh

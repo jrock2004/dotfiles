@@ -4,12 +4,15 @@ export ZSH=$DOTFILES/zsh
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
 
+[[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
+
 # define the code directory
-if [[ -d ~/Development ]]; then
-    export CODE_DIR=~/Development
+# This is where my code exists and where I want the `c` autocomplete to work from exclusively
+if [[ -d ~/code ]]; then
+    export CODE_DIR=~/code
 fi
 
-# load all zsh config files
+# source all .zsh files inside of the zsh/ directory
 for config ($ZSH/**/*.zsh) source $config
 
 if [[ -a ~/.localrc ]]; then
@@ -24,7 +27,8 @@ compinit
 for config ($ZSH/**/*completion.sh) source $config
 
 export EDITOR='nvim'
-export PATH=/usr/local/bin:$HOME/.npm-packages/bin:$PATH
+
+export PATH=/usr/local/bin:$PATH
 
 # add /usr/local/sbin
 if [[ -d /usr/local/sbin ]]; then
@@ -39,11 +43,16 @@ if [[ -d ~/bin ]]; then
     export PATH=~/bin:$PATH
 fi
 
-[ -z "$TMUX" ] && export TERM=xterm-256color
+[ -z "$TMUX" ] && export TERM=xterm-256color-italic
 
 # install rbenv
 if hash rbenv 2>/dev/null; then
     eval "$(rbenv init -)"
+fi
+
+if [[ -d ~/.rvm ]]; then
+    PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
+    source ~/.rvm/scripts/rvm
 fi
 
 # alias git to hub
@@ -61,16 +70,12 @@ load-nvmrc() {
 }
 add-zsh-hook chpwd load-nvmrc
 
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
 if hash brew 2>/dev/null; then
     source $(brew --prefix nvm)/nvm.sh
     source `brew --prefix`/etc/profile.d/z.sh
     # when sourcing, check and ensure that the correct Node version is set
     load-nvmrc
 fi
-
-bindkey -e
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
