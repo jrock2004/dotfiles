@@ -40,7 +40,7 @@ sudo apt-get install -y bash-completion vim vim-scripts python-dev python-pip py
 sudo apt-get install -y python3-pip neovim build-essential ack-grep tree wget nginx tmux
 sudo apt-get install -y markdown irssi irssi-scripts zsh xclip cmake
 sudo apt-get install -y mono-complete exuberant-ctags dconf-tools firefox-dev spotify-client
-sudo apt-get install -y ffmpeg obs-studio apt-transport-https ca-certificates 
+sudo apt-get install -y ffmpeg obs-studio apt-transport-https ca-certificates
 sudo apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual docker docker-compose
 sudo apt-get install -y virtualbox
 
@@ -96,33 +96,45 @@ sudo usermod -aG docker $USER
 
 
 #### Linux settings
+OS=$(lsb_release -si)
 
-# Lock on lid close
-gsettings set apps.light-locker lock-on-lid true
+if [ "$OS" = "elementary"]; then
+    # Lock on lid close
+    gsettings set apps.light-locker lock-on-lid true
 
-# Set screenshot settings
-gsettings set net.launchpad.screenshot format jpg
+    # Set screenshot settings
+    gsettings set net.launchpad.screenshot format jpg
 
-# Set clock
-gsettings set org.gnome.desktop.interface clock-format 12h
+    # Set clock
+    gsettings set org.gnome.desktop.interface clock-format 12h
 
-# Touchpad settings
-gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+    # Touchpad settings
+    gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
 
-# Screensaver settings
-gsettings set org.gnome.desktop.screensaver lack-enabled true
+    # Screensaver settings
+    gsettings set org.gnome.desktop.screensaver lack-enabled true
 
-# File roller Settings
-gsettings set org.gnome.FileRoller.FileSelector show-hidden true
+    # File roller Settings
+    gsettings set org.gnome.FileRoller.FileSelector show-hidden true
 
-# Nautilus settings
-gsettings set org.gnome.nautilus.preferences show-hidden-files true
+    # Nautilus settings
+    gsettings set org.gnome.nautilus.preferences show-hidden-files true
 
-# Mouse Settings
-gsettings set org.gnome.settings-daemon.peripherals.mouse locate-pointer true
+    # Mouse Settings
+    gsettings set org.gnome.settings-daemon.peripherals.mouse locate-pointer true
 
-# Battery Settings
-gsettings set org.pantheon.desktop.wingpanel.indicators.power show-percentage true
+    # Battery Settings
+    gsettings set org.pantheon.desktop.wingpanel.indicators.power show-percentage true
 
-# Pant Files Settings
-gsettings set org.pantheon.files.preferences single-click false
+    # Pant Files Settings
+    gsettings set org.pantheon.files.preferences single-click false
+
+    # Scratch
+    gettings set org.pantheon.scratch.settings auto-indent true
+    gettings set org.pantheon.scratch.settings autosave false
+    gettings set org.pantheon.scratch.settings highlight-current-line true
+    gettings set org.pantheon.scratch.settings show-right-margin true
+
+    # Unsafe paste alert
+    gettings set org.pantheon.terminal.settings unsafe-paste-alert false
+fi;
