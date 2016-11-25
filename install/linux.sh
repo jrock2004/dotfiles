@@ -29,6 +29,10 @@ sudo apt-add-repository ppa:obsproject/obs-studio
 sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list
 
+# Sources for Virtualbox
+wget -q -O - http://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc | sudo apt-key add -
+sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian xenial contrib" >> /etc/apt/sources.list.d/virtualbox.list'
+
 # Lets updated so we can get new sources
 sudo apt-get update
 
@@ -38,6 +42,7 @@ sudo apt-get install -y markdown irssi irssi-scripts zsh xclip cmake
 sudo apt-get install -y mono-complete exuberant-ctags dconf-tools firefox-dev spotify-client
 sudo apt-get install -y ffmpeg obs-studio apt-transport-https ca-certificates 
 sudo apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual docker docker-compose
+sudo apt-get install -y virtualbox
 
 # Install some extra tools
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
