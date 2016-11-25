@@ -2,9 +2,9 @@
 
 # Setting up some variables
 EMAIL="jrock2004@gmail.com"
-DEVFOLDER="~/Development"
-NPMFOLDER="~/.npm-packages"
-BIN="~/bin"
+DEVFOLDER="$HOME/Development"
+NPMFOLDER="$HOME/.npm-packages"
+BIN="$HOME/bin"
 
 echo "Symlinking dotfiles"
 source install/link.sh
@@ -18,7 +18,7 @@ mkdir -p $BIN
 echo "Installing the apps that we need"
 source install/linux.sh
 
-source ~/.bashrc
+source $HOME/.bashrc
 
 echo "Using nvm for better node support"
 source install/nvm.sh
@@ -34,6 +34,9 @@ source install/ruby.sh
 
 echo "Installing Fonts"
 source install/fonts.sh
+
+echo "Installing PHP stuff"
+source install/php.sh
 
 # Setup SSH key
 if [ ! -d ~/.ssh  ]; then
