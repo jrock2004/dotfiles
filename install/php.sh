@@ -8,4 +8,11 @@ sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
 sudo chown -R jcostanzo:jcostanzo $HOME/.composer
 
+# Link the composer.json file
+ln -s $HOME/.dotfiles/composer/composer.json $HOME/.composer/
+
+# Cleanup
 rm composer-setup.php
+
+# Install Laravel
+/usr/local/bin/composer global require "laravel/installer"

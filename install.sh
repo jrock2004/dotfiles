@@ -31,6 +31,9 @@ source install/node.sh
 echo "Installing Ruby stuff"
 source install/ruby.sh
 
+echo "Installing PHP stuff"
+source install/php.sh
+
 # Before starting lets backup the existing bashrc
 mv $HOME/.bashrc $HOME/.bashrc.bak
 
