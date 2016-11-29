@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get -y install php5-cli unzip php5-mysql php5-mcrypt
+sudo apt-get -y install php-cli unzip php-mysql php-mcrypt php-mbstring php-xml
 
 curl -sS https://getcomposer.org/installer -o composer-setup.php
 
