@@ -8,6 +8,8 @@ else # OS X `ls`
     colorflag="-G"
 fi
 
+alias update="sudo apt-get update && sudo apt-get upgrade"
+
 alias vim="nvim"
 alias rvim="/usr/bin/vim"
 
