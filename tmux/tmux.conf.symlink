@@ -1,6 +1,6 @@
 set -g default-command "login-shell"
 # tmux display things in 256 colors
-set -g default-terminal "xterm-256color"
+set -g default-terminal "xterm-256color-italic"
 
 set -g history-limit 20000
 
