@@ -10,20 +10,40 @@ This repo is used to store my dotfiles for the applications that I use on my mac
 - bashonwindows - Bash on Windows
 
 ## Pre-req
-You need to just install git so you can clone the repo
+You need to just install git so you can clone the repo. If you are on mac you will need to open the terminal and run
+xcode-select --install and this will get you git and the other things needed
 
 ## How to use
-To use this, its pretty simple. Clone this to ~/.dotfiles. Switch to the branch you need, see above. Open the following file and edit the variables on the top of the file to match what you want
+Below lists the ways to grab this and restore the dotfiles and install the applications. Before running the install
+command you will want to edit the install.sh and update the variables if needed. 
 
+### Bash on Windows
 ```
-~/.dotfiles/install.sh
+$ sudo apt-get install git
+$ git clone https://github.com/jrock2004/dotfiles.git .dotfiles
+$ cd ~/.dotfiles
+$ git checkout bashonwindows
+$ ./install.sh
 ```
 
-After you save that, make sure you are in the .dotfiles directory and run the following command
-
+### Linux
 ```
+$ sudo apt-get install git
+$ git clone https://github.com/jrock2004/dotfiles.git .dotfiles
+$ cd ~/.dotfiles
+$ git checkout linux
+$ ./install.sh
+```
+
+### Mac
+```
+$ xcode-select --install
+$ git clone https://github.com/jrock2004/dotfiles.git .dotfiles
+$ cd ~/.dotfiles
+$ git checkout
 $ ./install.sh
 ```
 
 ## Thanks
-I did not build this from scratch. I had help and started with a template. Thanks Nick Nisi(https://github.com/nicknisi)
+This repo was originally forked from another user. I have taken it and made changes to match my needs. I would like to
+thank [Nick Nisi](https://github.com/nicknisi/dotfiles). 
