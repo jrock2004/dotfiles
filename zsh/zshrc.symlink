@@ -46,7 +46,7 @@ if [[ -d ~/.composer ]]; then
     export PATH=~/.composer/vendor/bin:$PATH
 fi
 
-[ -z "$TMUX" ] && export TERM=xterm-256color
+[ -z "$TMUX" ] && export TERM=xterm-256color-italic
 
 # install rbenv
 if hash rbenv 2>/dev/null; then
