@@ -46,4 +46,4 @@ $ ./install.sh
 
 ## Thanks
 This repo was originally forked from another user. I have taken it and made changes to match my needs. I would like to
-thank [Nick Nisi](https://github.com/nicknisi/dotfiles). 
+thank [Nick Nisi](https://github.com/nicknisi/dotfiles).
