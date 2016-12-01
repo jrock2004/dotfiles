@@ -15,7 +15,7 @@ xcode-select --install and this will get you git and the other things needed
 
 ## How to use
 Below lists the ways to grab this and restore the dotfiles and install the applications. Before running the install
-command you will want to edit the install.sh and update the variables if needed. 
+command you will want to edit the install.sh and update the variables if needed.
 
 ### Bash on Windows
 ```
