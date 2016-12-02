@@ -308,3 +308,4 @@ function! g:committia_hooks.edit_open(info)
 endfunction
 
 "}}}
+
