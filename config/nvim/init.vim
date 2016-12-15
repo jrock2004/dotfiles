@@ -321,6 +321,11 @@ function! g:committia_hooks.edit_open(info)
 			"
 endfunction
 
+" Split-term.vim
+"""""""""""""""""""""""""""""""""""""
+set splitright
+set splitbelow
+
 " }}}
 
 " Section Keymaps {{{
