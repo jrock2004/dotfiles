@@ -90,6 +90,9 @@ sudo dpkg -i $HOME/bin/code.deb
 
 rm -Rf $HOME/bin/code.deb
 
+# Fix installs
+sudo apt-get -f install
+
 # Setup groups
 sudo groupadd docker
 sudo usermod -aG docker $USER
