@@ -56,11 +56,6 @@ if [ ! -d ~/.ssh  ]; then
 else
     echo ".ssh directory already exists, not generating"
 fi
-# Setup SSH key
-ssh-keygen -t rsa -b 4096 -C "$EMAIL"
-eval "$(ssh-agent -s)"
-eval $(ssh-agent -s)
-ssh-add ~/.ssh/id_rsa
 
 # Setting env to zsh instead of bash
 echo "Switching to ZSH"

@@ -1,3 +1,6 @@
 {
 
+    "require": {
+        "laravel/installer": "^1.3"
+    }
 }
