@@ -1,6 +1,7 @@
 #!/bin/bash
 
-sudo apt-get -y install php-cli unzip php-mysql php-mcrypt php-mbstring php-xml php-zip
+sudo apt-get -y install php-cli unzip php-mysql php-mcrypt php-mbstring php-xml php-zip sqlite3 libsqlite3-dev
+
 
 curl -sS https://getcomposer.org/installer -o composer-setup.php
 sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
