@@ -33,6 +33,12 @@ echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | sudo tee /etc
 wget -q -O - http://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc | sudo apt-key add -
 sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian xenial contrib" >> /etc/apt/sources.list.d/virtualbox.list'
 
+# Sources for Neofetch
+sudo add-apt-repository ppa:dawidd0811/neofetch
+
+# Sources for Openshot
+sudo add-apt-repository ppa:openshot.developers/ppa
+
 # Lets updated so we can get new sources
 sudo apt-get update
 
@@ -42,7 +48,7 @@ sudo apt-get install -y markdown irssi irssi-scripts zsh xclip cmake
 sudo apt-get install -y mono-complete exuberant-ctags dconf-tools firefox-dev spotify-client
 sudo apt-get install -y ffmpeg obs-studio apt-transport-https ca-certificates
 sudo apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual docker docker-compose
-sudo apt-get install -y virtualbox autoconf bison libssl-dev libreadline-dev zlib1g-dev
+sudo apt-get install -y virtualbox autoconf bison libssl-dev libreadline-dev zlib1g-dev neofetch openshot-qt
 
 # Install some extra tools
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf

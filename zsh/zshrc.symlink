@@ -79,4 +79,9 @@ if [ -z ${DOTFILES_LOADED+x} ]; then
     source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
+if [[ -d ~/Android ]]; then
+    export PATH=~/Android/Sdk/tools:$PATH
+    export PATH=~/Android/Sdk/platform-tools:$PATH
+fi
+
 DOTFILES_LOADED=1

@@ -5,13 +5,13 @@ module.exports = {
     fontSize: 16,
 
     // font family with optional fallbacks
-    fontFamily: '"Operator Mono", "Droid Sans Mono for Powerline Plus Nerd File Types", Menlo, "DejaVu Sans Mono", "Lucida Console", monospace',
+    fontFamily: '"Ubuntu Mono", "Droid Sans Mono for Powerline Plus Nerd File Types", Menlo, "DejaVu Sans Mono", "Lucida Console", monospace',
 
     // terminal cursor background color (hex)
-    cursorColor: '#F81CE5',
+    cursorColor: '#839496',
 
     // color of the text
-    foregroundColor: '#fff',
+    foregroundColor: '#94a3a5',
 
     // terminal background color
     backgroundColor: '#000',
@@ -23,7 +23,7 @@ module.exports = {
     css: '',
 
     // custom padding (css format, i.e.: `top right bottom left`)
-    termCSS: '',
+    termCSS: 'x-row {line-height: 1}',
 
     // custom padding
     padding: '0',

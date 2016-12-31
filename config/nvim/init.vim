@@ -299,7 +299,7 @@ let g:user_emmet_mode='a'
 
 " UltiSnips
 """""""""""""""""""""""""""""""""""""
-let g:UltiSnipsExpandTrigger="<c-a>"
+let g:UltiSnipsExpandTrigger="<c-s>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
