@@ -39,6 +39,9 @@ sudo add-apt-repository ppa:dawidd0811/neofetch
 # Sources for Openshot
 sudo add-apt-repository ppa:openshot.developers/ppa
 
+# Sources for Albert
+sudo add-apt-repository ppa:flexiondotorg/albert
+
 # Lets updated so we can get new sources
 sudo apt-get update
 
@@ -48,7 +51,7 @@ sudo apt-get install -y markdown irssi irssi-scripts zsh xclip cmake
 sudo apt-get install -y mono-complete exuberant-ctags dconf-tools firefox-dev spotify-client
 sudo apt-get install -y ffmpeg obs-studio apt-transport-https ca-certificates
 sudo apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual docker docker-compose
-sudo apt-get install -y virtualbox autoconf bison libssl-dev libreadline-dev zlib1g-dev neofetch openshot-qt
+sudo apt-get install -y virtualbox autoconf bison libssl-dev libreadline-dev zlib1g-dev neofetch openshot-qt albert
 
 # Install some extra tools
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
