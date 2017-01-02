@@ -1,10 +1,12 @@
 #!/bin/bash
 
-echo "Lets install our Linux Stuff"
+OS=$(lsb_release -si)
 
-# Need to install add-apt-repository
-sudo apt-get install -y software-properties-common
-source ~/.bashrc
+if [ "$OS" = "elementary" ]; then
+    # Need to install add-apt-repository
+    sudo apt-get install -y software-properties-common
+    source ~/.bashrc
+fi
 
 # Sources for Neovim
 sudo add-apt-repository ppa:neovim-ppa/unstable
@@ -89,9 +91,10 @@ curl https://downloads.slack-edge.com/linux_releases/slack-desktop-2.2.1-amd64.d
 sudo dpkg -i ~/Downloads/slack.deb
 rm ~/Downloads/slack.deb
 
-# Install dropbox
-git clone https://github.com/zant95/elementary-dropbox /tmp/elementary-dropbox
-/tmp/elementary-dropbox/install.sh
+if [ "$OS" = "elementary" ]; then
+    # Install dropbox
+    git clone https://github.com/zant95/elementary-dropbox /tmp/elementary-dropbox/tmp/elementary-dropbox/install.sh
+fi
 
 # Install Visual Studio code
 curl -o $HOME/bin/code.deb -L http://go.microsoft.com/fwlink/?LinkID=760868
@@ -107,30 +110,36 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 
 
-#### Linux settings
-OS=$(lsb_release -si)
+# Setting some dconf settings
 
-if [ "$OS" = "elementary"]; then
+# Set clock
+gsettings set org.gnome.desktop.interface clock-format 12h
+
+# Touchpad settings
+gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
+
+# Screensaver settings
+gsettings set org.gnome.desktop.screensaver lock-enabled true
+
+# Nautilus settings
+gsettings set org.gnome.nautilus.preferences show-hidden-files true
+
+# File roller Settings
+gsettings set org.gnome.FileRoller.FileSelector show-hidden true
+
+# Settings specific for Ubuntu
+if [ "$OS" = "Ubuntu" ]; then
+    # Set screenshot settings
+    gsettings set org.gnome.gnome-screenshot default-file-type jpg
+fi
+
+# Settings specific for ElementaryOS
+if [ "$OS" = "elementary" ]; then
     # Lock on lid close
     gsettings set apps.light-locker lock-on-lid true
 
     # Set screenshot settings
     gsettings set net.launchpad.screenshot format jpg
-
-    # Set clock
-    gsettings set org.gnome.desktop.interface clock-format 12h
-
-    # Touchpad settings
-    gsettings set org.gnome.desktop.peripherals.touchpad tap-to-click true
-
-    # Screensaver settings
-    gsettings set org.gnome.desktop.screensaver lack-enabled true
-
-    # File roller Settings
-    gsettings set org.gnome.FileRoller.FileSelector show-hidden true
-
-    # Nautilus settings
-    gsettings set org.gnome.nautilus.preferences show-hidden-files true
 
     # Mouse Settings
     gsettings set org.gnome.settings-daemon.peripherals.mouse locate-pointer true
