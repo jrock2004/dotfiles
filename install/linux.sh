@@ -53,7 +53,7 @@ sudo apt-get install -y markdown irssi irssi-scripts zsh xclip cmake
 sudo apt-get install -y mono-complete exuberant-ctags dconf-tools firefox-dev spotify-client
 sudo apt-get install -y ffmpeg obs-studio apt-transport-https ca-certificates
 sudo apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual docker docker-compose
-sudo apt-get install -y virtualbox autoconf bison libssl-dev libreadline-dev zlib1g-dev neofetch openshot-qt albert
+sudo apt-get install -y virtualbox autoconf bison libssl-dev libreadline-dev zlib1g-dev neofetch openshot-qt albert wallch
 
 # Install some extra tools
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
@@ -131,6 +131,12 @@ gsettings set org.gnome.FileRoller.FileSelector show-hidden true
 if [ "$OS" = "Ubuntu" ]; then
     # Set screenshot settings
     gsettings set org.gnome.gnome-screenshot default-file-type jpg
+
+    # Set auto timezone
+    gsettings set org.gnome.desktop.datetime automatic-timezone true
+
+    # Set battery percentage
+    gsettings set org.gnome.desktop.interface show-battery-percentage true
 fi
 
 # Settings specific for ElementaryOS
