@@ -133,7 +133,7 @@
 [core]
     excludesfile = ~/.gitignore_global
     pager = less -FXRS -x2
-    editor = vim
+    editor = nvim
     whitespace = cr-at-eol
 [rerere]
     enabled = true

@@ -48,6 +48,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'tpope/vim-vinegar'
 Plug 'pct/present.vim'
 Plug 'tpope/vim-sleuth'
+Plug 'mklabs/split-term.vim'
 
 " html / templates
 Plug 'mattn/emmet-vim', { 'for': 'html' }
