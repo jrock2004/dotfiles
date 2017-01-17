@@ -4,8 +4,9 @@ My Dotfiles
 This repo is used to store my dotfiles for the applications that I use on my machine
 
 ## Branches
-- master - Bash on Windows
-- mac - Used on Apple [Tested on El Capitan]
+- master - Mac [Test on Sierra]
+- bashonwindows - Bash on Windows
+- linux - Working option for linux users
 
 ## How to use
 Clone the repo to your home directory and run the install.sh script
