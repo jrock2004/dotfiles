@@ -1,28 +1,28 @@
 #!/usr/bin/env sh
 
-echo "only use UTF-8 in Terminal.app"
-defaults write com.apple.terminal StringEncodings -array 4
+# echo "only use UTF-8 in Terminal.app"
+# defaults write com.apple.terminal StringEncodings -array 4
 
-echo "expand save dialog by default"
-defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+# echo "expand save dialog by default"
+# defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 
-echo "show the ~/Library folder in Finder"
-chflags nohidden ~/Library
+# echo "show the ~/Library folder in Finder"
+# chflags nohidden ~/Library
 
-echo "Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
-defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+# echo "Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)"
+# defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
-echo "Enable subpixel font rendering on non-Apple LCDs"
-defaults write NSGlobalDomain AppleFontSmoothing -int 2
+# echo "Enable subpixel font rendering on non-Apple LCDs"
+# defaults write NSGlobalDomain AppleFontSmoothing -int 2
 
-echo "Use current directory as default search scope in Finder"
-defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+# echo "Use current directory as default search scope in Finder"
+# defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 
-echo "Show Status bar in Finder"
-defaults write com.apple.finder ShowStatusBar -bool true
+# echo "Show Status bar in Finder"
+# defaults write com.apple.finder ShowStatusBar -bool true
 
-echo "Enable tap to click (Trackpad)"
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+# echo "Enable tap to click (Trackpad)"
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 
 echo "Lets install the apps we need"
 
@@ -48,9 +48,6 @@ brew cask install firefox
 
 echo "Installing iTerm"
 brew cask install iterm2
-
-#echo "Installing Office"
-#brew cask install microsoft-office
 
 echo "Installing Parallels"
 brew cask install parallels-desktop

@@ -230,42 +230,12 @@ nmap <leader>* *<c-o>:%s///gn<cr>
 " Neomake
 """""""""""""""""""""""""""""""""""""
 
-" Javascript
-let g:neomake_javascript_jshint_maker = {
-    \ 'args': ['--verbose'],
-    \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
-\ }
-
-" Typescript
-let g:neomake_typescript_tsc_maker = {
-    \ 'args': ['-m', 'commonjs', '--noEmit' ],
-    \ 'append_file': 0,
-    \ 'errorformat':
-        \ '%E%f %#(%l\,%c): error %m,' .
-        \ '%E%f %#(%l\,%c): %m,' .
-        \ '%Eerror %m,' .
-        \ '%C%\s%\+%m'
-\ }
-
-" Json
-let g:neomake_json_jsonlint_maker = {
-    \ 'args': ['--compact'],
-    \ 'errorformat':
-        \ '%ELine %l:%c,'.
-        \ '%Z\\s%#Reason: %m,'.
-        \ '%C%.%#,'.
-        \ '%f: line %l\, col %c\, %m,'.
-        \ '%-G%.%#'
-\ }
-
 " SCSS / CSS
 let g:neomake_scss_csslint_maker = {
     \ 'args': ['--verbose'],
     \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
 \ }
 
-let g:neomake_javascript_enabled_markers = ['jshint', 'jscs']
-let g:neomake_json_enabled_markers = ['jsonlint']
 let g:neomake_scss_enabled_markers = ['csslint']
 
 " airline options

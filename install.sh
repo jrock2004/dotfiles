@@ -28,7 +28,18 @@ source install/node.sh
 echo "Install Ruby"
 source install/ruby.sh
 
-echo "Configuring zsh as default shell"
-chsh -s /usr/local/bin/zsh
+if ! command_exists zsh; then
+    echo "zsh not found. Please install and then re-run installation scripts"
+    exit 1
+elif ! [[ $SHELL =~ .*zsh.* ]]; then
+    echo "Configuring zsh as default shell"
+    chsh -s $(which zsh)
+fi
+
+if ! command_exists zplug; then
+    echo "installing zplug, a plugin manager for zsh - http://zplug.sh"
+    # curl -sL zplug.sh/installer | zsh
+    git clone git@github.com:zplug/zplug.git ~/.zplug
+fi
 
 echo "Done."

@@ -5,40 +5,43 @@ if test ! $(which brew); then
 	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+brew tap caskroom/fonts
+
 echo "Installing homebrew packages..."
 
-# cli tools
-brew install ack
-#brew install ag
-brew install tree
-brew install wget
-brew install caskroom/cask/brew-cask
-brew install watchman
-#brew install ngrep
+formulas=(
+    # flags should pass through the the `brew list check`
+    'macvim --with-override-system-vim'
+    ack
+    caskroom/cask/brew-cask
+    diff-so-fancy
+    dnsmasq
+    fzf
+    git
+    'grep --with-default-names'
+    highlight
+    hub
+    irssi
+    markdown
+    neovim/neovim/neovim
+    nginx
+    nvm
+    reattach-to-user-namespace
+    the_silver_searcher
+    tmux
+    tree
+    rbenv
+    ruby-build
+    watchman
+    wget
+    z
+    zsh
+)
 
-# development server setup
-brew install nginx
-brew install dnsmasq
-brew install rbenv ruby-build
-
-# development tools
-brew install git
-brew install hub
-brew install fzf
-brew install macvim --with-override-system-vim
-brew install reattach-to-user-namespace
-brew install tmux
-brew install zsh
-brew install highlight
-brew install z
-brew install markdown
-brew install nvm
-brew install zsh-syntax-highlighting
-brew install zsh-autosuggestions
-brew install diff-so-fancy
-
-# install neovim
-brew install neovim/neovim/neovim
-
-# communication tools
-brew install irssi
+for formula in "${formulas[@]}"; do
+    if brew list "$formula" > /dev/null 2>&1; then
+        echo "$formula already installed... skipping."
+    else
+        brew install $formula
+    fi
+done

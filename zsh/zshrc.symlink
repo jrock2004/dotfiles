@@ -80,12 +80,10 @@ if hash brew 2>/dev/null; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='ag -g ""'
 
 if [ -z ${DOTFILES_LOADED+x} ]; then
-    # install zsh-syntax-highlighting
-    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    # install zsh autosuggestions
-    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    # set an environment variable, so reload! calls can
+    # opt out of sourcing some things
+    export DOTFILES_LOADED=1
 fi
-
-DOTFILES_LOADED=1
