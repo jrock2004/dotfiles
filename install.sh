@@ -3,14 +3,14 @@
 # Setting up some variables
 EMAIL="jrock2004@gmail.com"
 DEVFOLDER="$HOME/Development"
-NPMFOLDER="$HOME/.npm-packages"
+BIN="$HOME/bin"
 
 echo "Symlinking dotfiles"
 source install/link.sh
 
 echo "Creating needed directories"
 mkdir -p $DEVFOLDER
-mkdir -p $NPMFOLDER
+mkdir -p $BIN
 
 source install/brew.sh
 source install/osx.sh
