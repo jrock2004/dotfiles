@@ -83,5 +83,3 @@ add-zsh-hook chpwd load-nvmrc
 #     export PATH=~/Android/Sdk/tools:$PATH
 #     export PATH=~/Android/Sdk/platform-tools:$PATH
 # fi
-
-export DOTFILES_LOADED=1
