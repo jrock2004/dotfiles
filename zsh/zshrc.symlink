@@ -4,9 +4,6 @@ export ZSH=$DOTFILES/zsh
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
 
-# Export the display to run GUI programs and clipboard
-export DISPLAY=:0
-
 # define the code directory
 # This is where my code exists and where I want the `c` autocomplete to work from exclusively
 if [[ -d ~/Development ]]; then
@@ -37,6 +34,7 @@ if [[ -d /usr/local/sbin ]]; then
 fi
 
 # adding path directory for custom scripts
+export PATH=/usr/local/bin:$PATH
 export PATH=$DOTFILES/bin:$PATH
 
 # check for custom bin directory and add to path
@@ -47,14 +45,16 @@ fi
 [ -z "$TMUX" ] && export TERM=xterm-256color-italic
 
 # install rbenv
-export PATH=$HOME/.rbenv/bin:$PATH
-if hash rbenv 2>/dev/null; then
-    eval "$(rbenv init - zsh)"
+if [[ -d ~/.rbenv/bin ]]; then
+    export PATH=$HOME/.rbenv/bin:$PATH
+
+    if hash rbenv 2>/dev/null; then
+        eval "$(rbenv init - zsh)"
+    fi
 fi
 
-if [[ -d ~/.gem/ruby/2.3.0/bin ]]; then
-    export PATH=~/.gem/ruby/2.3.0/bin:$PATH
-fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='ag -g ""'
 
 # source nvm
 export NVM_DIR=~/.nvm
@@ -68,20 +68,20 @@ add-zsh-hook chpwd load-nvmrc
 
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
-bindkey -e
+# bindkey -e
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-if [ -z ${DOTFILES_LOADED+x} ]; then
-    # install zsh-syntax-highlighting
-    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    # install zsh autosuggestions
-    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
+# if [ -z ${DOTFILES_LOADED+x} ]; then
+#     # install zsh-syntax-highlighting
+#     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#     # install zsh autosuggestions
+#     source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# fi
 
-if [[ -d ~/Android ]]; then
-    export PATH=~/Android/Sdk/tools:$PATH
-    export PATH=~/Android/Sdk/platform-tools:$PATH
-fi
+# if [[ -d ~/Android ]]; then
+#     export PATH=~/Android/Sdk/tools:$PATH
+#     export PATH=~/Android/Sdk/platform-tools:$PATH
+# fi
 
-DOTFILES_LOADED=1
+export DOTFILES_LOADED=1
