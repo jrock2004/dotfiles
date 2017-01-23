@@ -46,6 +46,9 @@ sudo add-apt-repository ppa:openshot.developers/ppa
 # Sources for Albert
 sudo add-apt-repository ppa:flexiondotorg/albert
 
+# Sources for Ruby
+sudo apt-add-repository ppa:brightbox/ruby-ng
+
 # Lets updated so we can get new sources
 sudo apt-get update
 
