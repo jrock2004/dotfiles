@@ -2,6 +2,8 @@
 
 OS=$(lsb_release -si)
 
+echo "Add some external sources"
+
 if [ "$OS" = "elementary" ]; then
     # Need to install add-apt-repository
     sudo apt-get install -y software-properties-common
@@ -58,15 +60,6 @@ sudo apt-get install -y virtualbox autoconf bison libssl-dev libreadline-dev zli
 # Install some extra tools
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
 $HOME/.fzf/install
-
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/bin/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/bin/zsh-autosuggestions
-
-sudo cp -a $HOME/bin/zsh-syntax-highlighting /usr/local/share
-sudo cp -a $HOME/bin/zsh-autosuggestions /usr/local/share
-
-rm -Rf $HOME/bin/zsh-syntax-highlighting
-rm -Rf $HOME/bin/zsh-autosuggestions
 
 # Lets install rbenv
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
