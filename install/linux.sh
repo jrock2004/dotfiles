@@ -49,13 +49,14 @@ sudo add-apt-repository ppa:flexiondotorg/albert
 # Lets updated so we can get new sources
 sudo apt-get update
 
-sudo apt-get install -y bash-completion vim vim-scripts python-dev python-pip python3-dev
-sudo apt-get install -y python3-pip neovim build-essential ack-grep tree wget nginx tmux
-sudo apt-get install -y markdown irssi irssi-scripts zsh xclip cmake
-sudo apt-get install -y mono-complete exuberant-ctags dconf-tools firefox-dev spotify-client
-sudo apt-get install -y ffmpeg obs-studio apt-transport-https ca-certificates
-sudo apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual docker docker-compose
-sudo apt-get install -y virtualbox autoconf bison libssl-dev libreadline-dev zlib1g-dev neofetch openshot-qt albert wallch
+sudo apt-get install -y bash-completion vim vim-scripts python-dev python-pip \
+python3-dev python3-pip neovim build-essential ack-grep tree wget nginx tmux \
+markdown irssi irssi-scripts zsh xclip cmake mono-complete exuberant-ctags \
+dconf-tools firefox-dev spotify-client ffmpeg obs-studio apt-transport-https \
+ca-certificates linux-image-extra-$(uname -r) linux-image-extra-virtual docker \
+docker-compose virtualbox autoconf bison libssl-dev libreadline-dev zlib1g-dev \
+neofetch openshot-qt albert wallch ruby2.3 ruby2.3-dev ruby-switch zlibc \
+zlib1g-dev libxml2 libxml2-dev libxslt1.1 libxslt1-dev
 
 # Install some extra tools
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
