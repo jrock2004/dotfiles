@@ -5,38 +5,38 @@ EMAIL="jrock2004@gmail.com"
 DEVFOLDER="$HOME/Development"
 BIN="$HOME/bin"
 
-echo "Symlinking dotfiles"
+# Backup old bashrc
+cp $HOME/.bashrc $HOME/.bashrc-bak
+
+# Symlinking dotfiles to home dir
 source install/link.sh
 
-
-echo "Creating needed directories"
+# Creating needed directories
 mkdir -p $DEVFOLDER
 mkdir -p $BIN
 
-echo "Installing the apps that we need"
+# Installing the apps that we need
 source install/linux.sh
 
-source $HOME/.bashrc
-
-echo "Using nvm for better node support"
+# Using nvm for better node support
 source install/nvm.sh
 
-echo "Installing some python modules"
+# Installing some python modules
 source install/python.sh
 
-echo "Installing Node Apps"
+# Installing Node Apps
 source install/node.sh
 
-echo "Installing Ruby stuff"
+# Installing Ruby stuff
 source install/ruby.sh
 
-echo "Installing Fonts"
+# Installing Fonts
 source install/fonts.sh
 
-echo "Installing PHP stuff"
+# Installing PHP stuff
 source install/php.sh
 
-# Setup SSH key
+# Setup SSH key if needed
 if [ ! -d ~/.ssh  ]; then
     mkdir ~/.ssh
     chmod 700 ~/.ssh
