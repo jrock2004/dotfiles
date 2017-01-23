@@ -15,7 +15,7 @@ sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 sudo chown -R jcostanzo:jcostanzo $HOME/.composer
 
 # Link the composer.json file
-ln -s $HOME/.dotfiles/composer/composer.json $HOME/.composer/
+echo "{}" > $HOME/.composer/composer.json
 
 # Cleanup
 rm composer-setup.php
