@@ -3,6 +3,7 @@
 # Setting up some variables
 EMAIL="jrock2004@gmail.com"
 DEVFOLDER="$HOME/Development"
+DOWNLOADS="$HOME/Downloads"
 BIN="$HOME/bin"
 
 # Symlinking dotfiles to home dir
@@ -11,6 +12,7 @@ source install/link.sh
 # Creating needed directories
 mkdir -p $DEVFOLDER
 mkdir -p $BIN
+mkdir -p $DOWNLOADS
 
 # Installing the apps that we need
 source install/linux.sh
