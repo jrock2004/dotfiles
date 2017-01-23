@@ -5,9 +5,6 @@ EMAIL="jrock2004@gmail.com"
 DEVFOLDER="$HOME/Development"
 BIN="$HOME/bin"
 
-# Backup old bashrc
-cp $HOME/.bashrc $HOME/.bashrc-bak
-
 # Symlinking dotfiles to home dir
 source install/link.sh
 
