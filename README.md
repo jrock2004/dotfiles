@@ -4,14 +4,14 @@ My Dotfiles
 This repo is used to store my dotfiles for the applications that I use on my machine
 
 ## Branches
-- master - Bash on Windows
+- master - Linux and Bash on Windows
 - mac - Used on Apple [Tested on El Capitan]
 
 ## Pre-req
-You need to just install git so you can clone the repo
+You need to just install git and curl so you can clone the repo
 
 ## How to use
-To use this, its pretty simple. Clone this to ~/.dotfiles. Open the following file and edit the variables to match what you want
+Edit the following file and update the variables to match your need
 
 ```
 ~/.dotfiles/install.sh
