@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/bin/env bash
+
+command_exists() {
+    type "$1" > /dev/null 2>&1
+}
 
 # Setting up some variables
 EMAIL="jrock2004@gmail.com"
@@ -47,11 +51,15 @@ if [ ! -d ~/.ssh  ]; then
 
     GITHUB_SSH_URL=https://github.com/settings/ssh
 
-    cat $HOME/.ssh/id_rsa.pub
-    echo
-    echo $GITHUB_SSH_URL
+    if command_exists xdg-open; then
+        xdg-open $GITHUB_SSH_URL
+    else
+        echo $GITHUB_SSH_URL
+    fi
 
-    read -p "Hit ENTER after adding to Github"
+    cat $HOME/.ssh/id_rsa.pub
+
+    read -p "\n\nHit ENTER after adding to Github\n\n"
 else
     echo ".ssh directory already exists, not generating"
 fi
