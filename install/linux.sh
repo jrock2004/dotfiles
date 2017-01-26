@@ -106,7 +106,6 @@ sudo apt-get -f install
 sudo groupadd docker
 sudo usermod -aG docker $USER
 
-
 # Setting some dconf settings
 
 # Set clock
@@ -161,4 +160,4 @@ if [ "$OS" = "elementary" ]; then
 
     # Unsafe paste alert
     gettings set org.pantheon.terminal.settings unsafe-paste-alert false
-fi;
+fi

@@ -77,7 +77,7 @@ fi
 if ! command_exists zplug; then
     echo "installing zplug, a plugin manager for zsh - http://zplug.sh"
     # curl -sL zplug.sh/installer | zsh
-    git clone git@github.com:zplug/zplug.git ~/.zplug
+    git clone https://github.com/zplug/zplug.git ~/.zplug
 fi
 
 echo "Done. Close window and re-open to enjoy"
