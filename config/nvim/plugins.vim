@@ -48,6 +48,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'pct/present.vim'
 Plug 'tpope/vim-sleuth'
 Plug 'mklabs/split-term.vim'
+Plug 'roxma/nvim-completion-manager', {'do': 'npm install'}
 
 " html / templates
 Plug 'mattn/emmet-vim', { 'for': 'html' }
@@ -59,6 +60,7 @@ Plug 'OrangeT/vim-csharp', { 'for': 'cshtml' }
 
 " php
 Plug 'jwalton512/vim-blade'
+"Plug 'roxma/nvim-cm-php-language-server',  {'do': 'composer install && composer run-script parse-stubs'}
 
 " JavaScript
 Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
