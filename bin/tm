@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # abort if we're already inside a TMUX session
 [ "$TMUX" == "" ] || exit 0
