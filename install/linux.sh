@@ -4,12 +4,6 @@ OS=$(lsb_release -si)
 
 echo "Add some external sources"
 
-if [ "$OS" = "elementary" ]; then
-    # Need to install add-apt-repository
-    sudo apt-get install -y software-properties-common
-    source ~/.bashrc
-fi
-
 # Sources for Neovim
 sudo add-apt-repository ppa:neovim-ppa/unstable
 sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
@@ -88,11 +82,6 @@ curl https://downloads.slack-edge.com/linux_releases/slack-desktop-2.2.1-amd64.d
 sudo dpkg -i ~/Downloads/slack.deb
 rm ~/Downloads/slack.deb
 
-if [ "$OS" = "elementary" ]; then
-    # Install dropbox
-    git clone https://github.com/zant95/elementary-dropbox /tmp/elementary-dropbox/tmp/elementary-dropbox/install.sh
-fi
-
 # Install Visual Studio code
 curl -o $HOME/bin/code.deb -L http://go.microsoft.com/fwlink/?LinkID=760868
 sudo dpkg -i $HOME/bin/code.deb
@@ -133,31 +122,4 @@ if [ "$OS" = "Ubuntu" ]; then
 
     # Set battery percentage
     gsettings set org.gnome.desktop.interface show-battery-percentage true
-fi
-
-# Settings specific for ElementaryOS
-if [ "$OS" = "elementary" ]; then
-    # Lock on lid close
-    gsettings set apps.light-locker lock-on-lid true
-
-    # Set screenshot settings
-    gsettings set net.launchpad.screenshot format jpg
-
-    # Mouse Settings
-    gsettings set org.gnome.settings-daemon.peripherals.mouse locate-pointer true
-
-    # Battery Settings
-    gsettings set org.pantheon.desktop.wingpanel.indicators.power show-percentage true
-
-    # Pant Files Settings
-    gsettings set org.pantheon.files.preferences single-click false
-
-    # Scratch
-    gettings set org.pantheon.scratch.settings auto-indent true
-    gettings set org.pantheon.scratch.settings autosave false
-    gettings set org.pantheon.scratch.settings highlight-current-line true
-    gettings set org.pantheon.scratch.settings show-right-margin true
-
-    # Unsafe paste alert
-    gettings set org.pantheon.terminal.settings unsafe-paste-alert false
 fi
