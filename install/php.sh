@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # If Bash on Windows, we need to add another repo to get correct PHP version
-if [[ "$(< /proc/version)" == *"Microsoft"* || "$(< /proc/sys/kernel/osrelease)" == *"Microsoft"* ]]; then
-    sudo add-apt-repository ppa:ondrej/php
+#if [[ "$(< /proc/version)" == *"Microsoft"* || "$(< /proc/sys/kernel/osrelease)" == *"Microsoft"* ]]; then
+#    sudo add-apt-repository ppa:ondrej/php
 
-    sudo apt-get update
-fi
+#    sudo apt-get update
+#fi
 
 sudo apt-get -y install php-cli unzip php-mysql php-mcrypt php-mbstring php-xml php-zip php-sqlite3 sqlite3 libsqlite3-dev
 
