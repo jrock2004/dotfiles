@@ -64,6 +64,12 @@ else
     echo ".ssh directory already exists, not generating"
 fi
 
+if ! command_exists zplug; then
+    echo "installing zplug, a plugin manager for zsh - http://zplug.sh"
+    # curl -sL zplug.sh/installer | zsh
+    git clone https://github.com/zplug/zplug.git ~/.zplug
+fi
+
 # Setting env to zsh instead of bash
 echo "Switching to ZSH"
 if ! command_exists zsh; then
@@ -72,12 +78,6 @@ if ! command_exists zsh; then
 elif ! [[ $SHELL =~ .*zsh.* ]]; then
     echo "Configuring zsh as default shell"
     chsh -s $(which zsh)
-fi
-
-if ! command_exists zplug; then
-    echo "installing zplug, a plugin manager for zsh - http://zplug.sh"
-    # curl -sL zplug.sh/installer | zsh
-    git clone https://github.com/zplug/zplug.git ~/.zplug
 fi
 
 echo "Done. Close window and re-open to enjoy"
