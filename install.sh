@@ -40,13 +40,10 @@ source install/fonts.sh
 source install/php.sh
 
 # Setup SSH key if needed
-if [ ! -d ~/.ssh  ]; then
+if [ ! -f ~/.ssh/id_rsa.pub  ]; then
     mkdir ~/.ssh
-    chmod 700 ~/.ssh
     ssh-keygen -t rsa -b 4096 -C "$EMAIL"
-    chmod 600 ~/.ssh/id_rsa
     eval "$(ssh-agent -s)"
-    eval $(ssh-agent -s)
     ssh-add ~/.ssh/id_rsa
 
     GITHUB_SSH_URL=https://github.com/settings/ssh
