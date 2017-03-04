@@ -47,13 +47,13 @@ sudo apt-add-repository ppa:brightbox/ruby-ng
 sudo apt-get update
 
 sudo apt-get install -y bash-completion vim vim-scripts python-dev python-pip \
-python3-dev python3-pip neovim build-essential ack-grep tree wget nginx tmux \
-markdown irssi irssi-scripts zsh xclip cmake mono-complete exuberant-ctags \
-dconf-tools firefox-dev spotify-client ffmpeg obs-studio apt-transport-https \
-ca-certificates linux-image-extra-$(uname -r) linux-image-extra-virtual docker \
-docker-compose virtualbox autoconf bison libssl-dev libreadline-dev zlib1g-dev \
-neofetch openshot-qt albert wallch ruby2.3 ruby2.3-dev ruby-switch zlibc \
-zlib1g-dev libxml2 libxml2-dev libxslt1.1 libxslt1-dev
+	python3-dev python3-pip neovim build-essential ack-grep tree wget nginx tmux \
+	markdown irssi irssi-scripts zsh xclip cmake mono-complete exuberant-ctags \
+	dconf-tools firefox-dev spotify-client ffmpeg obs-studio apt-transport-https \
+	ca-certificates linux-image-extra-$(uname -r) linux-image-extra-virtual docker \
+	docker-compose virtualbox autoconf bison libssl-dev libreadline-dev zlib1g-dev \
+	neofetch openshot-qt albert wallch ruby2.3 ruby2.3-dev ruby-switch zlibc \
+	zlib1g-dev libxml2 libxml2-dev libxslt1.1 libxslt1-dev silversearcher-ag
 
 # Install some extra tools
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
@@ -114,12 +114,12 @@ gsettings set org.gnome.FileRoller.FileSelector show-hidden true
 
 # Settings specific for Ubuntu
 if [ "$OS" = "Ubuntu" ]; then
-    # Set screenshot settings
-    gsettings set org.gnome.gnome-screenshot default-file-type jpg
+	# Set screenshot settings
+	gsettings set org.gnome.gnome-screenshot default-file-type jpg
 
-    # Set auto timezone
-    gsettings set org.gnome.desktop.datetime automatic-timezone true
+	# Set auto timezone
+	gsettings set org.gnome.desktop.datetime automatic-timezone true
 
-    # Set battery percentage
-    gsettings set org.gnome.desktop.interface show-battery-percentage true
+	# Set battery percentage
+	gsettings set org.gnome.desktop.interface show-battery-percentage true
 fi

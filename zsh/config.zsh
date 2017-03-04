@@ -31,3 +31,4 @@ bindkey '^?' backward-delete-char
 
 fpath=($ZSH/functions $fpath)
 autoload -U $ZSH/functions/*(:t)
+

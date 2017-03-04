@@ -29,13 +29,13 @@ let g:python3_host_prog = '/usr/bin/python3'
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 if &term =~ '256color'
-    " disable background color erase
-    set t_ut=
+	" disable background color erase
+	set t_ut=
 endif
 
 " enable 24 bit color support if supported
 if (has('mac') && empty($TMUX) && has("termguicolors"))
-    set termguicolors
+	set termguicolors
 endif
 
 let g:onedark_termcolors=16
@@ -158,22 +158,22 @@ command! MakeTags !ctags -R .
 " Section AutoGroups {{{
 
 augroup configgroup
-    autocmd!
+	autocmd!
 
-    autocmd VimResized * exe 'normal! \<c-w>='
-    autocmd BufWritePost .vimrc,.vimrc.local,init.vim source %
-    autocmd BufWritePost .vimrc.local source %
-    autocmd FocusLost * silent! wa
+	autocmd VimResized * exe 'normal! \<c-w>='
+	autocmd BufWritePost .vimrc,.vimrc.local,init.vim source %
+	autocmd BufWritePost .vimrc.local source %
+	autocmd FocusLost * silent! wa
 
-    autocmd FileType qf wincmd J
+	autocmd FileType qf wincmd J
 
-    autocmd BufNewFile,BufReadPost *.md set filetype=markdown
-    autocmd BufNewFile,BufReadPost *.rst set filetype=markdown
-    let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript', 'stylus', 'html']
+	autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+	autocmd BufNewFile,BufReadPost *.rst set filetype=markdown
+	let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'json=javascript', 'stylus', 'html']
 
-    autocmd BufNewFile,BufRead,BufWrite *.md syntax match Comment /\%^---\_.\{-}---$/
+	autocmd BufNewFile,BufRead,BufWrite *.md syntax match Comment /\%^---\_.\{-}---$/
 
-    autocmd! BufWritePost * Neomake
+	autocmd! BufWritePost * Neomake
 augroup END
 
 au BufRead,BufNewFile *.cshtml set filetype=cshtml
@@ -187,9 +187,9 @@ au BufRead,BufNewFile *.cshtml set filetype=cshtml
 let g:fzf_layout = { 'down': '~25%' }
 
 if isdirectory(".git")
-    nmap <silent> <leader>t :GFiles<cr>
+	nmap <silent> <leader>t :GFiles<cr>
 else
-    nmap <silent> <leader>t :FZF<cr>
+	nmap <silent> <leader>t :FZF<cr>
 endif
 
 nmap <silent> <leader>r :Buffers<cr>
@@ -205,19 +205,19 @@ imap <c-x><c-j> <plug>(fzf-complete-file-ag)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
 nnoremap <silent> <Leader>C :call fzf#run({
-\   'source':
-\     map(split(globpath(&rtp, "colors/*.vim"), "\n"),
-\         "substitute(fnamemodify(v:val, ':t'), '\\..\\{-}$', '', '')"),
-\   'sink':    'colo',
-\   'options': '+m',
-\   'left':    30
-\ })<CR>
+			\   'source':
+			\     map(split(globpath(&rtp, "colors/*.vim"), "\n"),
+			\         "substitute(fnamemodify(v:val, ':t'), '\\..\\{-}$', '', '')"),
+			\   'sink':    'colo',
+			\   'options': '+m',
+			\   'left':    30
+			\ })<CR>
 
 command! FZFMru call fzf#run({
-\  'source':  v:oldfiles,
-\  'sink':    'e',
-\  'options': '-m -x +s',
-\  'down':    '40%'})
+			\  'source':  v:oldfiles,
+			\  'sink':    'e',
+			\  'options': '-m -x +s',
+			\  'down':    '40%'})
 
 " Fugitive Shortcuts
 """""""""""""""""""""""""""""""""""""
@@ -235,9 +235,9 @@ nmap <leader>* *<c-o>:%s///gn<cr>
 
 " SCSS / CSS
 let g:neomake_scss_csslint_maker = {
-    \ 'args': ['--verbose'],
-    \ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
-\ }
+			\ 'args': ['--verbose'],
+			\ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
+			\ }
 
 let g:neomake_scss_enabled_markers = ['csslint']
 
@@ -288,7 +288,7 @@ function! g:committia_hooks.edit_open(info)
 	" Map <C-n> and <C-p>
 	imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
 	imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
-			"
+	"
 endfunction
 
 " Split-term.vim
