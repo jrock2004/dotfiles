@@ -18,6 +18,7 @@ call plug#begin('~/.nvim/plugged')
 
 " colorschemes
 Plug 'joshdick/onedark.vim'
+Plug 'tomasiser/vim-code-dark'
 
 " utilities
 Plug '~/.fzf/fzf' | Plug 'junegunn/fzf.vim'
@@ -51,7 +52,7 @@ Plug 'mklabs/split-term.vim'
 Plug 'roxma/nvim-completion-manager', {'do': 'npm install'}
 
 " html / templates
-Plug 'mattn/emmet-vim', { 'for': 'html' }
+Plug 'mattn/emmet-vim', { 'for': ['blade', 'html'] }
 Plug 'gregsexton/MatchTag', { 'for': 'html' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'mustache/vim-mustache-handlebars'
@@ -59,7 +60,7 @@ Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 Plug 'OrangeT/vim-csharp', { 'for': 'cshtml' }
 
 " php
-Plug 'jwalton512/vim-blade'
+Plug 'jwalton512/vim-blade', { 'for': 'blade' }
 "Plug 'roxma/nvim-cm-php-language-server',  {'do': 'composer install && composer run-script parse-stubs'}
 
 " JavaScript
