@@ -6,6 +6,4 @@ send-keys -t dotfiles 'cd ~/.dotfiles' C-m
 send-keys -t dotfiles 'vim' C-m
 new-window -n zsh -t dotfiles
 send-keys -t dotfiles 'cd ~/.dotfiles' C-m
-split-window -v -p 10 -t dotfiles
-send-keys -t dotfiles 'cd ~/.dotfiles' C-m
 select-window -t 1
