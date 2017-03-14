@@ -39,3 +39,5 @@ alias httpdump="sudo tcpdump -i wlp2s0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
+# System update
+alias update="sudo apt-get update && sudo apt-get upgrade"
