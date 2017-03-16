@@ -108,6 +108,9 @@ set nolazyredraw
 
 set magic
 
+" Disable bracket highlighting
+let loaded_matchparen = 1
+
 set showmatch
 set mat=2
 
