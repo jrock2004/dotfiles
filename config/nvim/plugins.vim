@@ -61,7 +61,6 @@ Plug 'OrangeT/vim-csharp', { 'for': 'cshtml' }
 
 " php
 Plug 'jwalton512/vim-blade', { 'for': 'blade' }
-"Plug 'roxma/nvim-cm-php-language-server',  {'do': 'composer install && composer run-script parse-stubs'}
 
 " JavaScript
 Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
@@ -81,6 +80,7 @@ Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+Plug 'junegunn/limelight.vim', { 'on': 'limelight' }
 
 " Markdown
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }

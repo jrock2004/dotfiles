@@ -13,6 +13,7 @@ alias vim="nvim"
 # Filesystem aliases
 alias path='echo $PATH | tr -s ":" "\n"'
 alias rmf="rm -rf"
+alias open="xdg-open"
 
 # Fancy weather
 alias wttr='curl -4 honey_brook'
