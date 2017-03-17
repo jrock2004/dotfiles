@@ -16,8 +16,8 @@ alias rmf="rm -rf"
 alias open="xdg-open"
 
 # Fancy weather
-alias wttr='curl -4 honey_brook'
-alias wttrw='curl -4 lansdale'
+alias wttr='curl -4 http://wttr.in/honey_brook'
+alias wttrw='curl -4 http://wttr.in/lansdale'
 alias moon='curl -4 http://wttr.in/Moon'
 
 # Fuzzy commands with fzf
