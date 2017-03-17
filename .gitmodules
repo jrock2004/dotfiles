@@ -1,3 +1,0 @@
-[submodule "bin/spotify"]
-	path = bin/spotify
-	url = https://github.com/jrock2004/tmux-spotify.git

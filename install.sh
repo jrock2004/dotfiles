@@ -61,10 +61,6 @@ else
 	echo ".ssh directory already exists, not generating"
 fi
 
-# Initialize submodules
-git submodule update --init --recursive
-chmod +x $DOTFILES/bin/spotify/tmux-spotify
-
 if ! command_exists zplug; then
 	echo "installing zplug, a plugin manager for zsh - http://zplug.sh"
 	# curl -sL zplug.sh/installer | zsh

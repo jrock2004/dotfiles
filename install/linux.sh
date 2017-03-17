@@ -96,6 +96,9 @@ sudo apt-get -f install
 sudo groupadd docker
 sudo usermod -aG docker $USER
 
+# Get Tmux spotify client
+curl https://raw.githubusercontent.com/jrock2004/tmux-spotify/master/tmux-spotify -o /usr/local/bin/tmux-spotify
+
 # Setting some dconf settings
 
 # Set clock
