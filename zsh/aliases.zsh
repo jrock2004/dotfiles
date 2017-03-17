@@ -11,16 +11,21 @@ fi
 alias vim="nvim"
 
 # Filesystem aliases
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-
-alias l="ls -lah ${colorflag}"
-alias la="ls -AF ${colorflag}"
-alias ll="ls -lFh ${colorflag}"
-alias lld="ls -l | grep ^d"
+alias path='echo $PATH | tr -s ":" "\n"'
 alias rmf="rm -rf"
+
+# Fancy weather
+alias wttr='curl -4 honey_brook'
+alias wttrw='curl -4 lansdale'
+alias moon='curl -4 http://wttr.in/Moon'
+
+# Fuzzy commands with fzf
+alias gcorb='gco --track $(git branch -r | fzf)'
+alias gcob='gco $(git branch | fzf)'
+
+fkill() {
+  kill -9 $(ps ax | fzf | awk '{ print $1 }')
+}
 
 # Helpers
 alias grep='grep --color=auto'
