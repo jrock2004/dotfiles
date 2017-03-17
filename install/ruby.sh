@@ -6,3 +6,4 @@ echo "Installing some Gems"
 gem install bundler
 gem install scss_lint
 gem install rails --pre
+gem install neovim
