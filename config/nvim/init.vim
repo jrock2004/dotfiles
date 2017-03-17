@@ -164,6 +164,7 @@ augroup configgroup
 	autocmd!
 
 	autocmd VimResized * exe 'normal! \<c-w>='
+	autocmd VimResized * :wincmd =
 	autocmd BufWritePost .vimrc,.vimrc.local,init.vim source %
 	autocmd BufWritePost .vimrc.local source %
 	autocmd FocusLost * silent! wa
@@ -188,6 +189,8 @@ au BufRead,BufNewFile *.cshtml set filetype=cshtml
 " FZF plugin
 """""""""""""""""""""""""""""""""""""
 let g:fzf_layout = { 'down': '~25%' }
+let g:fzf_files_options =
+  \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
 
 if isdirectory(".git")
 	nmap <silent> <leader>t :GFiles<cr>
@@ -197,6 +200,7 @@ endif
 
 nmap <silent> <leader>r :Buffers<cr>
 nmap <silent> <leader>e :FZF<cr>
+nmap <silent> <leader>w :Files<cr>
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
