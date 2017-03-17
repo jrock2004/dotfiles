@@ -80,7 +80,7 @@ Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
-Plug 'junegunn/limelight.vim', { 'on': 'limelight' }
+Plug 'junegunn/limelight.vim', { 'for': 'limelight' }
 
 " Markdown
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
