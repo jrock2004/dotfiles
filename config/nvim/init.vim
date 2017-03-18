@@ -126,9 +126,6 @@ set mouse=n
 " switch cursor to line when in insert mode, and block when not
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
-" Easier resizing
-nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
 
 " }}}
 
@@ -318,7 +315,8 @@ let g:limelight_priority = 1
 
 " Section Keymaps {{{
 
-""""" Stop using the arrow keys
+" Stop using the arrow keys
+"""""""""""""""""""""""""""""""""""""
 nnoremap <up> :echo "Stop being stupid"<cr>
 nnoremap <down> :echo "Stop being stupid"<cr>
 nnoremap <left> :echo "Stop being stupid"<cr>
@@ -327,6 +325,11 @@ nnoremap <right> :echo "Stop being stupid"<cr>
 " YouCompleteMe
 """""""""""""""""""""""""""""""""""""
 nnoremap <leader>f :YcmCompleter GoToDefinition<CR>
+
+" Easier resizing
+"""""""""""""""""""""""""""""""""""""
+nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
 
 " }}}
 
