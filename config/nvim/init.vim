@@ -363,6 +363,10 @@ nnoremap <leader>f :YcmCompleter GoToDefinition<CR>
 nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
 " nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
 
+" Set my splits up
+nnoremap <leader>. :belowright 5split<cr>:terminal<cr><c-\><c-n>:aboveleft vsplit<cr>:terminal<cr><c-\><c-n><c-w>k
+
+
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
