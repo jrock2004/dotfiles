@@ -121,10 +121,14 @@ set t_vb=
 set tm=500
 
 " mouse
-set mouse=
+set mouse=n
 
 " switch cursor to line when in insert mode, and block when not
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+
+" Easier resizing
+nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
 
 " }}}
 
