@@ -121,7 +121,7 @@ set t_vb=
 set tm=500
 
 " mouse
-set mouse=n
+set mouse=
 
 " switch cursor to line when in insert mode, and block when not
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
