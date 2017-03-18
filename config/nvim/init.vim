@@ -77,7 +77,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set shiftround
-set completeopt+=longest
+set completeopt+=longest,preview
 
 set foldmethod=marker
 set foldnestmax=10
@@ -87,7 +87,7 @@ set foldlevel=1
 set clipboard=unnamed
 
 set ttyfast
-set diffopt+=vertical
+set diffopt+=filler,vertical
 set laststatus=2
 set so=7
 set wildmenu
@@ -126,6 +126,18 @@ set mouse=
 " switch cursor to line when in insert mode, and block when not
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
+" Shift-tab on GNU screen
+" http://superuser.com/questions/195794/gnu-screen-shift-tab-issue
+set t_kB=[Z
+
+" 80 chars/line
+set textwidth=0
+if exists('&colorcolumn')
+	set colorcolumn=80
+endif
+
+" Keep the cursor on the same column
+set nostartofline
 
 " }}}
 
@@ -191,7 +203,9 @@ au BufRead,BufNewFile *.cshtml set filetype=cshtml
 """""""""""""""""""""""""""""""""""""
 let g:fzf_layout = { 'down': '~25%' }
 let g:fzf_files_options =
-  \ '--preview "(coderay {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+  \ '--preview "(highlight -O ansi {} || cat {}) 2> /dev/null | head -'.&lines.'"'
+let g:fzf_buffers_jump = 1
+let g:fzf_tags_command = 'ctags -R'
 
 if isdirectory(".git")
 	nmap <silent> <leader>t :GFiles<cr>
@@ -226,6 +240,24 @@ command! FZFMru call fzf#run({
 			\  'sink':    'e',
 			\  'options': '-m -x +s',
 			\  'down':    '40%'})
+
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+
+command! -bang Colors
+  \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
+
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+command! -bang -nargs=? -complete=dir GFiles
+  \ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+command! -bang -nargs=? -complete=dir Buffers
+  \ call fzf#vim#buffers(<q-args>, fzf#vim#with_preview(), <bang>0)
 
 " Fugitive Shortcuts
 """""""""""""""""""""""""""""""""""""
@@ -329,7 +361,7 @@ nnoremap <leader>f :YcmCompleter GoToDefinition<CR>
 " Easier resizing
 """""""""""""""""""""""""""""""""""""
 nnoremap <silent> + :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
+" nnoremap <silent> - :exe "resize " . (winheight(0) * 2/3)<CR>
 
 " }}}
 

@@ -14,6 +14,12 @@ if !filereadable(plugpath)
     endif
 endif
 
+function! BuildYCM(info)
+  if a:info.status == 'installed' || a:info.force
+    !./install.py --clang-completer --tern-completer --omnisharp-completer
+  endif
+endfunction
+
 call plug#begin('~/.nvim/plugged')
 
 " colorschemes
@@ -21,10 +27,11 @@ Plug 'joshdick/onedark.vim'
 Plug 'tomasiser/vim-code-dark'
 
 " utilities
-Plug '~/.fzf/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-ragtag'
 Plug 'vim-airline/vim-airline'
@@ -43,8 +50,8 @@ Plug 'ervandew/supertab'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-sleuth'
 Plug 'sickill/vim-pasta'
-Plug 'marijnh/tern_for_vim'
-Plug 'Valloric/YouCompleteMe'
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'tpope/vim-vinegar'
 Plug 'pct/present.vim'
 Plug 'tpope/vim-sleuth'
