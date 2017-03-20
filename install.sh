@@ -39,6 +39,10 @@ source install/fonts.sh
 # Installing PHP stuff
 source install/php.sh
 
+# installing resource files
+tic $HOME/.dotfiles/resources/xterm-256color-italic.terminfo
+tic $HOME/.dotfiles/resources/tmux-256color-italic.terminfo
+
 # Setup SSH key if needed
 if [ ! -f ~/.ssh/id_rsa.pub  ]; then
 	mkdir ~/.ssh
