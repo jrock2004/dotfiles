@@ -21,6 +21,7 @@ alias wttrw='curl -4 http://wttr.in/lansdale'
 alias moon='curl -4 http://wttr.in/Moon'
 
 # Fuzzy commands with fzf
+alias gco='git checkout'
 alias gcorb='gco --track $(git branch -r | fzf)'
 alias gcob='gco $(git branch | fzf)'
 
