@@ -75,6 +75,7 @@ Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': ['jsx', 'javascript'] }
+Plug 'posva/vim-vue', { 'for': 'vue' }
 
 " TypeScript
 Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm install' }

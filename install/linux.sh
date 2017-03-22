@@ -43,6 +43,12 @@ sudo add-apt-repository ppa:flexiondotorg/albert
 # Sources for Ruby
 sudo apt-add-repository ppa:brightbox/ruby-ng
 
+# Sources for Wine
+sudo add-apt-repository ppa:wine/wine-builds
+
+# Sources for Nvidia drivers
+sudo add-apt-repository ppa:graphics-drivers/ppa
+
 # Lets updated so we can get new sources
 sudo apt-get update
 
@@ -54,7 +60,7 @@ sudo apt-get install -y bash-completion vim vim-scripts python-dev python-pip \
 	docker-compose virtualbox autoconf bison libssl-dev libreadline-dev zlib1g-dev \
 	neofetch openshot-qt albert wallch ruby2.3 ruby2.3-dev ruby-switch zlibc \
 	zlib1g-dev libxml2 libxml2-dev libxslt1.1 libxslt1-dev silversearcher-ag \
-	ngrep highlight
+	ngrep highlight winehq-staging winetricks
 
 # Install some extra tools
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf

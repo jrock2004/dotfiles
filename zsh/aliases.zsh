@@ -20,7 +20,8 @@ alias wttr='curl -4 http://wttr.in/honey_brook'
 alias wttrw='curl -4 http://wttr.in/lansdale'
 alias moon='curl -4 http://wttr.in/Moon'
 
-# Fuzzy commands with fzf
+alias fta='tmux attach -t $(tl | fzf | tr ":" "\n" | head -n1)'
+alias ftk='tmux kill-session -t $(tl | fzf | tr ":" "\n" | head -n1)'# Fuzzy commands with fzf
 alias gco='git checkout'
 alias gcorb='gco --track $(git branch -r | fzf)'
 alias gcob='gco $(git branch | fzf)'
