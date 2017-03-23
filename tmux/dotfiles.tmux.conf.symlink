@@ -1,9 +1,0 @@
-source ~/.tmux.conf
-
-# Dotfiles
-new-session -s dotfiles -n Code
-send-keys -t dotfiles 'cd ~/.dotfiles' C-m
-send-keys -t dotfiles 'vim' C-m
-split-window -v -p 1 -t dotfiles
-send-keys -t dotfiles 'cd ~/.dotfiles' C-m
-select-pane -t 1
