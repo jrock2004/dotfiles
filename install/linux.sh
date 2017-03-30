@@ -23,7 +23,6 @@ mkdir -p $HOME/.rbenv/plugins
 git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build
 
 # Setup groups
-sudo groupadd docker
 sudo usermod -aG docker $USER
 
 # Get Tmux spotify client

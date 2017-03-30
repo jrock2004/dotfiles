@@ -2,7 +2,12 @@
 
 curl -sS https://getcomposer.org/installer -o composer-setup.php
 sudo php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-sudo chown -R jcostanzo:jcostanzo $HOME/.composer
+
+if [ ! -d ~/.composer ]; then
+	mkdir ~/.composer
+fi
+
+sudo chown -R jcostanzo:users $HOME/.composer
 
 # Link the composer.json file
 echo "{}" > $HOME/.composer/composer.json
