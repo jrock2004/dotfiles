@@ -44,8 +44,11 @@ tic $HOME/.dotfiles/resources/xterm-256color-italic.terminfo
 tic $HOME/.dotfiles/resources/tmux-256color-italic.terminfo
 
 # Setup SSH key if needed
-if [ ! -f ~/.ssh/id_rsa.pub  ]; then
+if [ ! -d ~/.ssh ]; then
 	mkdir ~/.ssh
+fi
+
+if [ ! -f ~/.ssh/id_rsa.pub  ]; then
 	ssh-keygen -t rsa -b 4096 -C "$EMAIL"
 	eval "$(ssh-agent -s)"
 	ssh-add ~/.ssh/id_rsa
@@ -60,7 +63,7 @@ if [ ! -f ~/.ssh/id_rsa.pub  ]; then
 
 	cat $HOME/.ssh/id_rsa.pub
 
-	read -p "\n\nHit ENTER after adding to Github\n\n"
+	read -p "`echo $'\n\n'` Hit ENTER after adding to Github `echo $'\n\n'`"
 else
 	echo ".ssh directory already exists, not generating"
 fi
