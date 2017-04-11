@@ -26,7 +26,7 @@ git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-buil
 sudo usermod -aG docker $USER
 
 # Get Tmux spotify client
-curl https://raw.githubusercontent.com/jrock2004/tmux-spotify/master/tmux-spotify -o /usr/local/bin/tmux-spotify
+sudo curl https://raw.githubusercontent.com/jrock2004/tmux-spotify/master/tmux-spotify -o /usr/local/bin/tmux-spotify
 
 # Setting some dconf settings
 
