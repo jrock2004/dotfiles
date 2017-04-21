@@ -301,7 +301,7 @@ let g:vim_json_syntax_conceal = 0
 
 " YouCompleteMe
 """""""""""""""""""""""""""""""""""""
-let g:ycm_path_to_python_interpreter = '/usr/bin/python2.7'
+let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
 
 " Emmet
 """""""""""""""""""""""""""""""""""""
