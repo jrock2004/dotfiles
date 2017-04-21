@@ -77,7 +77,7 @@ Plug 'mxw/vim-jsx', { 'for': ['jsx', 'javascript'] }
 Plug 'posva/vim-vue', { 'for': 'vue' }
 
 " TypeScript
-Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'npm install' }
+Plug 'jason0x43/vim-tss', { 'for': 'typescript', 'do': 'npm install' }
 Plug 'clausreinke/typescript-tools.vim', { 'for': 'typescript' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 

@@ -4,3 +4,8 @@ let g:neomake_scss_csslint_maker = {
 			\ }
 
 let g:neomake_scss_enabled_markers = ['csslint']
+
+
+" Code Folding
+setlocal foldmethod=syntax
+setlocal foldlevel=99

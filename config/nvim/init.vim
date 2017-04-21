@@ -21,6 +21,10 @@ set rtp+=~/.fzf
 let g:python_host_prog = '/usr/bin/python'
 let g:python3_host_prog = '/usr/bin/python3'
 
+if (has('nvim'))
+	set inccommand=nosplit
+endif
+
 " }}}
 
 " Section User Interface {{{
@@ -270,17 +274,6 @@ nmap <leader>m :MarkedOpen!<cr>
 nmap <leader>mq :MarkedQuit<cr>
 nmap <leader>* *<c-o>:%s///gn<cr>
 
-" Neomake
-"""""""""""""""""""""""""""""""""""""
-
-" SCSS / CSS
-let g:neomake_scss_csslint_maker = {
-			\ 'args': ['--verbose'],
-			\ 'errorformat': '%A%f: line %l\, col %v\, %m \(%t%*\d\)',
-			\ }
-
-let g:neomake_scss_enabled_markers = ['csslint']
-
 " airline options
 """""""""""""""""""""""""""""""""""""
 let g:airline_powerline_fonts=1
@@ -291,10 +284,6 @@ let g:airline#extensions#tabline#enabled = 1 " enable airline tabline
 let g:airline#extensions#tabline#tab_min_count = 2 " only show tabline if tabs are being used (more than 1 tab open)
 let g:airline#extensions#tabline#show_buffers = 0 " do not show open buffers in tabline
 let g:airline#extensions#tabline#show_splits = 0
-
-" tsuquyomi options
-"""""""""""""""""""""""""""""""""""""
-let g:tsuquyomi_disable_default_mappings = 1
 
 " don't hide quotes in json files
 let g:vim_json_syntax_conceal = 0
