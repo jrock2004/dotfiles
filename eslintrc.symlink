@@ -1,0 +1,13 @@
+{
+	"parseOptions": {
+		"ecmaVersion": 6,
+		"sourceType": "module"
+	},
+	"rules": {
+		"curly": 1,
+		"eqeqeq": 1,
+		"no-unsaved-vars": 2,
+		"no-use-before-define": 2,
+		"no-undef": 2
+	}
+}

@@ -16,7 +16,7 @@ endif
 
 function! BuildYCM(info)
   if a:info.status == 'installed' || a:info.force
-    !./install.py --clang-completer --tern-completer --omnisharp-completer
+    !./install.py --clang-completer --tern-completer --omnisharp-completer --system-libclang
   endif
 endfunction
 
@@ -51,7 +51,7 @@ Plug 'ervandew/supertab'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-sleuth'
 Plug 'sickill/vim-pasta'
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
+Plug 'marijnh/tern_for_vim', { 'for': ['javascript'], 'do': 'npm install' }
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'tpope/vim-vinegar'
 Plug 'pct/present.vim'
@@ -71,10 +71,8 @@ Plug 'OrangeT/vim-csharp', { 'for': 'cshtml' }
 Plug 'jwalton512/vim-blade', { 'for': 'blade' }
 
 " JavaScript
-Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'html'] }
 Plug 'moll/vim-node', { 'for': 'javascript' }
-Plug 'othree/yajs.vim', { 'for': 'javascript' }
-Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': ['jsx', 'javascript'] }
 Plug 'posva/vim-vue', { 'for': 'vue' }
 
@@ -95,7 +93,7 @@ Plug 'junegunn/limelight.vim', { 'for': 'limelight' }
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
 
 " Ember
-Plug 'alexlafroscia/vim-ember-cli'
+Plug 'alexlafroscia/vim-ember-cli', { 'for': 'javascript' }
 
 " General
 Plug 'elzr/vim-json', { 'for': 'json' }

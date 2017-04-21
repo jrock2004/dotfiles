@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # only source zplug on initial load
 if [ -z ${RELOAD} ]; then
 	if ! [ type "zplug" > /dev/null 2>&1 ]; then
