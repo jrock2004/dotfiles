@@ -88,7 +88,7 @@ set foldnestmax=10
 set nofoldenable
 set foldlevel=1
 
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 set ttyfast
 set diffopt+=filler,vertical
@@ -358,5 +358,7 @@ nnoremap <leader>. :belowright 5split<cr>:terminal<cr><c-\><c-n>:aboveleft vspli
 tnoremap <c-[> <c-\><c-n>
 
 " }}}
+
+let g:neomake_logfile = '/tmp/neomake.log'
 
 " vim:foldmethod=marker:foldlevel=0

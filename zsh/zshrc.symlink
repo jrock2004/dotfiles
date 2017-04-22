@@ -26,15 +26,12 @@ compinit
 export EDITOR='nvim'
 export PATH=/usr/local/bin:$HOME/.composer/vendor/bin:$PATH
 
-export PATH=/usr/local/bin:$PATH
-
 # add /usr/local/sbin
 if [[ -d /usr/local/sbin ]]; then
 	export PATH=/usr/local/sbin:$PATH
 fi
 
 # adding path directory for custom scripts
-export PATH=/usr/local/bin:$PATH
 export PATH=$DOTFILES/bin:$PATH
 
 # check for custom bin directory and add to path
@@ -54,3 +51,9 @@ fi
 export FZF_DEFAULT_COMMAND='ag --hidden -l -g ""'
 
 eval "$(rbenv init -)"
+
+if [[ -d ~/.nvm ]]; then
+	export NVM_DIR="$HOME/.nvm"
+	[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+fi
+
