@@ -9,5 +9,5 @@ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
 echo "Installing some Gems"
 $HOME/.rbenv/shims/gem install bundler
 $HOME/.rbenv/shims/gem install scss_lint
-$HOME/.rbenv/shims/$HOME/.rbenv/shims/gem install rails --pre
-$HOME/.rbenv/shims/$HOME/.rbenv/shims/gem install neovim
+$HOME/.rbenv/shims/gem install rails --pre
+$HOME/.rbenv/shims/gem install neovim

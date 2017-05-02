@@ -14,20 +14,21 @@ openssl zlib composer clang
 gpg --recv-keys --keyserver hkp://pgp.mit.edu D9C4D26D0E604491
 gpg --recv-keys --keyserver hkp://pgp.mit.edu 5CC908FDB71E12C2
 
-yaourt -Sy spotify silver-searcher-git visual-studio-code dropbox nautilus-dropbox
-libopenssl-1.0-compat libcurl-openssl-1.0 lib32-libldap lib32-gnutls
+yaourt -Sy spotify silver-searcher-git visual-studio-code dropbox \
+nautilus-dropbox libopenssl-1.0-compat libcurl-openssl-1.0 lib32-libldap \
+lib32-gnutls
 
 # Install some extra tools
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
 $HOME/.fzf/install
 
-# Lets install rbenv
+# Setup groups
+sudo usermod -aG docker $USER
+
+# Install rbenv
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 mkdir -p $HOME/.rbenv/plugins
 git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build
-
-# Setup groups
-sudo usermod -aG docker $USER
 
 # Get Tmux spotify client
 sudo curl https://raw.githubusercontent.com/jrock2004/tmux-spotify/master/tmux-spotify -o /usr/local/bin/tmux-spotify
