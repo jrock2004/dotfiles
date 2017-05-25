@@ -49,3 +49,6 @@ alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
 # System update
 alias update="sudo pacman -Syyu"
+
+# Setting python version
+alias python="/usr/bin/python3"

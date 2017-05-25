@@ -54,14 +54,15 @@ sudo add-apt-repository ppa:graphics-drivers/ppa
 sudo apt-get update
 
 sudo apt-get install -y bash-completion vim vim-scripts python-dev python-pip \
-	python3-dev python3-pip neovim build-essential ack-grep tree wget nginx tmux \
-	markdown irssi irssi-scripts zsh xclip cmake mono-complete exuberant-ctags \
-	dconf-tools firefox-dev spotify-client ffmpeg obs-studio apt-transport-https \
-	ca-certificates linux-image-extra-$(uname -r) linux-image-extra-virtual docker \
-	docker-compose virtualbox autoconf bison libssl-dev libreadline-dev zlib1g-dev \
-	neofetch openshot-qt albert wallch ruby2.3 ruby2.3-dev ruby-switch zlibc \
-	zlib1g-dev libxml2 libxml2-dev libxslt1.1 libxslt1-dev silversearcher-ag \
-	ngrep highlight winehq-staging winetricks
+	python3-dev python3-pip neovim build-essential ack-grep tree wget nginx \
+	tmux markdown irssi irssi-scripts zsh xclip cmake mono-complete \
+	exuberant-ctags dconf-tools firefox-dev spotify-client ffmpeg obs-studio \
+	apt-transport-https ca-certificates linux-image-extra-$(uname -r) \
+	linux-image-extra-virtual docker docker-compose virtualbox autoconf bison \
+	libssl-dev libreadline-dev zlib1g-dev neofetch openshot-qt albert wallch \
+	ruby2.3 ruby2.3-dev ruby-switch zlibc zlib1g-dev libxml2 libxml2-dev \
+	libxslt1.1 libxslt1-dev silversearcher-ag ngrep highlight winehq-staging \
+	winetricks chromium-browser chromium-codecs-ffmpeg-extra plymouth-x11
 
 # Install some extra tools
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
