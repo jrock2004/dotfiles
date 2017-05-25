@@ -16,7 +16,7 @@ endif
 
 function! BuildYCM(info)
   if a:info.status == 'installed' || a:info.force
-    !./install.py --clang-completer --tern-completer --omnisharp-completer --system-libclang
+    !./install.py --clang-completer --tern-completer --omnisharp-completer
   endif
 endfunction
 

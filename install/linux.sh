@@ -5,18 +5,63 @@ command_exists() {
 	type "$1" > /dev/null 2>&1
 }
 
-sudo pacman -S --noconfirm bash-completion vim python python-pip neovim \
-python-neovim python2-neovim ack tree wget nginx tmux markdown irssi zsh \
-xclip cmake mono firefox extra/ffmpeg obs-studio autoconf bison community/openshot \
-ngrep highlight wine-staging winetricks virtualbox docker-compose libffi libyaml \
-openssl zlib composer clang
+# Sources for Neovim
+sudo add-apt-repository ppa:neovim-ppa/unstable
+sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
-gpg --recv-keys --keyserver hkp://pgp.mit.edu D9C4D26D0E604491
-gpg --recv-keys --keyserver hkp://pgp.mit.edu 5CC908FDB71E12C2
+# Sources for .net core
+sudo sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ yakkety main" > /etc/apt/sources.list.d/dotnetdev.list'
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
 
-yaourt -Sy spotify silver-searcher-git visual-studio-code dropbox \
-nautilus-dropbox libopenssl-1.0-compat libcurl-openssl-1.0 lib32-libldap \
-lib32-gnutls
+# Sources for Mono
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+echo "deb http://download.mono-project.com/repo/debian wheezy main" | sudo tee /etc/apt/sources.list.d/mono-xamarin.list
+
+# Sources for Spotify
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
+echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+
+# Sources for OBS
+sudo apt-add-repository ppa:obsproject/obs-studio
+
+# Sources for Docker
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list
+
+# Sources for Virtualbox
+wget -q -O - http://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc | sudo apt-key add -
+sudo sh -c 'echo "deb http://download.virtualbox.org/virtualbox/debian xenial contrib" >> /etc/apt/sources.list.d/virtualbox.list'
+
+# Sources for Neofetch
+sudo add-apt-repository ppa:dawidd0811/neofetch
+
+# Sources for Openshot
+sudo add-apt-repository ppa:openshot.developers/ppa
+
+# Sources for Albert
+sudo add-apt-repository ppa:flexiondotorg/albert
+
+# Sources for Ruby
+sudo apt-add-repository ppa:brightbox/ruby-ng
+
+# Sources for Wine
+sudo add-apt-repository ppa:wine/wine-builds
+
+# Sources for Nvidia drivers
+sudo add-apt-repository ppa:graphics-drivers/ppa
+
+# Lets updated so we can get new sources
+sudo apt-get update
+
+sudo apt-get install -y bash-completion vim vim-scripts python-dev python-pip \
+	python3-dev python3-pip neovim build-essential ack-grep tree wget nginx tmux \
+	markdown irssi irssi-scripts zsh xclip cmake mono-complete exuberant-ctags \
+	dconf-tools firefox-dev spotify-client ffmpeg obs-studio apt-transport-https \
+	ca-certificates linux-image-extra-$(uname -r) linux-image-extra-virtual docker \
+	docker-compose virtualbox autoconf bison libssl-dev libreadline-dev zlib1g-dev \
+	neofetch openshot-qt albert wallch ruby2.3 ruby2.3-dev ruby-switch zlibc \
+	zlib1g-dev libxml2 libxml2-dev libxslt1.1 libxslt1-dev silversearcher-ag \
+	ngrep highlight winehq-staging winetricks
 
 # Install some extra tools
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
