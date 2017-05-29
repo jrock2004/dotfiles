@@ -27,7 +27,7 @@ alias gcorb='gco --track $(git branch -r | fzf)'
 alias gcob='gco $(git branch | fzf)'
 
 fkill() {
-  kill -9 $(ps ax | fzf | awk '{ print $1 }')
+	kill -9 $(ps ax | fzf | awk '{ print $1 }')
 }
 
 # Helpers
@@ -48,7 +48,7 @@ alias httpdump="sudo tcpdump -i wlp2s0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
 # System update
-alias update="sudo pacman -Syyu"
+alias update="sudo apt-get update && sudo apt-get upgrade"
 
 # Setting python version
 alias python="/usr/bin/python3"

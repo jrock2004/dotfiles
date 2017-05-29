@@ -11,8 +11,8 @@
 	"requireParenthesesAroundIIFE": true,
 	"requireSpacesInConditionalExpression": true,
 	"requireSpacesInAnonymousFunctionExpression": {
-		"beforeOpeningRoundBrace": true,
-		"beforeOpeningCurlyBrace": true
+		"beforeOpeningRoundBrace": false,
+		"beforeOpeningCurlyBrace": false
 	},
 	"requireSpacesInNamedFunctionExpression": {
 		"beforeOpeningCurlyBrace": true
@@ -26,7 +26,7 @@
 	"disallowSpacesInFunctionDeclaration": {
 		"beforeOpeningRoundBrace": true
 	},
-	"disallowMultipleVarDecl": true,
+	"disallowMultipleVarDecl": false,
 	"requireBlocksOnNewline": true,
 	"disallowEmptyBlocks": true,
 	"requireSpacesInsideObjectBrackets": "allButNested",
@@ -55,9 +55,7 @@
 	"disallowMixedSpacesAndTabs": "smart",
 	"disallowTrailingWhitespace": true,
 	"disallowTrailingComma": true,
-	"requireKeywordsOnNewLine": [
-		"else"
-	],
+	"requireKeywordsOnNewLine": [],
 	"requireLineFeedAtFileEnd": true,
 	"maximumLineLength": 120,
 	"requireCapitalizedConstructors": true,

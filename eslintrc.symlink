@@ -9,5 +9,8 @@
 		"no-unsaved-vars": 2,
 		"no-use-before-define": 2,
 		"no-undef": 2
+	},
+	"globals": {
+		"require": true
 	}
 }

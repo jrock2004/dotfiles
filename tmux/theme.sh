@@ -51,7 +51,7 @@ set-window-option -g clock-mode-colour $tm_color_active
 
 tm_date="#[fg=$tm_color_inactive] %m/%d %I:%M"
 tm_host="#[fg=$tm_color_feature,bold]#h"
-tm_spotify="#[fg=$tm_color_feature] #($DOTFILES/bin/spotify/tmux-spotify both)"
+tm_spotify="#[fg=$tm_color_feature] #(/usr/local/bin/tmux-spotify both)"
 tm_session_name="#[fg=$tm_color_feature,bold]$tm_icon #S"
 
 set -g status-left $tm_session_name' '
