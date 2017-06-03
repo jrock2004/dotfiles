@@ -197,8 +197,6 @@ augroup configgroup
 	autocmd! BufWritePost * Neomake
 augroup END
 
-au BufRead,BufNewFile *.cshtml set filetype=cshtml
-
 " }}}
 
 " Section Plugins {{{
@@ -358,7 +356,5 @@ nnoremap <leader>. :belowright 5split<cr>:terminal<cr><c-\><c-n>:aboveleft vspli
 tnoremap <c-[> <c-\><c-n>
 
 " }}}
-
-let g:neomake_logfile = '/tmp/neomake.log'
 
 " vim:foldmethod=marker:foldlevel=0
