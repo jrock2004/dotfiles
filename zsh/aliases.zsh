@@ -48,7 +48,7 @@ alias httpdump="sudo tcpdump -i wlp2s0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
 # System update
-alias update="sudo apt-get update && sudo apt-get upgrade"
+alias update="sudo pacman -Syuu"
 
 # Setting python version
 alias python="/usr/bin/python3"
