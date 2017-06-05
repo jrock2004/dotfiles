@@ -19,25 +19,25 @@ mkdir -p $BIN
 mkdir -p $DOWNLOADS
 
 # Installing the apps that we need
-source linux.sh
+source install/linux.sh
 
 # Using nvm for better node support
-source nvm.sh
+source install/nvm.sh
 
 # Installing some python modules
-source python.sh
+source install/python.sh
 
 # Installing Node Apps
-source node.sh
+source install/node.sh
 
 # Installing Ruby stuff
-source ruby.sh
+source install/ruby.sh
 
 # Installing Fonts
-source fonts.sh
+source install/fonts.sh
 
 # Installing PHP stuff
-source php.sh
+source install/php.sh
 
 # installing resource files
 tic $HOME/.dotfiles/resources/xterm-256color-italic.terminfo
