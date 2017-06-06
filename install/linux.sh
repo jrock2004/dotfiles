@@ -9,7 +9,7 @@ sudo pacman -S --noconfirm bash-completion vim python python-pip neovim \
 python-neovim python2-neovim ack tree wget nginx tmux markdown irssi zsh \
 xclip cmake mono firefox extra/ffmpeg obs-studio autoconf bison \
 community/openshot ngrep highlight winetricks virtualbox docker-compose \
-libffi libyaml openssl zlib composer clang
+libffi libyaml openssl zlib composer clang powertop tlp
 
 gpg --recv-keys --keyserver hkp://pgp.mit.edu D9C4D26D0E604491
 gpg --recv-keys --keyserver hkp://pgp.mit.edu 5CC908FDB71E12C2

@@ -38,7 +38,7 @@ function gz() {
 
 # All the dig info
 function digga() {
-    dig +nocmd "$1" any +multiline +noall +answer
+    dig +nocmd "$1" any +multiline +answer
 }
 
 # Extract archives - use: extract <file>
