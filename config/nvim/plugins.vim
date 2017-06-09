@@ -27,8 +27,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'tomasiser/vim-code-dark'
 
 " utilities
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug '/home/jcostanzo/.fzf' | Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
