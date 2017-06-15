@@ -59,7 +59,7 @@ Plug 'mklabs/split-term.vim'
 "Plug 'roxma/nvim-completion-manager'
 
 " html / templates
-Plug 'mattn/emmet-vim', { 'for': ['blade', 'html'] }
+Plug 'mattn/emmet-vim', { 'for': ['blade', 'html', 'javascript'] }
 Plug 'gregsexton/MatchTag', { 'for': 'html' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'mustache/vim-mustache-handlebars'
