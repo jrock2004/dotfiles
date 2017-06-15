@@ -21,14 +21,11 @@ mkdir -p $DOWNLOADS
 # Installing the apps that we need
 source install/linux.sh
 
-# Using nvm for better node support
-source install/nvm.sh
-
 # Installing some python modules
 source install/python.sh
 
 # Installing Node Apps
-source install/node.sh
+source install/yarn.sh
 
 # Installing Ruby stuff
 source install/ruby.sh
