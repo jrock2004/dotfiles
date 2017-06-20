@@ -55,4 +55,4 @@ tm_spotify="#[fg=$tm_color_feature] #(/usr/local/bin/tmux-spotify both)"
 tm_session_name="#[fg=$tm_color_feature,bold]$tm_icon #S"
 
 set -g status-left $tm_session_name' '
-set -g status-right $tm_spotify
+set -g status-right $tm_spotify' '$tm_date

@@ -194,7 +194,7 @@ augroup configgroup
 
 	autocmd BufNewFile,BufRead,BufWrite *.md syntax match Comment /\%^---\_.\{-}---$/
 
-	autocmd! BufWritePost * Neomake
+	"autocmd! BufWritePost * Neomake
 augroup END
 
 " }}}
