@@ -34,6 +34,7 @@ fkill() {
 alias grep='grep --color=auto'
 alias df='df -h' # disk free, in Gigabytes, not bytes
 alias du='du -h -c' # calculate disk usage for a folder
+alias apps='pacman -Q | fzf' # Fuzzy search of installed apps
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
