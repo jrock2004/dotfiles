@@ -50,7 +50,7 @@ Plug 'ervandew/supertab'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'tpope/vim-sleuth'
 Plug 'sickill/vim-pasta'
-Plug 'marijnh/tern_for_vim', { 'for': ['javascript'], 'do': 'npm install' }
+Plug 'marijnh/tern_for_vim', { 'for': ['javascript'], 'do': 'yarn install' }
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'tpope/vim-vinegar'
 Plug 'pct/present.vim'
