@@ -1,0 +1,1 @@
+let g:neomake_pug_checkers = ['pug_lint']

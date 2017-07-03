@@ -64,7 +64,7 @@ Plug 'mattn/emmet-vim', { 'for': ['blade', 'html', 'javascript'] }
 Plug 'gregsexton/MatchTag', { 'for': 'html' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'mustache/vim-mustache-handlebars'
-Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'OrangeT/vim-csharp', { 'for': 'cshtml' }
 
 " php
