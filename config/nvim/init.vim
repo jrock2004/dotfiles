@@ -355,6 +355,11 @@ nnoremap <leader>. :belowright 5split<cr>:terminal<cr><c-\><c-n>:aboveleft vspli
 """""""""""""""""""""""""""""""""""""
 tnoremap <c-[> <c-\><c-n>
 
+
+" Vim Fugitive
+"""""""""""""""""""""""""""""""""""""
+nmap <leader>g :Gstatus<cr>gg<C-n>
+
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0

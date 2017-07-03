@@ -52,5 +52,3 @@ export FZF_DEFAULT_COMMAND='ag --hidden -l -g ""'
 
 eval "$(rbenv init -)"
 
-export PATH=$PATH:/home/jcostanzo/bin
-

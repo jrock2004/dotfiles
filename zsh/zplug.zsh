@@ -4,16 +4,11 @@ if [ -z ${RELOAD} ]; then
 		source ~/.zplug/init.zsh
 	fi
 
-	zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-	zplug 'zsh-users/zsh-syntax-highlighting', defer:2
-	zplug 'zsh-users/zsh-autosuggestions'
-	zplug 'akoenig/npm-run.plugin.zsh'
+	zplug "zplug/zplug", hook-build:"zplug --self-manage"
+	zplug "zsh-users/zsh-syntax-highlighting", defer:2
+	zplug "zsh-users/zsh-autosuggestions"
 
-	export NVM_LAZY_LOAD=true
-	zplug "lukechilds/zsh-nvm"
-
-	# Install plugins if there are plugins that have not been installed
-	if ! zplug check; then
+	if ! zplug check --verbose; then
 		printf "Install? [y/N]: "
 		if read -q; then
 			echo; zplug install
