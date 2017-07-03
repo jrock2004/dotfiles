@@ -52,3 +52,6 @@ export FZF_DEFAULT_COMMAND='ag --hidden -l -g ""'
 
 eval "$(rbenv init -)"
 
+# Setting Wine configs
+export WINEARCH=win32
+export WINEPREFIX=~/.wine32
