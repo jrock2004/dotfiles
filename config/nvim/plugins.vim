@@ -60,7 +60,7 @@ Plug 'w0rp/ale'
 "Plug 'roxma/nvim-completion-manager'
 
 " html / templates
-Plug 'mattn/emmet-vim', { 'for': ['blade', 'html', 'javascript'] }
+Plug 'mattn/emmet-vim', { 'for': ['blade', 'html', 'javascript', 'hbs'] }
 Plug 'gregsexton/MatchTag', { 'for': 'html' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'mustache/vim-mustache-handlebars'
