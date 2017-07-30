@@ -1,61 +1,80 @@
 snippet :f
-	${1:method_name}: function (${2:args}) {
-	}
+  ${1:method_name}: function (${2:args}) {
+  }
 snippet fn
-	function () {
-	}
+  function () {
+  }
 snippet fun
-	function ${1:name}(${2:args}) {
-	}
+  function ${1:name}(${2:args}) {
+  }
+snippet arr
+  (${1}) => {
+    ${2}
+  }
 snippet iife
-	(function () {
-		${1}
-	})();
+  (function () {
+    ${1}
+  })();
 
 snippet timeout
-	setTimeout(function () {
-		${2}
-	}, ${1});
+  setTimeout(function () {
+    ${2}
+  }, ${1});
 
 snippet log
-	console.log(${1});
+  console.log(${1});
 snippet lred
-	console.log('%c${1}', 'font-weight:bold;color:red;');
+  console.log('%c${1}', 'font-weight:bold;color:red;');
 snippet lgreen
-	console.log('%c${1}', 'font-weight:bold;color:green;');
+  console.log('%c${1}', 'font-weight:bold;color:green;');
 snippet lblue
-	console.log('%c${1}', 'font-weight:bold;color:blue;');
+  console.log('%c${1}', 'font-weight:bold;color:blue;');
 snippet lpurple
-	console.log('%c${1}', 'font-weight:bold;color:purple;');
+  console.log('%c${1}', 'font-weight:bold;color:purple;');
 snippet lor
-	console.log('%c${1}', 'font-weight:bold;color:orange;');
+  console.log('%c${1}', 'font-weight:bold;color:orange;');
 snippet doc
-	/**
-	 * ${1}
-	 */
+  /**
+   * ${1}
+   */
 
 # Ember stuff
 snippet :
-	${1:key}: ${2:value}
+  ${1:key}: ${2:value},
 snippet actions
-	actions: {
-		${1:action_name}(${2}) {
-			${3}
-		}
-	}
+  actions: {
+    ${1:action_name}(${2}) {
+      ${3}
+    }
+  }
+snippet action
+  ${1:action_name}(${2}) {
+    ${3}
+  },
 snippet emattr
-	${1:key}: DS.attr('${2:value}')
+  ${1:key}: DS.attr('${2:value}')
 snippet belongsTo
-	${1:key}: DS.belongsTo('${2:value}')
+  ${1:key}: DS.belongsTo('${2:value}')
 snippet hasMany
-	${1:key}: DS.hasMany('${2:value}')
+  ${1:key}: DS.hasMany('${2:value}')
 snippet createRecord
-	this.store.createRecord('${1:model}');
+  this.store.createRecord('${1:model}');
 snippet findRecord
-	this.store.findRecord('${1:model}'${2:params});
+  this.store.findRecord('${1:model}'${2:params});
 snippet findAll
-	this.store.findAll('${1:model}');
+  this.store.findAll('${1:model}');
 snippet model
-	model(${1}) {
-		${2}
-	},
+  model(${1}) {
+    ${2}
+  },
+snippet init
+  init(${1}) {
+    this._super(...arguments);
+    ${2}
+  },
+snippet insele
+  didInsertElement() {
+    this.super(...arguments);
+
+    ${1}
+  }

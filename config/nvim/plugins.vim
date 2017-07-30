@@ -60,7 +60,7 @@ Plug 'w0rp/ale'
 "Plug 'roxma/nvim-completion-manager'
 
 " html / templates
-Plug 'mattn/emmet-vim', { 'for': ['blade', 'html', 'javascript', 'hbs'] }
+Plug 'mattn/emmet-vim', { 'for': ['blade', 'html', 'javascript', 'html.handlebars'] }
 Plug 'gregsexton/MatchTag', { 'for': 'html' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'mustache/vim-mustache-handlebars'
@@ -77,7 +77,7 @@ Plug 'mxw/vim-jsx', { 'for': ['jsx', 'javascript'] }
 Plug 'posva/vim-vue', { 'for': 'vue' }
 
 " TypeScript
-Plug 'jason0x43/vim-tss', { 'for': 'typescript', 'do': 'yarn install' }
+Plug 'jason0x43/vim-tss', { 'for': ['typescript', 'javascript', 'javascript.jsx'], 'do': 'yarn install' }
 Plug 'clausreinke/typescript-tools.vim', { 'for': 'typescript' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 

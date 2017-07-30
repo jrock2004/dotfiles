@@ -53,8 +53,8 @@ colorscheme codedark
 highlight Comment cterm=italic
 highlight htmlArg cterm=italic
 
-highlight SpecialKey ctermbg=none ctermfg=8
-highlight NonText ctermbg=none ctermfg=8
+highlight SpecialKey ctermbg=none ctermfg=236
+highlight NonText ctermbg=none ctermfg=236
 
 set number
 set relativenumber
