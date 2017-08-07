@@ -25,25 +25,14 @@ if (has('nvim'))
 	set inccommand=nosplit
 endif
 
+set clipboard^=unnamedplus,unnamed
+
 " }}}
 
 " Section User Interface {{{
 
 " switch cursor to line when in insert mode, and block when not
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
-if &term =~ '256color'
-	" disable background color erase
-	set t_ut=
-endif
-
-" enable 24 bit color support if supported
-if (has('mac') && empty($TMUX) && has("termguicolors"))
-	set termguicolors
-endif
-
-" let g:onedark_termcolors=16
-" let g:onedark_terminal_italics=1
 
 syntax on
 
@@ -111,6 +100,11 @@ set incsearch
 set nolazyredraw
 
 set magic
+
+" disable background color erase
+set t_ut=
+
+set background=dark
 
 " Disable bracket highlighting
 let loaded_matchparen = 1

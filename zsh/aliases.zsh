@@ -1,3 +1,6 @@
+# Aliases
+source $DOTFILES/zsh/aliases/git.zsh
+
 # reload zsh config
 alias reload!='RELOAD=1 source ~/.zshrc'
 
@@ -22,9 +25,6 @@ alias moon='curl -4 http://wttr.in/Moon'
 
 alias fta='tmux attach -t $(tl | fzf | tr ":" "\n" | head -n1)'
 alias ftk='tmux kill-session -t $(tl | fzf | tr ":" "\n" | head -n1)'# Fuzzy commands with fzf
-alias gco='git checkout'
-alias gcorb='gco --track $(git branch -r | fzf)'
-alias gcob='gco $(git branch | fzf)'
 
 fkill() {
 	kill -9 $(ps ax | fzf | awk '{ print $1 }')
@@ -56,3 +56,5 @@ alias python="/usr/bin/python3"
 
 # Getting a list of installed apps
 alias apps="dpkg-query --show | fzf"
+
+alias tmux='tmux -2'
