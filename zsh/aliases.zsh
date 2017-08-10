@@ -34,7 +34,7 @@ fkill() {
 alias grep='grep --color=auto'
 alias df='df -h' # disk free, in Gigabytes, not bytes
 alias du='du -h -c' # calculate disk usage for a folder
-alias apps='pacman -Q | fzf' # Fuzzy search of installed apps
+alias apps='dpkg-query --show | fzf' # Fuzzy search of installed apps
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -54,7 +54,9 @@ alias update="sudo apt-get update && sudo apt-get upgrade"
 # Setting python version
 alias python="/usr/bin/python3"
 
-# Getting a list of installed apps
-alias apps="dpkg-query --show | fzf"
-
+# Better tmux support
 alias tmux='tmux -2'
+
+# Search for npm apps to install
+alias yarnig = 'all-the-package-names | fzf | xargs sudo yarn global add'
+alias yarni = 'all-the-package-names | fzf | xargs sudo yarn add'

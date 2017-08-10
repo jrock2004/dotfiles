@@ -27,6 +27,8 @@ endif
 
 set clipboard^=unnamedplus,unnamed
 
+set copyindent
+
 " }}}
 
 " Section User Interface {{{
@@ -47,6 +49,7 @@ highlight NonText ctermbg=none ctermfg=236
 
 set number
 set relativenumber
+set numberwidth=3
 
 set wrap
 set wrapmargin=8
