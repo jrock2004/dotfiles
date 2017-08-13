@@ -58,5 +58,5 @@ alias python="/usr/bin/python3"
 alias tmux='tmux -2'
 
 # Search for npm apps to install
-alias yarnig = 'all-the-package-names | fzf | xargs sudo yarn global add'
-alias yarni = 'all-the-package-names | fzf | xargs sudo yarn add'
+alias yarnig='all-the-package-names | fzf | xargs sudo yarn global add'
+alias yarni='all-the-package-names | fzf | xargs sudo yarn add'
