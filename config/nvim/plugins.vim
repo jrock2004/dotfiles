@@ -23,8 +23,8 @@ endfunction
 call plug#begin('~/.nvim/plugged')
 
 " colorschemes
-Plug 'joshdick/onedark.vim'
 Plug 'tomasiser/vim-code-dark'
+Plug 'trevordmiller/nova-vim'
 
 " utilities
 Plug '/home/jcostanzo/.fzf' | Plug 'junegunn/fzf.vim'
@@ -80,15 +80,14 @@ Plug 'posva/vim-vue', { 'for': 'vue' }
 Plug 'jason0x43/vim-tss', { 'for': ['typescript', 'javascript', 'javascript.jsx'], 'do': 'yarn install' }
 Plug 'clausreinke/typescript-tools.vim', { 'for': 'typescript' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
 
 " Styles
 Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] }
 Plug 'groenewege/vim-less', { 'for': 'less' }
-Plug 'ap/vim-css-color', { 'for': ['css','stylus','scss'] }
-Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
-Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
+Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'stylus', 'scss'] }
 Plug 'junegunn/limelight.vim', { 'for': 'limelight' }
-Plug 'bolasblack/csslint.vim'
+Plug 'bolasblack/csslint.vim', { 'for': ['css', 'scss'] }
 
 " Markdown
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }

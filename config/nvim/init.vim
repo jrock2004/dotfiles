@@ -40,6 +40,7 @@ syntax on
 
 set t_Co=256
 colorscheme codedark
+" colorscheme nova
 
 highlight Comment cterm=italic
 highlight htmlArg cterm=italic
@@ -107,7 +108,7 @@ set magic
 " disable background color erase
 set t_ut=
 
-set background=dark
+" set background=dark
 
 " Disable bracket highlighting
 let loaded_matchparen = 1
