@@ -81,8 +81,6 @@ set foldnestmax=10
 set nofoldenable
 set foldlevel=1
 
-set clipboard=unnamedplus
-
 set ttyfast
 set diffopt+=filler,vertical
 set laststatus=2

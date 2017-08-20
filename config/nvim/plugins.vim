@@ -57,6 +57,7 @@ Plug 'pct/present.vim'
 Plug 'tpope/vim-sleuth'
 Plug 'mklabs/split-term.vim'
 Plug 'w0rp/ale'
+Plug 'tpope/vim-projectionist'
 "Plug 'roxma/nvim-completion-manager'
 
 " html / templates
