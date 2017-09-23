@@ -23,18 +23,11 @@ alias wttr='curl -4 http://wttr.in/honey_brook'
 alias wttrw='curl -4 http://wttr.in/lansdale'
 alias moon='curl -4 http://wttr.in/Moon'
 
-alias fta='tmux attach -t $(tl | fzf | tr ":" "\n" | head -n1)'
-alias ftk='tmux kill-session -t $(tl | fzf | tr ":" "\n" | head -n1)'# Fuzzy commands with fzf
-
-fkill() {
-	kill -9 $(ps ax | fzf | awk '{ print $1 }')
-}
-
 # Helpers
 alias grep='grep --color=auto'
 alias df='df -h' # disk free, in Gigabytes, not bytes
 alias du='du -h -c' # calculate disk usage for a folder
-alias apps='dpkg-query --show | fzf' # Fuzzy search of installed apps
+alias apps='dnf list installed | fzf' # Fuzzy search of installed apps
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -49,7 +42,7 @@ alias httpdump="sudo tcpdump -i wlp2s0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
 # System update
-alias update="sudo apt-get update && sudo apt-get upgrade"
+alias update="sudo dnf check-update"
 
 # Setting python version
 alias python="/usr/bin/python3"

@@ -112,3 +112,17 @@ function gr() {
 		--preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1} | head -200' |
 	cut -d$'\t' -f1
 }
+
+function pathmunge () {
+  if ! echo "$PATH" | /bin/grep -Eq "(^|:)$1($|:)" ; then
+    if [ "$2" = "after" ] ; then
+      PATH="$PATH:$1"
+    else
+      PATH="$1:$PATH"
+    fi
+  fi
+}
+
+function fkill() {
+  kill -9 $(ps ax | fzf | awk '{ print $1 }')
+}
