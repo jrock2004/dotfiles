@@ -39,7 +39,6 @@ if [[ -d ~/bin ]]; then
 	export PATH=~/bin:$PATH
 fi
 
-export PATH="$HOME/.rbenv/bin:$PATH"
 # Set gem path to root if exists
 if [[ -d ~/.gem/ruby/2.3.0/bin ]]; then
 	export PATH=~/.gem/ruby/2.3.0/bin:$PATH
@@ -60,5 +59,8 @@ if [ -z ${RELOAD} ]; then
   fi
 fi
 
-eval "$(rbenv init -)"
+if [[ -d ~/.rbenv ]]
+	export PATH="$HOME/.rbenv/bin:$PATH"
+	eval "$(rbenv init -)"
+fi
 
