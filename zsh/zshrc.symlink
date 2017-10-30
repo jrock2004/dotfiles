@@ -59,3 +59,4 @@ fi
 
 export WINEARCH=win32
 
+pathmunge /mnt/c/Program\ Files/Docker/Docker/resources/bin after
