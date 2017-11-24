@@ -52,11 +52,7 @@ if [ -z ${RELOAD} ]; then
   fi
 fi
 
-if [[ -d ~/.rbenv ]]; then
-	pathmunge $HOME/.rbenv/bin after
-	eval "$(rbenv init -)"
-fi
+pathmunge $HOME/.yarn/bin before
 
 export WINEARCH=win32
 
-pathmunge /mnt/c/Program\ Files/Docker/Docker/resources/bin after

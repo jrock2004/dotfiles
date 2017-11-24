@@ -35,17 +35,14 @@ alias localip="ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'"
 alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
 # View HTTP traffic
-alias sniff="sudo ngrep -d 'wlp2s0' -t '^(GET|POST) ' 'tcp and port 80'"
-alias httpdump="sudo tcpdump -i wlp2s0 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+alias sniff="sudo ngrep -d 'enp0s31f6' -t '^(GET|POST) ' 'tcp and port 80'"
+alias httpdump="sudo tcpdump -i enp0s31f6 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
 # System update
-alias update="sudo apt-get update && sudo apt-get upgrade"
-
-# Setting python version
-alias python="/usr/bin/python3"
+alias update="sudo dnf upgrade --refresh"
 
 # Better tmux support
 alias tmux='tmux -2'
@@ -54,8 +51,3 @@ alias tmux='tmux -2'
 alias yarnig='all-the-package-names | fzf | xargs sudo yarn global add'
 alias yarni='all-the-package-names | fzf | xargs sudo yarn add'
 
-# Better docker support
-alias docker='docker.exe'
-alias docker-machine='docker-machine.exe'
-alias docker-compose='docker-compose.exe'
-alias docker-credential-wincred='docker-credential-wincred.exe'
