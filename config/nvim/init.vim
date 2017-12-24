@@ -79,7 +79,7 @@ set completeopt+=longest,preview
 set foldmethod=marker
 set foldnestmax=10
 set nofoldenable
-set foldlevel=1
+set foldlevel=99
 
 set ttyfast
 set diffopt+=filler,vertical

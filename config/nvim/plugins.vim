@@ -58,6 +58,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'mklabs/split-term.vim'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-projectionist'
+Plug 'wakatime/vim-wakatime'
 "Plug 'roxma/nvim-completion-manager'
 
 " html / templates
