@@ -16,15 +16,14 @@ endif
 
 function! BuildYCM(info)
   if a:info.status == 'installed' || a:info.force
-    !python3 ./install.py --clang-completer --tern-completer --omnisharp-completer
+    !python ./install.py --clang-completer --tern-completer --omnisharp-completer
   endif
 endfunction
 
 call plug#begin('~/.nvim/plugged')
 
 " colorschemes
-Plug 'tomasiser/vim-code-dark'
-Plug 'trevordmiller/nova-vim'
+Plug 'dracula/vim'
 
 " utilities
 Plug '/home/jcostanzo/.fzf' | Plug 'junegunn/fzf.vim'
@@ -32,73 +31,28 @@ Plug 'mileszs/ack.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-ragtag'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-"Plug 'benekastah/neomake'
 Plug 'rhysd/committia.vim'
-Plug 'tpope/vim-repeat'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
 Plug 'sotte/presenting.vim', { 'for': 'markdown' }
-Plug 'ervandew/supertab'
 Plug 'AndrewRadev/splitjoin.vim'
-Plug 'tpope/vim-sleuth'
-Plug 'sickill/vim-pasta'
 Plug 'marijnh/tern_for_vim', { 'for': ['javascript'], 'do': 'yarn install' }
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'tpope/vim-vinegar'
-Plug 'pct/present.vim'
-Plug 'tpope/vim-sleuth'
-Plug 'mklabs/split-term.vim'
-Plug 'w0rp/ale'
-Plug 'tpope/vim-projectionist'
-Plug 'wakatime/vim-wakatime'
-"Plug 'roxma/nvim-completion-manager'
+Plug 'w0rp/ale' " Check this when done
+"Plug 'roxma/nvim-completion-manager' "Watching for progress
 
 " html / templates
 Plug 'mattn/emmet-vim', { 'for': ['blade', 'html', 'javascript', 'html.handlebars'] }
 Plug 'gregsexton/MatchTag', { 'for': 'html' }
-Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
-Plug 'OrangeT/vim-csharp', { 'for': 'cshtml' }
+"Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars'}
 
-" php
-Plug 'jwalton512/vim-blade', { 'for': 'blade' }
 
-" JavaScript
-Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'html'] }
-Plug 'moll/vim-node', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx', { 'for': ['jsx', 'javascript'] }
-Plug 'posva/vim-vue', { 'for': 'vue' }
-
-" TypeScript
-Plug 'jason0x43/vim-tss', { 'for': ['typescript', 'javascript', 'javascript.jsx'], 'do': 'yarn install' }
-Plug 'clausreinke/typescript-tools.vim', { 'for': 'typescript' }
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
-
-" Styles
-Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] }
-Plug 'groenewege/vim-less', { 'for': 'less' }
-Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'stylus', 'scss'] }
-Plug 'junegunn/limelight.vim', { 'for': 'limelight' }
-Plug 'bolasblack/csslint.vim', { 'for': ['css', 'scss'] }
-
-" Markdown
-Plug 'tpope/vim-markdown', { 'for': 'markdown' }
-
-" Ember
-Plug 'alexlafroscia/vim-ember-cli', { 'for': 'javascript' }
-
-" General
-Plug 'elzr/vim-json', { 'for': 'json' }
 
 call plug#end()
 
