@@ -36,7 +36,6 @@ set list
 set listchars=tab:→\ ,eol:¬,trail:⋅,extends:❯,precedes:❮
 set showbreak=↪
 
-match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 set backspace=indent,eol,start
 set noexpandtab
 set tabstop=2
@@ -158,7 +157,7 @@ command! -bang -nargs=? -complete=dir Buffers
 " Lightline plugin
 """""""""""""""""""""""""""""""""""""
 let g:lightline = {
-  \ 'colorscheme': 'dracula'
+  \ 'colorscheme': 'Dracula'
 \}
 set laststatus=2
 set noshowmode
@@ -193,3 +192,5 @@ function! g:committia_hooks.edit_open(info)
 endfunction
 
 " }}}
+
+" vim:foldmethod=marker
