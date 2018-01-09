@@ -191,6 +191,10 @@ function! g:committia_hooks.edit_open(info)
 	"
 endfunction
 
+" Mustache
+"""""""""""""""""""""""""""""""""""""
+let g:mustache_abbreviations = 1
+
 " }}}
 
 " vim:foldmethod=marker

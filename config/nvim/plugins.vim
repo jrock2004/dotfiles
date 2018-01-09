@@ -50,7 +50,7 @@ Plug 'w0rp/ale' " Check this when done
 " html / templates
 Plug 'mattn/emmet-vim', { 'for': ['blade', 'html', 'javascript', 'html.handlebars'] }
 Plug 'gregsexton/MatchTag', { 'for': 'html' }
-"Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars'}
+Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars'}
 
 
 
