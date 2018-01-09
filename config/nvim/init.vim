@@ -170,7 +170,11 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " YouCompleteMe
 """""""""""""""""""""""""""""""""""""
-let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
+if (has('mac'))
+  let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
+elseif (has('unix'))
+  let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
+endif
 
 
 " Committia.vim
