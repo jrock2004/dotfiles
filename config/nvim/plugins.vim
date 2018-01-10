@@ -32,6 +32,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
 Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -44,7 +45,9 @@ Plug 'AndrewRadev/splitjoin.vim'
 Plug 'marijnh/tern_for_vim', { 'for': ['javascript'], 'do': 'yarn install' }
 Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'tpope/vim-vinegar'
-Plug 'w0rp/ale' " Check this when done
+Plug 'yggdroot/indentline'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'w0rp/ale'
 "Plug 'roxma/nvim-completion-manager' "Watching for progress
 
 " html / templates
