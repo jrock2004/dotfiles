@@ -89,6 +89,8 @@ bind Escape copy-mode
 unbind p
 bind p paste-buffer
 
+set -g mouse on
+
 ##############################
 ### Color & Style Settings ###
 ##############################
