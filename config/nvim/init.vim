@@ -20,8 +20,8 @@ set rtp+=~/.fzf
 
 syntax on
 set t_Co=256
-set background=light
-colorscheme dracula
+set background=dark
+colorscheme gruvbox
 
 highlight Comment cterm=italic
 highlight htmlArg cterm=italic

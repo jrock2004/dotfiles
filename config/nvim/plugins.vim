@@ -24,6 +24,7 @@ call plug#begin('~/.nvim/plugged')
 
 " colorschemes
 Plug 'dracula/vim'
+Plug 'morhetz/gruvbox'
 
 " utilities
 Plug '/home/jcostanzo/.fzf' | Plug 'junegunn/fzf.vim'
