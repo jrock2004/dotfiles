@@ -19,6 +19,8 @@ set rtp+=~/.fzf
 " Section User Interface {{{
 
 syntax on
+set t_Co=256
+set background=light
 colorscheme dracula
 
 highlight Comment cterm=italic

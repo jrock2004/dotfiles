@@ -56,3 +56,6 @@ pathmunge $HOME/.yarn/bin before
 
 export WINEARCH=win32
 
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US"
+

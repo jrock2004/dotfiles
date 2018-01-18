@@ -48,6 +48,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'yggdroot/indentline'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'w0rp/ale'
+Plug 'tpope/vim-projectionist'
 "Plug 'roxma/nvim-completion-manager' "Watching for progress
 
 " html / templates
