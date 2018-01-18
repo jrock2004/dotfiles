@@ -177,7 +177,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " YouCompleteMe
 """""""""""""""""""""""""""""""""""""
 if (has('mac'))
-  let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
+  let g:ycm_path_to_python_interpreter = '/usr/local/bin/python3'
 elseif (has('unix'))
   let g:ycm_path_to_python_interpreter = '/usr/bin/python3'
 endif
