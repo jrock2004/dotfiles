@@ -27,7 +27,7 @@ alias moon='curl -4 http://wttr.in/Moon'
 alias grep='grep --color=auto'
 alias df='df -h' # disk free, in Gigabytes, not bytes
 alias du='du -h -c' # calculate disk usage for a folder
-alias apps='dpkg -l | awk "{print $2 "\t" $3}" | fzf' # Fuzzy search of installed apps
+alias apps='dpkg -l | awk "{print \$2 \"\\t\" \$3}" | fzf' # Fuzzy search of installed apps
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
