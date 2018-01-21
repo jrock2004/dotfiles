@@ -51,3 +51,6 @@ alias tmux='tmux -2'
 alias yarnig='all-the-package-names | fzf | xargs sudo yarn global add'
 alias yarni='all-the-package-names | fzf | xargs sudo yarn add'
 
+# Docker Commands
+alias docker='sudo docker'
+alias docker-compose='sudo docker-compose'
