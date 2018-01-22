@@ -1,5 +1,0 @@
-#!/bin/sh
-
-if zenity --question --text="Empty the trash?"; then
-    gvfs-trash --empty;
-fi

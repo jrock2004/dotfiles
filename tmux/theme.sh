@@ -1,11 +1,10 @@
 #### COLOUR
 
-tm_icon="⣿"
-tm_color_active=colour41
+tm_color_active=colour32
 tm_color_inactive=colour241
-tm_color_feature=colour13
-tm_color_music=colour164
-tm_active_border_color=colour198
+tm_color_feature=colour206
+tm_color_music=colour215
+tm_active_border_color=colour240
 
 # separators
 tm_separator_left_bold="◀"
@@ -27,7 +26,7 @@ set-option -g status-attr default
 # default window title colors
 set-window-option -g window-status-fg $tm_color_inactive
 set-window-option -g window-status-bg default
-set -g window-status-format "#I:#W"
+set -g window-status-format "#I #W"
 
 # active window title colors
 set-window-option -g window-status-current-fg $tm_color_active

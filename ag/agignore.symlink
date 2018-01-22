@@ -1,8 +1,0 @@
-log
-vendor
-tmp
-doc
-coverage
-node_modules
-bower_components
-/.git/

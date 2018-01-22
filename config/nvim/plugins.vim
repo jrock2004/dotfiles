@@ -57,7 +57,8 @@ Plug 'mattn/emmet-vim', { 'for': ['blade', 'html', 'javascript', 'html.handlebar
 Plug 'gregsexton/MatchTag', { 'for': 'html' }
 Plug 'mustache/vim-mustache-handlebars', { 'for': 'html.handlebars'}
 
-
+" CSS
+Plug 'gko/vim-coloresque'
 
 call plug#end()
 

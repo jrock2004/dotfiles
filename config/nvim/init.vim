@@ -25,8 +25,8 @@ colorscheme gruvbox
 
 highlight Comment cterm=italic
 highlight htmlArg cterm=italic
-highlight SpecialKey ctermbg=none ctermfg=236
-highlight NonText ctermbg=none ctermfg=236
+" highlight SpecialKey ctermbg=none ctermfg=236
+" highlight NonText ctermbg=none ctermfg=236
 
 set number
 set relativenumber
@@ -142,11 +142,9 @@ command! FZFMru call fzf#run({
   \  'options': '-m -x +s',
   \  'down':    '40%'})
 
-command! -bang -nargs=* Ag
-  \ call fzf#vim#ag(<q-args>,
-  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
-  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
-  \                 <bang>0)
+command! -bang -nargs=* Find call fzf#vim#grep(
+			\ 'rg --column --line-number --no-heading --follow --color=always '.<q-args>, 1,
+			\ <bang>0 ? fzf#vim#with_preview('up:60%') : fzf#vim#with_preview('right:50%:hidden', '?'), <bang>0)
 
 command! -bang Colors
   \ call fzf#vim#colors({'left': '15%', 'options': '--reverse --margin 30%,0'}, <bang>0)
@@ -163,7 +161,7 @@ command! -bang -nargs=? -complete=dir Buffers
 " Lightline plugin
 """""""""""""""""""""""""""""""""""""
 let g:lightline = {
-  \ 'colorscheme': 'Dracula'
+  \ 'colorscheme': 'one'
 \}
 set laststatus=2
 set noshowmode
@@ -171,8 +169,8 @@ set noshowmode
 " UltiSnips
 """""""""""""""""""""""""""""""""""""
 let g:UltiSnipsExpandTrigger="<c-s>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " YouCompleteMe
 """""""""""""""""""""""""""""""""""""

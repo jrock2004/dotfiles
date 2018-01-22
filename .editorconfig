@@ -1,4 +1,8 @@
 root = false
 
+[*]
+indent_style = space
+indent_size = 2
+
 [*.snippets]
 indent_style = tab

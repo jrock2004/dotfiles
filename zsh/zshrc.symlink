@@ -23,6 +23,7 @@ compinit
 
 # set the editor
 export EDITOR='nvim'
+export GIT_EDITOR='nvim'
 pathmunge /usr/local/bin
 
 if [[ -d $HOME/.config/composer/vendor/bin ]]; then
@@ -40,7 +41,8 @@ fi
 [ -z "$TMUX" ] && export TERM=xterm-256color-italic
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='ag --hidden -l -g ""'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # zplug config
 export ZPLUG_LOADFILE=$DOTFILES/zsh/zplug.sh
