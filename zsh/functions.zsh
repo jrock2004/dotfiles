@@ -73,3 +73,10 @@ function rimage() {
   docker rmi $IMAGE
 }
 
+# A nice way to remove containers
+function rcontainer() {
+  CONTAINER=`docker ps -a --format '{{.Names}}\t{{.Image}}' | awk '{print #1}'`
+
+  docker rm $CONTAINER
+}
+
