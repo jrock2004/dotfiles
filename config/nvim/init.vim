@@ -20,8 +20,9 @@ set rtp+=~/.fzf
 
 syntax on
 set t_Co=256
-set background=dark
-colorscheme gruvbox
+" set background=dark
+" colorscheme gruvbox
+colorscheme nord
 
 highlight Comment cterm=italic
 highlight htmlArg cterm=italic
@@ -161,7 +162,7 @@ command! -bang -nargs=? -complete=dir Buffers
 " Lightline plugin
 """""""""""""""""""""""""""""""""""""
 let g:lightline = {
-  \ 'colorscheme': 'one'
+  \ 'colorscheme': 'nord'
 \}
 set laststatus=2
 set noshowmode
