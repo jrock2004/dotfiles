@@ -44,13 +44,19 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'sotte/presenting.vim', { 'for': 'markdown' }
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'marijnh/tern_for_vim', { 'for': ['javascript'], 'do': 'yarn install' }
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+" Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tpope/vim-vinegar'
 Plug 'yggdroot/indentline'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-projectionist'
-"Plug 'roxma/nvim-completion-manager' "Watching for progress
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'kassio/neoterm'
+Plug 'roxma/nvim-completion-manager' "Watching for progress
+Plug 'othree/csscomplete.vim'
+Plug 'roxma/nvim-cm-tern',  {'do': 'yarn install'}
+Plug 'BurningEther/nvimux'
 
 " html / templates
 Plug 'mattn/emmet-vim', { 'for': ['blade', 'html', 'javascript', 'html.handlebars'] }
