@@ -276,8 +276,8 @@ call plug#begin('~/.config/nvim/plugged')
           \ ]
 
     let g:startify_bookmarks = [
-          \ { 'c': '~/code/dotfiles/config/nvim/init.vim' },
-          \ { 'z': '~/code/dotfiles/zsh/zshrc.symlink' }
+          \ { 'c': '~/.dotfiles/config/nvim/init.vim' },
+          \ { 'z': '~/.dotfiles/zsh/zshrc.symlink' }
           \ ]
 
     autocmd User Startified setlocal cursorline
