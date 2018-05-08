@@ -2,7 +2,7 @@ export DOTFILES=$HOME/.dotfiles
 export ZSH=$DOTFILES/zsh
 
 command_exists() {
-	type "$1" > /dev/null 2>&1
+  type "$1" > /dev/null 2>&1
 }
 
 # display how long all tasks over 10 seconds take
@@ -13,51 +13,40 @@ export REPORTTIME=10
 # source all .zsh files inside of the zsh/ directory
 for config ($ZSH/**/*.zsh) source $config
 
-if [[ -a ~/.localrc ]]; then
-	source ~/.localrc
-fi
+  # initialize autocomplete
+  autoload -U compinit add-zsh-hook
+  compinit
 
-# initialize autocomplete
-autoload -U compinit add-zsh-hook
-compinit
+  # set the editor
+  export EDITOR='nvim'
+  export GIT_EDITOR='nvim'
 
-# set the editor
-export EDITOR='nvim'
-export GIT_EDITOR='nvim'
-pathmunge /usr/local/bin
+  [ -z "$TMUX" ] && export TERM=xterm-256color-italic
 
-if [[ -d $HOME/.config/composer/vendor/bin ]]; then
-  pathmunge $HOME/.config/composer/vendor/bin after
-fi
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# adding path directory for custom scripts
-pathmunge $DOTFILES/bin after
+  # zplug config
+  export ZPLUG_LOADFILE=$DOTFILES/zsh/zplug.sh
 
-# check for custom bin directory and add to path
-if [[ -d $HOME/bin ]]; then
-	pathmunge $HOME/bin after
-fi
-
-[ -z "$TMUX" ] && export TERM=xterm-256color-italic
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-# zplug config
-export ZPLUG_LOADFILE=$DOTFILES/zsh/zplug.sh
-
-# only source zplug on initial load
-if [ -z ${RELOAD} ]; then
-  if ! [ type "zplug" > /dev/null 2>&1 ]; then
-    source ~/.zplug/init.zsh
+  # only source zplug on initial load
+  if [ -z ${RELOAD} ]; then
+    if ! [ type "zplug" > /dev/null 2>&1 ]; then
+      source ~/.zplug/init.zsh
+    fi
   fi
-fi
 
-pathmunge $HOME/.yarn/bin before
+  export LC_ALL="en_US.UTF-8"
+  export LANG="en_US"
 
-export WINEARCH=win32
+  ### Stuff to add to the path
+  if [[ -d $HOME/.config/composer/vendor/bin ]]; then
+    pathmunge $HOME/.config/composer/vendor/bin after
+  fi
 
-export LC_ALL="en_US.UTF-8"
-export LANG="en_US"
+  pathmunge $DOTFILES/bin after
+  pathmunge $HOME/.yarn/bin before
+  pathmunge /usr/local/bin after
+  pathmunge $HOME/bin/dotnet after
 

@@ -31,18 +31,15 @@ alias apps='dpkg -l | awk "{print \$2 \"\\t\" \$3}" | fzf' # Fuzzy search of ins
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias localip="ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'"
-alias ips="ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'"
 
 # View HTTP traffic
-alias sniff="sudo ngrep -d 'enp0s31f6' -t '^(GET|POST) ' 'tcp and port 80'"
 alias httpdump="sudo tcpdump -i enp0s31f6 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
 # System update
-alias update="sudo apt-get update && sudo apt-get upgrade"
+alias update="sudo eopkg upgrade"
 
 # Better tmux support
 alias tmux='tmux -2'
@@ -51,6 +48,3 @@ alias tmux='tmux -2'
 alias yarnig='all-the-package-names | fzf | xargs sudo yarn global add'
 alias yarni='all-the-package-names | fzf | xargs sudo yarn add'
 
-# Docker Commands
-alias docker='sudo docker'
-alias docker-compose='sudo docker-compose'

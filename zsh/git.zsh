@@ -24,22 +24,22 @@ alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup 
 alias sub-pull='git submodule foreach git pull origin master'
 
 function give-credit() {
-    git commit --amend --author $1 <$2> -C HEAD
+  git commit --amend --author $1 <$2> -C HEAD
 }
 
 # a simple git rename file function
 # git does not track case-sensitive changes to a filename.
 function git-rename() {
-    git mv $1 "${2}-"
-    git mv "${2}-" $2
+  git mv $1 "${2}-"
+  git mv "${2}-" $2
 }
 
 function g() {
-    if [[ $# > 0 ]]; then
-        # if there are arguments, send them to git
-        git $@
-    else
-        # otherwise, run git status
-        git s
-    fi
+  if [[ $# > 0 ]]; then
+    # if there are arguments, send them to git
+    git $@
+  else
+    # otherwise, run git status
+    git s
+  fi
 }
