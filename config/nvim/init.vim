@@ -93,7 +93,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'nicknisi/vim-base16-lightline'
 
     let g:lightline = {
-        \	'colorscheme': 'base16',
+        \	'colorscheme': 'powerline',
         \	'active': {
         \		'left': [ [ 'mode', 'paste' ],
         \				[ 'gitbranch' ],
@@ -483,6 +483,7 @@ call plug#begin('~/.config/nvim/plugged')
   " }}}
 
   Plug 'fatih/vim-go', { 'for': 'go' }
+  Plug 'ekalinin/Dockerfile.vim', { 'for': 'dockerfile' }
 " }}}
 
 call plug#end()
@@ -492,9 +493,10 @@ call plug#end()
     let base16colorspace=256
     source ~/.vimrc_background
   else
-    let g:onedark_termcolors=16
-    let g:onedark_terminal_italics=1
-    colorscheme onedark
+    " let g:onedark_termcolors=16
+    " let g:onedark_terminal_italics=1
+    colorscheme gruvbox
+    set background=dark
   endif
   syntax on
   filetype plugin indent on
@@ -507,7 +509,7 @@ call plug#end()
   highlight htmlArg cterm=italic
   highlight xmlAttrib cterm=italic
   highlight Type cterm=italic
-  highlight Normal ctermbg=none
+  " highlight Normal ctermbg=none
 
 " }}}
 
