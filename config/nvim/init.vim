@@ -86,6 +86,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'morhetz/gruvbox'
   Plug 'arcticicestudio/nord-vim'
   Plug 'joshdick/onedark.vim'
+  Plug 'chriskempson/base16-vim'
 
   " LightLine {{{
     Plug 'itchyny/lightline.vim'
@@ -130,8 +131,6 @@ call plug#begin('~/.config/nvim/plugged')
         \	'separator': { 'left': '', 'right': '' },
         \	'subseparator': { 'left': '', 'right': '' }
         \ }
-    " \   'separator': { 'left': '▓▒░', 'right': '░▒▓' },
-    " \   'subseparator': { 'left': '▒', 'right': '░' }
 
     function! LightlineFileName() abort
       let filename = winwidth(0) > 70 ? expand('%') : expand('%:t')
@@ -407,6 +406,7 @@ call plug#begin('~/.config/nvim/plugged')
 
   " UltiSnips {{{
     Plug 'SirVer/ultisnips' " Snippets plugin
+    Plug 'honza/vim-snippets'
 
     let g:UltiSnipsExpandTrigger="<tab>"
   " }}}
