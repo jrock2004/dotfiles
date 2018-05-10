@@ -1,5 +1,3 @@
-" source ~/.config/nvim/plugins.vim
-
 call functions#PlugLoad()
 call plug#begin('~/.config/nvim/plugged')
 
@@ -36,6 +34,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Appearance {{{
   set number
+  set relativenumber
   set wrap
   set wrapmargin=8
   set linebreak
@@ -239,6 +238,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'benmills/vimux'
   Plug 'tpope/vim-repeat'
   Plug 'editorconfig/editorconfig-vim'
+  Plug 'vim-scripts/PreserveNoEOL'
   Plug 'tpope/vim-vinegar'
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'tpope/vim-endwise'
@@ -411,6 +411,11 @@ call plug#begin('~/.config/nvim/plugged')
     let g:UltiSnipsExpandTrigger="<tab>"
   " }}}
 
+  " Deoplete {{{ "
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
+    let g:deoplete#enable_at_startup = 1
+  " }}} Deoplete "
   Plug 'rhysd/committia.vim'
 " }}}
 
