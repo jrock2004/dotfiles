@@ -21,7 +21,7 @@ for config ($ZSH/**/*.zsh) source $config
   export EDITOR='nvim'
   export GIT_EDITOR='nvim'
 
-  [ -z "$TMUX" ] && export TERM=xterm-256color-italic
+  # [ -z "$TMUX" ] && export TERM=xterm-256color-italic
 
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
   export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
