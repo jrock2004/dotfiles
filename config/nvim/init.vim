@@ -489,6 +489,7 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'fatih/vim-go', { 'for': 'go' }
   Plug 'ekalinin/Dockerfile.vim', { 'for': 'dockerfile' }
+  Plug 'joukevandermaas/vim-ember-hbs', { 'for': 'html.handlebars' }
 " }}}
 
 call plug#end()
