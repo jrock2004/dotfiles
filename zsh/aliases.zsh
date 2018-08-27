@@ -27,7 +27,7 @@ alias moon='curl -4 http://wttr.in/Moon'
 alias grep='grep --color=auto'
 alias df='df -h' # disk free, in Gigabytes, not bytes
 alias du='du -h -c' # calculate disk usage for a folder
-alias apps='eopkg li -l | grep "Name:" | awk "{print \$2, \$3, \$4}" | fzf' # Fuzzy search of installed apps
+alias apps='pacman -Q | fzf' # Fuzzy search of installed apps
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
@@ -39,7 +39,7 @@ alias httpdump="sudo tcpdump -i enp0s31f6 -n -s 0 -w - | grep -a -o -E \"Host\: 
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
 # System update
-alias update="sudo eopkg upgrade"
+alias update="sudo pacman -Syuu"
 
 # Better tmux support
 alias tmux='tmux -2'
