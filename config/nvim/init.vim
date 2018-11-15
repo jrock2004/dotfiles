@@ -30,6 +30,9 @@ call plug#begin('~/.config/nvim/plugged')
   set visualbell
   set t_vb=
   set tm=500
+  set encoding=utf-8
+
+  scriptencoding utf-8
 " }}}
 
 " Appearance {{{
@@ -153,7 +156,6 @@ call plug#begin('~/.config/nvim/plugged')
 
     function! LightlineFileType()
       return WebDevIconsGetFileTypeSymbol()
-      " return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
     endfunction
 
     function! LightlineLinter() abort
@@ -191,7 +193,7 @@ call plug#begin('~/.config/nvim/plugged')
     endfunction
 
     augroup alestatus
-      autocmd User ALELint call LightlineUpdate()
+      autocmd User ALELintPost call LightlineUpdate()
     augroup end
   " }}}
 
@@ -385,6 +387,7 @@ call plug#begin('~/.config/nvim/plugged')
 
   " ALE {{{
     Plug 'w0rp/ale' " Asynchonous linting engine
+	Plug 'maximbaz/lightline-ale'
 
     let g:ale_change_sign_column_color = 0
     let g:ale_sign_column_always = 1
@@ -393,6 +396,7 @@ call plug#begin('~/.config/nvim/plugged')
 
     let g:ale_linters = {
           \	'javascript': ['eslint'],
+		  \	'javascript.jsx': ['eslint'],
           \	'typescript': ['tsserver', 'tslint'],
           \	'html': []
           \}
@@ -490,6 +494,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'fatih/vim-go', { 'for': 'go' }
   Plug 'ekalinin/Dockerfile.vim', { 'for': 'dockerfile' }
   Plug 'joukevandermaas/vim-ember-hbs', { 'for': 'html.handlebars' }
+  Plug 'josemarluedke/ember-vim-snippets', { 'for': ['html.handlebars', 'javascript.jsx'] }
 " }}}
 
 call plug#end()

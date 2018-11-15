@@ -39,7 +39,7 @@ alias httpdump="sudo tcpdump -i enp0s31f6 -n -s 0 -w - | grep -a -o -E \"Host\: 
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
 # System update
-alias update="sudo pacman -Syuu"
+alias update="sudo apt-get update && sudo apt-get upgrade"
 
 # Better tmux support
 alias tmux='tmux -2'
