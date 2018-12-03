@@ -48,3 +48,5 @@ alias tmux='tmux -2'
 alias yarnig='all-the-package-names | fzf | xargs sudo yarn global add'
 alias yarni='all-the-package-names | fzf | xargs sudo yarn add'
 
+alias dcu='docker-compose up'
+alias dcd='docker-compose down'

@@ -43,14 +43,15 @@ call plug#begin('~/.config/nvim/plugged')
   set linebreak
   set showbreak=…
   set autoindent
+  set ttyfast
   set diffopt+=vertical
   set laststatus=2
   set so=7
   set wildmenu
   set hidden
   set showcmd
+  set noshowmode
   set wildmode=list:longest
-  set scrolloff=3
   set shell=$SHELL
   set cmdheight=1
   set title
@@ -81,6 +82,13 @@ call plug#begin('~/.config/nvim/plugged')
 
   if &term =~ '256color'
     set t_ut=
+  endif
+
+  if (has("termguicolors"))
+	  if (!(has("nvim")))
+		let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+		let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+	  endif
   endif
 
   match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -244,7 +252,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-vinegar'
   Plug 'AndrewRadev/splitjoin.vim'
   Plug 'tpope/vim-endwise'
-  Plug 'sotte/presenting.vim', { 'for': 'markdown' }
   " Make starting vim better {{{
     Plug 'mhinz/vim-startify'
 
@@ -285,9 +292,7 @@ call plug#begin('~/.config/nvim/plugged')
   " }}}
 
   " Writing in vim {{{{
-    Plug 'junegunn/limelight.vim'
     Plug 'junegunn/goyo.vim'
-    let g:limelight_conceal_ctermfg = 240
 
     let g:goyo_entered = 0
     function! s:goyo_enter()
@@ -296,7 +301,6 @@ call plug#begin('~/.config/nvim/plugged')
       set noshowmode
       set noshowcmd
       set scrolloff=999
-      Limelight
     endfunction
 
     function! s:goyo_leave()
@@ -305,7 +309,6 @@ call plug#begin('~/.config/nvim/plugged')
       set showmode
       set showcmd
       set scrolloff=5
-      Limelight!
     endfunction
 
     autocmd! User GoyoEnter nested call <SID>goyo_enter()
@@ -389,10 +392,15 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'w0rp/ale' " Asynchonous linting engine
 	Plug 'maximbaz/lightline-ale'
 
+	let g:ale_set_highlights = 0
     let g:ale_change_sign_column_color = 0
     let g:ale_sign_column_always = 1
     let g:ale_sign_error = '✖'
     let g:ale_sign_warning = '⚠'
+	let g:ale_echo_msg_error_str = '✖'
+	let g:ale_echo_msg_warning_str = '⚠'
+	let g:ale_echo_msg_format = '%severity% %s% [%linter%% code%]'
+	let g:ale_completion_enabled = 1
 
     let g:ale_linters = {
           \	'javascript': ['eslint'],
@@ -404,8 +412,11 @@ call plug#begin('~/.config/nvim/plugged')
     let g:ale_fixers['javascript'] = ['prettier']
     let g:ale_fixers['typescript'] = ['prettier', 'tslint']
     let g:ale_fixers['json'] = ['prettier']
+	let g:ale_fixers['css'] = ['prettier']
     let g:ale_javascript_prettier_use_local_config = 1
     let g:ale_fix_on_save = 0
+
+	nmap <silent><leader>af :ALEFix<cr>
   " }}}
 
   " UltiSnips {{{
@@ -477,12 +488,6 @@ call plug#begin('~/.config/nvim/plugged')
 
   " markdown {{{
     Plug 'tpope/vim-markdown', { 'for': 'markdown' }
-
-    " Open markdown files in Marked.app - mapped to <leader>m
-    Plug 'itspriddle/vim-marked', { 'for': 'markdown', 'on': 'MarkedOpen' }
-    nmap <leader>m :MarkedOpen!<cr>
-    nmap <leader>mq :MarkedQuit<cr>
-    nmap <leader>* *<c-o>:%s///gn<cr>
   " }}}
 
   " JSON {{{
@@ -512,8 +517,10 @@ call plug#end()
   syntax on
   filetype plugin indent on
   " make the highlighting of tabs and other non-text less annoying
-  highlight SpecialKey ctermfg=236
-  highlight NonText ctermfg=236
+  " highlight SpecialKey ctermfg=236
+  " highlight NonText ctermfg=236
+  highlight SpecialKey ctermfg=19 guifg=#333333
+  highlight NonText ctermfg=19 guifg=#333333<Paste>
 
   " make comments and HTML attributes italic
   highlight Comment cterm=italic

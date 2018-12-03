@@ -53,7 +53,7 @@ function fzf-down() {
 
 # Cleaner way to add things to the path
 function pathmunge () {
-  if ! echo "$PATH" | /bin/grep -Eq "(^|:)$1($|:)" ; then
+  if ! echo "$PATH" | /usr/bin/grep -Eq "(^|:)$1($|:)" ; then
     if [ "$2" = "after" ] ; then
       PATH="$PATH:$1"
     else
