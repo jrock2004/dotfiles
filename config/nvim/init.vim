@@ -57,6 +57,7 @@ call plug#begin('~/.config/nvim/plugged')
   set title
   set showmatch
   set mat=2
+  set colorcolumn=80
 
   set noexpandtab
   set smarttab
