@@ -1,6 +1,3 @@
-# Aliases
-source $DOTFILES/zsh/aliases/git.zsh
-
 # reload zsh config
 alias reload!='RELOAD=1 source ~/.zshrc'
 
