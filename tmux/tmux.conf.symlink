@@ -95,13 +95,4 @@ set -g mouse on
 ### Color & Style Settings ###
 ##############################
 
-# tmux theme
-# set -g @plugin 'tmux-plugins/tpm'
-# set -g @plugin 'arcticicestudio/nord-tmux'
-
-# set -g @nord_tmux_show_status_content "0"
-# set -g @nord_tmux_no_patched_font "1"
-
-# run '~/.tmux/plugins/tpm/tpm'
-
 source ~/.dotfiles/tmux/theme.sh

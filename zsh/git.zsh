@@ -23,6 +23,11 @@ alias gr='[ ! -z `git rev-parse --show-cdup` ] && cd `git rev-parse --show-cdup 
 
 alias sub-pull='git submodule foreach git pull origin master'
 
+alias gco='git checkout'
+alias gcorb='gco --track $(git branch -r | fzf)'
+alias gcob='gco $(git branch | fzf)'
+alias gmb='git merge $(git branch | fzf)'
+
 function give-credit() {
   git commit --amend --author $1 <$2> -C HEAD
 }

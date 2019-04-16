@@ -16,7 +16,10 @@ alias vim="nvim"
 # Filesystem aliases
 alias path='echo $PATH | tr -s ":" "\n"'
 alias rmf="rm -rf"
-alias open="xdg-open"
+
+if xdg-open > /dev/null 2>&1; then
+  alias open="xdg-open"
+fi
 
 # Fancy weather
 alias wttr='curl -4 http://wttr.in/honey_brook'
@@ -27,19 +30,24 @@ alias moon='curl -4 http://wttr.in/Moon'
 alias grep='grep --color=auto'
 alias df='df -h' # disk free, in Gigabytes, not bytes
 alias du='du -h -c' # calculate disk usage for a folder
-alias apps='pacman -Q | fzf' # Fuzzy search of installed apps
+
+# Fuzzy search of installed apps
+if pacman > /dev/null 2>&1; then
+  alias apps='pacman -Q | fzf'
+fi
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-
-# View HTTP traffic
-alias httpdump="sudo tcpdump -i enp0s31f6 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # Recursively delete `.DS_Store` files
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
 # System update
-alias update="sudo apt-get update && sudo apt-get upgrade"
+if apt-get > /dev/null 2>&1; then
+  alias update="sudo apt-get update && sudo apt-get upgrade"
+elif brew > /dev/null 2>&1; then
+  alias update="brew update && brew upgrade && brew doctor"
+fi
 
 # Better tmux support
 alias tmux='tmux -2'
