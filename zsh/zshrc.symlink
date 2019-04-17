@@ -9,43 +9,31 @@ export REPORTTIME=10
 # source all .zsh files inside of the zsh/ directory
 for config ($ZSH/**/*.zsh) source $config
 
-  # initialize autocomplete
-  autoload -U compinit add-zsh-hook
-  compinit
+# initialize autocomplete
+autoload -U compinit add-zsh-hook
+compinit
 
-  # set the editor
-  export EDITOR='nvim'
-  export GIT_EDITOR='nvim'
+# set the editor
+export EDITOR='nvim'
+export GIT_EDITOR='nvim'
 
-  # [ -z "$TMUX" ] && export TERM=xterm-256color-italic
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-  export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
-  export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# zplug config
+export ZPLUG_LOADFILE=$DOTFILES/zsh/zplug.sh
 
-  # zplug config
-  export ZPLUG_LOADFILE=$DOTFILES/zsh/zplug.sh
-
-  # only source zplug on initial load
-  if [ -z ${RELOAD} ]; then
-    if ! [ type "zplug" > /dev/null 2>&1 ]; then
-      source ~/.zplug/init.zsh
-    fi
+# only source zplug on initial load
+if [ -z ${RELOAD} ]; then
+  if ! [ type 'zplug' > /dev/null 2>&1 ]; then
+    source ~/.zplug/init.zsh
   fi
+fi
 
-  export LC_ALL="en_US.UTF-8"
-  export LANG="en_US"
+export LC_ALL='en_US.UTF-8'
+export LANG='en_US'
 
-  ### Stuff to add to the path
-  if [[ -d $HOME/.config/composer/vendor/bin ]]; then
-    pathmunge $HOME/.config/composer/vendor/bin after
-  fi
-
-  pathmunge $DOTFILES/bin after
-  pathmunge $HOME/.yarn/bin before
-  pathmunge /usr/local/bin after
-  pathmunge $HOME/bin/dotnet after
-
-
-export NVM_DIR="/Users/jcostanzo/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+pathmunge $DOTFILES/bin after
+pathmunge $HOME/.yarn/bin before
+pathmunge /usr/local/bin after

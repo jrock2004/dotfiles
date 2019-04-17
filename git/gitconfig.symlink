@@ -53,11 +53,6 @@
   # remove grep - Remove found files that are NOT under version control
   rg = "!sh -c 'git ls-files --others --exclude-standard | grep $1 | xargs rm' -"
 
-  # Kaleidoscope commands
-  dkal = difftool -y -t Kaleidoscope
-  mkal = mergetool -y -t Kaleidoscope
-  remotes = remote -v
-
 [color]
   diff = auto
   status = auto
