@@ -410,12 +410,12 @@ call plug#begin('~/.config/nvim/plugged')
           \	'html': []
           \}
     let g:ale_fixers = {}
-    let g:ale_fixers['javascript'] = ['prettier']
+    let g:ale_fixers['javascript'] = ['prettier', 'prettier-eslint']
     let g:ale_fixers['typescript'] = ['prettier', 'tslint']
     let g:ale_fixers['json'] = ['prettier']
 	let g:ale_fixers['css'] = ['prettier']
     let g:ale_javascript_prettier_use_local_config = 1
-    let g:ale_fix_on_save = 0
+    let g:ale_fix_on_save = 1
 
 	nmap <silent><leader>af :ALEFix<cr>
   " }}}
@@ -438,7 +438,7 @@ call plug#begin('~/.config/nvim/plugged')
 " Language-Specific Configuration {{{
   " html / templates {{{
     " emmet support for vim - easily create markdup wth CSS-like syntax
-    Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx', 'eruby' ]}
+    Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx', 'javascript', 'eruby' ]}
     let g:user_emmet_settings = {
           \  'javascript.jsx': {
           \	   'extends': 'jsx',
@@ -466,6 +466,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'moll/vim-node', { 'for': 'javascript' }
     Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx', 'javascript'] }
     Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': 'yarn install' }
+
+    let g:javascript_plugin_jsdoc = 1
   " }}}
 
   " TypeScript {{{
