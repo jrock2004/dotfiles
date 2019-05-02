@@ -423,6 +423,7 @@ call plug#begin('~/.config/nvim/plugged')
   " UltiSnips {{{
     Plug 'SirVer/ultisnips' " Snippets plugin
     Plug 'honza/vim-snippets'
+    Plug 'jrock2004/react-snippets'
 
     let g:UltiSnipsExpandTrigger="<tab>"
   " }}}
