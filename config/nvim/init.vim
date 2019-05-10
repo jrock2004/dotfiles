@@ -105,7 +105,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'nicknisi/vim-base16-lightline'
 
     let g:lightline = {
-        \	'colorscheme': 'powerline',
+        \	'colorscheme': 'base16',
         \	'active': {
         \		'left': [ [ 'mode', 'paste' ],
         \				[ 'gitbranch' ],
@@ -535,7 +535,6 @@ call plug#end()
     " let g:onedark_termcolors=16
     " let g:onedark_terminal_italics=1
     colorscheme gruvbox
-    set background=dark
   endif
   syntax on
   filetype plugin indent on
