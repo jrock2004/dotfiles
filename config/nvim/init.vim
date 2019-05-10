@@ -44,7 +44,7 @@ call plug#begin('~/.config/nvim/plugged')
   set showbreak=…
   set autoindent
   set ttyfast
-  set diffopt+=vertical
+  set diffopt+=vertical,iwhite,internal,algorithm:patience,hiddenoff
   set laststatus=2
   set so=7
   set wildmenu
@@ -87,9 +87,10 @@ call plug#begin('~/.config/nvim/plugged')
 
   if (has("termguicolors"))
 	  if (!(has("nvim")))
-		let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-		let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+      let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+      let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 	  endif
+    set termguicolors
   endif
 
   match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -220,6 +221,11 @@ call plug#begin('~/.config/nvim/plugged')
   nnoremap <silent> k gk
   nnoremap <silent> ^ g^
   nnoremap <silent> $ g$
+
+  vmap <leader>[ <gv
+  vmap <leader>] >gv
+  nmap <leader>[ <<
+  nmap <leader>] >>
 " }}}
 
 " AutoGroups {{{
@@ -290,6 +296,7 @@ call plug#begin('~/.config/nvim/plugged')
           \ ]
 
     autocmd User Startified setlocal cursorline
+	nmap <leader>st :Startify<cr>
   " }}}
 
   " Writing in vim {{{{
@@ -302,6 +309,9 @@ call plug#begin('~/.config/nvim/plugged')
       set noshowmode
       set noshowcmd
       set scrolloff=999
+	  set wrap
+      setlocal textwidth=0
+      setlocal wrapmargin=0
     endfunction
 
     function! s:goyo_leave()
@@ -310,6 +320,8 @@ call plug#begin('~/.config/nvim/plugged')
       set showmode
       set showcmd
       set scrolloff=5
+	  set textwidth=78
+	  set wrapmargin=8
     endfunction
 
     autocmd! User GoyoEnter nested call <SID>goyo_enter()
@@ -375,40 +387,44 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'mhinz/vim-signify'
     let g:signify_vcs_list = [ 'git' ]
     let g:signify_sign_add				 = '+'
-    let g:signify_sign_delete			 = '_'
-    let g:signify_sign_delete_first_line = '‾'
-    let g:signify_sign_change = '!'
+    let g:signify_sign_delete			 = '-'
+    let g:signify_sign_delete_first_line = '_'
+    let g:signify_sign_change = '|'
   " }}}
 
   " vim-fugitive {{{
     Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-rhubarb' " hub extension for fugitive
     nmap <silent> <leader>gs :Gstatus<cr>
     nmap <leader>ge :Gedit<cr>
     nmap <silent><leader>gr :Gread<cr>
     nmap <silent><leader>gb :Gblame<cr>
+
+	Plug 'tpope/vim-rhubarb' " hub extension for fugitive
+	Plug 'junegunn/gv.vim'
+    Plug 'sodapopcan/vim-twiggy'
   " }}}
 
   " ALE {{{
     Plug 'w0rp/ale' " Asynchonous linting engine
-	Plug 'maximbaz/lightline-ale'
+	" Plug 'maximbaz/lightline-ale'
 
-	let g:ale_set_highlights = 0
+	let g:ale_set_highlights = 1
     let g:ale_change_sign_column_color = 0
     let g:ale_sign_column_always = 1
+	let g:ale_lint_on_text_changed = 'always'
     let g:ale_sign_error = '✖'
     let g:ale_sign_warning = '⚠'
 	let g:ale_echo_msg_error_str = '✖'
 	let g:ale_echo_msg_warning_str = '⚠'
 	let g:ale_echo_msg_format = '%severity% %s% [%linter%% code%]'
-	let g:ale_completion_enabled = 1
+	" let g:ale_completion_enabled = 1
 
     let g:ale_linters = {
           \	'javascript': ['eslint'],
 		  \	'javascript.jsx': ['eslint'],
           \	'typescript': ['tsserver', 'tslint'],
           \	'html': []
-          \}
+	\}
     let g:ale_fixers = {}
     let g:ale_fixers['javascript'] = ['prettier', 'prettier-eslint']
     let g:ale_fixers['typescript'] = ['prettier', 'tslint']
@@ -429,17 +445,23 @@ call plug#begin('~/.config/nvim/plugged')
   " }}}
 
   " Deoplete {{{ "
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	if (has('nvim'))
+		Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	else
+		Plug 'Shougo/deoplete.nvim'
+		Plug 'roxma/nvim-yarp'
+		Plug 'roxma/vim-hug-neovim-rpc'
+	endif
+	let g:deoplete#enable_at_startup = 1
+  " }}}
 
-    let g:deoplete#enable_at_startup = 1
-  " }}} Deoplete "
-  Plug 'rhysd/committia.vim'
+  " Plug 'rhysd/committia.vim'
 " }}}
 
 " Language-Specific Configuration {{{
   " html / templates {{{
     " emmet support for vim - easily create markdup wth CSS-like syntax
-    Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx', 'javascript', 'eruby' ]}
+    Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx', 'javascript' ]}
     let g:user_emmet_settings = {
           \  'javascript.jsx': {
           \	   'extends': 'jsx',
@@ -457,28 +479,19 @@ call plug#begin('~/.config/nvim/plugged')
 
     " pug / jade support
     Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
-
-    " Ruby / Ruby on Rails
-    Plug 'tpope/vim-rails', { 'for': 'ruby' }
   " }}}
 
   " JavaScript {{{
-    Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html'] }
+	Plug 'othree/yajs.vim', { 'for': [ 'javascript', 'javascript.jsx', 'html' ] }
+    " Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html'] }
     Plug 'moll/vim-node', { 'for': 'javascript' }
     Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx', 'javascript'] }
     Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': 'yarn install' }
-
-    let g:javascript_plugin_jsdoc = 1
   " }}}
 
   " TypeScript {{{
     Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
     Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-
-    Plug 'Quramy/tsuquyomi', { 'for': 'typescript', 'do': 'yarn install' }
-    let g:tsuquyomi_completion_detail = 1
-    let g:tsuquyomi_disable_default_mappings = 1
-    let g:tsuquyomi_completion_detail = 1
   " }}}
 
   " Styles {{{
@@ -486,8 +499,14 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'groenewege/vim-less', { 'for': 'less' }
     Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
     Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
-    Plug 'gko/vim-coloresque'
     Plug 'stephenway/postcss.vim', { 'for': 'css' }
+
+	Plug 'RRethy/vim-hexokinase'
+	let g:Hexokinase_highlighters = ['virtual']
+	let g:Hexokinase_refreshEvents = ['BufWritePost']
+	let g:Hexokinase_ftAutoload = ['css']
+	" let g:Hexokinase_virtualText = '█'
+	let g:Hexokinase_virtualText = '■'
   " }}}
 
   " markdown {{{
@@ -524,14 +543,19 @@ call plug#end()
   " highlight SpecialKey ctermfg=236
   " highlight NonText ctermfg=236
   highlight SpecialKey ctermfg=19 guifg=#333333
-  highlight NonText ctermfg=19 guifg=#333333<Paste>
+  highlight NonText ctermfg=19 guifg=#333333
 
   " make comments and HTML attributes italic
-  highlight Comment cterm=italic
-  highlight htmlArg cterm=italic
-  highlight xmlAttrib cterm=italic
-  highlight Type cterm=italic
-  " highlight Normal ctermbg=none
+  highlight Comment cterm=italic term=italic gui=italic
+  highlight htmlArg cterm=italic term=italic gui=italic
+  highlight xmlAttrib cterm=italic term=italic gui=italic
+  " highlight Type cterm=italic term=italic gui=italic
+  highlight Normal ctermbg=none
+
+  " call deoplete#custom#option({
+  " \ 'auto_complete_delay': 200,
+  " \ 'auto_refresh_delay': 100
+  " \ })
 
 " }}}
 

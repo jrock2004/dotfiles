@@ -6,16 +6,33 @@ export REPORTTIME=10
 
 [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
 
-# source all .zsh files inside of the zsh/ directory
-for config ($ZSH/**/*.zsh) source $config
+source "$ZSH/utils.zsh"
+source "$ZSH/prompt.zsh"
+source "$ZSH/aliases.zsh"
+source "$ZSH/colors.zsh"
+source "$ZSH/completion.zsh"
+source "$ZSH/config.zsh"
+source "$ZSH/functions.zsh"
+source "$ZSH/git.zsh"
+source "$ZSH/tmux.zsh"
 
 # initialize autocomplete
 autoload -U compinit add-zsh-hook
 compinit
 
+for config ($ZSH/**/*completion.sh) source $config
+
 # set the editor
 export EDITOR='nvim'
 export GIT_EDITOR='nvim'
+
+export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
+
+if [ -z "$TMUX"  ]; then
+	export TERM=xterm-256color-italic
+else
+	export TERM=tmux-256color-italic
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
@@ -26,10 +43,24 @@ export ZPLUG_LOADFILE=$DOTFILES/zsh/zplug.sh
 
 # only source zplug on initial load
 if [ -z ${RELOAD} ]; then
-  if ! [ type 'zplug' > /dev/null 2>&1 ]; then
-    source ~/.zplug/init.zsh
-  fi
-fi
+	export ZPLUG_HOME=/usr/local/opt/zplug
+	source $ZPLUG_HOME/init.zsh
+	zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+	zplug 'zsh-users/zsh-syntax-highlighting', defer:2
+	zplug 'zsh-users/zsh-autosuggestions'
+	export NVM_AUTO_USE=true
+	# export NVM_NO_USE=true
+	zplug 'lukechilds/zsh-nvm'
+
+	if ! zplug check; then
+		printf "Install? [y/N]: "
+		if read -q; then
+			echo; zplug install
+		fi
+	fi
+
+	zplug load
+		fi
 
 export LC_ALL='en_US.UTF-8'
 export LANG='en_US'
@@ -37,3 +68,24 @@ export LANG='en_US'
 pathmunge $DOTFILES/bin after
 pathmunge $HOME/.yarn/bin before
 pathmunge /usr/local/bin after
+
+if [[ -d /usr/local/sbin  ]]; then
+	pathmunge /usr/local/sbin after
+fi
+
+# move to next word with ctrl-F
+ bindkey -M viins "^F" vi-forward-word
+ # Move to end of line with ctrl-E
+ bindkey -M viins "^E" vi-add-eol
+
+ # add color to man pages
+ export MANROFFOPT='-c'
+ export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
+ export LESS_TERMCAP_md=$(tput bold; tput setaf 6)
+ export LESS_TERMCAP_me=$(tput sgr0)
+ export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
+ export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
+ export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
+ export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
+ export LESS_TERMCAP_mr=$(tput rev)
+ export LESS_TERMCAP_mh=$(tput dim)

@@ -1,11 +1,8 @@
 set -g default-command "login-shell"
 
 # tmux display things in 256 colors
-# set -g default-terminal "tmux-256color-italic"
-set -g default-terminal "screen-256color"
-
-# enable terminal compability
-# set-option -ga terminal-overrides ",tmux-256color-italic:Tc"
+set -g default-terminal "tmux-256color-italic"
+set -as terminal-overrides ',xterm*:Tc:sitm=\E[3m'
 
 set -g history-limit 20000
 
@@ -56,9 +53,6 @@ set-option -g set-titles-string "#T - #W"
 # reload config file
 bind r source-file ~/.tmux.conf \; display "Config Reloaded!"
 
-# quickly open a new window
-bind N new-window
-
 # split window and fix path for tmux 1.9
 bind | split-window -h -c "#{pane_current_path}"
 bind - split-window -v -c "#{pane_current_path}"
@@ -81,6 +75,9 @@ bind -r J resize-pane -D 10
 bind -r K resize-pane -U 10
 bind -r L resize-pane -R 10
 
+# enable mouse support for switching panes/windows
+setw -g mouse on
+
 # set vi mode for copy mode
 setw -g mode-keys vi
 # more settings to make copy-mode more vim-like
@@ -88,11 +85,11 @@ unbind [
 bind Escape copy-mode
 unbind p
 bind p paste-buffer
-
-set -g mouse on
+bind -Tcopy-mode-vi 'v' send -X begin-selection
+bind -Tcopy-mode-vi 'y' send -X copy-pipe-and-cancel "tmux save-buffer - | reattach-to-user-namespace pbcopy"
 
 ##############################
 ### Color & Style Settings ###
 ##############################
 
-source ~/.dotfiles/tmux/theme.sh
+source ~/.dotfiles/tmux/base16.sh

@@ -9,7 +9,9 @@ config/nvim/plugged
 config/nvim/autoload/plug.vim
 vim/vim.symlink/spell/
 vim/vim.symlink/plugged/
-.DS_Store
 
 # Gitmodules
 bin/spotify
+
+# OS Specific stuff
+.DS_Store

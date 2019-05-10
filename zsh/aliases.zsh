@@ -28,11 +28,6 @@ alias grep='grep --color=auto'
 alias df='df -h' # disk free, in Gigabytes, not bytes
 alias du='du -h -c' # calculate disk usage for a folder
 
-# Fuzzy search of installed apps
-if pacman > /dev/null 2>&1; then
-  alias apps='pacman -Q | fzf'
-fi
-
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 
@@ -46,12 +41,6 @@ elif brew > /dev/null 2>&1; then
   alias update="brew update && brew upgrade && brew doctor"
 fi
 
-# Better tmux support
-alias tmux='tmux -2'
-
-# Search for npm apps to install
-alias yarnig='all-the-package-names | fzf | xargs sudo yarn global add'
-alias yarni='all-the-package-names | fzf | xargs sudo yarn add'
-
+# Docker stuff
 alias dcu='docker-compose up'
 alias dcd='docker-compose down'

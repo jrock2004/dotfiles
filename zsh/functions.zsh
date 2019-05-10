@@ -4,11 +4,8 @@
 
 # Create a new directory and enter it
 function md() {
-  mkdir -p "$@" && cd "$@"
-}
-
-function hist() {
-  history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
+  mkdir -p $1
+  cd $1
 }
 
 # find shorthand
@@ -16,9 +13,9 @@ function f() {
   find . -name "$1"
 }
 
-function fzf-down() {
-  fzf --height 50% "$@" --border
-}
+# function fzf-down() {
+#   fzf --height 50% "$@" --border
+# }
 
 # Cleaner way to add things to the path
 function pathmunge () {
