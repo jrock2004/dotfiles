@@ -41,9 +41,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 BASE16_SHELL=$HOME/.config/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
-# zplug config
-export ZPLUG_LOADFILE=$DOTFILES/zsh/zplug.sh
-
 # only source zplug on initial load
 if [ -z ${RELOAD} ]; then
 	export ZPLUG_HOME=/usr/local/opt/zplug
@@ -63,7 +60,7 @@ if [ -z ${RELOAD} ]; then
 	fi
 
 	zplug load
-		fi
+fi
 
 export LC_ALL='en_US.UTF-8'
 export LANG='en_US'
@@ -77,18 +74,18 @@ if [[ -d /usr/local/sbin  ]]; then
 fi
 
 # move to next word with ctrl-F
- bindkey -M viins "^F" vi-forward-word
- # Move to end of line with ctrl-E
- bindkey -M viins "^E" vi-add-eol
+bindkey -M viins "^F" vi-forward-word
+# Move to end of line with ctrl-E
+bindkey -M viins "^E" vi-add-eol
 
- # add color to man pages
- export MANROFFOPT='-c'
- export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
- export LESS_TERMCAP_md=$(tput bold; tput setaf 6)
- export LESS_TERMCAP_me=$(tput sgr0)
- export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
- export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
- export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
- export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
- export LESS_TERMCAP_mr=$(tput rev)
- export LESS_TERMCAP_mh=$(tput dim)
+# add color to man pages
+export MANROFFOPT='-c'
+export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
+export LESS_TERMCAP_md=$(tput bold; tput setaf 6)
+export LESS_TERMCAP_me=$(tput sgr0)
+export LESS_TERMCAP_so=$(tput bold; tput setaf 3; tput setab 4)
+export LESS_TERMCAP_se=$(tput rmso; tput sgr0)
+export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
+export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
+export LESS_TERMCAP_mr=$(tput rev)
+export LESS_TERMCAP_mh=$(tput dim)
