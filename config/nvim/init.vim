@@ -332,8 +332,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'ryanoasis/vim-devicons'
 
   " FZF {{{
-    Plug '$HOME/.fzf' | Plug 'junegunn/fzf.vim'
-
+    Plug '/usr/local/opt/fzf'
+    Plug 'junegunn/fzf.vim'
     let g:fzf_layout = { 'down': '~25%' }
 
     if isdirectory(".git")
