@@ -248,7 +248,7 @@ call plug#begin('~/.config/nvim/plugged')
 " }}}
 
 " General Functionality {{{
-	Plug 'wincent/ferret'
+	" Plug 'wincent/ferret'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-surround'
@@ -532,9 +532,9 @@ call plug#end()
 		let base16colorspace=256
 		source ~/.vimrc_background
 	else
-		" let g:onedark_termcolors=16
-		" let g:onedark_terminal_italics=1
-		colorscheme gruvbox
+		let g:onedark_termcolors=16
+		let g:onedark_terminal_italics=1
+		colorscheme onedark
 	endif
 	syntax on
 	filetype plugin indent on

@@ -14,7 +14,7 @@ alias vim="nvim"
 alias path='echo $PATH | tr -s ":" "\n"'
 alias rmf="rm -rf"
 
-if xdg-open > /dev/null 2>&1; then
+if dotfiles::exists xdg-open ; then
   alias open="xdg-open"
 fi
 
@@ -35,10 +35,10 @@ alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
 # System update
-if apt-get > /dev/null 2>&1; then
-  alias update="sudo apt-get update && sudo apt-get upgrade"
-elif brew > /dev/null 2>&1; then
-  alias update="brew update && brew upgrade && brew doctor"
+if dotfiles::exists apt-get ; then
+  alias update='sudo apt-get update && sudo apt-get upgrade'
+elif dotfiles::exists brew ; then
+  alias update='brew update && brew upgrade && brew doctor'
 fi
 
 # Docker stuff
