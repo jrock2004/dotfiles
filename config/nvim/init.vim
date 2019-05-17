@@ -98,6 +98,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'morhetz/gruvbox'
 	Plug 'arcticicestudio/nord-vim'
 	Plug 'joshdick/onedark.vim'
+	Plug 'Rigellute/shades-of-purple.vim'
 	Plug 'chriskempson/base16-vim'
 
 	" LightLine {{{
@@ -535,6 +536,7 @@ call plug#end()
 		let g:onedark_termcolors=16
 		let g:onedark_terminal_italics=1
 		colorscheme onedark
+		" colorscheme shades_of_purple
 	endif
 	syntax on
 	filetype plugin indent on
