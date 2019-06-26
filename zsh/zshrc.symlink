@@ -89,3 +89,5 @@ export LESS_TERMCAP_us=$(tput smul; tput bold; tput setaf 7)
 export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
 export LESS_TERMCAP_mr=$(tput rev)
 export LESS_TERMCAP_mh=$(tput dim)
+
+pathmunge /usr/local/opt/grep/libexec/gnubin after

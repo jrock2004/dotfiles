@@ -59,7 +59,6 @@ call plug#begin('~/.config/nvim/plugged')
 	set mat=2
 	set colorcolumn=80
 
-	set noexpandtab
 	set smarttab
 	set tabstop=4
 	set softtabstop=4
@@ -223,10 +222,8 @@ call plug#begin('~/.config/nvim/plugged')
 	nnoremap <silent> ^ g^
 	nnoremap <silent> $ g$
 
-	vmap <leader>[ <gv
-	vmap <leader>] >gv
-	nmap <leader>[ <<
-	nmap <leader>] >>
+	vmap < <gv
+	vmap > >gv
 " }}}
 
 " AutoGroups {{{
@@ -260,6 +257,13 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'tpope/vim-vinegar'
 	Plug 'AndrewRadev/splitjoin.vim'
 	Plug 'tpope/vim-endwise'
+
+	" vim-illuminate {{{
+      Plug 'RRethy/vim-illuminate'
+      let g:Illuminate_delay = 500
+	" }}}
+
+
 	" Make starting vim better {{{
 		Plug 'mhinz/vim-startify'
 
@@ -422,9 +426,10 @@ call plug#begin('~/.config/nvim/plugged')
 
 		let g:ale_linters = {
 			\	'javascript': ['eslint'],
-				\	'javascript.jsx': ['eslint'],
+			\	'javascript.jsx': ['eslint'],
 			\	'typescript': ['tsserver', 'tslint'],
-			\	'html': []
+			\	'html': [],
+			\	'css': []
 		\}
 		let g:ale_fixers = {}
 		let g:ale_fixers['javascript'] = ['prettier', 'prettier-eslint']
@@ -462,12 +467,7 @@ call plug#begin('~/.config/nvim/plugged')
 " Language-Specific Configuration {{{
 	" html / templates {{{
 		" emmet support for vim - easily create markdup wth CSS-like syntax
-		Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript.jsx', 'javascript' ]}
-		let g:user_emmet_settings = {
-			\  'javascript.jsx': {
-			\		 'extends': 'jsx',
-			\  },
-			\}
+		Plug 'mattn/emmet-vim'
 
 		" match tags in html, similar to paren support
 		Plug 'gregsexton/MatchTag', { 'for': 'html' }
@@ -486,8 +486,9 @@ call plug#begin('~/.config/nvim/plugged')
 		Plug 'othree/yajs.vim', { 'for': [ 'javascript', 'javascript.jsx', 'html' ] }
 		" Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx', 'html'] }
 		Plug 'moll/vim-node', { 'for': 'javascript' }
-		Plug 'mxw/vim-jsx', { 'for': ['javascript.jsx', 'javascript'] }
 		Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'], 'do': 'yarn install' }
+        Plug 'MaxMEllon/vim-jsx-pretty'
+        let g:vim_jsx_pretty_highlight_close_tag = 1
 	" }}}
 
 	" TypeScript {{{

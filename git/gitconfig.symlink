@@ -39,6 +39,9 @@
   recent = "!git for-each-ref --sort='-committerdate' --format='%(color:red)%(refname)%(color:reset)%09%(committerdate)' refs/heads | sed -e 's-refs/heads/--' | less -XFR"
   latest = "!git for-each-ref --sort='-committerdate' --format='%(color:red)%(refname)%(color:reset)%09%(committerdate)' refs/remotes | sed -e 's-refs/remotes/origin/--' | less -XFR"
 
+  # Cleanup
+  cleanup = "!git branch --merged | grep  -v '\\*\\|master\\|develop' | xargs -n 1 git branch -d"
+
   # grep commands
 
   # 'diff grep'
