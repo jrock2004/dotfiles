@@ -58,6 +58,9 @@ call plug#begin('~/.config/nvim/plugged')
 	set showmatch
 	set mat=2
 	set colorcolumn=80
+  set updatetime=300
+  set signcolumn=yes
+  set shortmess+=c
 
 	set smarttab
 	set tabstop=4
@@ -112,13 +115,9 @@ call plug#begin('~/.config/nvim/plugged')
 			\				[ 'readonly', 'filetype', 'filename' ]],
 			\		'right': [ [ 'percent' ], [ 'lineinfo' ],
 			\				[ 'fileformat', 'fileencoding' ],
-			\				[ 'linter_errors', 'linter_warnings' ]]
+			\				[ 'gitblame', 'currentfunction',  'cocstatus', 'linter_errors', 'linter_warnings' ]]
 			\	},
 			\	'component_expand': {
-			\		'linter': 'LightlineLinter',
-			\		'linter_warnings': 'LightlineLinterWarnings',
-			\		'linter_errors': 'LightlineLinterErrors',
-			\		'linter_ok': 'LightlineLinterOk'
 			\	},
 			\	'component_type': {
 			\		'readonly': 'error',
@@ -130,7 +129,10 @@ call plug#begin('~/.config/nvim/plugged')
 			\		'filename': 'LightlineFileName',
 			\		'fileformat': 'LightlineFileFormat',
 			\		'filetype': 'LightlineFileType',
-			\		'gitbranch': 'LightlineGitBranch'
+			\		'gitbranch': 'LightlineGitBranch',
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CoCCurrentFunction',
+      \   'gitblame': 'CocGitBlame'
 			\	},
 			\	'tabline': {
 			\		'left': [ [ 'tabs' ] ],
@@ -168,29 +170,6 @@ call plug#begin('~/.config/nvim/plugged')
 			return WebDevIconsGetFileTypeSymbol()
 		endfunction
 
-		function! LightlineLinter() abort
-			let l:counts = ale#statusline#Count(bufnr(''))
-			return l:counts.total == 0 ? '' : printf('×%d', l:counts.total)
-		endfunction
-
-		function! LightlineLinterWarnings() abort
-			let l:counts = ale#statusline#Count(bufnr(''))
-			let l:all_errors = l:counts.error + l:counts.style_error
-			let l:all_non_errors = l:counts.total - l:all_errors
-			return l:counts.total == 0 ? '' : '⚠ ' . printf('%d', all_non_errors)
-		endfunction
-
-		function! LightlineLinterErrors() abort
-			let l:counts = ale#statusline#Count(bufnr(''))
-			let l:all_errors = l:counts.error + l:counts.style_error
-			return l:counts.total == 0 ? '' : '✖ ' . printf('%d', all_errors)
-		endfunction
-
-		function! LightlineLinterOk() abort
-			let l:counts = ale#statusline#Count(bufnr(''))
-			return l:counts.total == 0 ? 'OK' : ''
-		endfunction
-
 		function! LightlineGitBranch()
 			return "\uE725" . (exists('*fugitive#head') ? fugitive#head() : '')
 		endfunction
@@ -202,9 +181,13 @@ call plug#begin('~/.config/nvim/plugged')
 			endif
 		endfunction
 
-		augroup alestatus
-		autocmd User ALELintPost call LightlineUpdate()
-		augroup end
+    function! CoCCurrentFunction()
+        return get(b:, 'coc_current_function', '')
+    endfunction
+
+    function! CocGitBlame()
+        return winwidth(0) > 70 ? get(b:, 'coc_git_blame', '') : ''
+    endfunction
 	" }}}
 
 " }}}
@@ -247,7 +230,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 " General Functionality {{{
 	" Plug 'wincent/ferret'
-	Plug 'jiangmiao/auto-pairs'
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-surround'
 	Plug 'benmills/vimux'
@@ -257,12 +239,6 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'tpope/vim-vinegar'
 	Plug 'AndrewRadev/splitjoin.vim'
 	Plug 'tpope/vim-endwise'
-
-	" vim-illuminate {{{
-      Plug 'RRethy/vim-illuminate'
-      let g:Illuminate_delay = 500
-	" }}}
-
 
 	" Make starting vim better {{{
 		Plug 'mhinz/vim-startify'
@@ -387,16 +363,6 @@ call plug#begin('~/.config/nvim/plugged')
 			\ call fzf#vim#gitfiles(<q-args>, fzf#vim#with_preview('right:50%', '?'), <bang>0)
 	" }}}
 
-	" signify {{{
-		" Plug 'airblade/vim-gitgutter'
-		Plug 'mhinz/vim-signify'
-		let g:signify_vcs_list = [ 'git' ]
-		let g:signify_sign_add				 = '+'
-		let g:signify_sign_delete			 = '-'
-		let g:signify_sign_delete_first_line = '_'
-		let g:signify_sign_change = '|'
-	" }}}
-
 	" vim-fugitive {{{
 		Plug 'tpope/vim-fugitive'
 		nmap <silent> <leader>gs :Gstatus<cr>
@@ -409,39 +375,6 @@ call plug#begin('~/.config/nvim/plugged')
 		Plug 'sodapopcan/vim-twiggy'
 	" }}}
 
-	" ALE {{{
-		Plug 'w0rp/ale' " Asynchonous linting engine
-		" Plug 'maximbaz/lightline-ale'
-
-		let g:ale_set_highlights = 1
-		let g:ale_change_sign_column_color = 0
-		let g:ale_sign_column_always = 1
-		let g:ale_lint_on_text_changed = 'always'
-		let g:ale_sign_error = '✖'
-		let g:ale_sign_warning = '⚠'
-		let g:ale_echo_msg_error_str = '✖'
-		let g:ale_echo_msg_warning_str = '⚠'
-		let g:ale_echo_msg_format = '%severity% %s% [%linter%% code%]'
-		" let g:ale_completion_enabled = 1
-
-		let g:ale_linters = {
-			\	'javascript': ['eslint'],
-			\	'javascript.jsx': ['eslint'],
-			\	'typescript': ['tsserver', 'tslint'],
-			\	'html': [],
-			\	'css': []
-		\}
-		let g:ale_fixers = {}
-		let g:ale_fixers['javascript'] = ['prettier', 'prettier-eslint']
-		let g:ale_fixers['typescript'] = ['prettier', 'tslint']
-		let g:ale_fixers['json'] = ['prettier']
-		let g:ale_fixers['css'] = ['prettier']
-		let g:ale_javascript_prettier_use_local_config = 1
-		let g:ale_fix_on_save = 1
-
-		nmap <silent><leader>af :ALEFix<cr>
-	" }}}
-
 	" UltiSnips {{{
 		Plug 'SirVer/ultisnips' " Snippets plugin
 		Plug 'honza/vim-snippets'
@@ -450,18 +383,30 @@ call plug#begin('~/.config/nvim/plugged')
 		let g:UltiSnipsExpandTrigger="<tab>"
 	" }}}
 
-	" Deoplete {{{ "
-		if (has('nvim'))
-			Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-		else
-			Plug 'Shougo/deoplete.nvim'
-			Plug 'roxma/nvim-yarp'
-			Plug 'roxma/vim-hug-neovim-rpc'
-		endif
-		let g:deoplete#enable_at_startup = 1
-	" }}}
+	" coc {{{ "
+        Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+        autocmd CursorHold * silent call CocActionAsync('highlight')
 
-	" Plug 'rhysd/committia.vim'
+        " coc-prettier
+        command! -nargs=0 Prettier :CocCommand prettier.formatFile
+        nmap <leader>f :CocCommand prettier.formatFile<cr>
+
+        " coc-git
+        nmap [g <Plug>(coc-git-prevchunk)
+        nmap ]g <Plug>(coc-git-nextchunk)
+        nmap gs <Plug>(coc-git-chunkinfo)
+        nmap gu :CocCommand git.chunkUndo<cr>
+
+        "remap keys for gotos
+        nmap <silent> gd <Plug>(coc-definition)
+        nmap <silent> gy <Plug>(coc-type-definition)
+        nmap <silent> gi <Plug>(coc-implementation)
+        nmap <silent> gr <Plug>(coc-references)
+
+        " diagnostics navigation
+        nmap <silent> [c <Plug>(coc-diagnostic-prev)
+        nmap <silent> ]c <Plug>(coc-diagnostic-next)
+    " }}}
 " }}}
 
 " Language-Specific Configuration {{{
@@ -493,7 +438,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 	" TypeScript {{{
 		Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
-		Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+		" Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 	" }}}
 
 	" Styles {{{
@@ -502,13 +447,6 @@ call plug#begin('~/.config/nvim/plugged')
 		Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 		Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 		Plug 'stephenway/postcss.vim', { 'for': 'css' }
-
-		Plug 'RRethy/vim-hexokinase'
-		let g:Hexokinase_highlighters = ['virtual']
-		let g:Hexokinase_refreshEvents = ['BufWritePost']
-		let g:Hexokinase_ftAutoload = ['css']
-		" let g:Hexokinase_virtualText = '█'
-		let g:Hexokinase_virtualText = '■'
 	" }}}
 
 	" markdown {{{
@@ -553,12 +491,6 @@ call plug#end()
 	highlight xmlAttrib cterm=italic term=italic gui=italic
 	" highlight Type cterm=italic term=italic gui=italic
 	highlight Normal ctermbg=none
-
-	" call deoplete#custom#option({
-	" \ 'auto_complete_delay': 200,
-	" \ 'auto_refresh_delay': 100
-	" \ })
-
 " }}}
 
 " vim:foldmethod=marker foldlevel=0
