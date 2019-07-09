@@ -406,6 +406,37 @@ call plug#begin('~/.config/nvim/plugged')
         " diagnostics navigation
         nmap <silent> [c <Plug>(coc-diagnostic-prev)
         nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+        let g:coc_global_extensions = [
+          \ 'coc-css',
+          \ 'coc-docker',
+          \ 'coc-emoji',
+          \ 'coc-emmet',
+          \ 'coc-eslint',
+          \ 'coc-git',
+          \ 'coc-highlight',
+          \ 'coc-html',
+          \ 'coc-json',
+          \ 'coc-pairs',
+          \ 'coc-prettier',
+          \ 'coc-sh',
+          \ 'coc-snippets',
+          \ 'coc-tailwindcss',
+          \ 'coc-tsserver',
+          \ 'coc-vimlsp',
+          \ 'coc-yaml'
+        \ ]
+
+        inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+        inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+        inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+        "" Use enter to confirm completion
+        inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+        "" Close preview window when completion is done.
+        autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
     " }}}
 " }}}
 
