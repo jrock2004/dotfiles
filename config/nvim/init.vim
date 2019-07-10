@@ -237,8 +237,6 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'editorconfig/editorconfig-vim'
 	Plug 'vim-scripts/PreserveNoEOL'
 	Plug 'tpope/vim-vinegar'
-	Plug 'AndrewRadev/splitjoin.vim'
-	Plug 'tpope/vim-endwise'
 
 	" Make starting vim better {{{
 		Plug 'mhinz/vim-startify'
@@ -278,35 +276,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 		autocmd User Startified setlocal cursorline
 		nmap <leader>st :Startify<cr>
-	" }}}
-
-	" Writing in vim {{{{
-		Plug 'junegunn/goyo.vim'
-
-		let g:goyo_entered = 0
-		function! s:goyo_enter()
-			silent !tmux set status off
-			let g:goyo_entered = 1
-			set noshowmode
-			set noshowcmd
-			set scrolloff=999
-			set wrap
-			setlocal textwidth=0
-			setlocal wrapmargin=0
-		endfunction
-
-		function! s:goyo_leave()
-			silent !tmux set status on
-			let g:goyo_entered = 0
-			set showmode
-			set showcmd
-			set scrolloff=5
-			set textwidth=78
-			set wrapmargin=8
-		endfunction
-
-		autocmd! User GoyoEnter nested call <SID>goyo_enter()
-		autocmd! User GoyoLeave nested call <SID>goyo_leave()
 	" }}}
 
 	Plug 'sickill/vim-pasta'
@@ -380,7 +349,7 @@ call plug#begin('~/.config/nvim/plugged')
 		Plug 'honza/vim-snippets'
 		Plug 'jrock2004/react-snippets'
 
-		let g:UltiSnipsExpandTrigger="<tab>"
+		" let g:UltiSnipsExpandTrigger="<tab>"
 	" }}}
 
 	" coc {{{ "
@@ -433,7 +402,7 @@ call plug#begin('~/.config/nvim/plugged')
         inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
         "" Use enter to confirm completion
-        inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+        " inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 
         "" Close preview window when completion is done.
         autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
