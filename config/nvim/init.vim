@@ -380,6 +380,7 @@ call plug#begin('~/.config/nvim/plugged')
         let g:coc_global_extensions = [
           \ 'coc-css',
           \ 'coc-docker',
+          \ 'coc-ember',
           \ 'coc-emoji',
           \ 'coc-emmet',
           \ 'coc-eslint',
@@ -488,7 +489,6 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'fatih/vim-go', { 'for': 'go' }
 	Plug 'ekalinin/Dockerfile.vim', { 'for': 'dockerfile' }
 	Plug 'joukevandermaas/vim-ember-hbs', { 'for': 'html.handlebars' }
-	Plug 'josemarluedke/ember-vim-snippets', { 'for': ['html.handlebars', 'javascript.jsx'] }
 " }}}
 
 call plug#end()
