@@ -17,17 +17,6 @@ function f() {
 #   fzf --height 50% "$@" --border
 # }
 
-# Cleaner way to add things to the path
-function pathmunge () {
-  if ! echo "$PATH" | /usr/bin/grep -Eq "(^|:)$1($|:)" ; then
-    if [ "$2" = "after" ] ; then
-      PATH="$PATH:$1"
-    else
-      PATH="$1:$PATH"
-    fi
-  fi
-}
-
 function fkill() {
   kill -9 $(ps ax | fzf | awk '{ print $1 }')
 }

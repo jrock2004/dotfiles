@@ -1,38 +1,29 @@
-# reload zsh config
-alias reload!='RELOAD=1 source ~/.zshrc'
-
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
-	colorflag="--color"
+  colorflag="--color"
 else # OS X `ls`
-	colorflag="-G"
+  colorflag="-G"
 fi
-
-alias vim="nvim"
-
-# Filesystem aliases
-alias path='echo $PATH | tr -s ":" "\n"'
-alias rmf="rm -rf"
 
 if dotfiles::exists xdg-open ; then
   alias open="xdg-open"
 fi
 
-# Fancy weather
-alias wttr='curl -4 http://wttr.in/honey_brook'
-alias wttrw='curl -4 http://wttr.in/lansdale'
-alias moon='curl -4 http://wttr.in/Moon'
-
 # Helpers
 alias grep='grep --color=auto'
 alias df='df -h' # disk free, in Gigabytes, not bytes
 alias du='du -h -c' # calculate disk usage for a folder
+alias reload!='RELOAD=1 source ~/.zshrc'
+alias path='echo $PATH | tr -s ":" "\n"'
+
+
+alias l="ls -lah ${colorflag}"
+alias la="ls -AF ${colorflag}"
+alias ll="ls -lFh ${colorflag}"
+alias lld="ls -l | grep ^d"
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
-
-# Recursively delete `.DS_Store` files
-alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 
 # System update
 if dotfiles::exists apt-get ; then
@@ -44,3 +35,6 @@ fi
 # Docker stuff
 alias dcu='docker-compose up'
 alias dcd='docker-compose down'
+
+# Switch vim to neovim
+alias vim="nvim"

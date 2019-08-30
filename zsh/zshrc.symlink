@@ -1,84 +1,52 @@
+# ZSH variables
 export DOTFILES=$HOME/.dotfiles
 export ZSH=$DOTFILES/zsh
+export EDITOR='nvim'
+export GIT_EDITOR='nvim'
+export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
+export LC_ALL='en_US.UTF-8'
+export LANG='en_US'
 
-# display how long all tasks over 10 seconds take
+if [ -z "$TMUX"  ]; then
+  export TERM=xterm-256color-italic
+else
+  export TERM=tmux-256color-italic
+fi
+
+# ZSH configuration
 export REPORTTIME=10
+for config ($ZSH/**/*completion.sh) source $config
 
-[[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
-
-source "$ZSH/utils.zsh"
-source "$ZSH/prompt.zsh"
-source "$ZSH/aliases.zsh"
-source "$ZSH/colors.zsh"
-source "$ZSH/completion.zsh"
-source "$ZSH/config.zsh"
-source "$ZSH/functions.zsh"
-source "$ZSH/git.zsh"
-source "$ZSH/tmux.zsh"
-
-# initialize autocomplete
 autoload -U compinit add-zsh-hook
 compinit
 
-for config ($ZSH/**/*completion.sh) source $config
-
-# set the editor
-export EDITOR='nvim'
-export GIT_EDITOR='nvim'
-
-export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
-
-if [ -z "$TMUX"  ]; then
-	export TERM=xterm-256color-italic
-else
-	export TERM=tmux-256color-italic
-fi
-
+# FZF Configuration
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-
-# only source zplug on initial load
+# Zplug
 if [ -z ${RELOAD} ]; then
-	export ZPLUG_HOME=/usr/local/opt/zplug
-	source $ZPLUG_HOME/init.zsh
-	zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-	zplug 'zsh-users/zsh-syntax-highlighting', defer:2
-	zplug 'zsh-users/zsh-autosuggestions'
-	export NVM_AUTO_USE=true
-	# export NVM_NO_USE=true
-	zplug 'lukechilds/zsh-nvm'
+  export ZPLUG_HOME=/usr/local/opt/zplug
+  source $ZPLUG_HOME/init.zsh
+  zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+  zplug 'zsh-users/zsh-syntax-highlighting', defer:2
+  zplug 'zsh-users/zsh-autosuggestions'
+  export NVM_AUTO_USE=true
+  # export NVM_NO_USE=true
+  zplug 'lukechilds/zsh-nvm'
 
-	if ! zplug check; then
-		printf "Install? [y/N]: "
-		if read -q; then
-			echo; zplug install
-		fi
-	fi
+  if ! zplug check; then
+    printf "Install? [y/N]: "
+    if read -q; then
+      echo; zplug install
+    fi
+  fi
 
-	zplug load
+  zplug load
 fi
 
-export LC_ALL='en_US.UTF-8'
-export LANG='en_US'
-
-pathmunge $DOTFILES/bin after
-pathmunge $HOME/.yarn/bin before
-pathmunge /usr/local/bin after
-
-if [[ -d /usr/local/sbin  ]]; then
-	pathmunge /usr/local/sbin after
-fi
-
-# move to next word with ctrl-F
-bindkey -M viins "^F" vi-forward-word
-# Move to end of line with ctrl-E
-bindkey -M viins "^E" vi-add-eol
-
-# add color to man pages
+# Man pages config
 export MANROFFOPT='-c'
 export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
 export LESS_TERMCAP_md=$(tput bold; tput setaf 6)
@@ -90,4 +58,30 @@ export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
 export LESS_TERMCAP_mr=$(tput rev)
 export LESS_TERMCAP_mh=$(tput dim)
 
-pathmunge /usr/local/opt/grep/libexec/gnubin after
+# Load external configuration things
+source "$ZSH/utils.zsh"
+source "$ZSH/aliases.zsh"
+source "$ZSH/colors.zsh"
+source "$ZSH/completion.zsh"
+source "$ZSH/config.zsh"
+source "$ZSH/functions.zsh"
+source "$ZSH/git.zsh"
+source "$ZSH/prompt.zsh"
+source "$ZSH/tmux.zsh"
+
+# Misc things
+[[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
+
+BASE16_SHELL=$HOME/.config/base16-shell/
+[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+if [ -z ${RELOAD} ]; then
+  # Add some things to the path
+  export PATH="$PATH:/usr/local/opt/grep/libexec/gnubin"
+  export PATH="$PATH:$DOTFILES/bin"
+fi
+
+# # move to next word with ctrl-F
+# bindkey -M viins "^F" vi-forward-word
+# # Move to end of line with ctrl-E
+# bindkey -M viins "^E" vi-add-eol
