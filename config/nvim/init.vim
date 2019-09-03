@@ -243,6 +243,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-repeat'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'vim-scripts/PreserveNoEOL'
+
+  let g:PreserveNoEOL = 1
   Plug 'tpope/vim-vinegar'
 
   " Make starting vim better {{{
