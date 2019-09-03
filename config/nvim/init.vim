@@ -315,6 +315,7 @@ Plug 'ryanoasis/vim-devicons'
   imap <c-x><c-f> <plug>(fzf-complete-path)
   imap <c-x><c-j> <plug>(fzf-complete-file-ag)
   imap <c-x><c-l> <plug>(fzf-complete-line)
+  imap <c-l> <plug>(fzf-maps-i)
 
   nnoremap <silent> <Leader>C :call fzf#run({
         \ 'source':

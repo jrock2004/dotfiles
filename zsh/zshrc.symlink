@@ -6,6 +6,19 @@ export GIT_EDITOR='nvim'
 export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 export LC_ALL='en_US.UTF-8'
 export LANG='en_US'
+export CACHEDIR="$HOME/.local/share"
+export ZPLUGDIR="$CACHEDIR/zsh/plugins"
+
+if [[ ! -d "$ZPLUGDIR" ]]; then
+    mkdir -p "$ZPLUGDIR"
+fi
+
+# array containing plugin information (managed by zfetch)
+typeset -A plugins
+
+if [[ -d $DOTFILES/zsh/functions ]]; then
+  for func in $DOTFILES/zsh/functions/*(:t); autoload -U $func
+fi
 
 if [ -z "$TMUX"  ]; then
   export TERM=xterm-256color-italic
@@ -26,25 +39,13 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Zplug
-if [ -z ${RELOAD} ]; then
-  export ZPLUG_HOME=/usr/local/opt/zplug
-  source $ZPLUG_HOME/init.zsh
-  zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-  zplug 'zsh-users/zsh-syntax-highlighting', defer:2
-  zplug 'zsh-users/zsh-autosuggestions'
-  export NVM_AUTO_USE=true
-  # export NVM_NO_USE=true
-  zplug 'lukechilds/zsh-nvm'
+zfetch $ZPLUGDIR zsh-users/zsh-syntax-highlighting
+source $ZPLUGDIR/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+zfetch $ZPLUGDIR zsh-users/zsh-autosuggestions
+source $ZPLUGDIR/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-  if ! zplug check; then
-    printf "Install? [y/N]: "
-    if read -q; then
-      echo; zplug install
-    fi
-  fi
-
-  zplug load
-fi
+zfetch $ZPLUGDIR chriskempson/base16-shell
+source $ZPLUGDIR/chriskempson/base16-shell/base16-shell.plugin.zsh
 
 # Man pages config
 export MANROFFOPT='-c'
