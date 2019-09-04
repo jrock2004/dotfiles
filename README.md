@@ -1,27 +1,25 @@
-My Dotfiles
-=
+# My Dotfiles
+This is the configuration that I use on all my machines. These will work for [Mac](https://apple.com), [Linux](https://linux.org), and or [WSL](https://docs.microsoft.com/en-us/windows/wsl/about). 
 
-This repo is used to store my dotfiles for the applications that I use on my machine
+![A screenshot of my terminal](terminal.png)
 
-## Branches
-- master - Linux and Bash on Windows
-- mac - Used on Apple [Tested on El Capitan]
+## Before Installing
+Before starting you will want to install the following applications:
 
-## Pre-req
-You need to just install git and curl so you can clone the repo
+- curl
+- git
+- wget
 
-## How to use
-Edit the following file and update the variables to match your need
+## Installation
+To install the dotfiles, you will want to [clone my install repo](https://github.com/jrock2004/install-scripts.git) which will clone this repo for you.
 
+## After Install
+After the install you will want to set your base16 theme. You can do this by running the following command in your terminal
+
+``` bash
+> base16_default-dark
 ```
-~/.dotfiles/install.sh
-```
-
-After you edit that, go into the .dotfiles directory and run the following command
-
-```
-$ ./install.sh
-```
+*Note:* You can set your theme to anything you want
 
 ## Thanks
-I did not build this from scratch. I had help and started with a template. Thanks Nick Nisi(https://github.com/nicknisi)
+I did not build this from scratch. I had help and started with a template. Thanks [Nick Nisi](https://github.com/nicknisi)
