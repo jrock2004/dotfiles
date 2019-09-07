@@ -1,8 +1,8 @@
 [user]
-  name = John Costanzo
-  email = jrock2004@gmail.com
+	name = John Costanzo
+	email = jrock2004@gmail.com
 [github]
-  user = jrock2004
+	user = jrock2004
 [alias]
   # list all aliases
   la = "!git config -l | grep alias | cut -c 7-"
@@ -104,7 +104,7 @@
   extendRegexp = true
   lineNumber = true
 [credential]
-  helper = osxkeychain
+	helper = osxkeychain
 [rebase]
   instructionFormat = "[%an - %ar] %s"
   autoStash = true
