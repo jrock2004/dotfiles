@@ -80,6 +80,7 @@ if [ -z ${RELOAD} ]; then
   # Add some things to the path
   export PATH="$PATH:/usr/local/opt/grep/libexec/gnubin"
   export PATH="$PATH:$DOTFILES/bin"
+  export PATH="$PATH:/usr/local/opt/node@10/bin"
 fi
 
 # # move to next word with ctrl-F
