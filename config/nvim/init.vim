@@ -503,6 +503,7 @@ Plug 'ryanoasis/vim-devicons'
 
   Plug 'ekalinin/Dockerfile.vim', { 'for': 'dockerfile' }
   Plug 'joukevandermaas/vim-ember-hbs', { 'for': 'html.handlebars' }
+  Plug 'josemarluedke/ember-vim-snippets'
 " }}}
 
 call plug#end()
