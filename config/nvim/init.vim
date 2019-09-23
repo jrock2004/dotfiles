@@ -387,6 +387,10 @@ Plug 'ryanoasis/vim-devicons'
   nmap <silent> [c <Plug>(coc-diagnostic-prev)
   nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
+  " snippets
+  imap <tab> <Plug>(coc-snippets-expand)
+  let g:coc_snippet_next = '<c-j>'
+
   let g:coc_global_extensions = [
         \ 'coc-css',
         \ 'coc-docker',
@@ -397,7 +401,9 @@ Plug 'ryanoasis/vim-devicons'
         \ 'coc-git',
         \ 'coc-highlight',
         \ 'coc-html',
+        \ 'coc-import-cost',
         \ 'coc-json',
+        \ 'coc-omnisharp',
         \ 'coc-pairs',
         \ 'coc-prettier',
         \ 'coc-sh',
@@ -495,7 +501,6 @@ Plug 'ryanoasis/vim-devicons'
     let g:vim_json_syntax_conceal = 0
   " }}}
 
-  Plug 'fatih/vim-go', { 'for': 'go' }
   Plug 'ekalinin/Dockerfile.vim', { 'for': 'dockerfile' }
   Plug 'joukevandermaas/vim-ember-hbs', { 'for': 'html.handlebars' }
 " }}}
