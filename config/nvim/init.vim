@@ -243,6 +243,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-repeat'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'vim-scripts/PreserveNoEOL'
+  Plug 'tpope/vim-projectionist'
 
   Plug 'tpope/vim-vinegar'
 
