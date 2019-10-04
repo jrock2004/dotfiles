@@ -370,6 +370,7 @@ Plug 'ryanoasis/vim-devicons'
   " coc-prettier
   command! -nargs=0 Prettier :CocCommand prettier.formatFile
   nmap <leader>f :CocCommand prettier.formatFile<cr>
+  vmap <leader>f <Plug>(coc-format-selected)
 
   " coc-git
   nmap [g <Plug>(coc-git-prevchunk)

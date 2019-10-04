@@ -14,5 +14,9 @@
   "diagnostic.hintSign": "○",
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "git.addGlameToBufferVar": true,
-  "prettier.requireConfig": true
+  "prettier.requireConfig": true,
+  "emmet.includeLanguages": {
+    "html.handlebars": "html",
+    "javascript": "javascriptreact"
+  }
 }
