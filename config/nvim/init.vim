@@ -397,7 +397,6 @@ Plug 'ryanoasis/vim-devicons'
         \ 'coc-css',
         \ 'coc-docker',
         \ 'coc-ember',
-        \ 'coc-emoji',
         \ 'coc-emmet',
         \ 'coc-eslint',
         \ 'coc-git',

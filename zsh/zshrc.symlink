@@ -40,12 +40,9 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Zplug
 zfetch $ZPLUGDIR zsh-users/zsh-syntax-highlighting
-source $ZPLUGDIR/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 zfetch $ZPLUGDIR zsh-users/zsh-autosuggestions
-source $ZPLUGDIR/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 zfetch $ZPLUGDIR chriskempson/base16-shell
-source $ZPLUGDIR/chriskempson/base16-shell/base16-shell.plugin.zsh
+zfetch $ZPLUGDIR lukechilds/zsh-nvm
 
 # Man pages config
 export MANROFFOPT='-c'

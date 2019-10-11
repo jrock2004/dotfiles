@@ -1,5 +1,4 @@
 ## Type additions
-
 # add new types to search by
 --type-add
 style:*.{css,sass,less,stylus}
@@ -15,6 +14,12 @@ dts:*.d.ts
 
 --type-add
 spec:*.spec.{ts,tsx,js,jsx}
+
+--type-add
+tsx:*.tsx
+
+--type-add
+jsx:*.jsx
 
 # ignore case
 --smart-case
