@@ -19,5 +19,32 @@
     "html.handlebars": "html",
     "javascript": "javascriptreact"
   },
-  "coc.preferences.formatOnType": true
+  "coc.preferences.formatOnType": true,
+  "tailwindCSS.htmlLanguages": [
+    "blade",
+    "edge",
+    "eelixir",
+    "ejs",
+    "elixir",
+    "erb",
+    "eruby",
+    "haml",
+    "handlebars",
+    "html",
+    "HTML (EEx)",
+    "HTML (Eex)",
+    "html.twig",
+    "html.handlebars",
+    "jade",
+    "leaf",
+    "markdown",
+    "njk",
+    "nunjucks",
+    "php",
+    "razor",
+    "slim",
+    "svelte",
+    "twig",
+    "vue"
+  ]
 }
