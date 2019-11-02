@@ -12,8 +12,7 @@
   "diagnostic.warningSign": "⚠",
   "diagnostic.infoSign": "●",
   "diagnostic.hintSign": "○",
-  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-  "git.addGlameToBufferVar": true,
+  "git.addGBlameToBufferVar": true,
   "prettier.requireConfig": true,
   "emmet.includeLanguages": {
     "html.handlebars": "html",

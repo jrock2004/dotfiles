@@ -42,7 +42,6 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 zfetch $ZPLUGDIR zsh-users/zsh-syntax-highlighting
 zfetch $ZPLUGDIR zsh-users/zsh-autosuggestions
 zfetch $ZPLUGDIR chriskempson/base16-shell
-zfetch $ZPLUGDIR lukechilds/zsh-nvm
 
 # Man pages config
 export MANROFFOPT='-c'
@@ -77,13 +76,15 @@ if [ -z ${RELOAD} ]; then
   # Add some things to the path
   export PATH="$PATH:/usr/local/opt/grep/libexec/gnubin"
   export PATH="$PATH:$DOTFILES/bin"
-  export PATH="$PATH:/usr/local/opt/node@10/bin"
+  export PATH="$PATH:$HOME/.npmbin/node_modules/.bin"
+
+  # add fnm
+  eval "`fnm env --use-on-cd`"
 fi
 
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # # move to next word with ctrl-F
 # bindkey -M viins "^F" vi-forward-word
 # # Move to end of line with ctrl-E
 # bindkey -M viins "^E" vi-add-eol
+
