@@ -31,6 +31,7 @@ call plug#begin('~/.config/nvim/plugged')
   set t_vb=
   set tm=500
   set encoding=utf-8
+  set viminfo='100,n$HOME/.vim/files/info/viminfo
 
   scriptencoding utf-8
 " }}}
@@ -170,7 +171,7 @@ call plug#begin('~/.config/nvim/plugged')
     function! LightlineFileFormat()
       " only show the file format if it's not 'unix'
       let format = &fileformat == 'unix' ? '' : &fileformat
-      return winwidth(0) > 70 ? format . ' ' . WebDevIconsGetFileFormatSymbol() : ''
+      return winwidth(0) > 150 ? format . ' ' . WebDevIconsGetFileFormatSymbol() : ''
     endfunction
 
     function! LightlineFileType()
@@ -178,7 +179,7 @@ call plug#begin('~/.config/nvim/plugged')
     endfunction
 
     function! LightlineGitBranch()
-      return "\uE725" . (exists('*fugitive#head') ? fugitive#head() : '')
+      return "\uE725 " . (exists('*fugitive#head') ? fugitive#head() : '')
     endfunction
 
     function! LightlineUpdate()
@@ -193,7 +194,11 @@ call plug#begin('~/.config/nvim/plugged')
     endfunction
 
     function! CocGitBlame()
-      return winwidth(0) > 70 ? get(b:, 'coc_git_blame', '') : ''
+      let blame = get(b:, 'coc_git_blame', '')
+      let count = strchars(get(b:, 'coc_git_blame', ''))
+      let parsed = count > 50 ? blame[0:50] : blame
+
+      return winwidth(0) > 125 ? parsed : ''
     endfunction
   " }}}
 
@@ -369,7 +374,7 @@ Plug 'ryanoasis/vim-devicons'
 
   " coc-prettier
   command! -nargs=0 Prettier :CocCommand prettier.formatFile
-  nmap <leader>f :CocCommand prettier.formatFile<cr>
+  nmap <leader>ff :CocCommand prettier.formatFile<cr>
   vmap <leader>f <Plug>(coc-format-selected)
 
   " coc-git
