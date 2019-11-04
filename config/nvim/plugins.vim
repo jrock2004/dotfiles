@@ -30,8 +30,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
 
-  Plug 'SirVer/ultisnips'
-
   """"""""""""""""""""
   " Language Servers
   "
@@ -144,6 +142,15 @@ call plug#begin('~/.config/nvim/plugged')
     \ { 'up': [ 'Update Plugins', ':PlugUpdate' ] },
     \ { 'ug': [ 'Upgrade Plugin Manager', ':PlugUpgrade' ] },
   \ ]
+
+  """"""""""""""""""
+  " Snippets
+  """"""""""""""""""
+  Plug 'SirVer/ultisnips'
+
+  " Ember"
+  Plug 'josemarluedke/ember-vim-snippets'
+
 
   """"""""""""""""""
   " Uncategoried

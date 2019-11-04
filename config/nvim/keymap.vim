@@ -50,6 +50,14 @@ command! -bang -nargs=? -complete=dir GitFiles
 noremap <space> :set hlsearch! hlsearch?<cr>
 
 """""""""""""""""""""
+" Source Control
+"""""""""""""""""""""
+nmap <silent> <leader>gs :Gstatus<cr>
+nmap <leader>ge :Gedit<cr>
+nmap <silent><leader>gr :Gread<cr>
+nmap <silent><leader>gb :Gblame<cr>
+
+"""""""""""""""""""""
 " Working with Code
 """""""""""""""""""""
 " Move Lines Up/Down
