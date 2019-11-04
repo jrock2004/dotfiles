@@ -33,6 +33,8 @@ call plug#begin('~/.config/nvim/plugged')
   set encoding=utf-8
   set viminfo='100,n$HOME/.vim/files/info/viminfo
 
+  set scrolloff=3
+
   scriptencoding utf-8
 " }}}
 
@@ -57,6 +59,7 @@ call plug#begin('~/.config/nvim/plugged')
   set shell=$SHELL
   set cmdheight=1
   set title
+  set titlestring=%f%(\ [%M]%)
   set showmatch
   set mat=2
   set colorcolumn=80
@@ -389,6 +392,7 @@ Plug 'ryanoasis/vim-devicons'
   nmap <silent> gi <Plug>(coc-implementation)
   nmap <silent> gr <Plug>(coc-references)
   nmap <silent> gh <Plug>(coc-doHover)
+  nmap <silent> ga <Plug>(coc-codeaction)
 
   " diagnostics navigation
   nmap <silent> [c <Plug>(coc-diagnostic-prev)
@@ -403,6 +407,7 @@ Plug 'ryanoasis/vim-devicons'
         \ 'coc-docker',
         \ 'coc-ember',
         \ 'coc-emmet',
+        \ 'coc-explorer',
         \ 'coc-eslint',
         \ 'coc-git',
         \ 'coc-highlight',
@@ -455,6 +460,9 @@ Plug 'ryanoasis/vim-devicons'
 
   "" Close preview window when completion is done.
   autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+  "explorer
+  nmap - :CocCommand explorer<CR>
 " }}}
 
 " Language-Specific Configuration {{{
