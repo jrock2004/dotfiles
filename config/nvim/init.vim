@@ -1,5 +1,8 @@
 set nocompatible
 
+" Ensure that we have vim-plug installed
+call functions#PlugLoad()
+
 so ~/.config/nvim/plugins.vim
 so ~/.config/nvim/editor.vim
 so ~/.config/nvim/functions.vim
