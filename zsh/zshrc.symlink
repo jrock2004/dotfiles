@@ -76,6 +76,7 @@ if [ -z ${RELOAD} ]; then
   # Add some things to the path
   export PATH="$PATH:/usr/local/opt/grep/libexec/gnubin"
   export PATH="$PATH:$DOTFILES/bin"
+  export PATH="$PATH:$HOME/.fnm"
   export PATH="$PATH:$HOME/.npmbin/node_modules/.bin"
 
   # add fnm
