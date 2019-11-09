@@ -61,6 +61,8 @@ set hidden
 " Search
 set ignorecase
 set smartcase
+set incsearch
+set inccommand=nosplit
 
 set viminfo='100,n$HOME/.vim/files/info/viminfo
 
