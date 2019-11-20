@@ -11,6 +11,7 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-omnisharp',
   \ 'coc-pairs',
+  \ 'coc-prettier',
   \ 'coc-sh',
   \ 'coc-snippets',
   \ 'coc-tailwindcss',

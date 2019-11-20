@@ -19,6 +19,7 @@
     "javascript": "javascriptreact"
   },
   "coc.preferences.formatOnType": true,
+  "coc.preferences.formatOnSaveFiletypes": [ "javascript" ],
   "tailwindCSS.htmlLanguages": [
     "blade",
     "edge",
