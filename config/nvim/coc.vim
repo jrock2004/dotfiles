@@ -17,6 +17,7 @@ let g:coc_global_extensions = [
   \ 'coc-snippets',
   \ 'coc-tailwindcss',
   \ 'coc-tsserver',
+  \ 'coc-vetur',
   \ 'coc-vimlsp',
   \ 'coc-yaml'
 \ ]
