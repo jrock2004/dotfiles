@@ -19,7 +19,7 @@
     "javascript": "javascriptreact"
   },
   "coc.preferences.formatOnType": true,
-  "coc.preferences.formatOnSaveFiletypes": [ "javascript" ],
+  "coc.preferences.formatOnSaveFiletypes": [ "javascript", "javascriptreact" ],
   "tailwindCSS.htmlLanguages": [
     "blade",
     "edge",
@@ -46,5 +46,18 @@
     "svelte",
     "twig",
     "vue"
-  ]
+  ],
+  "explorer.icon.enableNerdfont": true,
+  "explorer.sources": [
+      {"name": "buffer", "expand": true},
+      {"name": "file", "expand": true}
+  ],
+  "explorer.file.column.git.icon.added": "✚",
+  "explorer.file.column.git.icon.deleted": "✖",
+  "explorer.file.column.git.icon.renamed": "➜",
+  "explorer.file.column.git.icon.unmerged": "═",
+  "explorer.file.column.git.icon.untracked": "?",
+  "explorer.file.column.git.icon.modified": "✹",
+  "explorer.file.column.git.icon.ignored": "☒",
+  "explorer.openAction.changeDirectory": false
 }

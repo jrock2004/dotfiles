@@ -55,6 +55,6 @@ function! CocGitBlame()
   let count = strchars(get(b:, 'coc_git_blame', ''))
   let parsed = count > 50 ? blame[0:50] : blame
 
-  return winwidth(0) > 125 ? parsed : ''
+  return winwidth(0) > 100 ? parsed : ''
 endfunction
 

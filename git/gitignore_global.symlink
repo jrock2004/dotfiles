@@ -24,3 +24,6 @@ tscommand*.txt
 
 # npm things
 npm-debug.log
+
+# project-specific vim configurations
+.vim/coc-settings.json

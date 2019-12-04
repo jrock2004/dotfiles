@@ -4,6 +4,7 @@ let g:coc_global_extensions = [
   \ 'coc-ember',
   \ 'coc-emmet',
   \ 'coc-eslint',
+  \ 'coc-explorer',
   \ 'coc-git',
   \ 'coc-highlight',
   \ 'coc-html',
@@ -25,6 +26,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 "" Hot Keys
 nnoremap <silent> <space>c :<C-u>CocList commands<cr>
 inoremap <silent><expr> <c-space> coc#refresh()
+nmap <silent> <leader>k :CocCommand explorer --toggle<cr>
 
 " Remap keys for gotos
 nmap <silent> <leader>gd <Plug>(coc-definition)
