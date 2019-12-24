@@ -30,6 +30,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-rhubarb'
 
+  Plug 'tpope/vim-projectionist'
+
   """"""""""""""""""""
   " Language Servers
   "

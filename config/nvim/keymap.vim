@@ -76,3 +76,4 @@ nnoremap <silent> $ g$
 vmap < <gv
 vmap > >gv
 
+nmap <leader>w :A<cr>
