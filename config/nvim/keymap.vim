@@ -57,6 +57,9 @@ nmap <leader>ge :Gedit<cr>
 nmap <silent><leader>gr :Gread<cr>
 nmap <silent><leader>gb :Gblame<cr>
 
+" Lazy Git stuff
+nnoremap <silent> <Leader>lg :call ToggleLazyGit()<CR>
+
 """""""""""""""""""""
 " Working with Code
 """""""""""""""""""""
