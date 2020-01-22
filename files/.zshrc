@@ -46,7 +46,7 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt COMPLETE_ALIASES
 
 # prepend_path $HOME/npmbin/node_modules/.bin
-export PATH="$PATH:$DOTFILES/scripts/bin"
+export PATH="$PATH:$DOTFILES/bin"
 
 # matches case insensitive for lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
