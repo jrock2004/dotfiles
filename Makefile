@@ -1,7 +1,7 @@
 DOTFILES=${HOME}/.dotfiles
 
 # Arguments to pass to make
-apple: brew fzf stow neovim zplug
+apple: brew stow neovim zplug
 
 brew:
 	brew bundle
