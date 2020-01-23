@@ -2,3 +2,8 @@
 
 # OS Specific stuff
 .DS_Store
+
+Brewfile.lock.json
+files/.config/nvim/plugged
+files/.config/coc
+files/.config/configstore
