@@ -7,4 +7,3 @@
 cd $HOME/.npmbin
 npx yarn add $@
 cd -
-

@@ -1,9 +1,9 @@
 .netrwhist
 
-config/nvim/shada
-config/nvim/plugged
-config/nvim/autoload/plug.vim
-config/nvim/autoload/plug.vim.old
-
 # OS Specific stuff
 .DS_Store
+
+Brewfile.lock.json
+files/.config/nvim/plugged
+files/.config/coc
+files/.config/configstore
