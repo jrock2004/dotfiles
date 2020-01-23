@@ -17,5 +17,5 @@ git clone https://github.com/jrock2004/dotfiles.git ~/.dotfiles
 
 cd ~/.dotfiles
 
-make apple
+./install.sh
 ```
