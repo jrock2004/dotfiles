@@ -1,7 +1,6 @@
 ########################################################
 # Variables
 ########################################################
-
 export CACHEDIR="$HOME/.local/share"
 export DOTFILES=$HOME/.dotfiles
 export EDITOR='nvim'
@@ -46,7 +45,9 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt COMPLETE_ALIASES
 
 # prepend_path $HOME/npmbin/node_modules/.bin
-export PATH="$PATH:$DOTFILES/bin"
+if [ -z ${RELOAD} ]; then
+  export PATH="$PATH:$DOTFILES/bin"
+fi
 
 # matches case insensitive for lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -59,6 +60,10 @@ autoload -U $ZSH/functions/*(:t)
 
 source $ZSH/functions.zsh
 source $ZSH/utils.zsh
+
+if [ -z ${RELOAD} ]; then
+  export PATH="$PATH:$HOME/.npmbin/node_modules/.bin"
+fi
 
 ########################################################
 # Plugin setup
@@ -73,7 +78,9 @@ zfetch $ZPLUGDIR zsh-users/zsh-syntax-highlighting
 zfetch $ZPLUGDIR zsh-users/zsh-autosuggestions
 
 # add fnm
-eval "`fnm env --multi --use-on-cd`"
+if [ -z ${RELOAD} ]; then
+  eval "`fnm env --multi --use-on-cd`"
+fi
 
 ########################################################
 # Setup
@@ -85,9 +92,15 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Prompt
+setopt PROMPT_SUBST
+source $ZSH/git_prompt.zsh
+source $ZSH/node_prompt.zsh
+
 PROMPT='
-%F{175}%~
-%F{175}❯ '
+%F{#c678dd}%~ %F{#61afef}$(git_status)%f
+%F{#c678dd}❯ '
+
+RPROMPT='%F{#56b6c2}$(node_prompt)%f'
 
 ########################################################
 # Aliases
