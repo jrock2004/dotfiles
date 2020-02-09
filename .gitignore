@@ -7,3 +7,4 @@ Brewfile.lock.json
 files/.config/nvim/plugged
 files/.config/coc
 files/.config/configstore
+files/.config/nvim/autoload/plug.vim
