@@ -3,13 +3,20 @@ DOTFILES=${HOME}/.dotfiles
 # Arguments to pass to make
 apple: brew stow neovim zplug
 
-linux: linuxrepo debian stow fnm neovim zplug linuxzsh
+linux: linuxrepo debian stow linuxfzf fnm neovim zplug
 
 brew:
 	brew bundle
 
 fzf:
 	/usr/local/opt/fzf/install --all --no-bash --no-fish
+
+linuxfzf:
+	sudo mkdir /usr/local/opt
+	sudo chown -R $(whoami) /usr/local/opt
+  	sudo chmod -R 775 /usr/local/opt
+	git clone --depth 1 https://github.com/junegunn/fzf.git /usr/local/opt/fzf
+	/usr/local/opt/fzf/install
 
 neovim:
 	python3 -m pip install --upgrade pynvim
@@ -28,7 +35,7 @@ linuxrepo:
 	sudo apt-get update
 
 linuxzsh:
-	sudo usermod -s $(which zsh) $(whoami)
+	chsh -s $(which zsh) $(whoami)
 
 debian:
 	sudo apt-get -y install \
@@ -37,7 +44,6 @@ debian:
 		cabextract \
 		cmake \
 		exuberant-ctags \
-		fzf \
 		gcc \
 		gnupg \
 		grep \
