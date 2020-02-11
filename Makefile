@@ -3,6 +3,8 @@ DOTFILES=${HOME}/.dotfiles
 # Arguments to pass to make
 apple: brew stow neovim zplug
 
+linux: debian stow fnm neovim zplug
+
 brew:
 	brew bundle
 
@@ -11,10 +13,45 @@ fzf:
 
 neovim:
 	python3 -m pip install --upgrade pynvim
-	nvim +PlugInstall +qall
 
 zplug:
 	git clone https://github.com/zplug/zplug.git ~/.zplug
 
 stow:
 	stow --restow --ignore ".DS_Store" --target="$(HOME)" --dir="$(DOTFILES)" files
+
+fnm:
+	curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash
+
+debian:
+	sudo apt-get -y install \
+		ack \
+		bat \
+		cabextract \
+		cmake \
+		exuberant-ctags \
+		fzf \
+		gcc \
+		gnupg \
+		grep \
+		highlight \
+		htop \
+		hub \
+		kitty \
+		lazygit \
+		mono-devel \
+		neofetch \
+		neovim \
+		ngrep \
+		python-dev \
+		python-pip \
+		python3-dev \
+		python3-pip \
+		ripgrep \
+		ruby2.5 \
+		ruby2.5-dev \
+		silversearcher-ag \
+		tmux \
+		vim \
+		xclip \
+		zsh
