@@ -8,3 +8,13 @@
   default = current
 [credential]
   helper = osxkeychain
+[alias]
+  s = status --short
+  ss  = status
+  poh = push -u origin head
+
+  l = log --graph --pretty=format:'%Cred%h%Creset %C(bold blue)%an%C(reset) - %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+
+  day = "!sh -c 'git log --reverse --no-merges --branches=* --date=local --after=\"yesterday 11:59PM\" --author=\"`git config --get user.name`\"'"
+
+  undo = reset --hard HEAD
