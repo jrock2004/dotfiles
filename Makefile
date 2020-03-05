@@ -1,9 +1,9 @@
 DOTFILES=${HOME}/.dotfiles
 
 # Arguments to pass to make
-apple: brew stow neovim zplug
-
+apple: brew stow fzf neovim zplug
 linux: linuxrepo debian stow linuxfzf fnm neovim zplug
+pie: linuxpie stow nvm neovim zplug
 
 brew:
 	brew bundle
@@ -68,3 +68,37 @@ debian:
 		vim \
 		xclip \
 		zsh
+
+debian:
+	sudo apt-get -y install \
+		ack \
+		cabextract \
+		cmake \
+		exuberant-ctags \
+		gcc \
+		gnupg \
+		grep \
+		highlight \
+		htop \
+		hub \
+		kitty \
+		mono-devel \
+		neofetch \
+		neovim \
+		ngrep \
+		python-dev \
+		python-pip \
+		python3-dev \
+		python3-pip \
+		ripgrep \
+		ruby2.5 \
+		ruby2.5-dev \
+		silversearcher-ag \
+		tmux \
+		vim \
+		xclip \
+		zsh
+
+nvm:
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+	nvm install --lts

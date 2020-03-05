@@ -19,12 +19,16 @@ command_exists() {
 
 # Ask the user what OS they are running instead of trying to guess
 PS3='Which OS are you running: '
-options=("Apple" "Quit")
+options=("Apple" "Pi" "Quit")
 select opt in "${options[@]}"
 do
 	case $opt in
 		"Apple")
 			OS="apple"
+			break
+			;;
+		"Pi")
+			OS="pi"
 			break
 			;;
 		"Quit")
@@ -47,6 +51,8 @@ if [ "$OS" = "apple" ]; then
 	fi
 
 	make apple
+elif [ "$OS" = "pi" ]; then
+	make pie
 else
 		echo -e "\\n\\nCould not detect OS/distro. Stopping execution"
 		exit 0
