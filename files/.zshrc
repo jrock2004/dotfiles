@@ -61,10 +61,6 @@ autoload -U $ZSH/functions/*(:t)
 source $ZSH/functions.zsh
 source $ZSH/utils.zsh
 
-if [ -z ${RELOAD} ]; then
-  export PATH="$PATH:$HOME/.npmbin/node_modules/.bin"
-fi
-
 ########################################################
 # Plugin setup
 ########################################################
@@ -77,9 +73,11 @@ typeset -A plugins
 zfetch $ZPLUGDIR zsh-users/zsh-syntax-highlighting
 zfetch $ZPLUGDIR zsh-users/zsh-autosuggestions
 
-# add fnm
 if [ -z ${RELOAD} ]; then
-  eval "`fnm env --multi --use-on-cd`"
+  export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 
 ########################################################
@@ -118,6 +116,7 @@ fi
 alias gs='git status'
 alias gcorb='git checkout --track $(git branch -r | fzf)'
 alias gcob='git checkout $(git branch | fzf)'
+alias gpo='git pull origin'
 
 # use nvim, but don't make me think about it
 alias vim="nvim"
