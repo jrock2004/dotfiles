@@ -1,8 +1,8 @@
 DOTFILES=${HOME}/.dotfiles
 
 # Arguments to pass to make
-apple: brew stow fzf neovim zplug
-linux: linuxrepo debian stow linuxfzf fnm neovim zplug
+apple: brew stow nvm fzf neovim zplug
+linux: linuxrepo debian stow linuxfzf nvm neovim zplug
 pie: linuxpie stow nvm neovim zplug
 
 brew:
@@ -26,9 +26,6 @@ zplug:
 
 stow:
 	stow --restow --ignore ".DS_Store" --target="$(HOME)" --dir="$(DOTFILES)" files
-
-fnm:
-	curl -fsSL https://github.com/Schniz/fnm/raw/master/.ci/install.sh | bash
 
 linuxrepo:
 	sudo add-apt-repository ppa:lazygit-team/release
@@ -69,7 +66,7 @@ debian:
 		xclip \
 		zsh
 
-debian:
+linuxpie:
 	sudo apt-get -y install \
 		ack \
 		cabextract \

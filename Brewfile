@@ -31,5 +31,6 @@ brew "z"
 brew "zsh"
 
 cask "font-anonymouspro-nerd-font-mono"
+casl "font-firacode-nerd-font"
 cask "font-source-code-pro"
 cask "font-victor-mono"
