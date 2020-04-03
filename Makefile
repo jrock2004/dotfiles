@@ -1,9 +1,9 @@
 DOTFILES=${HOME}/.dotfiles
 
 # Arguments to pass to make
-apple: brew stow nvm fzf neovim zplug
-linux: linuxrepo debian stow linuxfzf nvm neovim zplug
-pie: linuxpie stow nvm neovim zplug
+apple: brew stow zolta fzf neovim zplug
+linux: linuxrepo debian stow linuxfzf zolta neovim zplug
+pie: linuxpie stow zolta neovim zplug
 
 brew:
 	brew bundle
@@ -98,3 +98,6 @@ linuxpie:
 
 nvm:
 	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
+
+zolta:
+	curl https://get.volta.sh | bash -s -- --skip-setup
