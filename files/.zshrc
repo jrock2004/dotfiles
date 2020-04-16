@@ -135,3 +135,6 @@ fi
 # Docker stuff
 alias dcu='docker-compose up'
 alias dcd='docker-compose down'
+
+# Clean up DS_Store
+alias rmdstore='find . -name ".DS_Store" -depth -exec rm {} \'
