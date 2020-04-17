@@ -19,12 +19,16 @@ command_exists() {
 
 # Ask the user what OS they are running instead of trying to guess
 PS3='Which OS are you running: '
-options=("Apple" "Pi" "Quit")
+options=("Apple" "Pop" "Pi" "Quit")
 select opt in "${options[@]}"
 do
 	case $opt in
 		"Apple")
 			OS="apple"
+			break
+			;;
+		"Pop")
+			OS="linux"
 			break
 			;;
 		"Pi")
@@ -51,6 +55,8 @@ if [ "$OS" = "apple" ]; then
 	fi
 
 	make apple
+elif [ "$OS" = "linux" ]; then
+	make linux
 elif [ "$OS" = "pi" ]; then
 	make pie
 else
@@ -78,6 +84,8 @@ elif ! [[ $SHELL =~ .*zsh.* ]]; then
 			chsh -s "$zsh_path"
 			echo -e "\\n\\ndefault shell changed to $zsh_path"
 		fi
+	elif [[ "$OS" = "linux" ]]; then
+		chsh -s $(which zsh)
 	else
 		sudo usermod -s $(which zsh) $(whoami)
 	fi
