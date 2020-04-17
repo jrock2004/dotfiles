@@ -12,7 +12,7 @@ call plug#begin('~/.config/nvim/plugged')
   " Editor
   """""""""""""""""
   " File / Project Finding
-  Plug 'junegunn/fzf', { 'dir': '/usr/local/opt/fzf', 'do': './install --all' }
+  Plug '/usr/local/opt/fzf'
   Plug 'junegunn/fzf.vim'
 
   let g:fzf_layout = { 'down': '~25%' }
