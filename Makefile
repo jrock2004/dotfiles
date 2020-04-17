@@ -12,7 +12,7 @@ fzf:
 	/usr/local/opt/fzf/install --all --no-bash --no-fish
 
 linuxfzf:
-	sudo mkdir /usr/local/opt
+	sudo mkdir -p /usr/local/opt
 	sudo chown -R $(whoami) /usr/local/opt
 	sudo chmod -R 775 /usr/local/opt
 	git clone --depth 1 https://github.com/junegunn/fzf.git /usr/local/opt/fzf
