@@ -61,6 +61,7 @@ debian:
 		ruby2.5 \
 		ruby2.5-dev \
 		silversearcher-ag \
+		stow \
 		tmux \
 		vim \
 		xclip \
