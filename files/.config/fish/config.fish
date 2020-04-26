@@ -4,8 +4,7 @@ set -gx PATH $PATH "$VOLTA_HOME/bin"
 
 if exists apt-get
   alias update='sudo apt-get update && sudo apt-get upgrade'
-end
-
-if exists brew
+else if exists brew
   alias update='brew update && brew upgrade && brew doctor'
 end
+

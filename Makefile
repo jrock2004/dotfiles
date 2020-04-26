@@ -41,6 +41,7 @@ debian:
 		cabextract \
 		cmake \
 		exuberant-ctags \
+		fish \
 		gcc \
 		gnupg \
 		grep \

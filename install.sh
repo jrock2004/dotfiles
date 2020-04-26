@@ -45,8 +45,8 @@ done
 
 # Create some directories
 echo -e "\\n\\nCreating some default directories that we will be using"
-mkdir -p $BIN
-mkdir -p $DEVFOLDER
+mkdir -p "$BIN"
+mkdir -p "$DEVFOLDER"
 
 if [ "$OS" = "apple" ]; then
 	if test ! "$( command -v brew )"; then
@@ -69,26 +69,22 @@ echo -e "\\n\\nSwitching to ZSH"
 if ! command_exists zsh; then
 	echo -e "\\n\\nzsh not found. Please install and then re-run installation scripts"
 	exit 1
-elif ! [[ $SHELL =~ .*zsh.* ]]; then
-	echo -e "\\n\\nConfiguring zsh as default shell"
-
-	if [[ "$OS" = "apple" ]]; then
-		zsh_path="$( command -v zsh )"
-
-		if ! grep "$zsh_path" /etc/shells; then
-			echo -e "\\n\\nadding $zsh_path to /etc/shells"
-			echo "$zsh_path" | sudo tee -a /etc/shells
-		fi
-
-		if [[ "$SHELL" != "$zsh_path" ]]; then
-			chsh -s "$zsh_path"
-			echo -e "\\n\\ndefault shell changed to $zsh_path"
-		fi
-	elif [[ "$OS" = "linux" ]]; then
-		chsh -s $(which zsh)
-	else
-		sudo usermod -s $(which zsh) $(whoami)
-	fi
+elif ! command_exists fish; then
+	echo -e "\\n\\nfish not found. Please install and then re-run installation scripts"
+	exit 1
 fi
+
+zsh_path="$( command -v zsh )"
+fish_path="$( command -v fish )"
+
+if ! grep "$zsh_path" /etc/shells; then
+	echo "$zsh_path" | sudo tee -a /etc/shells
+fi
+	
+if ! grep "$fish_path" /etc/shells; then
+	echo "$fish_path" | sudo tee -a /etc/shells
+fi
+
+chsh -s "$fish_path"
 
 echo -e "\\n\\nInstaller is done. Log out and log back in again to get changes"
