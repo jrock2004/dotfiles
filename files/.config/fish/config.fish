@@ -1,5 +1,5 @@
-set -gx PATH $PATH "$DOTFILES/bin"
-set -gx VOLTA_HOME "/Users/jcostanzo/.volta"
+set -gx PATH $PATH "$HOME/.dotfiles/bin"
+set -gx VOLTA_HOME "$HOME/.volta"
 set -gx PATH $PATH "$VOLTA_HOME/bin"
 
 if exists apt-get
