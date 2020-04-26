@@ -1,6 +1,13 @@
-set -gx PATH $PATH "$HOME/.dotfiles/bin"
 set -gx VOLTA_HOME "$HOME/.volta"
-set -gx PATH $PATH "$VOLTA_HOME/bin"
+
+if not contains $HOME/.dotfiles/bin $PATH
+  set -a PATH $HOME/.dotfiles/bin
+end
+
+if not contains $VOLTA_HOME/bin $PATH
+  set -a PATH $VOLTA_HOME/bin
+end
+
 
 if exists apt-get
   alias update='sudo apt-get update && sudo apt-get upgrade'
