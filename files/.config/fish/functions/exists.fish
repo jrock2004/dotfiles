@@ -1,5 +1,3 @@
 function exists
-  command -v git
-
-  echo $status
+  command -v $argv > /dev/null 2>&1
 end
