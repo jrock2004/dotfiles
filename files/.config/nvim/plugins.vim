@@ -114,6 +114,9 @@ call plug#begin('~/.config/nvim/plugged')
   " Nested syntax highlighting
   Plug 'Quramy/vim-js-pretty-template'
 
+  " Syntax highlighting for fish
+  Plug 'dag/vim-fish'
+
   """"""""""""""""""
   " Startup
   """"""""""""""""""
