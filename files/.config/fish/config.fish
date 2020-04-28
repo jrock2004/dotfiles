@@ -15,3 +15,6 @@ else if exists brew
   alias update='brew update && brew upgrade && brew doctor'
 end
 
+alias gcob="git checkout (git branch | fzf | sed -e 's/^[ \t]*//')"
+alias gcorb="git checkout --track (git branch -r | fzf | sed -e 's/^[ \t]*//')"
+alias rmdstore="find . -name '.DS_Store' -depth -exec rm {} \;"
