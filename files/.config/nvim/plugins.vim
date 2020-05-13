@@ -39,7 +39,7 @@ call plug#begin('~/.config/nvim/plugged')
   " Debugging:
   "   node -e 'console.log(path.join(os.tmpdir(), "coc-nvim.log"))'
   """"""""""""""""""""
-  Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+  Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
   """"""""""""""""""
   " Status
