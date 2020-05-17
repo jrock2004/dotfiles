@@ -7,6 +7,7 @@ Brewfile.lock.json
 files/.config/nvim/plugged
 files/.config/coc
 files/.config/configstore
+files/.config/gh
 files/.config/nvim/autoload/plug.vim
 files/.config/nvim/autoload/plug.vim.old
 tmux-client*
