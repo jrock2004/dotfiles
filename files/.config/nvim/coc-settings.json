@@ -23,6 +23,7 @@
   },
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": ["javascript", "javascriptreact"],
+  "coc-actions.hideCursor": false,
   "tailwindCSS.htmlLanguages": [
     "blade",
     "edge",

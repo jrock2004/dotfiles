@@ -1,4 +1,5 @@
 let g:coc_global_extensions = [
+  \ 'coc-actions',
   \ 'coc-css',
   \ 'coc-diagnostic',
   \ 'coc-docker',
@@ -38,7 +39,14 @@ nmap <silent> <leader>gr <Plug>(coc-references)
 
 "" Remap for code action
 nmap <leader><space> :call CocAction('doHover')<CR>
-nmap <leader>ga <Plug>(coc-codeaction)
+
+" Remap for do codeAction of selected region
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
+
+xmap <silent> <leader>a :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+nmap <silent> <leader>a :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
