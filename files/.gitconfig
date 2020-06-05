@@ -3,6 +3,8 @@
   email = jrock2004@gmail.com
 [github]
   user = jrock2004
+[pull]
+  rebase = false
 [push]
   # push will only do the current branch, not all branches
   default = current
