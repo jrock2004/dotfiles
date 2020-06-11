@@ -19,7 +19,7 @@ command_exists() {
 
 # Ask the user what OS they are running instead of trying to guess
 PS3='Which OS are you running: '
-options=("Apple" "Pop" "Pi" "Quit")
+options=("Apple" "Pop" "Pi" "WSL" "Quit")
 select opt in "${options[@]}"
 do
 	case $opt in
@@ -33,6 +33,10 @@ do
 			;;
 		"Pi")
 			OS="pi"
+			break
+			;;
+		"WSL")
+			OS="wsl"
 			break
 			;;
 		"Quit")
@@ -57,6 +61,8 @@ if [ "$OS" = "apple" ]; then
 	make apple
 elif [ "$OS" = "linux" ]; then
 	make linux
+elif [ "$OS" = "wsl" ]; then
+	make wsl
 elif [ "$OS" = "pi" ]; then
 	make pie
 else

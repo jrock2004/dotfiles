@@ -3,6 +3,7 @@ DOTFILES=${HOME}/.dotfiles
 # Arguments to pass to make
 apple: brew stow zolta fzf neovim zplug
 linux: linuxrepo debian stow linuxfzf zolta neovim zplug
+wsl: installmake linuxrepo wsl stow linuxfzf zolta neovim zplug
 pie: linuxpie stow zolta neovim zplug
 
 brew:
@@ -61,6 +62,41 @@ debian:
 		ripgrep \
 		ruby2.5 \
 		ruby2.5-dev \
+		silversearcher-ag \
+		stow \
+		tmux \
+		vim \
+		xclip \
+		zsh
+
+installmake:
+	sudo apt-get -y install make
+
+wsl:
+	sudo apt-get -y install \
+		ack \
+		bat \
+		cabextract \
+		cmake \
+		exuberant-ctags \
+		fish \
+		gcc \
+		gnupg \
+		grep \
+		highlight \
+		htop \
+		hub \
+		kitty \
+		lazygit \
+		mono-devel \
+		neofetch \
+		neovim \
+		ngrep \
+		python3-dev \
+		python3-pip \
+		ripgrep \
+		ruby2.7 \
+		ruby2.7-dev \
 		silversearcher-ag \
 		stow \
 		tmux \
