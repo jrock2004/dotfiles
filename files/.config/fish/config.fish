@@ -8,6 +8,7 @@ if not contains $VOLTA_HOME/bin $PATH
   set -a PATH $VOLTA_HOME/bin
 end
 
+set PATH $PATH /home/linuxbrew/.linuxbrew/bin
 
 if exists apt-get
   alias update='sudo apt-get update && sudo apt-get upgrade'

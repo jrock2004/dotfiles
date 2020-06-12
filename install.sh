@@ -19,7 +19,7 @@ command_exists() {
 
 # Ask the user what OS they are running instead of trying to guess
 PS3='Which OS are you running: '
-options=("Apple" "Pop" "Pi" "WSL" "Quit")
+options=("Apple" "Linux" "Pi" "Quit")
 select opt in "${options[@]}"
 do
 	case $opt in
@@ -27,7 +27,7 @@ do
 			OS="apple"
 			break
 			;;
-		"Pop")
+		"Linux")
 			OS="linux"
 			break
 			;;
@@ -35,9 +35,6 @@ do
 			OS="pi"
 			break
 			;;
-		"WSL")
-			OS="wsl"
-			break
 			;;
 		"Quit")
 			exit 0
@@ -60,9 +57,15 @@ if [ "$OS" = "apple" ]; then
 
 	make apple
 elif [ "$OS" = "linux" ]; then
+	if test ! "$( command -v brew )"; then
+		echo -e "\\n\\nInstalling homebrew"
+		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	fi
+
+	test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+	test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
 	make linux
-elif [ "$OS" = "wsl" ]; then
-	make wsl
 elif [ "$OS" = "pi" ]; then
 	make pie
 else

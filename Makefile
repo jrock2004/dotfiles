@@ -2,8 +2,9 @@ DOTFILES=${HOME}/.dotfiles
 
 # Arguments to pass to make
 apple: brew stow zolta fzf neovim zplug
-linux: linuxrepo debian stow linuxfzf zolta neovim zplug
-wsl: installmake linuxrepo wsl stow linuxfzf zolta neovim zplug
+linux: installmake brew stow linuxfzf zolta neovim zplug
+oldlinux: linuxrepo debian stow linuxfzf zolta neovim zplug
+oldwsl: installmake linuxrepo wsl stow linuxfzf zolta neovim zplug
 pie: linuxpie stow zolta neovim zplug
 
 brew:
