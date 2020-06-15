@@ -35,7 +35,6 @@ do
 			OS="pi"
 			break
 			;;
-			;;
 		"Quit")
 			exit 0
 			break
@@ -58,6 +57,7 @@ if [ "$OS" = "apple" ]; then
 	make apple
 elif [ "$OS" = "linux" ]; then
 	if test ! "$( command -v brew )"; then
+		sudo apt-get -f install ruby libpcap-dev
 		echo -e "\\n\\nInstalling homebrew"
 		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 	fi
