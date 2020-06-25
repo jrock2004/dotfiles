@@ -14,4 +14,4 @@ jobs:
       - uses: actions/checkout@v2
       
       - name: 'Testing Ubuntu 20.04'
-        uses: ./actions/ubuntu.yml
+        uses: ./action.yml
