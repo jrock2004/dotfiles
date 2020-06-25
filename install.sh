@@ -102,7 +102,7 @@ setup_zolta() {
 }
 
 setup_neovim() {
-	python3 -m pip install --upgrade pynvim
+	python -m pip install --upgrade pynvim
 }
 
 setup_zplug() {
