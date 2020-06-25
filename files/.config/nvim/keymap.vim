@@ -80,3 +80,4 @@ vmap < <gv
 vmap > >gv
 
 nmap <leader>w :A<cr>
+nmap <silent> <C-l> <Plug>(jsdoc)

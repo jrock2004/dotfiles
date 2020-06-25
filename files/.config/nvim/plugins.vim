@@ -107,6 +107,10 @@ call plug#begin('~/.config/nvim/plugged')
   " JavaScript Syntax
   Plug 'pangloss/vim-javascript'
   let g:javascript_plugin_jsdoc = 1
+  Plug 'faceleg/vim-jsdoc'
+  let g:jsdoc_enable_es6 = 1
+  let g:jsdoc_allow_input_prompt = 1
+  let g:jsdoc_input_description = 1
 
   " Ember template highlighting
   Plug 'joukevandermaas/vim-ember-hbs'
