@@ -18,6 +18,4 @@ RUN touch .bash_profile && \
 
 WORKDIR /home/user/.dotfiles
 
-RUN git checkout new-install
-
 ENTRYPOINT [ "/entrypoint.sh" ]
