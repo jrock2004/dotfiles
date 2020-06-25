@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 LABEL author="John Costanzo"
 
-COPY docker-entrypoint /entrypoint.sh
+COPY docker-entrypoint.sh /entrypoint.sh
 
 RUN apt-get update && apt-get install -y curl wget git sudo ruby make build-essential file language-pack-en && \
   rm -rf /var/lib/apt/lists/* && \
