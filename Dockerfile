@@ -9,13 +9,15 @@ RUN apt-get update && apt-get install -y curl wget git sudo ruby make build-esse
   echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
   chmod 0440 /etc/sudoers.d/user
 
-USER user:user
+# USER user:user
 
-WORKDIR /home/user
+# WORKDIR /home/user
 
 RUN touch .bash_profile && \
-  git clone https://github.com/jrock2004/dotfiles.git /home/user/.dotfiles
+  git clone https://github.com/jrock2004/dotfiles.git .dotfiles
 
-WORKDIR /home/user/.dotfiles
+# WORKDIR /home/user/.dotfiles
+
+RUN cd .dotfiles && git checkout new-install
 
 ENTRYPOINT [ "/entrypoint.sh" ]
