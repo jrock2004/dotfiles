@@ -1,99 +1,161 @@
 #!/usr/bin/env bash
 
-#### Variables ####
+DOTFILES="$(pwd)"
 
-BIN="$HOME/bin"
-DEVFOLDER="$HOME/Development"
-OS=''
-
-###################
-
-#### Functions ####
-
-# A function to check if a command exists
 command_exists() {
-	type "$1" > /dev/null 2>&1
+	type "$1" /dev/null 2>&1
 }
 
-###################
+seperator() {
+	echo -e "==============================\n"
+}
 
-# Ask the user what OS they are running instead of trying to guess
-PS3='Which OS are you running: '
-options=("Apple" "Linux" "Pi" "Quit")
-select opt in "${options[@]}"
-do
-	case $opt in
-		"Apple")
-			OS="apple"
-			break
-			;;
-		"Linux")
-			OS="linux"
-			break
-			;;
-		"Pi")
-			OS="pi"
-			break
-			;;
-		"Quit")
-			exit 0
-			break
-			;;
-		*) echo invalid option;;
-	esac
-done
+get_linkables() {
+	find -H "$DOTFILES" -maxdepth 3 -name '*.symlink'
+}
 
-# Create some directories
-echo -e "\\n\\nCreating some default directories that we will be using"
-mkdir -p "$BIN"
-mkdir -p "$DEVFOLDER"
+setup_symlinks() {
+	echo -e "\nCreating symlinks"
+	seperator
 
-if [ "$OS" = "apple" ]; then
-	if test ! "$( command -v brew )"; then
-		echo -e "\\n\\nInstalling homebrew"
-		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	if [ ! -e "$HOME/.dotfiles" ]; then
+		echo "Adding symlink to dotfiles at $HOME/.dotfiles"
+		ln -s "$DOTFILES" ~/.dotfiles
 	fi
 
-	make apple
-elif [ "$OS" = "linux" ]; then
-	if test ! "$( command -v brew )"; then
-		sudo apt-get -f install ruby libpcap-dev
-		echo -e "\\n\\nInstalling homebrew"
-		ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+	for file in $(get_linkables) ; do
+		target="$HOME/.$(basename "$file" '.symlink')"
+		if [ -e "$target" ]; then
+			echo "~${target#$HOME} already exists... Skipping."
+		else
+			echo "Creating symlink for $file"
+			ln -s "$file" "$target"
+		fi
+	done
+
+	echo -e "\n\ninstalling to ~/.config"
+	seperator
+	if [ ! -d "$HOME/.config" ]; then
+		echo "Creating ~/.config"
+		mkdir -p "$HOME/.config"
 	fi
 
-	test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
-	test -d /home/linuxbrew/.linuxbrew && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+	config_files=$(find "$DOTFILES/config" -maxdepth 1 2>/dev/null)
+	for config in $config_files; do
+		target="$HOME/.config/$(basename "$config")"
+		if [ -e "$target" ]; then
+			echo "~${target#$HOME} already exists... Skipping."
+		else
+			echo "Creating symlink for $config"
+			ln -s "$config" "$target"
+		fi
+	done
+}
 
-	make linux
-elif [ "$OS" = "pi" ]; then
-	make pie
-else
-		echo -e "\\n\\nCould not detect OS/distro. Stopping execution"
-		exit 0
-fi
+setup_homebrew() {
+	echo -e "\nSetting up Homebrew"
+	seperator
 
-# Setting env to zsh instead of bash
-echo -e "\\n\\nSwitching to ZSH"
-if ! command_exists zsh; then
-	echo -e "\\n\\nzsh not found. Please install and then re-run installation scripts"
-	exit 1
-elif ! command_exists fish; then
-	echo -e "\\n\\nfish not found. Please install and then re-run installation scripts"
-	exit 1
-fi
+	if test ! "$(command -v brew)"; then
+		echo -e "Homebrew not installed. Installing."
+		# Run as a login shell (non-interactive) so that the script doesn't pause for user input
+		curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash --login
+	fi
 
-zsh_path="$( command -v zsh )"
-fish_path="$( command -v fish )"
+	if [ "$(uname)" == "Linux" ]; then
+		PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
-if ! grep "$zsh_path" /etc/shells; then
-	echo "$zsh_path" | sudo tee -a /etc/shells
-fi
-	
-if ! grep "$fish_path" /etc/shells; then
-	echo "$fish_path" | sudo tee -a /etc/shells
-fi
+		test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+		test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+		test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
 
-chsh -s "$fish_path"
+		echo "export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin" >> ~/.bash_profile
+	fi
 
-echo -e "\\n\\nInstaller is done. Log out and log back in again to get changes"
+	# install brew dependencies from Brewfile
+	brew bundle
+
+	# install fzf
+	echo -e "\nInstalling fzf"
+	"$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
+}
+
+setup_shell() {
+	echo -e "\nSetting up Fish"
+	seperator
+
+	fish_path="$( command -v fish )"
+
+	if ! grep "$fish_path" /etc/shells; then
+		echo "Adding fish to /etc/shells"
+		echo "$fish_path" | sudo tee -a /etc/shells
+	fi
+
+	if [[ "#SHELL" != "$fish_path" ]]; then
+		chsh -s "$fish_path"
+		echo "default shell changed to $fish_path"
+	fi
+}
+
+setup_stow() {
+	stow --restow --ignore ".DS_Store" --target="$HOME" --dir="$DOTFILES" files
+}
+
+setup_zolta() {
+	curl https://get.volta.sh | bash -s -- --skip-setup
+}
+
+setup_neovim() {
+	python -m pip install --upgrade pynvim
+}
+
+setup_zplug() {
+	git clone https://github.com/zplug/zplug.git ~/.zplug
+}
+
+createDir() {
+	echo -e "\nCreating some directories we use"
+	seperator
+
+	mkdir -p ~/Development
+}
+
+case "$1" in
+	link)
+		setup_symlinks
+		;;
+	brew)
+		setup_homebrew
+		;;
+	shell)
+		setup_shell
+		;;
+	createDir)
+		createDir
+		;;
+	stow)
+		setup_stow
+		;;
+	zolta)
+		setup_zolta
+		;;
+	neovim)
+		setup_neovim
+		;;
+	zplug)
+		setup_zplug
+		;;
+	all)
+		setup_homebrew
+		setup_stow
+		setup_zolta
+		setup_neovim
+		setup_shell
+		createDir
+		;;
+	*)
+		echo $"Usage: $(basename "$0") {link|brew|shell|createDir|stow|zolta|neovim|zplug|all}"
+		exit 1
+		;;
+esac
+
