@@ -4,4 +4,3 @@ description: 'Testing that dotfiles will work with ubuntu'
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  entrypoint: 'docker-entrypoint.sh'
