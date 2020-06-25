@@ -13,8 +13,8 @@ if contains (uname) "Linux"
   set -a HOMEBREW_CELLAR $HOMEBREW_PREFIX/Cellar
   set -a HOMEBREW_REPOSITORY $HOMEBREW_PREFIX/Homebrew
   set -a PATH $HOMEBREW_PREFIX/bin
-  set -a MANPATH $HOMEBREW_PREFIX/share/man${MANPATH+:$MANPATH}
-  set -a INFOPATH $HOMEBREW_PREFIX/share/info:${INFOPATH}
+  set -a MANPATH $HOMEBREW_PREFIX/share/man
+  set -a INFOPATH $HOMEBREW_PREFIX/share/info
 end
 
 # set PATH $PATH /home/linuxbrew/.linuxbrew/bin
