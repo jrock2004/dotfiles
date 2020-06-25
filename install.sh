@@ -94,7 +94,7 @@ setup_shell() {
 }
 
 setup_stow() {
-	stow --restow --ignore ".DS_Store" --target="$(HOME)" --dir="$(DOTFILES)" files
+	stow --restow --ignore ".DS_Store" --target="$HOME" --dir="$DOTFILES" files
 }
 
 setup_zolta() {
