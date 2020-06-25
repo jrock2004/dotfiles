@@ -14,7 +14,7 @@ get_linkables() {
 	find -H "$DOTFILES" -maxdepth 3 -name '*.symlink'
 }
 
-link() {
+setup_symlinks() {
 	echo -e "\nCreating symlinks"
 	seperator
 
@@ -52,7 +52,7 @@ link() {
 	done
 }
 
-homebrew() {
+setup_homebrew() {
 	echo -e "\nSetting up Homebrew"
 	seperator
 
@@ -68,15 +68,15 @@ homebrew() {
 		test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
 	fi
 
-		# install brew dependencies from Brewfile
-		brew bundle
+	# install brew dependencies from Brewfile
+	brew bundle
 
-		# install fzf
-		echo -e "\nInstalling fzf"
-		"$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
-	}
+	# install fzf
+	echo -e "\nInstalling fzf"
+	"$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
+}
 
-shell() {
+setup_shell() {
 	echo -e "\nSetting up Fish"
 	seperator
 
@@ -93,19 +93,19 @@ shell() {
 	fi
 }
 
-stow() {
+setup_stow() {
 	stow --restow --ignore ".DS_Store" --target="$(HOME)" --dir="$(DOTFILES)" files
 }
 
-zolta() {
+setup_zolta() {
 	curl https://get.volta.sh | bash -s -- --skip-setup
 }
 
-neovim() {
+setup_neovim() {
 	python3 -m pip install --upgrade pynvim
 }
 
-zplug() {
+setup_zplug() {
 	git clone https://github.com/zplug/zplug.git ~/.zplug
 }
 
@@ -118,35 +118,35 @@ createDir() {
 
 case "$1" in
 	link)
-		link
+		setup_symlinks
 		;;
 	brew)
-		homebrew
+		setup_homebrew
 		;;
 	shell)
-		shell
+		setup_shell
 		;;
 	createDir)
 		createDir
 		;;
 	stow)
-		stow
+		setup_stow
 		;;
 	zolta)
-		zolta
+		setup_zolta
 		;;
 	neovim)
-		neovim
+		setup_neovim
 		;;
 	zplug)
-		zplug
+		setup_zplug
 		;;
 	all)
-		brew
-		stow
-		zolta
-		neovim
-		shell
+		setup_homebrew
+		setup_stow
+		setup_zolta
+		setup_neovim
+		setup_shell
 		createDir
 		;;
 	*)
