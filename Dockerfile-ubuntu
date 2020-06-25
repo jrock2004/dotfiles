@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y curl wget git sudo ruby make build-esse
   rm -rf /var/lib/apt/lists/* && \
   useradd -ms /bin/bash user && \
   echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user && \
-  chmod 0440 /etc/sudoers.d/user && \
+  chmod 0440 /etc/sudoers.d/user
 
 USER user:user
 
