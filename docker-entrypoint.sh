@@ -1,3 +1,3 @@
 #!/bin/sh -l
 
-./instll.sh all
+./install.sh all
