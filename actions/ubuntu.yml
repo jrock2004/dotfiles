@@ -1,0 +1,6 @@
+name: 'Ubuntu 20.04 Test'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile-ubuntu'
+  entrypoint: 'docker-entrypoint.sh'

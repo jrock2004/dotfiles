@@ -1,0 +1,17 @@
+name: 'Testing dotfiles'
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  ubuntu_20_04:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: 'Testing Ubuntu 20.04'
+        uses: ./actions/ubuntu.yml
