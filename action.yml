@@ -1,6 +1,0 @@
-name: 'Ubuntu 20.04 Test'
-description: 'Testing that dotfiles will work with ubuntu'
-
-runs:
-  using: 'docker'
-  image: 'Dockerfile'
