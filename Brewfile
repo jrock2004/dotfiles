@@ -6,10 +6,9 @@ if OS.mac?
   brew "reattach-to-user-namespace"
 
   cask "font-3270-nerd-font"
-  cask "font-anonymouspro-nerd-font-mono"
   cask "font-cascadia-mono"
   cask "font-fira-code"
-  cask "font-firacode-nerd-font"
+  cask "font-fira-code-nerd-font"
   cask "font-source-code-pro"
   cask "font-victor-mono"
 end
