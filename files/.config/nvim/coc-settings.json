@@ -53,7 +53,7 @@
   ],
   "explorer.icon.enableNerdfont": true,
   "explorer.sources": [
-    { "name": "buffer", "expand": true },
+    { "name": "buffer", "expand": false },
     { "name": "file", "expand": true }
   ],
   "explorer.file.column.git.icon.added": "✚",
@@ -64,6 +64,7 @@
   "explorer.file.column.git.icon.modified": "✹",
   "explorer.file.column.git.icon.ignored": "☒",
   "explorer.openAction.for.directory": "expandOrCollapse",
+  "explorer.openAction.relativePath": true,
   "explorer.previewAction.onHover": false,
   "explorer.keyMappings": {
     "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"]

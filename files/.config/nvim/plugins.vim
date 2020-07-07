@@ -149,8 +149,8 @@ call plug#begin('~/.config/nvim/plugged')
   \ ]
 
   let g:startify_commands = [
-    \ { 'up': [ 'Update Plugins', ':PlugUpdate' ] },
     \ { 'ug': [ 'Upgrade Plugin Manager', ':PlugUpgrade' ] },
+    \ { 'up': [ 'Update Plugins', ':PlugUpdate' ] },
     \ { 'uc': [ 'Update Coc Plugins', ':CocUpdate' ] },
   \ ]
 
