@@ -25,7 +25,7 @@ endif
 syntax on
 set encoding=utf-8
 
-set cmdheight=1
+set cmdheight=2
 
 set mouse=a
 set noshowmode
@@ -53,7 +53,7 @@ set listchars=eol:¬,tab:>·,extends:>,precedes:<,space:·
 
 set autoread
 
-set scrolloff=3
+set scrolloff=8
 
 set history=1000
 
@@ -68,6 +68,11 @@ set inccommand=nosplit
 set viminfo='100,n$HOME/.vim/files/info/viminfo
 
 set colorcolumn=80
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+set updatetime=50
+
+set shortmess+=c
 
 """"""""""""""""""""
 " Code Management

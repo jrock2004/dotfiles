@@ -49,13 +49,19 @@ command! -bang -nargs=? -complete=dir GitFiles
 
 noremap <space> :set hlsearch! hlsearch?<cr>
 
+nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>pw :Rg <C-R>=expand("<cword>")<CR><CR>
+nnoremap <leader>phw :h <C-R>=expand("<cword>")<CR><CR>
+
 """""""""""""""""""""
 " Source Control
 """""""""""""""""""""
-nmap <silent> <leader>gs :Gstatus<cr>
 nmap <leader>ge :Gedit<cr>
 nmap <silent><leader>gr :Gread<cr>
 nmap <silent><leader>gb :Gblame<cr>
+nmap <leader>gh :diffget //3<CR>
+nmap <leader>gu :diffget //2<CR>
+nmap <leader>gs :G<CR>
 
 " Lazy Git stuff
 nnoremap <silent> <Leader>lg :call ToggleLazyGit()<CR>
@@ -81,3 +87,8 @@ vmap > >gv
 
 nmap <leader>w :A<cr>
 nmap <silent> <C-l> <Plug>(jsdoc)
+
+"""""""""""""""""""""
+" General Stuff
+"""""""""""""""""""""
+nnoremap q <C-W>q
