@@ -102,7 +102,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'stephenway/postcss.vim'
 
   " Typescript syntax
-  Plug 'leafgarland/typescript-vim'
+  Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx'] }
 
   " JavaScript Syntax
   Plug 'pangloss/vim-javascript'

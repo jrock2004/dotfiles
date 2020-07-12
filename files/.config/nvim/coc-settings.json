@@ -22,7 +22,7 @@
     "javascript": "javascriptreact"
   },
   "coc.preferences.formatOnType": true,
-  "coc.preferences.formatOnSaveFiletypes": ["javascript", "javascriptreact"],
+  "coc.preferences.formatOnSaveFiletypes": ["javascript", "javascriptreact", "typescript", "typescript.tsx", "typescriptreact"],
   "coc-actions.hideCursor": false,
   "tailwindCSS.htmlLanguages": [
     "blade",
