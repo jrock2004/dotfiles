@@ -91,4 +91,3 @@ nmap <silent> <C-l> <Plug>(jsdoc)
 """""""""""""""""""""
 " General Stuff
 """""""""""""""""""""
-nnoremap q <C-W>q

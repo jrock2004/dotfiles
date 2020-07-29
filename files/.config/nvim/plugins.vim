@@ -7,6 +7,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'joshdick/onedark.vim'
   Plug 'chriskempson/base16-vim'
   Plug 'ayu-theme/ayu-vim'
+  Plug 'connorholyday/vim-snazzy'
 
   """""""""""""""""
   " Editor

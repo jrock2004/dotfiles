@@ -4,9 +4,11 @@ set termguicolors
 """""""""""""""""""""""""
 " UI / Aesthetics
 """""""""""""""""""""""""
-" set background=dark
+set background=dark
 let ayucolor="dark"
 colorscheme ayu
+" let g:SnazzyTransparent=1
+" colorscheme snazzy
 
 if (has("nvim"))
   "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
