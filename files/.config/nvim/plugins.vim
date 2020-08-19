@@ -106,8 +106,11 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'typescript.tsx'] }
 
   " JavaScript Syntax
-  Plug 'pangloss/vim-javascript'
-  let g:javascript_plugin_jsdoc = 1
+  " Plug 'pangloss/vim-javascript'
+  " let g:javascript_plugin_jsdoc = 1
+  Plug 'othree/yajs.vim', { 'for': [ 'javascript', 'javascript.jsx', 'html' ] }
+  Plug 'MaxMEllon/vim-jsx-pretty'
+  let g:vim_jsx_pretty_highlight_close_tag = 1
   Plug 'faceleg/vim-jsdoc'
   let g:jsdoc_enable_es6 = 1
   let g:jsdoc_allow_input_prompt = 1
@@ -121,6 +124,8 @@ call plug#begin('~/.config/nvim/plugged')
 
   " Syntax highlighting for fish
   Plug 'dag/vim-fish'
+
+  " JSX highlighting
 
   """"""""""""""""""
   " Startup
