@@ -28,3 +28,4 @@ end
 alias gcob="git checkout (git branch | fzf | sed -e 's/^[ \t]*//')"
 alias gcorb="git checkout --track (git branch -r | fzf | sed -e 's/^[ \t]*//')"
 alias rmdstore="find . -name '.DS_Store' -depth -exec rm {} \;"
+alias wtfport="lsof -i -P -n | grep LISTEN"
