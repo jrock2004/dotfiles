@@ -8,6 +8,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'chriskempson/base16-vim'
   Plug 'ayu-theme/ayu-vim'
   Plug 'connorholyday/vim-snazzy'
+  Plug 'dracula/vim', { 'as': 'dracula' }
 
   """""""""""""""""
   " Editor
@@ -50,7 +51,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'joshdick/onedark.vim'
 
   let g:lightline = {
-    \ 'colorscheme': 'onedark',
+    \ 'colorscheme': 'darcula',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
     \           [ 'gitbranch' ],
