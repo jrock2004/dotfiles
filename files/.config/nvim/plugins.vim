@@ -51,7 +51,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'joshdick/onedark.vim'
 
   let g:lightline = {
-    \ 'colorscheme': 'darcula',
+    \ 'colorscheme': 'dracula',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
     \           [ 'gitbranch' ],
