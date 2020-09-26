@@ -63,13 +63,9 @@ setup_homebrew() {
 	fi
 
 	if [ "$(uname)" == "Linux" ]; then
-		PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
-
 		test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-		test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-		test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
-
-		echo "export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin" >> ~/.bash_profile
+    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
 	fi
 
 	# install brew dependencies from Brewfile
@@ -106,7 +102,11 @@ setup_zolta() {
 }
 
 setup_neovim() {
-	python -m pip install --upgrade pynvim
+	if [ "$(uname)" == "Linux" ]; then
+		python3 -m pip install --upgrade pynvim
+	else
+		python -m pip install --upgrade pynvim
+	fi
 }
 
 setup_zplug() {
