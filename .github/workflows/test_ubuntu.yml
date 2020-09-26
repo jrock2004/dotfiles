@@ -1,0 +1,21 @@
+name: TestUbuntu
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run setup_dotfiles.sh
+        run: |
+          set -e
+          export CI=1
+          ./install.sh all
+      - name: Run setup vim
+        run: |
+          set -e
+          export CI=1
+          vim +PluginInstall +qall  # Install all vim bundles

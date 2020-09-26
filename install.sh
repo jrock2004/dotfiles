@@ -1,6 +1,21 @@
 #!/usr/bin/env bash
 
+# Variables
+
 DOTFILES="$(pwd)"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Helper functions
+
+# Generates colored output.
+function special_echo {
+  # echo -e '\E[0;32m'"$1\033[0m"
+	echo -e "$1"
+}
+
+error_echo() {
+  echo -e '\E[0;31m'"$1\033[0m"
+}
 
 command_exists() {
 	type "$1" /dev/null 2>&1
@@ -11,53 +26,67 @@ seperator() {
 }
 
 get_linkables() {
-	find -H "$DOTFILES" -maxdepth 3 -name '*.symlink'
+	find -H "$DIR" -maxdepth 3 -name '*.symlink'
+}
+
+# Functions to execute to do things
+
+setup_init() {
+	if [ "$(uname)" == "Darwin" ]; then
+		special_echo "Setting up dotfiles on your mac"
+	elif  [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+		special_echo "Setting up dotfiles on your linux machine"
+	fi
+
+	seperator
 }
 
 setup_symlinks() {
-	echo -e "\nCreating symlinks"
+	special_echo "Creating symlinks"
 	seperator
 
-	if [ ! -e "$HOME/.dotfiles" ]; then
-		echo "Adding symlink to dotfiles at $HOME/.dotfiles"
-		ln -s "$DOTFILES" ~/.dotfiles
+	if [ ! -e "$DIR/.dotfiles" ]; then
+		special_echo "Adding symlink to dotfiles at $DIR/.dotfiles"
+		ln -s "$DIR" ~/.dotfiles
 	fi
 
 	for file in $(get_linkables) ; do
-		target="$HOME/.$(basename "$file" '.symlink')"
+		target="$DIR/.$(basename "$file" '.symlink')"
 		if [ -e "$target" ]; then
-			echo "~${target#$HOME} already exists... Skipping."
+			special_echo "~${target#$DIR} already exists... Skipping."
 		else
-			echo "Creating symlink for $file"
+			special_echo "Creating symlink for $file"
 			ln -s "$file" "$target"
 		fi
 	done
 
-	echo -e "\n\ninstalling to ~/.config"
+	special_echo "installing to ~/.config"
 	seperator
-	if [ ! -d "$HOME/.config" ]; then
-		echo "Creating ~/.config"
-		mkdir -p "$HOME/.config"
+
+	if [ ! -d "$DIR/.config" ]; then
+		special_echo "Creating ~/.config"
+		mkdir -p "$DIR/.config"
 	fi
 
-	config_files=$(find "$DOTFILES/config" -maxdepth 1 2>/dev/null)
+	config_files=$(find "$DIR/config" -maxdepth 1 2>/dev/null)
 	for config in $config_files; do
-		target="$HOME/.config/$(basename "$config")"
+		target="$DIR/.config/$(basename "$config")"
 		if [ -e "$target" ]; then
-			echo "~${target#$HOME} already exists... Skipping."
+			special_echo "~${target#$DIR} already exists... Skipping."
 		else
-			echo "Creating symlink for $config"
+			special_echo "Creating symlink for $config"
 			ln -s "$config" "$target"
 		fi
 	done
 }
 
 setup_homebrew() {
-	echo -e "\nSetting up Homebrew"
+	special_echo "Setting up Homebrew"
 	seperator
 
 	if test ! "$(command -v brew)"; then
-		echo -e "Homebrew not installed. Installing."
+		special_echo "Homebrew not installed. Installing."
+
 		# Run as a login shell (non-interactive) so that the script doesn't pause for user input
 		curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash --login
 	fi
@@ -72,12 +101,12 @@ setup_homebrew() {
 	brew bundle
 
 	# install fzf
-	echo -e "\nInstalling fzf"
+	special_echo "Installing fzf"
 	"$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
 }
 
 setup_shell() {
-	echo -e "\nSetting up Fish"
+	special_echo "Setting up Fish"
 	seperator
 
 	fish_path="$( command -v fish )"
@@ -94,7 +123,7 @@ setup_shell() {
 }
 
 setup_stow() {
-	stow --restow --ignore ".DS_Store" --target="$HOME" --dir="$DOTFILES" files
+	stow --restow --ignore ".DS_Store" --target="$HOME" --dir="$DIR" files
 }
 
 setup_zolta() {
@@ -117,7 +146,7 @@ setup_zplug() {
 }
 
 createDir() {
-	echo -e "\nCreating some directories we use"
+	special_echo "Creating some directories we use"
 	seperator
 
 	mkdir -p ~/Development
@@ -148,7 +177,11 @@ case "$1" in
 	zplug)
 		setup_zplug
 		;;
+	init)
+		setup_init
+		;;
 	all)
+		setup_init
 		setup_homebrew
 		setup_stow
 		setup_zolta
@@ -157,7 +190,7 @@ case "$1" in
 		createDir
 		;;
 	*)
-		echo $"Usage: $(basename "$0") {link|brew|shell|createDir|stow|zolta|neovim|zplug|all}"
+		special_echo $"Usage: $(basename "$0") {link|brew|shell|createDir|stow|zolta|neovim|zplug|all}"
 		exit 1
 		;;
 esac
