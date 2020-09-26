@@ -103,6 +103,8 @@ setup_zolta() {
 
 setup_neovim() {
 	if [ "$(uname)" == "Linux" ]; then
+		sudo apt-get install python3-pip
+		
 		python3 -m pip install --upgrade pynvim
 	else
 		python -m pip install --upgrade pynvim
