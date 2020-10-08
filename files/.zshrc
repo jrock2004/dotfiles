@@ -73,8 +73,6 @@ typeset -A plugins
 zfetch $ZPLUGDIR zsh-users/zsh-syntax-highlighting
 zfetch $ZPLUGDIR zsh-users/zsh-autosuggestions
 
-export VOLTA_HOME="$HOME/.volta"
-grep --silent "$VOLTA_HOME/bin" <<< $PATH || export PATH="$VOLTA_HOME/bin:$PATH"
 
 ########################################################
 # Setup
@@ -138,3 +136,5 @@ alias dcd='docker-compose down'
 
 # Clean up DS_Store
 alias rmdstore='find . -name ".DS_Store" -depth -exec rm {} \'
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
