@@ -5,8 +5,8 @@ set termguicolors
 " UI / Aesthetics
 """""""""""""""""""""""""
 set background=dark
-" let ayucolor="dark"
-colorscheme dracula
+let ayucolor="dark"
+colorscheme ayu
 " let g:SnazzyTransparent=1
 " colorscheme snazzy
 
