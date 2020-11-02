@@ -28,6 +28,7 @@ cd ~/.dotfiles
 Lets document how I set up some of the apps I use
 
 ### iTerm
+```yml
 General:
   Closing:
     Confirm Quit: Un-checked
@@ -52,6 +53,7 @@ Profiles:
     Non-ASCII Weight: Regular
     Non-ASCII Size: 22
     Non-ASCII Ligatures: Check
+```
 
 ### VS Code
 Extensions and settings can be [found on gist](https://gist.github.com/jrock2004/34c134d3a4a8bfb84336fd5d52472237)
