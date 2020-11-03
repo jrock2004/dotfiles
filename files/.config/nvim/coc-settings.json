@@ -66,7 +66,7 @@
   "explorer.openAction.for.directory": "expandOrCollapse",
   "explorer.openAction.relativePath": true,
   "explorer.previewAction.onHover": false,
-  "explorer.keyMappings": {
+  "explorer.keyMappings.global": {
     "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"]
   }
 }
