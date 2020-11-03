@@ -27,3 +27,6 @@
   cleanup = "!git remote prune origin && git gc && git clean -df && git stash clear"
 
   forget = "!git fetch -p origin && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D"
+
+  # gh commands
+  browse = "!gh repo view --web"
