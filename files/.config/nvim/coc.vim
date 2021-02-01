@@ -18,6 +18,7 @@ let g:coc_global_extensions = [
   \ 'coc-sh',
   \ 'coc-snippets',
   \ 'coc-tailwindcss',
+  \ 'coc-tslint-plugin',
   \ 'coc-tsserver',
   \ 'coc-vetur',
   \ 'coc-vimlsp',
