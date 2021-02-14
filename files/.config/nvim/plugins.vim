@@ -101,6 +101,9 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'mattn/emmet-vim'
 
   " CSS
+  Plug 'wavded/vim-stylus', { 'for': ['stylus', 'markdown'] }
+  Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+  Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
   Plug 'stephenway/postcss.vim'
 
   " Typescript syntax
@@ -110,6 +113,7 @@ call plug#begin('~/.config/nvim/plugged')
   " Plug 'pangloss/vim-javascript'
   " let g:javascript_plugin_jsdoc = 1
   Plug 'othree/yajs.vim', { 'for': [ 'javascript', 'javascript.jsx', 'html' ] }
+  Plug 'moll/vim-node', { 'for': 'javascript' }
   Plug 'MaxMEllon/vim-jsx-pretty'
   let g:vim_jsx_pretty_highlight_close_tag = 1
   Plug 'faceleg/vim-jsdoc'
@@ -126,7 +130,12 @@ call plug#begin('~/.config/nvim/plugged')
   " Syntax highlighting for fish
   Plug 'dag/vim-fish'
 
-  " JSX highlighting
+  " Docker highlighting
+  Plug 'ekalinin/Dockerfile.vim'
+
+  " markdown
+  Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+  let g:markdown_fenced_languages = [ 'tsx=typescript.tsx' ]
 
   """"""""""""""""""
   " Startup
