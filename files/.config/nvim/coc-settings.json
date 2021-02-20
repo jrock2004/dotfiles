@@ -21,6 +21,7 @@
     "html.handlebars": "html",
     "javascript": "javascriptreact"
   },
+  "cssmodules.camelCase": true,
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": ["javascript", "javascriptreact", "typescript", "typescript.tsx", "typescriptreact"],
   "coc-actions.hideCursor": false,
