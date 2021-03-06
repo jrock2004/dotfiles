@@ -102,7 +102,11 @@ setup_homebrew() {
 
 	# install fzf
 	special_echo "Installing fzf"
-	"$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
+	if [ "$(uname)" == "Linux" ]; then
+		/home/linuxbrew/.linuxbrew/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
+	else
+		"$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
+	fi
 }
 
 setup_shell() {
@@ -134,7 +138,7 @@ setup_neovim() {
 	if [ "$(uname)" == "Linux" ]; then
 		sudo apt-get update
 		sudo apt-get -f install python3-pip
-		
+
 		python3 -m pip install --upgrade pynvim
 	else
 		python -m pip install --upgrade pynvim
