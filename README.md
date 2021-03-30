@@ -1,33 +1,62 @@
-# Dotfiles
+This is a place for me to store my configuration so that when I get a new machine or re-install one, I can set my computer back up as fast as possible.
+
+## Before you Start
+
+Make sure, that before you start that you install the following apps that are required for everything to work.
+
+<details>
+  <summary>Mac</summary>
+
+- Xcode Command Line Tools
+- Git
+
+Xcode will give your mac all the tools you will need to run the scripts.
+
+</details>
+
+## Running the Install Script
+
+```bash
+> git clone https://github.com/jrock2004/dotfiles.git ~/.dotfiles
+> cd ~/.dotfiles
+
+# If you want to see options, run the following:
+> ./install.sh
+
+# To run the default setup
+> ./install.sh all
+```
+
+## After Script has Ran
+
+So if the script runs through and you receive no errors, open a new terminal window and we will install some things that the installer could not do.
+
+I use [Volta](https://volta.sh) at this time to manage my node versions and node dependencies. Lets start off by install LTS version of Node
+
+```bash
+> volta install node@lts
+```
+
+Now lets install some global node plugins globally that I use that are not required for my dotfiles.
+
+```bash
+> volta install yarn ember-cli
+```
+
+---
+
+## Old Dotfiles
 
 These are all the configuration that I use for all my apps.
 
 ![img](assets/screenshot.png)
 
-## Installation
-You will want to make sure you install the following applications
-
-- Xcode Command Line Tools
-- Git
-- Curl
-
-### Cloning the project
-```bash
-git clone https://github.com/jrock2004/dotfiles.git ~/.dotfiles
-
-cd ~/.dotfiles
-
-# To see what options to pass into install run the following:
-./install.sh
-
-# Then run what you want
-./install.sh all
-```
-
 ## Configure Some Apps
+
 Lets document how I set up some of the apps I use
 
 ### iTerm
+
 ```yml
 General:
   Closing:
@@ -56,6 +85,7 @@ Profiles:
 ```
 
 ### VS Code
+
 Extensions and settings can be [found on gist](https://gist.github.com/jrock2004/34c134d3a4a8bfb84336fd5d52472237)
 
 ## Inspiration
