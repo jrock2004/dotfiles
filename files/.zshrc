@@ -3,6 +3,7 @@
 ########################################################
 export DOTFILES=$HOME/.dotfiles
 export ZSH=$DOTFILES/scripts/zsh
+export VOLTA_HOME=$HOME/.volta
 
 if [[ -d $DOTFILES/scripts/zsh/functions ]]; then
     for func in $DOTFILES/scripts/zsh/functions/*(:t); autoload -U $func
@@ -40,6 +41,7 @@ prepend_path /usr/local/opt/grep/libexec/gnubin
 prepend_path /usr/local/sbin
 prepend_path $DOTFILES/bin
 prepend_path $HOME/bin
+prepend_path $VOLTA_HOME/bin
 
 if [[ "$(uname)" == "Linux" ]]; then
   export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew";
