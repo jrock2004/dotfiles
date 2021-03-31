@@ -16,6 +16,7 @@ return require('packer').startup(function(use)
 
   -- colors
   use 'christianchiarulli/nvcode-color-schemes.vim'
+  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
   -- terminal
   use 'voldikss/vim-floaterm'

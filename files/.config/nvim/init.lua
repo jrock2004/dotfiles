@@ -5,3 +5,4 @@ require('keymaps')
 -- plugins
 require('plg-floatterm')
 require('plg-nvimtree')
+require('plg-treesitter')
