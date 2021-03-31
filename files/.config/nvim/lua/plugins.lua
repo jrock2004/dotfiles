@@ -20,4 +20,8 @@ return require('packer').startup(function(use)
 
   -- terminal
   use 'voldikss/vim-floaterm'
+
+  -- LSP
+  use 'neovim/nvim-lspconfig'
+  use 'kabouzeid/nvim-lspinstall'
 end)
