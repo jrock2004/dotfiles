@@ -29,6 +29,12 @@ return require('packer').startup(function(use)
   use 'glepnir/galaxyline.nvim'
   use 'romgrk/barbar.nvim'
 
+  -- autocomplete
+  use 'hrsh7th/nvim-compe'
+  use 'mattn/emmet-vim'
+  use 'hrsh7th/vim-vsnip'
+  use 'rafamadriz/friendly-snippets' -- premade snippets. might remove this
+
   -- LSP
   use 'neovim/nvim-lspconfig'
   use 'kabouzeid/nvim-lspinstall'

@@ -8,6 +8,8 @@ require('plg-nvimtree')
 require('plg-barber')
 require('plg-treesitter')
 require('plg-galaxyline')
+require('plg-compe')
+require('plg-emmet')
 
 -- LSP
 require('lsp')

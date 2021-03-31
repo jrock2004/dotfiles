@@ -1,6 +1,6 @@
 This is a place for me to store my configuration so that when I get a new machine or re-install one, I can set my computer back up as fast as possible.
 
-## Before you Start
+## before you start
 
 Make sure, that before you start that you install the following apps that are required for everything to work.
 
@@ -14,7 +14,7 @@ Xcode will give your mac all the tools you will need to run the scripts.
 
 </details>
 
-## Running the Install Script
+## running the install script
 
 ```bash
 > git clone https://github.com/jrock2004/dotfiles.git ~/.dotfiles
@@ -27,7 +27,7 @@ Xcode will give your mac all the tools you will need to run the scripts.
 > ./install.sh all
 ```
 
-## After Script has Ran
+## after script has ran
 
 So if the script runs through and you receive no errors, open a new terminal window and we will install some things that the installer could not do.
 
@@ -42,6 +42,30 @@ Now lets install some global node plugins globally that I use that are not requi
 ```bash
 > volta install yarn ember-cli
 ```
+
+## setting up lua language server
+
+To get the most update to date docs, [visit lua lang server wiki](<https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)>)
+
+Run the following commands
+
+```bash
+> git clone https://github.com/sumneko/lua-language-server ~/
+> cd lua-language-server
+> git submodule update --init --recursive
+> cd 3rd\luamake
+```
+
+<details>
+  <summary>Mac</summary>
+
+```bash
+> ninja -f ninja/macos.ninja
+> cd ../..
+> ./3rd/luamake/luamake rebuild
+```
+
+</details>
 
 ---
 
