@@ -21,6 +21,14 @@ return require('packer').startup(function(use)
   -- terminal
   use 'voldikss/vim-floaterm'
 
+  -- icons
+  use 'kyazdani42/nvim-web-devicons'
+  use 'ryanoasis/vim-devicons'
+
+  -- status line and buffer
+  use 'glepnir/galaxyline.nvim'
+  use 'romgrk/barbar.nvim'
+
   -- LSP
   use 'neovim/nvim-lspconfig'
   use 'kabouzeid/nvim-lspinstall'
