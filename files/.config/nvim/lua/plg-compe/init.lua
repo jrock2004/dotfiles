@@ -1,4 +1,7 @@
-vim.o.completeopt = "menuone,noselect"
+local o = vim.o
+local map = vim.api.nvim_set_keymap
+
+o.completeopt = "menuone,noselect"
 
 require'compe'.setup {
     enabled = true,
@@ -18,46 +21,16 @@ require'compe'.setup {
         path = {kind = "  "},
         buffer = {kind = "  "},
         calc = {kind = "  "},
-        vsnip = {kind = "  "},
+        vsnip = {kind = "  ", priority = 1},
         nvim_lsp = {kind = "  "},
         -- nvim_lua = {kind = "  "},
-		nvim_lua = false,
+				nvim_lua = false,
         spell = {kind = "  "},
         tags = false,
-        vim_dadbod_completion = true,
-        -- snippets_nvim = {kind = "  "},
-        -- ultisnips = {kind = "  "},
         -- treesitter = {kind = "  "},
         emoji = {kind = " ﲃ ", filetypes={"markdown"}}
-        -- for emoji press : (idk if that in compe tho)
     }
 }
-
--- 
--- 
--- 
--- 
--- 
--- 
--- 
--- 
--- 
--- 
--- 
--- 
--- 
--- 
--- 
--- 
--- ﬘
--- 
--- 
--- 
--- m
--- 
--- 
--- 
--- 
 
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -97,7 +70,36 @@ _G.s_tab_complete = function()
     end
 end
 
-vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+map("i", "<C-Space>", "compe#complete()", {expr = true})
+map("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
+map("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
+map("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+map("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+
+
+-- 
+-- 
+-- 
+-- 
+-- 
+-- 
+-- 
+-- 
+-- 
+-- 
+-- 
+-- 
+-- 
+-- 
+-- 
+-- 
+-- ﬘
+-- 
+-- 
+-- 
+-- m
+-- 
+-- 
+-- 
+-- 
+

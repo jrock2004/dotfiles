@@ -2,6 +2,7 @@ local USER = vim.fn.expand('$USER')
 local sumneko_root_path = ''
 local sumneko_binary = ''
 local fn = vim.fn
+local on_attach = require'compe'.on_attach
 
 if fn.has('mac') == 1 then
   sumneko_root_path = '/Users/' .. USER .. '/lua-language-server'
@@ -14,6 +15,7 @@ else
 end
 
 require'lspconfig'.sumneko_lua.setup {
+	on_attach=on_attach,
   cmd = {sumneko_binary, '-E', sumneko_root_path .. '/main.lua'},
   settings = {
     Lua = {

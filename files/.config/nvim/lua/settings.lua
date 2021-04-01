@@ -44,6 +44,9 @@ o.autoindent = false
 bo.swapfile = false
 bo.expandtab = true
 bo.smartindent = true
+bo.shiftwidth = 2
+bo.softtabstop = 2
+bo.tabstop = 2
 
 -- window local options
 wo.cursorline = false
