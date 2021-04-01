@@ -15,7 +15,9 @@ require('plg-comment')
 require('plg-gitsigns')
 require('plg-colorizer')
 require('plg-telescope')
+require('plg-lspkind')
 
 -- LSP
 require('lsp')
 require('lsp.lua-ls')
+require('lsp.saga-ls')
