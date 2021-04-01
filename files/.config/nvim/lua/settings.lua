@@ -35,13 +35,13 @@ o.splitbelow = true
 o.splitright = true
 o.showtabline = 2 -- Always show tabs
 o.updatetime = 50
+o.shiftwidth = 2
+o.softtabstop = 2
+o.tabstop = 2
+o.autoindent = false
 
 -- buffer local options
 bo.swapfile = false
-bo.shiftwidth = 2
-bo.softtabstop = 2
-bo.tabstop = 2
-bo.autoindent = false
 bo.expandtab = true
 bo.smartindent = true
 

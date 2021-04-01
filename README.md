@@ -67,6 +67,21 @@ Run the following commands
 
 </details>
 
+## open up neovim
+
+We are now ready to run neovim. There are going to be a few things we need to do after we open it. You might get some errors. This is ok and expected. Now run the following in vim:
+
+```bash
+:LspInstall bash
+:LspInstall css
+:LspInstall dockerfile
+:LspInstall html
+:LspInstall json
+:LspInstall typescript
+:LspInstall vim
+:LspInstall yaml
+```
+
 ---
 
 ## Old Dotfiles

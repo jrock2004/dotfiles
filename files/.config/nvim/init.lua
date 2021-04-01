@@ -19,5 +19,13 @@ require('plg-lspkind')
 
 -- LSP
 require('lsp')
+require('lsp.bash-ls')
+require('lsp.css-ls')
+require('lsp.docker-ls')
+require('lsp.html-ls')
+require('lsp.json-ls')
 require('lsp.lua-ls')
 require('lsp.saga-ls')
+require('lsp.tsserver-ls')
+require('lsp.vim-ls')
+require('lsp.yaml-ls')
