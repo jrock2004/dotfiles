@@ -56,4 +56,7 @@ return require('packer').startup(function(use)
   -- general
   use 'terrortylor/nvim-comment'
   use 'windwp/nvim-autopairs'
+
+  -- documentation
+  use {'kkoomen/vim-doge', run = ':call doge#install()'}
 end)
