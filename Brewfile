@@ -2,6 +2,7 @@ if OS.mac?
   tap "homebrew/cask"
   tap "homebrew/cask-fonts"
 
+	brew "efm-langserver"
   brew "mas"
   brew "noti"
 
@@ -49,6 +50,7 @@ brew "htop"
 brew "jq"
 brew "lazydocker"
 brew "lazygit"
+brew "luarocks"
 brew "make"
 brew "markdown"
 brew "neofetch"

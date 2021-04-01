@@ -67,6 +67,12 @@ Run the following commands
 
 </details>
 
+Now lets setup so our lua formatter works
+
+``` bash
+> luarocks install --server=https://luarocks.org/dev luaformatter
+```
+
 ## open up neovim
 
 We are now ready to run neovim. There are going to be a few things we need to do after we open it. You might get some errors. This is ok and expected. Now run the following in vim:

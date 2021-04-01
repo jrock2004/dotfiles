@@ -35,18 +35,18 @@ o.splitbelow = true
 o.splitright = true
 o.showtabline = 2 -- Always show tabs
 o.updatetime = 50
-o.shiftwidth = 2
-o.softtabstop = 2
-o.tabstop = 2
+-- o.shiftwidth = 2
+-- o.softtabstop = 2
+-- o.tabstop = 2
 o.autoindent = false
 
 -- buffer local options
 bo.swapfile = false
 bo.expandtab = true
 bo.smartindent = true
-bo.shiftwidth = 2
-bo.softtabstop = 2
-bo.tabstop = 2
+-- bo.shiftwidth = 2
+-- bo.softtabstop = 2
+-- bo.tabstop = 2
 
 -- window local options
 wo.cursorline = false
@@ -64,4 +64,7 @@ cmd 'colorscheme nvcode' -- setting theme
 cmd 'set colorcolumn=99999' -- help to fix indentation
 cmd 'set iskeyword+=-' -- make it so - is part of the work
 cmd 'set shortmess+=c' -- don't pass messages to |ins-completion-menu|.
+cmd 'set ts=2' -- insert 2 spaces
+cmd 'set sw=2'
+cmd 'set softtabstop=2'
 
