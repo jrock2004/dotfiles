@@ -52,6 +52,14 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jcostanzo/.local/share/nvim/site/pack/packer/start/gitsigns.nvim"
   },
+  ["lspkind-nvim"] = {
+    loaded = true,
+    path = "/Users/jcostanzo/.local/share/nvim/site/pack/packer/start/lspkind-nvim"
+  },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/Users/jcostanzo/.local/share/nvim/site/pack/packer/start/lspsaga.nvim"
+  },
   ["nvcode-color-schemes.vim"] = {
     loaded = true,
     path = "/Users/jcostanzo/.local/share/nvim/site/pack/packer/start/nvcode-color-schemes.vim"
@@ -116,9 +124,17 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jcostanzo/.local/share/nvim/site/pack/packer/start/vim-devicons"
   },
+  ["vim-doge"] = {
+    loaded = true,
+    path = "/Users/jcostanzo/.local/share/nvim/site/pack/packer/start/vim-doge"
+  },
   ["vim-floaterm"] = {
     loaded = true,
     path = "/Users/jcostanzo/.local/share/nvim/site/pack/packer/start/vim-floaterm"
+  },
+  ["vim-surround"] = {
+    loaded = true,
+    path = "/Users/jcostanzo/.local/share/nvim/site/pack/packer/start/vim-surround"
   },
   ["vim-vsnip"] = {
     loaded = true,
