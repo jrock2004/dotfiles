@@ -60,4 +60,7 @@ return require('packer').startup(function(use)
 
   -- documentation
   use {'kkoomen/vim-doge', run = ':call doge#install()'}
+
+  -- dashboard
+  use 'ChristianChiarulli/dashboard-nvim'
 end)

@@ -16,6 +16,7 @@ require('plg-gitsigns')
 require('plg-colorizer')
 require('plg-telescope')
 require('plg-lspkind')
+require('plg-dashboard')
 
 -- LSP
 require('lsp')
