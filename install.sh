@@ -84,6 +84,11 @@ setup_homebrew() {
 	special_echo "Setting up Homebrew"
 	seperator
 
+	if [ "$(uname)" == "Linux" ]; then
+		# This is just a temp fix for making sure we have perm to create dir
+		sudo ls
+	fi
+
 	if test ! "$(command -v brew)"; then
 		special_echo "Homebrew not installed. Installing."
 
