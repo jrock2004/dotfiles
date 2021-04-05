@@ -1,5 +1,8 @@
 This is a place for me to store my configuration so that when I get a new machine or re-install one, I can set my computer back up as fast as possible.
 
+![The opening dashboard look](assets/dashboard.png)
+![Looking up files](assets/find-files.png)
+
 ## before you start
 
 Make sure, that before you start that you install the following apps that are required for everything to work.
@@ -69,7 +72,7 @@ Run the following commands
 
 Now lets setup so our lua formatter works
 
-``` bash
+```bash
 > luarocks install --server=https://luarocks.org/dev luaformatter
 ```
 
@@ -88,19 +91,9 @@ We are now ready to run neovim. There are going to be a few things we need to do
 :LspInstall yaml
 ```
 
----
+## settings for iTerm2
 
-## Old Dotfiles
-
-These are all the configuration that I use for all my apps.
-
-![img](assets/screenshot.png)
-
-## Configure Some Apps
-
-Lets document how I set up some of the apps I use
-
-### iTerm
+If you are on a mac you will want to use iTerm2 for your terminal. Here are the settings I have configured for it
 
 ```yml
 General:
@@ -129,11 +122,11 @@ Profiles:
     Non-ASCII Ligatures: Check
 ```
 
-### VS Code
+## vscode
 
-Extensions and settings can be [found on gist](https://gist.github.com/jrock2004/34c134d3a4a8bfb84336fd5d52472237)
+I do not use it as much but I still configure it for when I have to use it. It can be [found on gist](https://gist.github.com/jrock2004/34c134d3a4a8bfb84336fd5d52472237)
 
-## Inspiration
+## inspiration
 
 My inspiration of my dotfiles comes from [Nick Nisi](https://github.com/nicknisi/dotfiles).
-Thank you for showing me the way
+The next person who got me into converting my neovim setup to Lua is [Chris@Machine](https://www.chrisatmachine.com/neovim). Thank you for showing me the way. 
