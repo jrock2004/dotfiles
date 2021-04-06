@@ -1,7 +1,7 @@
 local o = vim.o -- get/set options
 local wo = vim.wo -- window local options
 local bo = vim.bo -- buffer local options
---local g = vim.g -- global variables
+-- local g = vim.g -- global variables
 local cmd = vim.cmd -- ex commands
 
 -- get/set options
@@ -42,20 +42,20 @@ o.autoindent = false
 
 -- buffer local options
 bo.swapfile = false
-bo.expandtab = true
+-- bo.expandtab = true
 bo.smartindent = true
 -- bo.shiftwidth = 2
 -- bo.softtabstop = 2
 -- bo.tabstop = 2
 
 -- window local options
-wo.cursorline = false
+wo.cursorline = true
 wo.foldenable = false
 wo.linebreak = false
 wo.relativenumber = true
-wo.signcolumn = "yes"
+wo.signcolumn = 'yes'
 wo.number = true
-wo.cursorline = true
+wo.list = true
 
 -- global variables
 
@@ -64,7 +64,8 @@ cmd 'colorscheme nvcode' -- setting theme
 cmd 'set colorcolumn=99999' -- help to fix indentation
 cmd 'set iskeyword+=-' -- make it so - is part of the work
 cmd 'set shortmess+=c' -- don't pass messages to |ins-completion-menu|.
-cmd 'set ts=2' -- insert 2 spaces
-cmd 'set sw=2'
-cmd 'set softtabstop=2'
+cmd 'set tabstop=2' -- insert 2 spaces
+cmd 'set shiftwidth=2'
+cmd 'set expandtab'
+-- cmd 'set softtabstop=2'
 

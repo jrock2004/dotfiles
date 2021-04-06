@@ -17,7 +17,8 @@ local eslintFormat = {
 }
 
 require'lspconfig'.efm.setup {
-  cmd = {'efm-langserver', '-logfile', '/tmp/efm.log', '-loglevel', '5'},
+  cmd = {'efm-langserver'},
+  -- cmd = {'efm-langserver', '-logfile', '/tmp/efm.log', '-loglevel', '5'},
   init_options = {documentFormatting = true},
   filetypes = {'lua', 'typescriptreact', 'typescript'},
   settings = {
@@ -31,8 +32,8 @@ require'lspconfig'.efm.setup {
 }
 
 -- format on save
-cmd('autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 1000)')
-cmd('autocmd BufWritePre *.tsx lua vim.lsp.buf.formatting_sync(nil, 1000)')
-cmd('autocmd BufWritePre *.ts lua vim.lsp.buf.formatting_sync(nil, 1000)')
-cmd('autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 1000)')
-cmd('autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 1000)')
+cmd('autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 1500)')
+cmd('autocmd BufWritePre *.tsx lua vim.lsp.buf.formatting_sync(nil, 1500)')
+cmd('autocmd BufWritePre *.ts lua vim.lsp.buf.formatting_sync(nil, 1500)')
+cmd('autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 1500)')
+cmd('autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 1500)')
