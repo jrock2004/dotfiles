@@ -1,5 +1,4 @@
 local cmd = vim.cmd
-
 local luaFormat = {
   formatCommand = 'lua-format -i --no-keep-simple-function-one-line --column-limit=120 --indent-width=2 --double-quote-to-single-quote',
   formatStdin = true
@@ -16,8 +15,10 @@ local eslintFormat = {
   formatStdin = true
 }
 
+-- ~/.local/share/nvim/lspinstall/efm
 require'lspconfig'.efm.setup {
-  cmd = {'efm-langserver'},
+  -- cmd = {'efm-langserver'},
+  cmd = {'/Users/jcostanzo/.local/share/nvim/lspinstall/efm/efm-langserver'},
   -- cmd = {'efm-langserver', '-logfile', '/tmp/efm.log', '-loglevel', '5'},
   init_options = {documentFormatting = true},
   filetypes = {'lua', 'typescriptreact', 'typescript'},
