@@ -43,7 +43,7 @@ I use [Volta](https://volta.sh) at this time to manage my node versions and node
 Now lets install some global node plugins globally that I use that are not required for my dotfiles.
 
 ```bash
-> volta install yarn ember-cli
+> volta install yarn ember-cli prettier
 ```
 
 ## setting up lua language server
@@ -84,8 +84,10 @@ We are now ready to run neovim. There are going to be a few things we need to do
 :LspInstall bash
 :LspInstall css
 :LspInstall dockerfile
+:LspInstall efm
 :LspInstall html
 :LspInstall json
+:LspInstall lua
 :LspInstall typescript
 :LspInstall vim
 :LspInstall yaml
