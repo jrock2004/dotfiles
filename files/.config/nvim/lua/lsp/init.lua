@@ -78,8 +78,8 @@ cmd('nnoremap <silent> <C-b> <cmd>lua require(\'lspsaga.action\').smart_scroll_w
 -- cmd('nnoremap <silent> gs :Lspsaga signature_help<CR>')
 cmd('nnoremap <leader>r <cmd>lua require(\'lspsaga.rename\').rename()<CR>')
 
-cmd('autocmd BufWritePre *.lua lua vim.lsp.buf.formatting()')
-cmd('autocmd BufWritePre *.tsx lua vim.lsp.buf.formatting()')
-cmd('autocmd BufWritePre *.ts lua vim.lsp.buf.formatting()')
-cmd('autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting()')
-cmd('autocmd BufWritePre *.js lua vim.lsp.buf.formatting()')
+cmd('autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 1000)')
+cmd('autocmd BufWritePre *.tsx lua vim.lsp.buf.formatting_sync(nil, 1000)')
+cmd('autocmd BufWritePre *.ts lua vim.lsp.buf.formatting_sync(nil, 1000)')
+cmd('autocmd BufWritePre *.jsx lua vim.lsp.buf.formatting_sync(nil, 1000)')
+cmd('autocmd BufWritePre *.js lua vim.lsp.buf.formatting_sync(nil, 1000)')
