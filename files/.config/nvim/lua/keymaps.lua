@@ -15,6 +15,8 @@ map('n', '<C-h>', '<C-w>h', {silent = true})
 map('n', '<C-j>', '<C-w>j', {silent = true})
 map('n', '<C-k>', '<C-w>k', {silent = true})
 map('n', '<C-l>', '<C-w>l', {silent = true})
+map('n', '<C-e>', '3<C-e>', options)
+map('n', '<C-y>', '3<C-y>', options)
 
 -- vnip
 cmd 'imap <expr> <C-j>   vsnip#expandable()  ? \'<Plug>(vsnip-expand)\'         : \'<C-j>\''

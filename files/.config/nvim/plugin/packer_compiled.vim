@@ -36,6 +36,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jcostanzo/.local/share/nvim/site/pack/packer/start/barbar.nvim"
   },
+  ["dashboard-nvim"] = {
+    loaded = true,
+    path = "/Users/jcostanzo/.local/share/nvim/site/pack/packer/start/dashboard-nvim"
+  },
   ["emmet-vim"] = {
     loaded = true,
     path = "/Users/jcostanzo/.local/share/nvim/site/pack/packer/start/emmet-vim"

@@ -56,8 +56,14 @@ require('telescope').setup {
 
 cmd('autocmd FileType dashboard set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2')
 
-map('n', '<leader>t', '<cmd>lua require(\'telescope.builtin\').find_files({hidden = true})<CR>', options)
--- map('n', '<leader>e', '<cmd>lua require(\'telescope.builtin\').find_files()<CR>', options)
+-- if vim.fn.isdirectory('.git') then
+--   map('n', '<leader>t', '<cmd>lua require(\'telescope.builtin\').git_files({hidden = true})<CR>', options)
+-- else
+--   map('n', '<leader>e', '<cmd>lua require(\'telescope.builtin\').find_files({hidden = true})<CR>', options)
+-- end
+
+map('n', '<leader>t', '<cmd>lua require(\'telescope.builtin\').git_files({hidden = true})<CR>', options)
+map('n', '<leader>e', '<cmd>lua require(\'telescope.builtin\').find_files({hidden = true})<CR>', options)
 map('n', '<leader>s', '<cmd>lua require(\'telescope.builtin\').live_grep()<CR>', options)
 map('n', '<leader>C', ':Telescope colorscheme<CR>', options)
 map('n', '<leader><TAB>', ':Telescope keymaps<CR>', options)
