@@ -1,6 +1,6 @@
 local lspconfig = require 'lspconfig'
 
-local prettier = {formatCommand = './node_modules/.bin/prettier --stdin-filepath ${INPUT}', formatStdin = true}
+local prettier = {formatCommand = './node_modules/.bin/prettier --config-precedence prefer-file --stdin-filepath ${INPUT}', formatStdin = true}
 local luaFormat = {
   formatCommand = 'lua-format -i --no-keep-simple-function-one-line --column-limit=120 --indent-width=2 --double-quote-to-single-quote',
   formatStdin = true
