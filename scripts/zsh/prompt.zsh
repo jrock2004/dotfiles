@@ -31,7 +31,7 @@ node_prompt() {
 
   [[ -n version ]] || return
 
-  dotfiles::print '029' "$node_icon $version"
+  dotfiles::print '029' "$node_icon $version "
 }
 
 git_branch_name() {
