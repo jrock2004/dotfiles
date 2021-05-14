@@ -6,7 +6,7 @@ export ZSH=$DOTFILES/scripts/zsh
 export VOLTA_HOME=$HOME/.volta
 
 if [[ -d $DOTFILES/scripts/zsh/functions ]]; then
-    for func in $DOTFILES/scripts/zsh/functions/*(:t); autoload -U $func
+  for func in $DOTFILES/scripts/zsh/functions/*(:t); autoload -U $func
 fi
 
 ########################################################
@@ -42,16 +42,6 @@ prepend_path /usr/local/sbin
 prepend_path $DOTFILES/bin
 prepend_path $HOME/bin
 prepend_path $VOLTA_HOME/bin
-
-if [[ "$(uname)" == "Linux" ]]; then
-  export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew";
-  export HOMEBREW_CELLAR="$HOMEBREW_PREFIX/Cellar";
-  export HOMEBREW_REPOSITORY="$HOMEBREW_PREFIX/Homebrew";
-  prepend_path "$HOMEBREW_PREFIX/bin"
-  prepend_path "$HOMEBREW_PREFIX/sbin"
-  export MANPATH="$HOMEBREW_PREFIX/share/man${MANPATH+:$MANPATH}:";
-  export INFOPATH="$HOMEBREW_PREFIX/share/info:${INFOPATH}";
-fi
 
 # display how long all tasks over 10 seconds take
 export REPORTTIME=10
@@ -135,11 +125,6 @@ export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
-# move to next word with ctrl-F
-bindkey -M viins "^F" vi-forward-word
-# Move to end of line with ctrl-E
-bindkey -M viins "^E" vi-add-eol
-
 # add color to man pages
 export MANROFFOPT='-c'
 export LESS_TERMCAP_mb=$(tput bold; tput setaf 2)
@@ -155,7 +140,7 @@ export LESS_TERMCAP_mh=$(tput dim)
 # source z.sh if it exists
 zpath="$(brew --prefix)/etc/profile.d/z.sh"
 if [ -f "$zpath" ]; then
-    source "$zpath"
+  source "$zpath"
 fi
 
 source "$DOTFILES/scripts/zsh/utils.zsh"
@@ -170,9 +155,9 @@ alias reload!='RELOAD=1 source ~/.zshrc'
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
-    colorflag="--color"
+  colorflag="--color"
 else # macOS `ls`
-    colorflag="-G"
+  colorflag="-G"
 fi
 
 # use nvim, but don't make me think about it
@@ -180,6 +165,7 @@ fi
 
 # Git Aliases
 alias gs='git status'
+alias glog="git l"
 alias gcorb='git checkout --track $(git branch -r | fzf)'
 alias gcob='git checkout $(git branch | fzf)'
 alias gpo='git pull origin'
@@ -221,10 +207,6 @@ alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 # remove broken symlinks
 alias clsym="find -L . -name . -o -type d -prune -o -type l -exec rm {} +"
 
-# git aliases
-alias gs='git s'
-alias glog="git l"
-
 # tmux aliases
 alias ta='tmux attach'
 alias tls='tmux ls'
@@ -235,3 +217,5 @@ alias lpath='echo $PATH | tr ":" "\n"' # list the PATH separated by new lines
 
 # list our process using port
 alias wtfport="lsof -i -P -n | grep LISTEN"
+
+

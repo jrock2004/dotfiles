@@ -6,9 +6,9 @@ export VIM_TMP="$HOME/.vim-tmp"
 [[ -d "$VIM_TMP" ]] || mkdir -p "$VIM_TMP"
 
 fpath=(
-    $DOTFILES/scripts/zsh/functions
-    /usr/local/share/zsh/site-functions
-    $fpath
+  $DOTFILES/scripts/zsh/functions
+  /usr/local/share/zsh/site-functions
+  $fpath
 )
 
 typeset -aU path
