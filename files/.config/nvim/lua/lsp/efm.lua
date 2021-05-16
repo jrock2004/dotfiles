@@ -11,9 +11,15 @@ lspconfig.efm.setup {
   -- cmd = {'efm-langserver', '-logfile', '/tmp/efm.log', '-loglevel', '5'},
   on_attach = on_attach,
   init_options = {documentFormatting = true},
-  filetypes = {'javascriptreact', 'javascript', 'lua', 'typescriptreact', 'typescript'},
+  filetypes = {'javascriptreact', 'javascript', 'javascript.jsx', 'lua', 'typescriptreact', 'typescript', 'typescript.tsx'},
   settings = {
     rootMarkers = {'.git/'},
-    languages = {lua = {luaFormat}, typescript = {prettier, eslint}, typescriptreact = {prettier, eslint}}
+    languages = {
+      lua = {luaFormat},
+      typescript = {prettier, eslint},
+      typescriptreact = {prettier, eslint},
+      ["javascript.jsx"] = {prettier, eslint},
+      ["typescript.tsx"] = {prettier, eslint}
+    }
   }
 }

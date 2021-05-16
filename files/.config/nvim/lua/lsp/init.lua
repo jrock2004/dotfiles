@@ -43,7 +43,7 @@ lspinstall.setup()
 local servers = lspinstall.installed_servers()
 
 for _, lsp in ipairs(servers) do
-  if lsp == 'tsserver' then
+  if lsp == 'typescript' then
     require('lsp.tsserver')
   elseif lsp == 'efm' then
     require('lsp.efm')
