@@ -34,6 +34,10 @@ return require('packer').startup(function(use)
   use 'hrsh7th/nvim-compe'
   use 'mattn/emmet-vim'
 
+  -- lsp
+  use 'neovim/nvim-lspconfig'
+  use 'kabouzeid/nvim-lspinstall'
+
   -- telescope
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'

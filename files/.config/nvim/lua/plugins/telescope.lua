@@ -60,7 +60,7 @@ else
   nmap('<leader>t', '<cmd>lua require(\'telescope.builtin\').find_files({hidden = true})<CR>')
 end
 
-nmap('<leader>e', '<cmd>lua require(\'telescope.builtin\').find_files({hidden = true})<CR>')
+nmap('<leader>ff', '<cmd>lua require(\'telescope.builtin\').find_files({hidden = true})<CR>')
 nmap('<leader>s', '<cmd>lua require(\'telescope.builtin\').live_grep({hidden = true})<CR>')
 nmap('<leader>C', ':Telescope colorscheme<CR>')
 nmap('<leader><TAB>', ':Telescope keymaps<CR>')
