@@ -3,7 +3,7 @@ local keymap = require('lua-helpers/keymap')
 local nmap = keymap.nmap
 local cmd = vim.cmd
 
-require('telescope').load_extension('media_files')
+-- require('telescope').load_extension('media_files')
 require('telescope').setup {
   defaults = {
     vimgrep_arguments = {
@@ -51,10 +51,8 @@ require('telescope').setup {
       }
     }
   },
-  extensions = {media_files = {filetypes = {'png', 'webp', 'jpg', 'jpeg'}, find_cmd = 'rg'}}
+  extensions = {find_cmd = 'rg'}
 }
-
-cmd('autocmd FileType dashboard set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2')
 
 if vim.fn.isdirectory('.git') ~= 0 then
   nmap('<leader>t', '<cmd>lua require(\'telescope.builtin\').git_files({hidden = true})<CR>')

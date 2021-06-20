@@ -21,4 +21,4 @@ require('plugins/emmet')
 require('plugins/colorize')
 require('plugins/treesitter')
 
-require('lsp-config')
+-- require('lsp-config')

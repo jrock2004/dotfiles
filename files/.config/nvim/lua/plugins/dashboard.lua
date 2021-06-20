@@ -1,4 +1,5 @@
 local g = vim.g
+local cmd = vim.cmd
 
 g.dashboard_default_executive = 'telescope'
 g.dashboard_custom_section = {
@@ -9,3 +10,5 @@ g.dashboard_custom_section = {
   -- e = {description = {' Settings           '}, command = ':e ~/.config/nvim/nv-settings.lua'}
   -- e = {description = {' Marks              '}, command = 'Telescope marks'}
 }
+
+cmd('autocmd FileType dashboard set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2')

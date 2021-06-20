@@ -13,8 +13,8 @@ return require('packer').startup(function(use)
 
   -- colors
   use 'christianchiarulli/nvcode-color-schemes.vim'
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use 'norcalli/nvim-colorizer.lua'
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
   -- file explorer
   use 'kyazdani42/nvim-tree.lua'
@@ -33,29 +33,20 @@ return require('packer').startup(function(use)
   -- autocomplete
   use 'hrsh7th/nvim-compe'
   use 'mattn/emmet-vim'
-  use 'hrsh7th/vim-vsnip'
-
-  -- lsp
-  use 'neovim/nvim-lspconfig'
-  use 'kabouzeid/nvim-lspinstall'
 
   -- telescope
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-media-files.nvim'
 
   -- git
   use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
 
   -- intellisense
-  use 'glepnir/lspsaga.nvim'
   use 'onsails/lspkind-nvim'
-  use {'RishabhRD/nvim-lsputils', requires = {'RishabhRD/popfix'}}
 
   -- general
   use 'terrortylor/nvim-comment'
-  use 'tpope/vim-surround'
 
   -- dashboard
   use 'ChristianChiarulli/dashboard-nvim'
