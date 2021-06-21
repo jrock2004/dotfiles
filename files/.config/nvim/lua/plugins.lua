@@ -11,13 +11,13 @@ return require('packer').startup(function(use)
   -- packer will manage itself
   use 'wbthomason/packer.nvim'
 
-  -- file explorer
-  use 'kyazdani42/nvim-tree.lua'
-
   -- colors
   use 'christianchiarulli/nvcode-color-schemes.vim'
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use 'norcalli/nvim-colorizer.lua'
+  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+
+  -- file explorer
+  use 'kyazdani42/nvim-tree.lua'
 
   -- terminal
   use 'voldikss/vim-floaterm'
@@ -34,32 +34,28 @@ return require('packer').startup(function(use)
   use 'hrsh7th/nvim-compe'
   use 'mattn/emmet-vim'
   use 'hrsh7th/vim-vsnip'
-  use 'rafamadriz/friendly-snippets' -- premade snippets. might remove this
+  use 'hrsh7th/vim-vsnip-integ'
 
   -- lsp
   use 'neovim/nvim-lspconfig'
   use 'kabouzeid/nvim-lspinstall'
+  use 'RishabhRD/nvim-lsputils'
+  use 'RishabhRD/popfix'
 
   -- telescope
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
-  use 'nvim-telescope/telescope-media-files.nvim'
 
   -- git
   use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
 
   -- intellisense
-  use 'glepnir/lspsaga.nvim'
   use 'onsails/lspkind-nvim'
 
   -- general
   use 'terrortylor/nvim-comment'
-  use 'windwp/nvim-autopairs'
   use 'tpope/vim-surround'
-
-  -- documentation
-  use {'kkoomen/vim-doge', run = ':call doge#install()'}
 
   -- dashboard
   use 'ChristianChiarulli/dashboard-nvim'

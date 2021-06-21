@@ -1,7 +1,10 @@
-local o = vim.o
+local keymap = require('lua-helpers/keymap')
+local imap = keymap.imap
+local omap = keymap.omap
+local smap = keymap.smap
 local map = vim.api.nvim_set_keymap
 
-o.completeopt = "menuone,noselect"
+omap('completeopt', "menuone,noselect")
 
 require'compe'.setup {
   enabled = true,
@@ -70,12 +73,13 @@ _G.s_tab_complete = function()
   end
 end
 
-map("i", "<C-Space>", "compe#complete()", {expr = true})
-map("i", "<Tab>", "v:lua.tab_complete()", {expr = true})
-map("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
-map("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-map("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+local options = {expr = true}
 
+imap("<C-Space>", "compe#complete()", options)
+imap("<Tab>", "v:lua.tab_complete()", options)
+smap("<Tab>", "v:lua.tab_complete()", options)
+imap("<S-Tab>", "v:lua.s_tab_complete()", options)
+smap("<S-Tab>", "v:lua.s_tab_complete()", options)
 
 -- 
 -- 
@@ -102,4 +106,3 @@ map("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 -- 
 -- 
 -- 
-

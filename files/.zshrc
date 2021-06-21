@@ -218,4 +218,4 @@ alias lpath='echo $PATH | tr ":" "\n"' # list the PATH separated by new lines
 # list our process using port
 alias wtfport="lsof -i -P -n | grep LISTEN"
 
-
+alias luamake=/Users/jcostanzo/lua-language-server/3rd/luamake/luamake

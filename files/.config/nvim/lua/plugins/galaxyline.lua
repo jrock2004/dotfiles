@@ -25,36 +25,36 @@ local gls = gl.section
 gl.short_line_list = {'NvimTree', 'vista', 'dbui', 'packer'}
 
 gls.left[1] = {
-    ViMode = {
-        provider = function()
-            -- auto change color according the vim mode
-            local mode_color = {
-                n = colors.blue,
-                i = colors.green,
-                v = colors.purple,
-                [''] = colors.purple,
-                V = colors.purple,
-                c = colors.magenta,
-                no = colors.blue,
-                s = colors.orange,
-                S = colors.orange,
-                [''] = colors.orange,
-                ic = colors.yellow,
-                R = colors.red,
-                Rv = colors.red,
-                cv = colors.blue,
-                ce = colors.blue,
-                r = colors.cyan,
-                rm = colors.cyan,
-                ['r?'] = colors.cyan,
-                ['!'] = colors.blue,
-                t = colors.blue
-            }
-            vim.api.nvim_command('hi GalaxyViMode guifg=' .. mode_color[vim.fn.mode()])
-            return '▊ '
-        end,
-        highlight = {colors.red, colors.bg}
-    }
+  ViMode = {
+    provider = function()
+      -- auto change color according the vim mode
+      local mode_color = {
+        n = colors.blue,
+        i = colors.green,
+        v = colors.purple,
+        [''] = colors.purple,
+        V = colors.purple,
+        c = colors.magenta,
+        no = colors.blue,
+        s = colors.orange,
+        S = colors.orange,
+        [''] = colors.orange,
+        ic = colors.yellow,
+        R = colors.red,
+        Rv = colors.red,
+        cv = colors.blue,
+        ce = colors.blue,
+        r = colors.cyan,
+        rm = colors.cyan,
+        ['r?'] = colors.cyan,
+        ['!'] = colors.blue,
+        t = colors.blue
+      }
+      vim.api.nvim_command('hi GalaxyViMode guifg=' .. mode_color[vim.fn.mode()])
+      return '▊ '
+    end,
+    highlight = {colors.red, colors.bg}
+  }
 }
 print(vim.fn.getbufvar(0, 'ts'))
 vim.fn.getbufvar(0, 'ts')
@@ -192,16 +192,16 @@ gls.right[11] = {
 }
 
 gls.short_line_left[1] = {
-    BufferType = {
-        provider = 'FileTypeName',
-        separator = ' ',
-        separator_highlight = {'NONE', colors.bg},
-        highlight = {colors.grey, colors.bg}
+  BufferType = {
+      provider = 'FileTypeName',
+      separator = ' ',
+      separator_highlight = {'NONE', colors.bg},
+      highlight = {colors.grey, colors.bg}
     }
 }
 
 gls.short_line_left[2] = {
-    SFileName = {provider = 'SFileName', condition = condition.buffer_not_empty, highlight = {colors.grey, colors.bg}}
+  SFileName = {provider = 'SFileName', condition = condition.buffer_not_empty, highlight = {colors.grey, colors.bg}}
 }
 
 gls.short_line_right[1] = {BufferIcon = {provider = 'BufferIcon', highlight = {colors.grey, colors.bg}}}

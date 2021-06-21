@@ -1,9 +1,9 @@
 local actions = require('telescope.actions')
-local map = vim.api.nvim_set_keymap
+local keymap = require('lua-helpers/keymap')
+local nmap = keymap.nmap
 local cmd = vim.cmd
-local options = {noremap = true, silent = true}
 
-require('telescope').load_extension('media_files')
+-- require('telescope').load_extension('media_files')
 require('telescope').setup {
   defaults = {
     vimgrep_arguments = {
@@ -51,20 +51,16 @@ require('telescope').setup {
       }
     }
   },
-  extensions = {media_files = {filetypes = {'png', 'webp', 'jpg', 'jpeg'}, find_cmd = 'rg'}}
+  extensions = {find_cmd = 'rg'}
 }
 
-cmd('autocmd FileType dashboard set showtabline=0 | autocmd WinLeave <buffer> set showtabline=2')
-
 if vim.fn.isdirectory('.git') ~= 0 then
-  map('n', '<leader>t', '<cmd>lua require(\'telescope.builtin\').git_files({hidden = true})<CR>', options)
+  nmap('<leader>t', '<cmd>lua require(\'telescope.builtin\').git_files({hidden = true})<CR>')
 else
-  map('n', '<leader>t', '<cmd>lua require(\'telescope.builtin\').find_files({hidden = true})<CR>', options)
+  nmap('<leader>t', '<cmd>lua require(\'telescope.builtin\').find_files({hidden = true})<CR>')
 end
 
--- map('n', '<leader>t', '<cmd>lua require(\'telescope.builtin\').git_files({hidden = true})<CR>', options)
-map('n', '<leader>e', '<cmd>lua require(\'telescope.builtin\').find_files({hidden = true})<CR>', options)
-map('n', '<leader>s', '<cmd>lua require(\'telescope.builtin\').live_grep()<CR>', options)
-map('n', '<leader>C', ':Telescope colorscheme<CR>', options)
-map('n', '<leader><TAB>', ':Telescope keymaps<CR>', options)
-
+nmap('<leader>ff', '<cmd>lua require(\'telescope.builtin\').find_files({hidden = true})<CR>')
+nmap('<leader>s', '<cmd>lua require(\'telescope.builtin\').live_grep({hidden = true})<CR>')
+nmap('<leader>C', ':Telescope colorscheme<CR>')
+nmap('<leader><TAB>', ':Telescope keymaps<CR>')

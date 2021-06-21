@@ -1,7 +1,6 @@
+local keymap = require('lua-helpers/keymap')
+local nmap = keymap.nmap
 local g = vim.g
-local map = vim.api.nvim_set_keymap
-local options = { noremap = true, silent = true }
-
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 
 -- plugin settings
@@ -14,5 +13,4 @@ g.nvim_tree_bindings = {
   ["<CR>"] = tree_cb("edit"),
 }
 
--- plugin keymaps
-map('n', '<leader>k', ':NvimTreeToggle<CR>', options)
+nmap('<leader>k', ':NvimTreeToggle<CR>')

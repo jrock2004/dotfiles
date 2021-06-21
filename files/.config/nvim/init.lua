@@ -1,23 +1,24 @@
+-- Setting leader as its not most important
+vim.g.mapleader = ','
+vim.g.maplocalleader = ','
+
+require('mappings')
 require('plugins')
-require('plg-autocommands')
-require('settings')
-require('keymaps')
+require('config')
 
--- plugins
-require('plg-compe')
-require('plg-floatterm')
-require('plg-autopairs')
-require('plg-nvimtree')
-require('plg-barber')
-require('plg-treesitter')
-require('plg-galaxyline')
-require('plg-emmet')
-require('plg-comment')
-require('plg-gitsigns')
-require('plg-colorizer')
-require('plg-telescope')
-require('plg-lspkind')
-require('plg-dashboard')
+-- plugin settings
+require('plugins/nvimtree')
+require('plugins/floatterm')
+require('plugins/galaxyline')
+require('plugins/barber')
+require('plugins/compe')
+require('plugins/telescope')
+require('plugins/gitsigns')
+require('plugins/lspkind')
+require('plugins/comment')
+require('plugins/dashboard')
+require('plugins/emmet')
+require('plugins/colorize')
+require('plugins/treesitter')
 
--- LSP
-require('lsp')
+require('lsp-config')
