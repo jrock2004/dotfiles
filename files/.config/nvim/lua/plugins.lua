@@ -33,10 +33,14 @@ return require('packer').startup(function(use)
   -- autocomplete
   use 'hrsh7th/nvim-compe'
   use 'mattn/emmet-vim'
+  use 'hrsh7th/vim-vsnip'
+  use 'hrsh7th/vim-vsnip-integ'
 
   -- lsp
   use 'neovim/nvim-lspconfig'
   use 'kabouzeid/nvim-lspinstall'
+  use 'RishabhRD/nvim-lsputils'
+  use 'RishabhRD/popfix'
 
   -- telescope
   use 'nvim-lua/popup.nvim'
@@ -51,6 +55,7 @@ return require('packer').startup(function(use)
 
   -- general
   use 'terrortylor/nvim-comment'
+  use 'tpope/vim-surround'
 
   -- dashboard
   use 'ChristianChiarulli/dashboard-nvim'

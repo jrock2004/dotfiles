@@ -12,5 +12,9 @@ nmap('<C-l>', '<C-w>l', {silent = true})
 nmap('<C-e>', '3<C-e>')
 nmap('<C-y>', '3<C-y>')
 
+-- vnip
+vim.cmd 'imap <expr> <C-j>   vsnip#expandable()  ? \'<Plug>(vsnip-expand)\'         : \'<C-j>\''
+vim.cmd 'smap <expr> <C-j>   vsnip#expandable()  ? \'<Plug>(vsnip-expand)\'         : \'<C-j>\''
+
 -- toggle hl
 nmap('<leader>h', ':set hlsearch!<CR>')

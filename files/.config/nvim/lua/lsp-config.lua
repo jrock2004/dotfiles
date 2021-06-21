@@ -129,7 +129,6 @@ lsp.yaml.setup {on_attach = on_attach_common, filetypes = { "yaml" }}
 lsp.html.setup {on_attach = on_attach_common, filetypes = { "html" }, capabilities = capabilities}
 lsp.bash.setup {on_attach = on_attach_common, filetypes = { "sh" }}
 lsp.dockerfile.setup {on_attach = on_attach_common, filetypes = { "dockerfile" }}
-lsp.lua.setup {on_attach = on_attach_common, filetypes = { "lua" }}
 lsp.json.setup {on_attach = on_attach_common, filetypes = { "json" }}
 lsp.css.setup {
   on_attach = function(client)
@@ -220,4 +219,88 @@ lsp.efm.setup {
     "scss",
     "css"
   }
+}
+
+-- Lua language server
+-- local system_name
+if vim.fn.has("mac") == 1 then
+  System_name = "macOS"
+elseif vim.fn.has("unix") == 1 then
+  System_name = "Linux"
+elseif vim.fn.has('win32') == 1 then
+  System_name = "Windows"
+else
+  print("Unsupported system for sumneko")
+end
+
+local sumneko_root_path = '/Users/jcostanzo/lua-language-server'
+local sumneko_binary = sumneko_root_path.."/bin/"..System_name.."/lua-language-server"
+
+lsp.lua.setup({
+    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+    settings = {
+        Lua = {
+            diagnostics = {
+                enable = true,
+                globals = { "vim" },
+            },
+        }
+    },
+
+    on_attach = on_attach_common
+})
+
+-- nvim-lsputils configuration
+vim.g.lsp_utils_location_opts = {
+    height = 24,
+    mode = 'split',
+    list = {
+        border = true,
+        numbering = true
+    },
+    preview = {
+        title = 'Location Preview',
+        border = true,
+    },
+}
+
+
+vim.g.lsp_utils_symbols_opts = {
+    height = 24,
+    mode = 'editor',
+    list = {
+        border = true,
+        numbering = false,
+    },
+    preview = {
+        title = 'Symbols Preview',
+        border = true,
+    },
+    prompt = {}
+}
+
+vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
+vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
+vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
+vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
+vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
+vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
+vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
+vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
+
+vim.g.diagnostic_enable_virtual_text = 1
+
+local function lsp_reload(buffer)
+    vim.lsp.stop_client(vim.lsp.get_active_clients(buffer))
+    vim.cmd("edit")
+end
+
+local function lsp_stop(buffer)
+    vim.lsp.diagnostic.clear(buffer)
+    vim.lsp.stop_client(vim.lsp.get_active_clients(buffer))
+end
+
+return{
+    lsp_reload = lsp_reload,
+    lsp_stop = lsp_stop
 }
