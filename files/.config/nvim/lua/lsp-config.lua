@@ -129,15 +129,15 @@ lsp.yaml.setup {on_attach = on_attach_common, filetypes = { "yaml" }}
 lsp.html.setup {on_attach = on_attach_common, filetypes = { "html" }, capabilities = capabilities}
 lsp.bash.setup {on_attach = on_attach_common, filetypes = { "sh" }}
 lsp.dockerfile.setup {on_attach = on_attach_common, filetypes = { "dockerfile" }}
+lsp.lua.setup {on_attach = on_attach_common, filetypes = { "lua" }}
+lsp.json.setup {on_attach = on_attach_common, filetypes = { "json" }}
 lsp.css.setup {
   on_attach = function(client)
-    print("This is cool")
     client.resolved_capabilities.document_formatting = false
     on_attach_common(client)
   end,
   capabilities = capabilities,
-  cmd = { "html-languageserver", "--stdio" },
-  filetypes = { "css, html, scss" },
+  filetypes = { "css", "html", "scss" },
   init_options = {
     configurationSection = { "html", "css", "javascript", "scss" },
     embeddedLanguages = {
@@ -203,9 +203,9 @@ lsp.efm.setup {
       yaml = {prettier},
       json = {prettier},
       html = {prettier},
-      less = {prettier, eslint},
-      scss = {prettier, eslint},
-      css = {prettier, eslint},
+      less = {prettier},
+      scss = {prettier},
+      css = {prettier},
       markdown = {prettier}
     }
   },
