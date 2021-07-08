@@ -7,9 +7,15 @@ local cmd = vim.cmd
 require('telescope').setup {
   defaults = {
     vimgrep_arguments = {
-      'rg', '--color=never', '--no-heading', '--with-filename', '--line-number', '--column', '--smart-case', '--hidden'
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '--hidden'
     },
-    prompt_position = 'top',
     prompt_prefix = ' ',
     selection_caret = ' ',
     entry_prefix = '  ',
@@ -17,16 +23,22 @@ require('telescope').setup {
     selection_strategy = 'reset',
     sorting_strategy = 'ascending',
     layout_strategy = 'horizontal',
-    layout_defaults = {horizontal = {mirror = false}, vertical = {mirror = false}},
+    layout_config = {
+      horizontal = {
+        mirror = false,
+        preview_cutoff = 100,
+      },
+      vertical = {
+        mirror = false,
+      },
+      prompt_position = 'top',
+      width = 0.75,
+    },
     file_sorter = require'telescope.sorters'.get_fuzzy_file,
     file_ignore_patterns = {'.git/'},
     generic_sorter = require'telescope.sorters'.get_generic_fuzzy_sorter,
     shorten_path = true,
     winblend = 0,
-    width = 0.75,
-    preview_cutoff = 120,
-    results_height = 1,
-    results_width = 0.8,
     border = {},
     borderchars = {'─', '│', '─', '│', '╭', '╮', '╯', '╰'},
     color_devicons = true,

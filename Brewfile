@@ -5,7 +5,7 @@ if OS.mac?
 	brew "efm-langserver"
   brew "mas"
   brew "noti"
-	brew "neovim --HEAD"
+	brew "neovim"
 
   cask "font-3270-nerd-font"
   cask "font-cascadia-mono"
