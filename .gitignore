@@ -13,3 +13,4 @@ files/.config/nvim/autoload/plug.vim
 files/.config/nvim/autoload/plug.vim.old
 tmux-client*
 tmux-server*
+files/.config/nvim/plugin
