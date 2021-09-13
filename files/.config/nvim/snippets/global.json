@@ -1,0 +1,32 @@
+{
+  "date": {
+    "prefix": "date",
+    "body": [
+      "${VIM:strftime(\"%Y-%m-%d\")}"
+    ]
+  },
+  "dateiso": {
+    "prefix": "dateiso",
+    "body": [
+      "${VIM:strftime(\"%FT%T%z\")}"
+    ]
+  },
+  "ddate": {
+    "prefix": "ddate",
+    "body": [
+      "${VIM:strftime(\"%B %d, %Y\")}"
+    ]
+  },
+  "datetime": {
+    "prefix": "datetime",
+    "body": [
+      "${VIM:strftime(\"%Y-%m-%d %H:%M\")}"
+    ]
+  },
+  "time": {
+    "prefix": "time",
+    "body": [
+      "${VIM:strftime(\"%H:%M\")}"
+    ]
+  }
+}
