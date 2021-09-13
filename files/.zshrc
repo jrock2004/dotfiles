@@ -82,6 +82,7 @@ bindkey -M viins "^F" vi-forward-word               # [Ctrl-f] - move to next wo
 bindkey -M viins "^E" vi-add-eol                    # [Ctrl-e] - move to end of line
 bindkey "^J" history-beginning-search-forward
 bindkey "^K" history-beginning-search-backward
+bindkey -s ^f "tmux-sessionizer\n"                  # Quick way to start a tmux session with search
 
 # matches case insensitive for lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
