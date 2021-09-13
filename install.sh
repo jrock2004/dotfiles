@@ -106,6 +106,40 @@ setup_fzf() {
   success "FZF setup successfully"
 }
 
+setup_stow() {
+  title "Linking your files with GNU stow"
+
+  if [ "$(command -v brew)" ]; then
+    "$(brew --prefix)"/bin/stow --stow --ignore ".DS_Store" --target="$HOME" --dir="$DOTFILES" files
+  fi
+
+  if test ! -f "$HOME/.tmux.conf"; then
+    error "Stow did not work"
+    exit 1
+  fi
+
+  success "Stow setup successfully"
+}
+
+setup_zolta() {
+  title "Setting up Zolta to manage node and its dependencies"
+
+  curl https://get.volta.sh | bash -s -- --skip-setup
+
+  # For now volta needs this for node and stuff to work
+  if [ "$OS" = "Darwin" ]; then
+    softwareupdate --install-rosetta
+  fi
+
+  if [ "$(command -v volta)" ]; then
+    info "Installing some global Node NPM Apps"
+
+    volta install node@lts yarn
+  fi
+
+  success "Zolta is setup successfully"
+}
+
 case "$1" in
   directories)
     setup_directories
@@ -119,8 +153,14 @@ case "$1" in
   init)
     setup_init
     ;;
+  stow)
+    setup_stow
+    ;;
+  volta)
+    setup_volta
+    ;;
   *)
-    echo -e $"\nUsage: $(basename "$0") {directories|fzf|homebrew|init}\n"
+    echo -e $"\nUsage: $(basename "$0") {directories|fzf|homebrew|init|stow|volta}\n"
     exit 1
     ;;
 esac
