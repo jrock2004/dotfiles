@@ -55,14 +55,10 @@ setup_init() {
 setup_directories() {
   title "Creating directories you use"
 
-  SUCCESS=true
-
   mkdir -p "$HOME/Development"
 
-  [ ! -d "$HOME/Development" ] && SUCCESS=false
-
-  if [ "$SUCCESS" = false ]; then
-    error "One of the directories is not there"
+  if [ ! -d "$HOME/Development" ]; then
+    error "Could not find the Dev"
 
     exit 1
   fi
@@ -70,15 +66,45 @@ setup_directories() {
   success "Directories created successfully"
 }
 
+setup_homebrew() {
+  title "Setting up Homebrew"
+
+  if [ -z "$(command -v brew)" ]; then
+    info "Homebrew is not installed. Installing"
+
+    sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash --login
+
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
+
+  if [ "$(command -v brew)" ]; then
+    info "installing software"
+    brew bundle
+  else
+    error "Brew command was not found"
+    exit 1
+  fi
+
+  if ! [ "$(command -v stow)" ]; then
+    error "Stow could not be found"
+    exit 1
+  fi
+
+  success "Homebrew setup successfully"
+}
+
 case "$1" in
   directories)
     setup_directories
+    ;;
+  homebrew)
+    setup_homebrew
     ;;
   init)
     setup_init
     ;;
   *)
-    echo -e $"\nUsage: $(basename "$0") {directories|init}\n"
+    echo -e $"\nUsage: $(basename "$0") {directories|homebrew|init}\n"
     exit 1
     ;;
 esac
