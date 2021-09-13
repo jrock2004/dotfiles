@@ -113,6 +113,8 @@ zfetch Aloxaf/fzf-tab
 # Setup
 ########################################################
 
+source "$DOTFILES/zsh/utils.zsh"
+
 # If a local zshrc exists, source it
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
@@ -227,5 +229,4 @@ alias luamake=$HOME/lua-language-server/3rd/luamake/luamake
 alias disableLaptop='xrandr --output eDP-1 --off'
 
 # Need to source these last
-source "$DOTFILES/zsh/utils.zsh"
 source "$DOTFILES/zsh/prompt.zsh"
