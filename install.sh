@@ -209,6 +209,17 @@ case "$1" in
   lua)
     setup_lua
     ;;
+  mac)
+    setup_init
+    setup_directories
+    setup_homebrew
+    setup_fzf
+    setup_stow
+    setup_zolta
+    setup_lua
+    setup_neovim
+    setup_shell
+    ;;
   neovim)
     setup_neovim
     ;;
