@@ -46,6 +46,17 @@ setup_init() {
     info "Git is installed"
   fi
 
+  # if we are on linux lets install some things
+  if [[ "$(uname)" = "Linux" && "$(command -v apt-get)" ]]; then
+    info "Installing some linux pre-reqs"
+
+    sudo apt-get install build-essential procps curl file git
+  elif [[ "$(uname)" = "Linux" && "$(command -v pacman)" ]]; then
+    info "Installing some linux pre-reqs"
+
+    sudo pacman -S base-devel curl git
+  fi
+
   # if one of the missing commands is missing, fail the script
   [ "$SUCCESS" = false ] && exit 1
 
@@ -98,6 +109,8 @@ setup_fzf() {
 
   if [ "$(command -v brew)" ]; then
     "$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
+  elif [ "$(uname)" = "Linux" ]; then
+    info "We are on linux and will setup FZF differently"
   else
     error "Something went wrong with setting up FZF"
     exit 1
@@ -111,6 +124,8 @@ setup_stow() {
 
   if [ "$(command -v brew)" ]; then
     "$(brew --prefix)"/bin/stow --stow --ignore ".DS_Store" --target="$HOME" --dir="$DOTFILES" files
+  elif [ "$(command -v stow)" ]; then
+    /usr/bin/stow --stow --ignore ".DS_Store" --target="$HOME" --dir="$DOTFILES" files
   fi
 
   if test ! -f "$HOME/.tmux.conf"; then
@@ -165,7 +180,9 @@ setup_lua() {
 setup_neovim() {
   title "Setting things up for neovim"
 
-  if [ "$(command -v python)" ]; then
+  if [ "$(uname)" = "Linux" ]; then
+    python3 -m pip install --upgrade pynvim
+  elif [ "$(command -v python)" ]; then
     python -m pip install --upgrade pynvim
 
     success "Neovim is setup successfully"
@@ -193,7 +210,34 @@ setup_shell() {
   success "Configuring shell was successfully"
 }
 
+setup_ubuntu() {
+  title "Installing app via apt-get"
+
+  source ./linux.sh
+
+  success "Finshed installing all the linux apps"
+}
+
+setup_arch() {
+  title "Installing app via pacman"
+
+  source ./arch.sh
+
+  success "Finshed installing all the linux apps"
+}
+
 case "$1" in
+  arch)
+    setup_init
+    setup_directories
+    setup_arch
+    setup_fzf
+    setup_stow
+    setup_zolta
+    setup_lua
+    setup_neovim
+    setup_shell
+    ;;
   directories)
     setup_directories
     ;;
@@ -205,6 +249,17 @@ case "$1" in
     ;;
   init)
     setup_init
+    ;;
+  linux)
+    setup_init
+    setup_directories
+    setup_ubuntu
+    setup_fzf
+    setup_stow
+    setup_zolta
+    setup_lua
+    setup_neovim
+    setup_shell
     ;;
   lua)
     setup_lua
@@ -233,7 +288,7 @@ case "$1" in
     setup_volta
     ;;
   *)
-    echo -e $"\nUsage: $(basename "$0") {directories|fzf|homebrew|init|lua|neovim|shell|stow|volta}\n"
+    echo -e $"\nUsage: $(basename "$0") {arch|directories|fzf|homebrew|init|linux|lua|neovim|shell|stow|volta}\n"
     exit 1
     ;;
 esac
