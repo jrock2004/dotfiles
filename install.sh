@@ -140,6 +140,24 @@ setup_zolta() {
   success "Zolta is setup successfully"
 }
 
+setup_lua() {
+  title "Setting up lua language server"
+
+  git clone https://github.com/sumneko/lua-language-server "$HOME/lua-language-server"
+  cd "$HOME/lua-language-server" || exit 1
+  git submodule update --init --recursive
+  cd 3rd/luamake || exit 1
+  compile/install.sh
+  cd ../..
+  ./3rd/luamake/luamake rebuild
+
+  cd "$DOTFILES" || exit 1
+
+  luarocks install --server=https://luarocks.org/dev luaformatter
+
+  success "Setup Lua language server successfully"
+}
+
 case "$1" in
   directories)
     setup_directories
@@ -153,6 +171,9 @@ case "$1" in
   init)
     setup_init
     ;;
+  lua)
+    setup_lua
+    ;;
   stow)
     setup_stow
     ;;
@@ -160,7 +181,7 @@ case "$1" in
     setup_volta
     ;;
   *)
-    echo -e $"\nUsage: $(basename "$0") {directories|fzf|homebrew|init|stow|volta}\n"
+    echo -e $"\nUsage: $(basename "$0") {directories|fzf|homebrew|init|lua|stow|volta}\n"
     exit 1
     ;;
 esac
