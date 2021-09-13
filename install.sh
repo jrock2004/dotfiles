@@ -153,9 +153,44 @@ setup_lua() {
 
   cd "$DOTFILES" || exit 1
 
-  luarocks install --server=https://luarocks.org/dev luaformatter
+  if [ "$(command -v luarocks)" ]; then
+    luarocks install --server=https://luarocks.org/dev luaformatter
+  else
+    warning "luarocks is not in path. Need to run command after restart"
+  fi
 
   success "Setup Lua language server successfully"
+}
+
+setup_neovim() {
+  title "Setting things up for neovim"
+
+  if [ "$(command -v python)" ]; then
+    python -m pip install --upgrade pynvim
+
+    success "Neovim is setup successfully"
+  else
+    warning "Neovim will need pynvim setup after script is done"
+  fi
+
+  success "Finished setting up Neovim"
+}
+
+setup_shell() {
+  title "Configuring shell"
+
+  [[ -n "$(command -v brew)" ]] && zsh_path="$(brew --prefix)/bin/zsh" || zsh_path="$(which zsh)"
+  if ! grep "$zsh_path" /etc/shells; then
+    info "adding $zsh_path to /etc/shells"
+    echo "$zsh_path" | sudo tee -a /etc/shells
+  fi
+
+  if [[ "$SHELL" != "$zsh_path" ]]; then
+    chsh -s "$zsh_path"
+    info "default shell changed to $zsh_path"
+  fi
+
+  success "Configuring shell was successfully"
 }
 
 case "$1" in
@@ -174,6 +209,12 @@ case "$1" in
   lua)
     setup_lua
     ;;
+  neovim)
+    setup_neovim
+    ;;
+  shell)
+    setup_shell
+    ;;
   stow)
     setup_stow
     ;;
@@ -181,7 +222,7 @@ case "$1" in
     setup_volta
     ;;
   *)
-    echo -e $"\nUsage: $(basename "$0") {directories|fzf|homebrew|init|lua|stow|volta}\n"
+    echo -e $"\nUsage: $(basename "$0") {directories|fzf|homebrew|init|lua|neovim|shell|stow|volta}\n"
     exit 1
     ;;
 esac
