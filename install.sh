@@ -93,9 +93,25 @@ setup_homebrew() {
   success "Homebrew setup successfully"
 }
 
+setup_fzf() {
+  title "Setting up FZF"
+
+  if [ "$(command -v brew)" ]; then
+    "$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
+  else
+    error "Something went wrong with setting up FZF"
+    exit 1
+  fi
+
+  success "FZF setup successfully"
+}
+
 case "$1" in
   directories)
     setup_directories
+    ;;
+  fzf)
+    setup_fzf
     ;;
   homebrew)
     setup_homebrew
@@ -104,7 +120,7 @@ case "$1" in
     setup_init
     ;;
   *)
-    echo -e $"\nUsage: $(basename "$0") {directories|homebrew|init}\n"
+    echo -e $"\nUsage: $(basename "$0") {directories|fzf|homebrew|init}\n"
     exit 1
     ;;
 esac
