@@ -1,2 +1,8 @@
 # OS Specific stuff
 .DS_Store
+
+Brewfile.lock.json
+files/.config/configstore
+files/.config/iterm2
+files/.config/jgit
+
