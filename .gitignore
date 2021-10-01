@@ -5,4 +5,4 @@ Brewfile.lock.json
 files/.config/configstore
 files/.config/iterm2
 files/.config/jgit
-
+files/.config/nvim/plugin/packer_compiled.lua
