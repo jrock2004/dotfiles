@@ -35,7 +35,7 @@ require('telescope').setup {
       width = 0.75,
     },
     file_sorter = require'telescope.sorters'.get_fzy_sorter,
-    file_ignore_patterns = {'.git/'},
+    file_ignore_patterns = {'.git/', 'node_modules'},
     generic_sorter = require'telescope.sorters'.get_generic_fuzzy_sorter,
     path_display = {
       'absolute',
