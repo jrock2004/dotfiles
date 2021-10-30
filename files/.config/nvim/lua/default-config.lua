@@ -29,7 +29,7 @@ Lvim = {
   formatters = {
     eslint = function()
       local eslint = 'eslint'
-      local localEslint = './node_modules/.bin/eslint'
+      local localEslint = 'node_modules/.bin/eslint'
 
       if vim.fn.executable(localEslint) == 1 then
         eslint = localEslint
@@ -41,10 +41,13 @@ Lvim = {
 
       return {
         lintCommand = eslint .. " -f unix --stdin --stdin-filename ${INPUT}",
+        -- lintCommand = "eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}",
+        lintSource = "eslint",
         lintIgnoreExitCode = true,
         lintStdin = true,
         lintFormats = {"%f:%l:%c: %m"},
-        formatCommand = eslint .. " --fix-to-stdout --stdin --stdin-filename=${INPUT}",
+        formatCommand = eslint .. " --fix-to-stdout --stdin --stdin-filename ${INPUT}",
+        -- formatCommand = "eslint_d --fix-to-stdout --stdin --stdin-filename ${INPUT}",
         formatStdin = true
       }
     end,
@@ -57,7 +60,7 @@ Lvim = {
     end,
     prettier = function()
       local prettier = 'prettier'
-      local localPrettier = './node_modules/.bin/prettier'
+      local localPrettier = 'node_modules/.bin/prettier'
 
       if vim.fn.executable(localPrettier) == 1 then
         prettier = localPrettier
@@ -69,6 +72,7 @@ Lvim = {
 
       return {
         formatCommand = prettier .. ' --config-precedence prefer-file --stdin-filepath ${INPUT}',
+        -- formatCommand = 'prettier --config-precedence prefer-file --stdin-filepath ${INPUT}',
         formatStdin = true,
       }
     end,
