@@ -41,6 +41,10 @@ prepend_path /usr/local/sbin
 prepend_path $DOTFILES/bin
 prepend_path $VOLTA_HOME/bin
 
+if [[ -d /usr/local/go/bin ]]; then
+  prepend_path /usr/local/go/bin
+fi
+
 export REPORTTIME=10
 export KEYTIMEOUT=1              # 10ms delay for key sequences
 
@@ -142,10 +146,12 @@ export LESS_TERMCAP_ue=$(tput rmul; tput sgr0)
 export LESS_TERMCAP_mr=$(tput rev)
 export LESS_TERMCAP_mh=$(tput dim)
 
-# source z.sh if it exists
-zpath="$(brew --prefix)/etc/profile.d/z.sh"
-if [ -f "$zpath" ]; then
-    source "$zpath"
+if dotfiles::exists brew ; then
+  # source z.sh if it exists
+  zpath="$(brew --prefix)/etc/profile.d/z.sh"
+  if [ -f "$zpath" ]; then
+      source "$zpath"
+  fi
 fi
 
 if [ -f /usr/share/fzf/completion.zsh ]; then

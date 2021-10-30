@@ -230,7 +230,6 @@ case "$1" in
   arch)
     setup_init
     setup_directories
-    setup_arch
     setup_fzf
     setup_stow
     setup_zolta
