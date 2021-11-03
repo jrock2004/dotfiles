@@ -16,7 +16,9 @@ require'nvim-tree'.setup {
   -- },
   hijack_cursor = false,
   update_cwd = false,
-  lsp_diagnostics = false,
+  diagnostics = {
+    enable = true
+  },
   update_focused_file = {
     enable = true,
     update_cwd = false,
@@ -35,9 +37,9 @@ require'nvim-tree'.setup {
       custom_only = false,
       list = {},
     }
-  }
+  },
+  nvim_tree_ignore = { '.git', 'node_modules', '.cache' }
 }
 
-g.nvim_tree_ignore = { '.git', 'node_modules', '.cache' }
 
 nmap('<leader>-', ':NvimTreeToggle<CR>')
