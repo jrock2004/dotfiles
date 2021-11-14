@@ -236,4 +236,6 @@ alias luamake=$HOME/lua-language-server/3rd/luamake/luamake
 alias disableLaptop='xrandr --output eDP-1 --off'
 
 # Need to source these last
-source "$DOTFILES/zsh/prompt.zsh"
+# source "$DOTFILES/zsh/prompt.zsh"
+
+eval "$(starship init zsh)"
