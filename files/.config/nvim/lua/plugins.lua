@@ -39,6 +39,12 @@ return require('packer').startup(function(use)
   use 'hrsh7th/vim-vsnip-integ'
   use 'windwp/nvim-autopairs'
 
+  -- lsp
+  use 'neovim/nvim-lspconfig'
+  use 'kabouzeid/nvim-lspinstall'
+  use {'jose-elias-alvarez/null-ls.nvim', requires = {{'nvim-lua/plenary.nvim'},
+  {'neovim/nvim-lspconfig'}}}
+
   -- telescope
   use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-fzy-native.nvim'}}}
 

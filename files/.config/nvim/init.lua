@@ -18,6 +18,7 @@ local pluginList = {
   "emmet",
   "floatterm",
   "gitsigns",
+  "lualine/lualine",
   "nvimtree",
   "telescope",
   "treesitter",
@@ -29,3 +30,5 @@ local pluginList = {
 for _, plugin in ipairs(pluginList) do
   require('plugins/' .. plugin)
 end
+
+require('nullls')
