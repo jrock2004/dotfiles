@@ -41,7 +41,6 @@ return require('packer').startup(function(use)
 
   -- lsp
   use 'neovim/nvim-lspconfig'
-  use 'kabouzeid/nvim-lspinstall'
   use {'jose-elias-alvarez/null-ls.nvim', requires = {{'nvim-lua/plenary.nvim'},
   {'neovim/nvim-lspconfig'}}}
 

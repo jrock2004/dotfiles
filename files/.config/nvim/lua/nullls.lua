@@ -70,46 +70,58 @@ local custom_on_attach = function(client)
     vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
   end
 
-  -- if client.resolved_capabilities.document_highlight then
-  --   vim.api.nvim_exec(
-  --     [[
-  --     hi LspReferenceRead cterm=bold ctermbg=red guibg=#464646
-  --     hi LspReferenceText cterm=bold ctermbg=red guibg=#464646
-  --     hi LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
-  --     augroup lsp_document_highlight
-  --     autocmd! * <buffer>
-  --     autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-  --     autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-  --     augroup END
-  --     ]],
-  --     false
-  --   )
-  -- end
+  if client.resolved_capabilities.document_highlight then
+    vim.api.nvim_exec(
+      [[
+      hi LspReferenceRead cterm=bold ctermbg=red guibg=#464646
+      hi LspReferenceText cterm=bold ctermbg=red guibg=#464646
+      hi LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
+      augroup lsp_document_highlight
+      autocmd! * <buffer>
+      autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+      autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
+      ]],
+      false
+    )
+  end
 
   -- GOTO mappings
-  -- map('n','gD','<cmd>lua vim.lsp.buf.declaration()<CR>')
-  -- map('n','gd','<cmd>lua vim.lsp.buf.definition()<CR>')
-  -- map('n','K','<cmd>lua vim.lsp.buf.hover()<CR>')
-  -- map('n','gr','<cmd>lua vim.lsp.buf.references()<CR>')
-  -- map('n','gs','<cmd>lua vim.lsp.buf.signature_help()<CR>')
-  -- map('n','gi','<cmd>lua vim.lsp.buf.implementation()<CR>')
-  -- map('n','<leader>gt','<cmd>lua vim.lsp.buf.type_definition()<CR>')
-  -- map('n','<leader>gw','<cmd>lua vim.lsp.buf.document_symbol()<CR>')
-  -- map('n','<leader>gW','<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
-  -- -- ACTION mappings
-  -- map('n','<leader>ah',  '<cmd>lua vim.lsp.buf.hover()<CR>')
-  -- map('n','<leader>af', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-  -- map('n','<leader>ar',  '<cmd>lua vim.lsp.buf.rename()<CR>')
-  -- -- Few language severs support these three
-  -- map('n','<leader>=',  '<cmd>lua vim.lsp.buf.formatting()<CR>')
-  -- map('n','<leader>ai',  '<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
-  -- map('n','<leader>ao',  '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
-  -- -- Diagnostics mapping
-  -- map('n','<leader>ee', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
-  -- map('n','<leader>en', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
-  -- map('n','<leader>ep', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
+  map('n','gD','<cmd>lua vim.lsp.buf.declaration()<CR>')
+  map('n','gd','<cmd>lua vim.lsp.buf.definition()<CR>')
+  map('n','K','<cmd>lua vim.lsp.buf.hover()<CR>')
+  map('n','gr','<cmd>lua vim.lsp.buf.references()<CR>')
+  map('n','gs','<cmd>lua vim.lsp.buf.signature_help()<CR>')
+  map('n','gi','<cmd>lua vim.lsp.buf.implementation()<CR>')
+  map('n','<leader>gt','<cmd>lua vim.lsp.buf.type_definition()<CR>')
+  map('n','<leader>gw','<cmd>lua vim.lsp.buf.document_symbol()<CR>')
+  map('n','<leader>gW','<cmd>lua vim.lsp.buf.workspace_symbol()<CR>')
+  -- ACTION mappings
+  map('n','<leader>ah',  '<cmd>lua vim.lsp.buf.hover()<CR>')
+  map('n','<leader>af', '<cmd>lua vim.lsp.buf.code_action()<CR>')
+  map('n','<leader>ar',  '<cmd>lua vim.lsp.buf.rename()<CR>')
+  -- Few language severs support these three
+  map('n','<leader>=',  '<cmd>lua vim.lsp.buf.formatting()<CR>')
+  map('n','<leader>ai',  '<cmd>lua vim.lsp.buf.incoming_calls()<CR>')
+  map('n','<leader>ao',  '<cmd>lua vim.lsp.buf.outgoing_calls()<CR>')
+  -- Diagnostics mapping
+  map('n','<leader>ee', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>')
+  map('n','<leader>en', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>')
+  map('n','<leader>ep', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
 end
 
-require("lspconfig")["null-ls"].setup({
-  on_attach = custom_on_attach,
-})
+local servers = {'bashls', 'tsserver'}
+
+for _, lsp in ipairs(servers) do
+  if server == 'null-ls' then
+    require("lspconfig")["null-ls"].setup({
+      on_attach = custom_on_attach,
+    })
+  else
+    require("lspconfig")[lsp].setup {
+      on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+      end
+    }
+  end
+end
