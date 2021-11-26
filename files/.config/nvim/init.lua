@@ -1,3 +1,5 @@
+-- Initial file for loading my Neovim configuration
+
 require('default-config')
 
 -- Setting leader as its not most important
@@ -9,23 +11,22 @@ require('plugins')
 require('settings')
 
 local pluginList = {
-  "nvimtree",
-  "floatterm",
-  "lualine/lualine",
-  "barber",
-  "compe",
-  "telescope",
-  "gitsigns",
-  "lspkind",
+  "autopairs",
+  "colorize",
   "comment",
+  "compe",
   "dashboard",
   "emmet",
-  "colorize",
+  "floatterm",
+  "gitsigns",
+  "lspkind",
+  "lualine/lualine",
+  "luatab",
+  "nvimtree",
+  "telescope",
   "treesitter",
-  "autopairs",
   "trouble",
   "vsnip",
-  "refactoring"
 }
 
 -- Loop through list of plugins and require them
@@ -33,4 +34,4 @@ for _, plugin in ipairs(pluginList) do
   require('plugins/' .. plugin)
 end
 
-require('lsp-config')
+require('nullls')

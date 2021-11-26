@@ -47,11 +47,9 @@ set 'title'
 
 -- colors
 vim.cmd('syntax on')
-vim.g.nvcode_termcolors = 256
 vim.cmd('colorscheme ' .. Lvim.colorscheme)
 set('colorcolumn', 99999)
 vim.cmd('set iskeyword+=-')
 vim.cmd('set shortmess+=c')
 
 vim.cmd('set completeopt=menuone,noselect')
-

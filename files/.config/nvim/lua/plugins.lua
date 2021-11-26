@@ -12,8 +12,6 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- colors
-  use 'christianchiarulli/nvcode-color-schemes.vim'
-  use({ 'rose-pine/neovim', as = 'rose-pine' })
   use 'LunarVim/onedarker.nvim'
   use 'norcalli/nvim-colorizer.lua'
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
@@ -33,7 +31,8 @@ return require('packer').startup(function(use)
     'hoob3rt/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
   }
-  use 'romgrk/barbar.nvim'
+  use { 'alvarosevilla95/luatab.nvim', requires='kyazdani42/nvim-web-devicons' }
+  -- use 'romgrk/barbar.nvim'
 
   -- autocomplete
   use 'hrsh7th/nvim-compe'
@@ -44,9 +43,8 @@ return require('packer').startup(function(use)
 
   -- lsp
   use 'neovim/nvim-lspconfig'
-  use 'kabouzeid/nvim-lspinstall'
-  use 'RishabhRD/nvim-lsputils'
-  use 'RishabhRD/popfix'
+  use {'jose-elias-alvarez/null-ls.nvim', requires = {{'nvim-lua/plenary.nvim'},
+  {'neovim/nvim-lspconfig'}}}
 
   -- telescope
   use {'nvim-telescope/telescope.nvim', requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}, {'nvim-telescope/telescope-fzy-native.nvim'}}}
@@ -58,10 +56,8 @@ return require('packer').startup(function(use)
   use 'onsails/lspkind-nvim'
 
   -- general
-  use 'terrortylor/nvim-comment'
-  use 'tpope/vim-surround'
+  use 'numToStr/Comment.nvim'
   use 'folke/trouble.nvim'
-  use 'ThePrimeagen/refactoring.nvim'
 
   -- dashboard
   use 'glepnir/dashboard-nvim'
