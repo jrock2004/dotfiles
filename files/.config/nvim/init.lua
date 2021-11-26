@@ -12,6 +12,7 @@ require('settings')
 
 local pluginList = {
   "autopairs",
+  "barber",
   "colorize",
   "comment",
   "compe",
@@ -21,7 +22,6 @@ local pluginList = {
   "gitsigns",
   "lspkind",
   "lualine/lualine",
-  "luatab",
   "nvimtree",
   "telescope",
   "treesitter",
