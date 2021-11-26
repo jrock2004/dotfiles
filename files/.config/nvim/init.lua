@@ -19,6 +19,7 @@ local pluginList = {
   "emmet",
   "floatterm",
   "gitsigns",
+  "lspkind",
   "lualine/lualine",
   "luatab",
   "nvimtree",

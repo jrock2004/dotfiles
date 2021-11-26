@@ -52,6 +52,9 @@ return require('packer').startup(function(use)
   -- git
   use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
 
+  -- intellisense
+  use 'onsails/lspkind-nvim'
+
   -- general
   use 'numToStr/Comment.nvim'
   use 'folke/trouble.nvim'
