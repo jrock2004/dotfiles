@@ -55,7 +55,6 @@ local sources = {
     prefer_local = "node_modules/.bin",
   }),
   null_ls.builtins.code_actions.eslint,
-  null_ls.builtins.code_actions.refactoring,
 }
 
 null_ls.config({
@@ -110,10 +109,10 @@ local custom_on_attach = function(client)
   map('n','<leader>ep', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>')
 end
 
-local servers = {'bashls', 'tsserver'}
+local servers = {'bashls', 'cssls', 'diagnosticls', 'dockerls', 'ember', 'html', 'jsonls', 'null-ls', 'tailwindcss', 'tsserver', 'vimls', 'yamlls'}
 
 for _, lsp in ipairs(servers) do
-  if server == 'null-ls' then
+  if lsp == 'null-ls' then
     require("lspconfig")["null-ls"].setup({
       on_attach = custom_on_attach,
     })
@@ -125,3 +124,50 @@ for _, lsp in ipairs(servers) do
     }
   end
 end
+
+-- Sumneko Setup
+
+local system_name
+if vim.fn.has("mac") == 1 then
+  system_name = "macOS"
+elseif vim.fn.has("unix") == 1 then
+  system_name = "Linux"
+elseif vim.fn.has('win32') == 1 then
+  system_name = "Windows"
+else
+  print("Unsupported system for sumneko")
+end
+
+local sumneko_binary = SUMNEKO_PATH.."/bin/"..system_name.."/lua-language-server"
+
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
+require'lspconfig'.sumneko_lua.setup {
+  cmd = {sumneko_binary, "-E", SUMNEKO_PATH .. "/main.lua"};
+  settings = {
+    Lua = {
+      runtime = {
+        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT',
+        -- Setup your lua path
+        path = runtime_path,
+      },
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+      workspace = {
+        -- Make the server aware of Neovim runtime files
+        library = vim.api.nvim_get_runtime_file("", true),
+      },
+      -- Do not send telemetry data containing a randomized but unique identifier
+      telemetry = {
+        enable = false,
+      },
+    },
+  },
+  filetypes = {"lua"},
+  on_attach = custom_on_attach,
+}

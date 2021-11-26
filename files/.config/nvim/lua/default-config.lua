@@ -1,6 +1,7 @@
 -- Reusable config/settings for my Neovim config
 DATA_PATH = vim.fn.stdpath 'data'
 NVIM_PATH = os.getenv 'HOME' .. '/.config/nvim'
+SUMNEKO_PATH = os.getenv 'HOME' .. '/lua-language-server'
 
 Lvim = {
   leader = ',',
