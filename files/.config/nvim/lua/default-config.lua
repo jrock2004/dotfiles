@@ -1,5 +1,6 @@
 -- Reusable config/settings for my Neovim config
 DATA_PATH = vim.fn.stdpath 'data'
+DOTFILES_PATH = os.getenv 'HOME' .. '/.dotfiles'
 NVIM_PATH = os.getenv 'HOME' .. '/.config/nvim'
 SUMNEKO_PATH = os.getenv 'HOME' .. '/lua-language-server'
 
@@ -35,7 +36,7 @@ Lvim = {
     database = ' ﬘ ',
     box = '  ',
     key = '  ',
-    toggleSelected = ' 蘒',
+    toggleSelected = ' 蘒',
     curlies = '  ',
     lightbulb = '  ',
     m = ' m ',
@@ -59,8 +60,8 @@ Lvim = {
     abc = '  ',
     numbers = '  ',
     wrench = '  ',
-    ruler = ' 塞',
-    rectangleIntersect = ' 練',
+    ruler = ' 塞',
+    rectangleIntersect = ' 練',
     paragraph = '  ',
     paint = '  ',
     sort = '  ',
@@ -69,7 +70,7 @@ Lvim = {
     arrowReturn = '  ',
     git = '  ',
     gitAdd = '  ',
-    gitChange = ' 柳',
+    gitChange = ' 柳',
     gitRemove = '  ',
   },
 

@@ -43,7 +43,7 @@ set 'list'
 set('tabstop', 2)
 set('shiftwidth', 2)
 set 'expandtab'
-set 'title'
+--[[ set 'title' ]]
 
 -- colors
 vim.cmd('syntax on')

@@ -31,8 +31,8 @@ return require('packer').startup(function(use)
     'hoob3rt/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
   }
-  use { 'alvarosevilla95/luatab.nvim', requires='kyazdani42/nvim-web-devicons' }
-  -- use 'romgrk/barbar.nvim'
+  --[[ use { 'alvarosevilla95/luatab.nvim', requires='kyazdani42/nvim-web-devicons' } ]]
+  use 'romgrk/barbar.nvim'
 
   -- autocomplete
   use 'hrsh7th/nvim-compe'
