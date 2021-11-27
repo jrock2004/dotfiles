@@ -235,6 +235,9 @@ alias luamake=$HOME/lua-language-server/3rd/luamake/luamake
 # Linux Stuff
 alias disableLaptop='xrandr --output eDP-1 --off'
 
+# Update/Install Global node dependencies
+alias npmpackages='volta install node@lts yarn bash-language-server diagnostic-languageserver dockerfile-language-server-nodejs @lifeart/ember-language-server vscode-langservers-extracted typescript typescript-language-server @tailwindcss/language-server vim-language-server yaml-language-server ember-cli'
+
 # Need to source these last
 # source "$DOTFILES/zsh/prompt.zsh"
 
