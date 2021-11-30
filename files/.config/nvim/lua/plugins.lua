@@ -40,6 +40,7 @@ return require('packer').startup(function(use)
   use {'hrsh7th/vim-vsnip', requires = {'rafamadriz/friendly-snippets'}}
   use 'hrsh7th/vim-vsnip-integ'
   use 'windwp/nvim-autopairs'
+  use 'github/copilot.vim'
 
   -- lsp
   use 'neovim/nvim-lspconfig'
