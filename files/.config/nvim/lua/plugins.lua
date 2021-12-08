@@ -59,6 +59,7 @@ return require('packer').startup(function(use)
   -- general
   use 'numToStr/Comment.nvim'
   use 'folke/trouble.nvim'
+  use 'tpope/vim-surround'
 
   -- dashboard
   use 'glepnir/dashboard-nvim'
