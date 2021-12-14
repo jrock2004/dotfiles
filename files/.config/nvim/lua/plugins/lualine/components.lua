@@ -14,7 +14,7 @@ return {
   },
   diagnostics = {
     "diagnostics",
-    sources = { "nvim_lsp" },
+    sources = { "nvim_diagnostic" },
     symbols = {
       error = icons.errorSlash,
       warn = icons.warningTriangleNoBg,
