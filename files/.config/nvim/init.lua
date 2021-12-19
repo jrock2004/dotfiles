@@ -1,37 +1,24 @@
--- Initial file for loading my Neovim configuration
 
-require('default-config')
-
--- Setting leader as its not most important
-vim.g.mapleader = Lvim.leader
-vim.g.maplocalleader = Lvim.leader
-
-require('mappings')
-require('plugins')
-require('settings')
-
-local pluginList = {
-  "autopairs",
-  "barber",
-  "colorize",
-  "comment",
-  "compe",
-  "dashboard",
-  "emmet",
-  "floatterm",
-  "gitsigns",
-  "lspkind",
-  "lualine/lualine",
-  "nvimtree",
-  "telescope",
-  "treesitter",
-  "trouble",
-  "vsnip",
-}
-
--- Loop through list of plugins and require them
-for _, plugin in ipairs(pluginList) do
-  require('plugins/' .. plugin)
-end
-
-require('nullls')
+require "user.options"
+require "user.keymaps"
+require "user.plugins"
+require "user.colorscheme"
+require "user.cmp"
+require "user.lsp"
+require "user.telescope"
+require "user.treesitter"
+require "user.autopairs"
+require "user.comment"
+require "user.gitsigns"
+require "user.nvim-tree"
+require "user.bufferline"
+require "user.lualine"
+require "user.toggleterm"
+require "user.project"
+require "user.impatient"
+require "user.indentline"
+require "user.alpha"
+require "user.whichkey"
+require "user.autocommands"
+require "user.emmet"
+require "user.trouble"
