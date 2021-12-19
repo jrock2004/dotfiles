@@ -96,6 +96,7 @@ local mappings = {
   },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["P"] = { "<cmd>Telescope projects<cr>", "Projects" },
+  ["Y"] = { "y$", "Yank to end of line" },
 
   p = {
     name = "Packer",
