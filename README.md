@@ -43,6 +43,16 @@ Now lets install some global node plugins globally that I use that are not requi
 > volta install yarn
 ```
 
+```bash
+> npmpackages
+```
+
+Now lets install stylua with cargo:
+
+```bash
+> cargo install stylua
+```
+
 ## open up neovim
 
 Open up Neovim and we need to run some commands to get us set up and ready
@@ -51,11 +61,21 @@ Open up Neovim and we need to run some commands to get us set up and ready
 :PackerInstall
 ```
 
-After this is done, close it out and open it again and run the following to install all the language servers
+After this is done, close it out and open it again and run the following to install all the language servers. Open up Neovim and `,lI` and you will want to go in list and hit `I` on the following:
 
-```bash
-:UpdateLspServers
-```
+◍ graphql
+◍ bashls
+◍ dockerls
+◍ eslint
+◍ html
+◍ yamlls
+◍ cssls
+◍ cssmodules_ls
+◍ diagnosticls
+◍ ember
+◍ emmet_ls
+◍ tsserver
+◍ tailwindcss
 
 ## settings for iTerm2
 
