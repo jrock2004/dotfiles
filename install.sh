@@ -190,6 +190,9 @@ setup_neovim() {
     warning "Neovim will need pynvim setup after script is done"
   fi
 
+  info "Installing Rust"
+  curl https://sh.rustup.rs -sSf | sh
+
   success "Finished setting up Neovim"
 }
 
@@ -218,25 +221,7 @@ setup_ubuntu() {
   success "Finshed installing all the linux apps"
 }
 
-setup_arch() {
-  title "Installing app via pacman"
-
-  source ./arch.sh
-
-  success "Finshed installing all the linux apps"
-}
-
 case "$1" in
-  arch)
-    setup_init
-    setup_directories
-    setup_fzf
-    setup_stow
-    setup_zolta
-    setup_lua
-    setup_neovim
-    setup_shell
-    ;;
   directories)
     setup_directories
     ;;
@@ -287,7 +272,7 @@ case "$1" in
     setup_volta
     ;;
   *)
-    echo -e $"\nUsage: $(basename "$0") {arch|directories|fzf|homebrew|init|linux|lua|neovim|shell|stow|volta}\n"
+    echo -e $"\nUsage: $(basename "$0") {directories|fzf|homebrew|init|linux|lua|neovim|shell|stow|volta}\n"
     exit 1
     ;;
 esac
