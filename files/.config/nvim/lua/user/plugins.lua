@@ -61,6 +61,7 @@ return packer.startup(function(use)
 	use("mattn/emmet-vim")
 	use("folke/trouble.nvim")
 	use("tpope/vim-surround")
+	use("github/copilot.vim")
 
 	-- Colorschemes
 	use("lunarvim/colorschemes") -- A bunch of colorschemes you can try out
