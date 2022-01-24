@@ -98,6 +98,7 @@ local mappings = {
 	["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 	["Y"] = { "y$", "Yank to end of line" },
 	["<F1>"] = { "<cmd>ToggleTerm<cr>", "Toggle the Term" },
+	["<Space>"] = { "<cmd>lua require('telescope.builtin').buffers({previewer = false})<CR>", "Search Buffers" },
 
 	p = {
 		name = "Packer",
