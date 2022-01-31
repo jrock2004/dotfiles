@@ -14,6 +14,7 @@ if OS.mac?
   cask "font-source-code-pro"
   cask "font-victor-mono"
 
+  cask "amethyst"
   cask "kitty"
   cask "notion"
   cask "postman"
