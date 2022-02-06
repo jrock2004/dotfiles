@@ -20,6 +20,8 @@ if OS.mac?
   cask "postman"
   cask "firefox"
   cask "google-chrome"
+elsif OS.linux?
+  brew "xclip"
 end
 
 tap "homebrew/bundle"

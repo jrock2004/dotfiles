@@ -85,7 +85,13 @@ setup_homebrew() {
 
     sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash --login
 
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+    # eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
+
+  if [ "$(uname)" == "Linux" ]; then
+    test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
   fi
 
   if [ "$(command -v brew)" ]; then
@@ -237,7 +243,8 @@ case "$1" in
   linux)
     setup_init
     setup_directories
-    setup_ubuntu
+    # setup_ubuntu
+    setup_homebrew
     setup_fzf
     setup_stow
     setup_zolta
