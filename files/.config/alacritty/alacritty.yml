@@ -31,16 +31,20 @@ background_opacity: 1.0
 
 font:
   normal:
-    family: "Comic Code Ligatures"
+    # family: "ComicCodeLigatures Nerd Font"
+    family: "FiraCode Nerd Font"
     style: "Regular"
   bold:
-    family: "Comic Code Ligatures"
+    # family: "ComicCodeLigatures Nerd Font"
+    family: "FiraCode Nerd Font"
     style: "Regular"
   italic:
-    family: "Comic Code Ligatures"
+    # family: "ComicCodeLigatures Nerd Font"
+    family: "FiraCode Nerd Font"
     style: "Regular"
   bold_italic:
-    family: "Comic Code Ligatures"
+    # family: "ComicCodeLigatures Nerd Font"
+    family: "FiraCode Nerd Font"
     style: "Regular"
 
   size: 16.0
@@ -81,3 +85,7 @@ key_bindings:
   - { key: C,        mods: Alt, action: Copy                   }
   - { key: C,        mods: Control|Shift, chars: "\x03"         }
 
+shell:
+  program: /home/linuxbrew/.linuxbrew/bin/zsh
+  args:
+    - --login
