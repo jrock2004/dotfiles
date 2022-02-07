@@ -9,6 +9,7 @@ aFontInstalled="False"
 keepArchives="False"
 distDir="$HOME/.local/share/fonts"
 downDir="$HOME/Downloads/NerdFonts"
+os=$(uname)
 
 # help message
 usage() {
@@ -29,8 +30,12 @@ while getopts :hk option; do
   esac
 done
 
+if [[ "os" == 'Darwin' ]]; then
+  distDir="$HOME/Library/Fonts"
+fi
+
 # Check if the distDir exists, if it doesn't, creat it
-[ -e "$distDir" ] && echo "Fonts Directory exists, good" || mkdir -p $HOME/.local/share/fonts
+[ -e "$distDir" ] && echo "Fonts Directory exists, good" || mkdir -p "$distDir"
 
 # get font names
 nerdFonts=$(curl --silent "$nerdfontsrepo/contents/patched-fonts?ref=master" | \
