@@ -84,8 +84,6 @@ setup_homebrew() {
     info "Homebrew is not installed. Installing"
 
     sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash --login
-
-    # eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
 
   if [ "$(uname)" == "Linux" ]; then
@@ -243,7 +241,7 @@ case "$1" in
   linux)
     setup_init
     setup_directories
-    # setup_ubuntu
+    setup_ubuntu
     setup_homebrew
     setup_fzf
     setup_stow
