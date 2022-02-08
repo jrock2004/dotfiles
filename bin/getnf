@@ -32,8 +32,10 @@ done
 
 if [[ "$os" == 'Darwin' ]]; then
   distDir="$HOME/Library/Fonts"
-  [ -e "$downDir" ] && echo "Fonts Directory exists, good" || mkdir -p "$downDir"
 fi
+
+# Create the download directory
+[ -e "$downDir" ] && echo "Fonts Download Directory exists, good" || mkdir -p "$downDir"
 
 # Check if the distDir exists, if it doesn't, creat it
 [ -e "$distDir" ] && echo "Fonts Directory exists, good" || mkdir -p "$distDir"
@@ -58,51 +60,30 @@ for i in $listFonts; do
     echo "$i font download started" &&
 
     #download the font
-    if [[ "$os" == 'Darwin' ]]; then
-    echo $os
-      (cd $downDir; curl -LJO -\# "https://github.com/ryanoasis/nerd-fonts/releases/download/$release/$i.zip" \
-        -o $i.zip &&
-        echo "$i font download finished" &&
-        echo "$i font unziping started" &&
-        #Unzip the downloaded archive
-        unzip -qq $downDir/$i.zip -d $distDir &&
-        echo "$i font unzipping finished" &&
-        echo "Font $i Installed" &&
-        echo "$i provides:" &&
-        installedFontName=$(curl --silent "$nerdfontsrepo/contents/patched-fonts/$i/Regular/complete?ref=master" | \
-          grep ".ttf" | \
-          awk -F ":" 'FNR == 1 {print $2}' | \
-          awk '{print $1}' | \
-          sed 's/"//g') &&
-          fc-list | grep -i $installedFontName | \
-          awk -F "/" '{print $7}' | \
-          sed 's/style\=//' |  \
-          awk -F ":" 'BEGIN {print "FONT NAME" " | " "FILE NAME" " | " "STYLE"} {print $2 " | " $1 " | " $3}' | \
-          #set this variable to true so that the font cache get's updated
-          aFontInstalled=True)
-    else
-      curl -LJO -\# "https://github.com/ryanoasis/nerd-fonts/releases/download/$release/$i.zip" \
-        -o $i.zip --output-dir "$downDir" --create-dirs &&
-        echo "$i font download finished" &&
-        echo "$i font unziping started" &&
-        #Unzip the downloaded archive
-        unzip -qq $downDir/$i.zip -d $distDir &&
-        echo "$i font unzipping finished" &&
-        echo "Font $i Installed" &&
-        echo "$i provides:" &&
-        installedFontName=$(curl --silent "$nerdfontsrepo/contents/patched-fonts/$i/Regular/complete?ref=master" | \
-          grep ".ttf" | \
-          awk -F ":" 'FNR == 1 {print $2}' | \
-          awk '{print $1}' | \
-          sed 's/"//g') &&
-          fc-list | grep -i $installedFontName | \
-          awk -F "/" '{print $7}' | \
-          sed 's/style\=//' |  \
-          awk -F ":" 'BEGIN {print "FONT NAME" " | " "FILE NAME" " | " "STYLE"} {print $2 " | " $1 " | " $3}' | \
-          column -s "|" -t -o "|" &&
-          #set this variable to true so that the font cache get's updated
-          aFontInstalled=True
-    fi
+    pushd "$downDir" &&
+    echo "Current Dir: $(pwd)"
+    curl -LJO -\# "https://github.com/ryanoasis/nerd-fonts/releases/download/$release/$i.zip" \
+      -o $i.zip --create-dirs &&
+      echo "$i font download finished" &&
+      echo "$i font unziping started" &&
+      #Unzip the downloaded archive
+      unzip -qq $downDir/$i.zip -d $distDir &&
+      echo "$i font unzipping finished" &&
+      echo "Font $i Installed" &&
+      echo "$i provides:" &&
+      installedFontName=$(curl --silent "$nerdfontsrepo/contents/patched-fonts/$i/Regular/complete?ref=master" | \
+        grep ".ttf" | \
+        awk -F ":" 'FNR == 1 {print $2}' | \
+        awk '{print $1}' | \
+        sed 's/"//g') &&
+        fc-list | grep -i $installedFontName | \
+        awk -F "/" '{print $7}' | \
+        sed 's/style\=//' |  \
+        awk -F ":" 'BEGIN {print "FONT NAME" " | " "FILE NAME" " | " "STYLE"} {print $2 " | " $1 " | " $3}' | \
+        column -s "|" -t -o "|" &&
+        #set this variable to true so that the font cache get's updated
+        aFontInstalled=True &&
+      popd
   else
     echo "Font $i already installed"
   fi

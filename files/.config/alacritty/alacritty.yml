@@ -31,20 +31,16 @@ background_opacity: 1.0
 
 font:
   normal:
-    # family: "ComicCodeLigatures Nerd Font"
-    family: "JetBrainsMono Nerd Font"
-    style: "Regular"
+    family: "OperatorMono Nerd Font"
+    style: "Book"
   bold:
-    # family: "ComicCodeLigatures Nerd Font"
-    family: "JetBrainsMono Nerd Font"
+    family: "OperatorMono Nerd Font"
     style: "Bold"
   italic:
-    # family: "ComicCodeLigatures Nerd Font"
-    family: "JetBrainsMono Nerd Font"
+    family: "OperatorMono Nerd Font"
     style: "Italic"
   bold_italic:
-    # family: "ComicCodeLigatures Nerd Font"
-    family: "JetBrainsMono Nerd Font"
+    family: "OperatorMono Nerd Font"
     style: "Bold Italic"
 
   size: 14.0
