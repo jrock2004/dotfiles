@@ -40,6 +40,8 @@ prepend_path /usr/local/opt/grep/libexec/gnubin
 prepend_path /usr/local/sbin
 prepend_path $DOTFILES/bin
 prepend_path $VOLTA_HOME/bin
+prepend_path $HOME/.local/lib/python3.9/site-packages
+
 
 if [[ -d /usr/local/go/bin ]]; then
   prepend_path /usr/local/go/bin
