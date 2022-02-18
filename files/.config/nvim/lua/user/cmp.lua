@@ -15,6 +15,16 @@ local check_backspace = function()
 	return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
 end
 
+local copilot = function(fallback)
+	local copilot_keys = vim.fn["copilot#Accept"]("")
+
+	if copilot_keys ~= "" then
+		vim.api.nvim_feedkeys(copilot_keys, "i", true)
+	else
+		fallback()
+	end
+end
+
 --   פּ ﯟ   some other good icons
 local kind_icons = {
 	Text = "",
@@ -73,11 +83,9 @@ cmp.setup({
 			elseif luasnip.expand_or_jumpable() then
 				luasnip.expand_or_jump()
 			elseif check_backspace() then
-				fallback()
-			elseif vim.b._copilot_suggestion ~= nil then
-				vim.fn.feedkeys(vim.api.nvim_replace_termcodes(vim.fn["copilot#Accept"](), true, true, true), "")
+				copilot(fallback)
 			else
-				fallback()
+				copilot(fallback)
 			end
 		end, {
 			"i",
@@ -88,8 +96,6 @@ cmp.setup({
 				cmp.select_prev_item()
 			elseif luasnip.jumpable(-1) then
 				luasnip.jump(-1)
-			elseif vim.b._copilot_suggestion ~= nil then
-				vim.fn.feedkeys(vim.api.nvim_replace_termcodes(vim.fn["copilot#Accept"](), true, true, true), "")
 			else
 				fallback()
 			end
@@ -118,6 +124,7 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
+		{ name = "copilot" },
 		{ name = "buffer" },
 		{ name = "path" },
 	},
