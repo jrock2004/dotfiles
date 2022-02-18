@@ -30,3 +30,5 @@
 
   # gh commands
   browse = "!gh repo view --web"
+[init]
+	defaultBranch = main
