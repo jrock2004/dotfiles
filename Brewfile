@@ -3,6 +3,7 @@ if OS.mac?
   tap "homebrew/cask-fonts"
 
   brew "mas"
+  brew "neovim"
   brew "noti"
   brew "highlight"
 
@@ -49,7 +50,6 @@ brew "luarocks"
 brew "make"
 brew "markdown"
 brew "neofetch"
-brew "neovim"
 brew "ninja"
 brew "python"
 brew "ripgrep"
