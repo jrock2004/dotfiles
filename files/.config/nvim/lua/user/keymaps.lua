@@ -62,6 +62,7 @@ keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- Terminal --
+keymap("n", "<leader>tn", "<cmd>lua _NODE_TOGGLE()<CR>", opts)
 
 -- Custom --
 -- Faster way to save a file
