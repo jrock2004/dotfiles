@@ -1,10 +1,25 @@
+-- https://github.com/pedro757/emmet
+-- npm i -g ls_emmet
 return {
-	default_config = {
-		cmd = { "emmet-ls", "--stdio" },
-		filetypes = { "html", "css", "blade", "typescriptreact", "javascriptreact" },
-		root_dir = function(fname)
-			return vim.loop.cwd()
-		end,
-		settings = {},
-	},
+  cmd = { "ls_emmet", "--stdio" },
+  filetypes = {
+    "html",
+    "css",
+    "scss",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "haml",
+    "xml",
+    "xsl",
+    "pug",
+    "slim",
+    "sass",
+    "stylus",
+    "less",
+    "sss",
+    "hbs",
+    "handlebars",
+  },
 }
