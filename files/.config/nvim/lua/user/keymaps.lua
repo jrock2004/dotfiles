@@ -75,6 +75,10 @@ keymap("n", "<leader>f", ":Telescope find_files hidden=true<CR>", opts)
 keymap("n", "<leader>F", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>P", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>b", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>sc", ":Telescope colorscheme<CR>", opts)
+keymap("n", "<leader>sh", ":Telescope help_tags<CR>", opts)
+keymap("n", "<leader>sk", ":Telescope keymaps<CR>", opts)
+keymap("n", "<leader>sC", ":Telescope commands<CR>", opts)
 
 -- LSP
 keymap("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
@@ -86,3 +90,7 @@ keymap("n", "<leader>lI", "<cmd>LspInstallInfo<CR>", opts)
 keymap("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", opts)
 keymap("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>", opts)
 keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+
+-- Misc
+keymap("n", "<S-x>", "<cmd>Bdelete!<CR>", opts)
+keymap("n", "Y", "y$", opts)

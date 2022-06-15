@@ -75,8 +75,6 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
-	-- vim.notify(client.name .. " starting...")
-	-- TODO: refactor this into a method that checks if string in list
 	local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 	if not status_cmp_ok then
 		return
@@ -126,6 +124,7 @@ function M.remove_augroup(name)
 	end
 end
 
-vim.cmd([[ command! LspToggleAutoFormat execute 'lua require("user.lsp.handlers").toggle_format_on_save()' ]])
+-- vim.cmd([[ command! LspToggleAutoFormat execute 'lua require("user.lsp.handlers").toggle_format_on_save()' ]])
+vim.cmd([[ command! LspToggleAutoFormat execute 'lua require("user.lsp.handlers").enable_format_on_save()' ]])
 
 return M

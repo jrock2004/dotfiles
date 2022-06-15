@@ -8,16 +8,12 @@ local servers = {
   "cssmodules_ls",
   "emmet_ls",
   "html",
-  -- "jdtls",
   "jsonls",
-  "solc",
   "sumneko_lua",
-  "tflint",
   "tsserver",
   "pyright",
   "yamlls",
   "bashls",
-  "clangd",
 }
 
 local settings = {
@@ -63,11 +59,6 @@ for _, server in pairs(servers) do
     capabilities = require("user.lsp.handlers").capabilities,
   }
 
-  -- if server == "jsonls" then
-  --   local jsonls_opts = require "user.lsp.settings.jsonls"
-  --   opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
-  -- end
-
   if server == "sumneko_lua" then
     local sumneko_opts = require "user.lsp.settings.sumneko_lua"
     opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
@@ -78,16 +69,6 @@ for _, server in pairs(servers) do
     opts = vim.tbl_deep_extend("force", pyright_opts, opts)
   end
 
-  if server == "solang" then
-    local solang_opts = require "user.lsp.settings.solang"
-    opts = vim.tbl_deep_extend("force", solang_opts, opts)
-  end
-
-  if server == "solc" then
-    local solc_opts = require "user.lsp.settings.solc"
-    opts = vim.tbl_deep_extend("force", solc_opts, opts)
-  end
-
   if server == "emmet_ls" then
     local emmet_ls_opts = require "user.lsp.settings.emmet_ls"
     opts = vim.tbl_deep_extend("force", emmet_ls_opts, opts)
@@ -95,6 +76,3 @@ for _, server in pairs(servers) do
 
   lspconfig[server].setup(opts)
 end
-
--- TODO: add something to installer later
--- require("lspconfig").motoko.setup {}
