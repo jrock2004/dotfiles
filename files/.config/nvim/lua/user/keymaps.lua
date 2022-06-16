@@ -1,7 +1,5 @@
 local opts = { noremap = true, silent = true }
 
-local term_opts = { silent = true }
-
 -- Shorten function name
 local keymap = vim.keymap.set
 
@@ -62,7 +60,7 @@ keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- Terminal --
-keymap("n", "<leader>tn", "<cmd>lua _NODE_TOGGLE()<CR>", opts)
+keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
 -- Custom --
 -- Faster way to save a file
@@ -91,6 +89,13 @@ keymap("n", "<leader>lI", "<cmd>LspInstallInfo<CR>", opts)
 keymap("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", opts)
 keymap("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>", opts)
 keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+
+-- Packer
+keymap("n", "<leader>pc", "<cmd>PackerCompile<CR>", opts)
+keymap("n", "<leader>pi", "<cmd>PackerInstall<CR>", opts)
+keymap("n", "<leader>ps", "<cmd>PackerSync<CR>", opts)
+keymap("n", "<leader>pS", "<cmd>PackerStatus<CR>", opts)
+keymap("n", "<leader>pu", "<cmd>PackerUpdate<CR>", opts)
 
 -- Misc
 keymap("n", "<S-x>", "<cmd>Bdelete!<CR>", opts)
