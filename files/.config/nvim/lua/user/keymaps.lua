@@ -61,6 +61,7 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- Terminal --
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+keymap("n", "<leader>t", "<cmd>ToggleTerm direction=vertical size=30<CR>", opts)
 
 -- Custom --
 -- Faster way to save a file
