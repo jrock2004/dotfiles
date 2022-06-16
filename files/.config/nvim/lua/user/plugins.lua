@@ -41,78 +41,70 @@ packer.init {
 -- Install your plugins here
 return packer.startup(function(use)
   -- My plugins here
-  use "wbthomason/packer.nvim" -- Have packer manage itself
-  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
-  use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
-  use "numToStr/Comment.nvim"
-  use "kyazdani42/nvim-web-devicons"
-  use "kyazdani42/nvim-tree.lua"
-  use "akinsho/bufferline.nvim"
-  use "moll/vim-bbye"
-  use "nvim-lualine/lualine.nvim"
-  use "akinsho/toggleterm.nvim"
-  use "ahmedkhalf/project.nvim"
-  use "lewis6991/impatient.nvim"
-  use "lukas-reineke/indent-blankline.nvim"
-  use "goolord/alpha-nvim"
-  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
-  use "nacro90/numb.nvim"
-  use "norcalli/nvim-colorizer.lua"
-  use "tpope/vim-repeat"
-  use "rcarriga/nvim-notify"
+  use { "wbthomason/packer.nvim", commit = "" } -- Have packer manage itself
+  use { "nvim-lua/popup.nvim", commit = "" } -- An implementation of the Popup API from vim in Neovim
+  use { "nvim-lua/plenary.nvim", commit = "" } -- Useful lua functions used ny lots of plugins
+  use { "windwp/nvim-autopairs", commit = "" } -- Autopairs, integrates with both cmp and treesitter
+  use { "numToStr/Comment.nvim", commit = "" }
+  use { "kyazdani42/nvim-web-devicons", commit = "" }
+  use { "kyazdani42/nvim-tree.lua", commit = "" }
+  use { "akinsho/bufferline.nvim", commit = "" }
+  use { "moll/vim-bbye", commit = "" }
+  use { "nvim-lualine/lualine.nvim", commit = "" }
+  use { "akinsho/toggleterm.nvim", commit = "" }
+  use { "ahmedkhalf/project.nvim", commit = "" }
+  use { "lewis6991/impatient.nvim", commit = "" }
+  use { "lukas-reineke/indent-blankline.nvim", commit = "" }
+  use { "goolord/alpha-nvim", commit = "" }
+  use { "antoinemadec/FixCursorHold.nvim", commit = "" } -- This is needed to fix lsp doc highlight
+  use { "nacro90/numb.nvim", commit = "" }
+  use { "norcalli/nvim-colorizer.lua", commit = "" }
+  use { "tpope/vim-repeat", commit = "" }
+  use { "rcarriga/nvim-notify", commit = "" }
 
   -- Colorschemes
-  use "folke/tokyonight.nvim"
-  use "lunarvim/darkplus.nvim"
+  use { "folke/tokyonight.nvim", commit = "" }
+  use { "lunarvim/darkplus.nvim", commit = "" }
 
   -- cmp plugins
-  use "hrsh7th/nvim-cmp" -- The completion plugin
-  use "hrsh7th/cmp-buffer" -- buffer completions
-  use "hrsh7th/cmp-path" -- path completions
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-nvim-lua"
+  use { "hrsh7th/nvim-cmp", commit = "" } -- The completion plugin
+  use { "hrsh7th/cmp-buffer", commit = "" } -- buffer completions
+  use { "hrsh7th/cmp-path", commit = "" } -- path completions
+  use { "saadparwaiz1/cmp_luasnip", commit = "" } -- snippet completions
+  use { "hrsh7th/cmp-nvim-lsp", commit = "" }
+  use { "hrsh7th/cmp-nvim-lua", commit = "" }
 
   -- snippets
-  use "L3MON4D3/LuaSnip" --snippet engine
-  use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+  use { "L3MON4D3/LuaSnip", commit = "" } --snippet engine
+  use { "rafamadriz/friendly-snippets", commit = "" } -- a bunch of snippets to use
 
   -- LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
-  -- use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
-  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
-  -- use "filipdutescu/renamer.nvim"
-  -- use "b0o/SchemaStore.nvim"
-  use "github/copilot.vim"
-  use "RRethy/vim-illuminate"
+  use { "neovim/nvim-lspconfig", commit = "" } -- enable LSP
+  use { "williamboman/nvim-lsp-installer", commit = "" } -- simple to use language server installer
+  use { "jose-elias-alvarez/null-ls.nvim", commit = "" } -- for formatters and linters
+  use { "github/copilot.vim", commit = "" }
+  use { "RRethy/vim-illuminate", commit = "" }
 
   -- Telescope
-  use "nvim-telescope/telescope.nvim"
-  -- use "tom-anders/telescope-vim-bookmarks.nvim"
-  -- use "nvim-telescope/telescope-media-files.nvim"
-  -- use "nvim-telescope/telescope-ui-select.nvim"
-  -- use "nvim-telescope/telescope-file-browser.nvim"
+  use { "nvim-telescope/telescope.nvim", commit = "" }
 
   -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
+    commit = "",
     run = ":TSUpdate",
   }
-  use "JoosepAlviste/nvim-ts-context-commentstring"
-  use "windwp/nvim-ts-autotag"
+  use { "JoosepAlviste/nvim-ts-context-commentstring", commit = "" }
+  use { "windwp/nvim-ts-autotag", commit = "" }
 
   -- Git
-  use "lewis6991/gitsigns.nvim"
-  use "f-person/git-blame.nvim"
-  -- use "https://github.com/rhysd/conflict-marker.vim"
+  use { "lewis6991/gitsigns.nvim", commit = "" }
+  use { "f-person/git-blame.nvim", commit = "" }
 
   -- DAP
-  use "mfussenegger/nvim-dap"
-  use "theHamsta/nvim-dap-virtual-text"
-  use "rcarriga/nvim-dap-ui"
-  use "ravenxrz/DAPInstall.nvim"
+  use { "mfussenegger/nvim-dap", commit = "" }
+  use { "rcarriga/nvim-dap-ui", commit = "" }
+  use { "ravenxrz/DAPInstall.nvim", commit = "" }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

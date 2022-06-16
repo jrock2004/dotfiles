@@ -8,17 +8,29 @@ local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local diagnostics = null_ls.builtins.diagnostics
 
+local custom_on_attach = function(client)
+	if client.resolved_capabilities.document_formatting then
+		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 2000)")
+	end
+end
+
 -- https://github.com/prettier-solidity/prettier-plugin-solidity
 -- npm install --save-dev prettier prettier-plugin-solidity
 null_ls.setup {
   debug = false,
+  on_attach = custom_on_attach,
   sources = {
     formatting.prettier.with {
       extra_filetypes = { "toml", "solidity" },
-      extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
+      condition = function(utils)
+				return utils.root_has_file(".prettierrc")
+			end,
+			prefer_local = "node_modules/.bin",
     },
     formatting.black.with { extra_args = { "--fast" } },
     formatting.stylua,
     formatting.google_java_format,
+    diagnostics.eslint,
+    diagnostics.shellcheck,
   },
 }

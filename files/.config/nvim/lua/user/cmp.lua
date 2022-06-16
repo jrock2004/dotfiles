@@ -3,11 +3,6 @@ if not cmp_status_ok then
   return
 end
 
--- local cmp_dap_status_ok, cmp_dap = pcall(require, "cmp_dap")
--- if not cmp_dap_status_ok then
---   return
--- end
-
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
   return
@@ -20,29 +15,23 @@ local check_backspace = function()
   return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
 
+--   פּ ﯟ   some other good icons
 local kind_icons = {
   Text = "",
-  -- Method = "m",
-  -- Function = "",
-  -- Constructor = "",
-  Method = "",
-  Function = "",
-  Constructor = "",
+  Method = "m",
+  Function = "",
+  Constructor = "",
   Field = "",
-  -- Variable = "",
-  Variable = "",
+  Variable = "",
   Class = "",
   Interface = "",
-  -- Module = "",
-  Module = "",
+  Module = "",
   Property = "",
   Unit = "",
   Value = "",
   Enum = "",
-  -- Keyword = "",
-  Keyword = "",
-  -- Snippet = "",
-  Snippet = "",
+  Keyword = "",
+  Snippet = "",
   Color = "",
   File = "",
   Reference = "",
@@ -68,7 +57,6 @@ cmp.setup {
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-    -- ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ["<C-e>"] = cmp.mapping {
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
@@ -89,9 +77,9 @@ cmp.setup {
         fallback()
       end
     end, {
-        "i",
-        "s",
-      }),
+      "i",
+      "s",
+    }),
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
@@ -101,23 +89,22 @@ cmp.setup {
         fallback()
       end
     end, {
-        "i",
-        "s",
-      }),
+      "i",
+      "s",
+    }),
   },
   formatting = {
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
-      -- Kind icons
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
       vim_item.menu = ({
+
         nvim_lsp = "",
         nvim_lua = "",
         luasnip = "",
         buffer = "",
         path = "",
         emoji = "",
-        dap = "",
       })[entry.source.name]
       return vim_item
     end,
@@ -133,9 +120,7 @@ cmp.setup {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
   },
-  -- documentation = true,
   window = {
-    -- documentation = "native",
     documentation = {
       border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
       winhighlight = "NormalFloat:Pmenu,NormalFloat:Pmenu,CursorLine:PmenuSel,Search:None",
@@ -147,6 +132,5 @@ cmp.setup {
   },
   experimental = {
     ghost_text = true,
-    -- native_menu = false,
   },
 }
