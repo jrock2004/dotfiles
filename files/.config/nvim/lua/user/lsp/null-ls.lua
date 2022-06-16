@@ -1,6 +1,6 @@
 local null_ls_status_ok, null_ls = pcall(require, "null-ls")
 if not null_ls_status_ok then
-	return
+  return
 end
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
@@ -14,19 +14,23 @@ local custom_on_attach = function(client)
 	end
 end
 
-null_ls.setup({
-	debug = false,
-	on_attach = custom_on_attach,
-	sources = {
-		formatting.prettier.with({
-			condition = function(utils)
+-- https://github.com/prettier-solidity/prettier-plugin-solidity
+-- npm install --save-dev prettier prettier-plugin-solidity
+null_ls.setup {
+  debug = false,
+  on_attach = custom_on_attach,
+  sources = {
+    formatting.prettier.with {
+      extra_filetypes = { "toml", "solidity" },
+      condition = function(utils)
 				return utils.root_has_file(".prettierrc")
 			end,
 			prefer_local = "node_modules/.bin",
-		}),
-		formatting.black.with({ extra_args = { "--fast" } }),
-		formatting.stylua,
-		-- diagnostics.flake8
-	},
-  save_after_format = true,
-})
+    },
+    formatting.black.with { extra_args = { "--fast" } },
+    formatting.stylua,
+    formatting.google_java_format,
+    diagnostics.eslint,
+    diagnostics.shellcheck,
+  },
+}

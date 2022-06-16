@@ -1,12 +1,10 @@
 local opts = { noremap = true, silent = true }
 
-local term_opts = { silent = true }
-
 -- Shorten function name
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
---Remap space as leader key
--- keymap("", "<Space>", "<Nop>", opts)
+-- Remap comma as leader key
+--keymap("", ",", "<Nop>", opts)
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
@@ -39,9 +37,10 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
+-- Turn off highlighting
+keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
+
 -- Insert --
--- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -61,8 +60,43 @@ keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- Terminal --
--- Better terminal navigation
--- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
--- keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
--- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
--- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+
+-- Custom --
+-- Faster way to save a file
+keymap("n", "<leader>,", ":w<CR>", opts)
+
+-- NvimTree
+keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+
+-- Telescope
+keymap("n", "<leader>f", ":Telescope find_files hidden=true<CR>", opts)
+keymap("n", "<leader>F", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>P", ":Telescope projects<CR>", opts)
+keymap("n", "<leader>b", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>sc", ":Telescope colorscheme<CR>", opts)
+keymap("n", "<leader>sh", ":Telescope help_tags<CR>", opts)
+keymap("n", "<leader>sk", ":Telescope keymaps<CR>", opts)
+keymap("n", "<leader>sC", ":Telescope commands<CR>", opts)
+
+-- LSP
+keymap("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
+keymap("n", "<leader>lw", "<cmd>Telescope lsp_workspace_diagnostics<CR>", opts)
+keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.formatting({ async = true })<CR>", opts)
+keymap("n", "<leader>lF", "<cmd>LspToggleAutoFormat<CR>", opts)
+keymap("n", "<leader>li", "<cmd>LspInfo<CR>", opts)
+keymap("n", "<leader>lI", "<cmd>LspInstallInfo<CR>", opts)
+keymap("n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<CR>", opts)
+keymap("n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<CR>", opts)
+keymap("n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+
+-- Packer
+keymap("n", "<leader>pc", "<cmd>PackerCompile<CR>", opts)
+keymap("n", "<leader>pi", "<cmd>PackerInstall<CR>", opts)
+keymap("n", "<leader>ps", "<cmd>PackerSync<CR>", opts)
+keymap("n", "<leader>pS", "<cmd>PackerStatus<CR>", opts)
+keymap("n", "<leader>pu", "<cmd>PackerUpdate<CR>", opts)
+
+-- Misc
+keymap("n", "<S-x>", "<cmd>Bdelete!<CR>", opts)
+keymap("n", "Y", "y$", opts)
