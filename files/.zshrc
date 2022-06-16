@@ -242,9 +242,12 @@ alias luamake=$HOME/lua-language-server/3rd/luamake/luamake
 alias disableLaptop='xrandr --output eDP-1 --off'
 
 # Update/Install Global node dependencies
-alias npmpackages='volta install bash-language-server cssmodules-language-server diagnostic-languageserver dockerfile-language-server-nodejs @lifeart/ember-language-server vscode-langservers-extracted typescript typescript-language-server @tailwindcss/language-server vim-language-server yaml-language-server ember-cli'
+alias npmpackages='volta install @lifeart/ember-language-server @tailwindcss/language-server bash-language-server cssmodules-language-server diagnostic-languageserver dockerfile-language-server-nodejs ember-cli ls_emmet typescript typescript-language-server vim-language-server vscode-langservers-extracted yaml-language-server'
 
 # Need to source these last
 # source "$DOTFILES/zsh/prompt.zsh"
 
 eval "$(starship init zsh)"
+
+export TILT_NAMESPACE=john-costanzo
+export AWS_SDK_LOAD_CONFIG=1
