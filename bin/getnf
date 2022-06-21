@@ -91,7 +91,7 @@ done
 
 # If a font was installed, Update the cach and remove the archive
 if [ "$aFontInstalled" = "True" ]; then
-  fc-cache -fv >/dev/null 2>&1 && echo "fc-chache: succeeded"
+  fc-cache -fv >/dev/null 2>&1 && echo "fc-cache: succeeded"
 
   #check if the user hasn't chooen to keep the updated, if not, remove them
   if [ "$keepArchives" = "False" ]; then
