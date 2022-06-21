@@ -225,6 +225,14 @@ setup_ubuntu() {
   success "Finshed installing all the linux apps"
 }
 
+setup_arch() {
+  title "Install app via yay"
+
+  source ./arch.sh
+
+  success "Finished installing all the linux apps"
+}
+
 case "$1" in
   directories)
     setup_directories
@@ -243,6 +251,17 @@ case "$1" in
     setup_directories
     setup_ubuntu
     setup_homebrew
+    setup_fzf
+    setup_stow
+    setup_zolta
+    setup_lua
+    setup_neovim
+    setup_shell
+    ;;
+  linuxarch)
+    setup_init
+    setup_directories
+    setup_arch
     setup_fzf
     setup_stow
     setup_zolta
@@ -277,7 +296,7 @@ case "$1" in
     setup_volta
     ;;
   *)
-    echo -e $"\nUsage: $(basename "$0") {directories|fzf|homebrew|init|linux|lua|neovim|shell|stow|volta}\n"
+    echo -e $"\nUsage: $(basename "$0") {directories|fzf|homebrew|init|linux|linuxarch|lua|neovim|shell|stow|volta}\n"
     exit 1
     ;;
 esac
