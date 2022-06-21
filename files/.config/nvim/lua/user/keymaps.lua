@@ -40,6 +40,9 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 -- Turn off highlighting
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
+-- Better paste
+keymap("v", "p", '"_dP', opts)
+
 -- Insert --
 
 -- Visual --
