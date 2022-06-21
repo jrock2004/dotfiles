@@ -29,30 +29,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 	end,
 })
 
--- Set all variations of dockerfile to right type
-vim.api.nvim_create_autocmd({ "BufRead" }, {
-	pattern = "*.dockerfile*",
-	callback = function()
-		vim.cmd("autocmd BufRead *.dockerfile* set filetype=dockerfile")
-	end,
-})
-
--- Set all variations of env to right type
-vim.api.nvim_create_autocmd({ "BufRead" }, {
-	pattern = { "*.env*" },
-	callback = function()
-		vim.cmd("autocmd BufRead *.env* set filetype=sh")
-	end,
-})
-
--- Set all variations of handlebars to right type
-vim.api.nvim_create_autocmd({ "BufRead" }, {
-	pattern = { "*.hbs" },
-	callback = function()
-		vim.cmd("autocmd BufRead *.handlebars set filetype=handlebars")
-	end,
-})
-
 vim.cmd("autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif")
 
 -- Fixes Autocomment
