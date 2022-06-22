@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-yay -S ack bat cloc cmake diff-so-fancy fd fzf gcc github-cli gnupg go grep htop jq lazygit luarocks make markdown neofetch ninja orchis-theme-git python ripgrep shellcheck starship stow tela-icon-theme tmux tree vim wget z zsh
+sudo pacman -S discord
+
+yay -S ack alacritty bat cloc cmake diff-so-fancy fd fzf gcc github-cli gnupg go google-chrome grep htop jq lazygit luarocks make markdown neofetch ninja orchis-theme-git python python-pip ripgrep shellcheck slack-desktop starship stow stylua tela-icon-theme tmux tree vim wget z zsh
+
+pip install git+https://github.com/psf/black

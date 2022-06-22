@@ -41,6 +41,7 @@ prepend_path /usr/local/sbin
 prepend_path $DOTFILES/bin
 prepend_path $VOLTA_HOME/bin
 prepend_path $HOME/.local/lib/python3.9/site-packages
+prepend_path $HOME/.local/bin
 
 
 if [[ -d /usr/local/go/bin ]]; then
@@ -242,7 +243,7 @@ alias luamake=$HOME/lua-language-server/3rd/luamake/luamake
 alias disableLaptop='xrandr --output eDP-1 --off'
 
 # Update/Install Global node dependencies
-alias npmpackages='volta install @lifeart/ember-language-server @tailwindcss/language-server bash-language-server cssmodules-language-server diagnostic-languageserver dockerfile-language-server-nodejs ember-cli ls_emmet typescript typescript-language-server vim-language-server vscode-langservers-extracted yaml-language-server'
+alias npmpackages='volta install @lifeart/ember-language-server @tailwindcss/language-server bash-language-server cssmodules-language-server diagnostic-languageserver dockerfile-language-server-nodejs ember-cli ls_emmet neovim typescript typescript-language-server vim-language-server vscode-langservers-extracted yaml-language-server'
 
 # Need to source these last
 # source "$DOTFILES/zsh/prompt.zsh"
