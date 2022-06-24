@@ -116,3 +116,23 @@ I do not use it as much but I still configure it for when I have to use it. It c
 
 My inspiration of my dotfiles comes from [Nick Nisi](https://github.com/nicknisi/dotfiles).
 The next person who got me into converting my neovim setup to Lua is [Chris@Machine](https://www.chrisatmachine.com/neovim). Thank you for showing me the way.
+
+
+
+-------
+
+# Arch
+
+There are things you will need to do to get your Arch setup up and running. There is a directory called `archfiles` that you need to move to the right places.
+
+```bash
+> cd ~/.dotfiles/archfiles
+```
+
+Then you can run the following to install all the packages that are required.
+
+```bash
+> cp 91-keyboard-mouse-wakeup.conf /etc/udev/rules.d/
+> cp bluetooth.conf /etc/modprobe.d/bluetooth.conf
+```
+
