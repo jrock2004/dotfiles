@@ -133,6 +133,20 @@ Then you can run the following to install all the packages that are required.
 
 ```bash
 > cp 91-keyboard-mouse-wakeup.conf /etc/udev/rules.d/
-> cp bluetooth.conf /etc/modprobe.d/bluetooth.conf
 ```
 
+You will want to clone and install `slock` with the following
+
+```bash
+> git clone https://git.suckless.org/slock
+> cd slock
+> sudo make install
+```
+
+Now lets get audio working
+
+```bash
+> systemctl --user enable pipewire
+> systemctl --user enable pipewire-pulse
+> systemctl --user enable pipewire-media-session
+```
