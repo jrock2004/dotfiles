@@ -1,0 +1,43 @@
+Config { font = "xft:OperatorMono Nerd Font:pixelsize=16:antialias=true:hinting=true:weight=bold"
+  , additionalFonts = ["xft:Mononoki Nerd Font:pixelsize=16:antialias=true:hinting=true"]
+  , borderColor = "black"
+  , border = TopB
+  , bgColor = "#282c34"
+  , fgColor = "#abb2bf"
+  , alpha = 255
+  , position = Top
+  , textOffset = -1
+  , iconOffset = -1
+  , lowerOnStart = True
+  , pickBroadest = False
+  , persistent = False
+  , hideOnStart = False
+  , iconRoot = "."
+  , allDesktops = True
+  , overrideRedirect = True
+  , commands = [
+    -- Time and date
+    Run Date "<fn=1> </fn> %b %d, %Y - (%H:%M)" "date" 50
+
+    -- Network up and down
+    , Run Network "enp9s0" ["-t", "<fn=1> </fn> <rx>kb <fn=1> </fn> <tx>kb"] 20
+
+    -- CPU usage in percent
+    , Run Cpu ["-t", "<fn=1> </fn> <total>%","-H","50","--high","red"] 20
+
+    -- Ram used number and percent
+    , Run Memory ["-t", "<fn=1> </fn> <used>M (<usedratio>%)"] 20
+
+    -- Disk space free
+    , Run DiskU [("/", "<fn=1> </fn> <free>")] [] 60
+
+    -- Current weather
+    , Run Weather "KOQN" ["-t", "<fn=1> </fn> <tempF>°F"] 10
+
+    -- The workspaces are 'clickable' and can be toggled with a single click
+    , Run UnsafeStdinReader
+  ]
+  , sepChar = "%"
+  , alignSep = "}{"
+  , template = "%XMonadLog% | %date% }{ %cpu% | %memory% | %disku% | %enp9s0% | %KOQN% "
+  }
