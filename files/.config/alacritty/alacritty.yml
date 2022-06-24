@@ -82,6 +82,6 @@ key_bindings:
   - { key: C,        mods: Control|Shift, chars: "\x03"         }
 
 shell:
-  program: /home/linuxbrew/.linuxbrew/bin/zsh
+  program: /usr/bin/zsh
   args:
     - --login
