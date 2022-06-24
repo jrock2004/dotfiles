@@ -75,9 +75,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Resize viewed windows to the correct size
     , ((modm,               xK_n     ), refresh)
 
-    -- Resize vertical window using up arrow
-    , ((modm,               xK_Up    ), sendMessage MirrorShrink)
-
     -- Move focus to the next window
     , ((modm,               xK_Tab   ), windows W.focusDown)
 
