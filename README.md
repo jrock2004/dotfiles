@@ -150,3 +150,11 @@ Now lets get audio working
 > systemctl --user enable pipewire-pulse
 > systemctl --user enable pipewire-media-session
 ```
+
+Now lets get virtual machine working
+
+```bash
+> sudo systemctl enable libvirtd.service
+```
+
+Then follow here for [configuration](https://wiki.archlinux.org/title/Virt-Manager).
