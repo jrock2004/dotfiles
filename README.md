@@ -157,4 +157,10 @@ Now lets get virtual machine working
 > sudo systemctl enable libvirtd.service
 ```
 
+Now lets setup things for sony headeset
+
+```bash
+> systemctl --user enable mpris-proxy
+```
+
 Then follow here for [configuration](https://wiki.archlinux.org/title/Virt-Manager).
