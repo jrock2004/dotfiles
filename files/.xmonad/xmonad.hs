@@ -56,6 +56,12 @@ myKeys =
     -- Mute Volume
     ("<XF86AudioMute>", spawn "pactl set-sink-volume @DEFAULT_SINK@ toggle"),
 
+    -- Screenshot whole page
+    ("M-C-S-3", spawn "scrot"),
+
+    -- Screenshot whole page
+    ("M-C-S-4", spawn "scrot -s"),
+    
     -- Launch to show keymapping
     ("M-S-/", spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
   ]
@@ -117,7 +123,7 @@ myManageHook = composeAll
 --------------------------------------------------------------------------------
 
 myWorkspaces :: [String]
-myWorkspaces = ["dev", "chat", "browser", "VM"]
+myWorkspaces = ["1:dev", "2:chat", "3:browser", "4:music", "5:vm"]
 
 --------------------------------------------------------------------------------
 -- MAIN
