@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# Variables
+###########################################
+# VARIABLES
+###########################################
 
 DOTFILES="$(pwd)"
 COLOR_GRAY="\033[1;38;5;243m"
@@ -10,8 +12,13 @@ COLOR_RED="\033[1;31m"
 COLOR_PURPLE="\033[1;35m"
 COLOR_YELLOW="\033[1;33m"
 COLOR_NONE="\033[0m"
+OS=""
+USEBREW=false
 
-# Helper functions
+###########################################
+# HELPER FUNCTIONS
+###########################################
+
 title() {
   echo -e "\n${COLOR_PURPLE}$1${COLOR_NONE}"
   echo -e "${COLOR_GRAY}==============================${COLOR_NONE}\n"
@@ -34,33 +41,39 @@ success() {
   echo -e "${COLOR_GREEN}$1${COLOR_NONE}"
 }
 
-setup_init() {
-  title "Checking some things before we start"
+###########################################
+# SETUP SYSTEM
+###########################################
+
+setup_prereq() {
+  title "Check if $1 has all the required dependencies before starting"
 
   SUCCESS=true
 
   if [ -z "$(command -v git)" ]; then
     error "Git is not installed, please install before starting"
+
     SUCCESS=false
-  else
-    info "Git is installed"
   fi
 
-  # if we are on linux lets install some things
-  if [[ "$(uname)" = "Linux" && "$(command -v apt-get)" ]]; then
-    info "Installing some linux pre-reqs"
+  if [ "$OS" == "popos" ]; then
+    sudo apt-get install build-essential procps curl file
+  fi
 
-    sudo apt-get install build-essential procps curl file git
-  elif [[ "$(uname)" = "Linux" && "$(command -v pacman)" ]]; then
-    info "Installing some linux pre-reqs"
+  if [ "$OS" == "arch" ]; then
+    if [ -z "$(command -v yay)" ]; then
+      error "You need to install yay before you can run this script"
 
-    sudo pacman -S base-devel curl git
+      SUCCESS=false
+    else
+      sudo pacman -S base-devel curl
+    fi
   fi
 
   # if one of the missing commands is missing, fail the script
   [ "$SUCCESS" = false ] && exit 1
 
-  success "Your system meets the requirements"
+  success "Your $OS meets all the requirements"
 }
 
 setup_directories() {
@@ -94,14 +107,17 @@ setup_homebrew() {
 
   if [ "$(command -v brew)" ]; then
     info "installing software"
+
     brew bundle
   else
     error "Brew command was not found"
+
     exit 1
   fi
 
   if ! [ "$(command -v stow)" ]; then
-    error "Stow could not be found"
+    error "Something went wrong with homebrew, try again!"
+
     exit 1
   fi
 
@@ -113,10 +129,9 @@ setup_fzf() {
 
   if [ "$(command -v brew)" ]; then
     "$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
-  elif [ "$(uname)" = "Linux" ]; then
-    info "We are on linux and will setup FZF differently"
   else
     error "Something went wrong with setting up FZF"
+
     exit 1
   fi
 
@@ -140,23 +155,17 @@ setup_stow() {
   success "Stow setup successfully"
 }
 
-setup_zolta() {
+setup_volta() {
   title "Setting up Zolta to manage node and its dependencies"
 
   curl https://get.volta.sh | bash -s -- --skip-setup
 
   # For now volta needs this for node and stuff to work
-  if [ "$OS" = "Darwin" ]; then
+  if [ "$OS" = "mac" ]; then
     softwareupdate --install-rosetta
   fi
 
-  if [ "$(command -v volta)" ]; then
-    info "Installing some global Node NPM Apps"
-
-    volta install node@lts yarn
-  fi
-
-  success "Zolta is setup successfully"
+  success "Volta is setup successfully"
 }
 
 setup_lua() {
@@ -184,7 +193,9 @@ setup_lua() {
 setup_neovim() {
   title "Setting things up for neovim"
 
-  if [ "$(uname)" = "Linux" ]; then
+  if [ "$OS" = "popos" ]; then
+    python3 -m pip install --upgrade pynvim
+  elif [ "$OS" = "arch" ]; then
     python3 -m pip install --upgrade pynvim
   elif [ "$(command -v python)" ]; then
     python -m pip install --upgrade pynvim
@@ -217,86 +228,86 @@ setup_shell() {
   success "Configuring shell was successfully"
 }
 
-setup_ubuntu() {
-  title "Installing app via apt-get"
+###########################################
+# INITAL QUESTIONS
+###########################################
 
-  source ./linux.sh
+title "Which OS are we setting up? "
 
-  success "Finshed installing all the linux apps"
-}
+select os in mac popos arch; do
+  case $os in
+    mac)
+      OS="mac"
+      break ;;
+    popos)
+      OS="popos"
+      break ;;
+    arch)
+      OS="arch"
+      break ;;
+    *)
+      error "Invalid option $REPLY"
+  esac
+done
 
-setup_arch() {
-  title "Install app via yay"
+title "Do you want to use brew? "
 
-  source ./arch.sh
+select optionBrew in yes no; do
+  case $optionBrew in
+    yes)
+      USEBREW=true
 
-  success "Finished installing all the linux apps"
-}
+      break ;;
+    no)
+      USEBREW=false
 
-case "$1" in
-  directories)
-    setup_directories
-    ;;
-  fzf)
-    setup_fzf
-    ;;
-  homebrew)
+      break ;;
+    *)
+      error "Invalid option $REPLY"
+  esac
+done
+
+###########################################
+# RUNNING SET UP
+###########################################
+
+if [ $OS == "mac" ]; then
+  setup_init
+  setup_directories
+  setup_homebrew
+  setup_fzf
+  setup_stow
+  setup_volta
+  setup_lua
+  setup_neovim
+elif [ $OS == "popos" ]; then
+  setup_init
+  setup_directories
+
+  source ./linux.sh # install some things for linux
+
+  if [ $USEBREW == true ]; then
     setup_homebrew
-    ;;
-  init)
-    setup_init
-    ;;
-  linux)
-    setup_init
-    setup_directories
-    setup_ubuntu
-    setup_homebrew
-    setup_fzf
-    setup_stow
-    setup_zolta
-    setup_lua
-    setup_neovim
-    setup_shell
-    ;;
-  linuxarch)
-    setup_init
-    setup_directories
-    setup_arch
-    setup_fzf
-    setup_stow
-    setup_zolta
-    setup_lua
-    setup_neovim
-    setup_shell
-    ;;
-  lua)
-    setup_lua
-    ;;
-  mac)
-    setup_init
-    setup_directories
-    setup_homebrew
-    setup_fzf
-    setup_stow
-    setup_zolta
-    setup_lua
-    setup_neovim
-    setup_shell
-    ;;
-  neovim)
-    setup_neovim
-    ;;
-  shell)
-    setup_shell
-    ;;
-  stow)
-    setup_stow
-    ;;
-  volta)
-    setup_volta
-    ;;
-  *)
-    echo -e $"\nUsage: $(basename "$0") {directories|fzf|homebrew|init|linux|linuxarch|lua|neovim|shell|stow|volta}\n"
-    exit 1
-    ;;
-esac
+  fi
+
+  setup_stow
+  setup_volta
+  setup_lua
+  setup_neovim
+elif [ $OS == "arch" ]; then
+  setup_init
+  setup_directories
+
+  source ./arch.sh # Installing files for arch systems
+
+  setup_stow
+  setup_volta
+  setup_lua
+  setup_neovim
+fi
+
+setup_shell
+
+success "Your system is ready to go. Reboot and read the readme for rest of set up"
+
+exit 0
