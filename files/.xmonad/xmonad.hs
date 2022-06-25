@@ -54,7 +54,7 @@ myKeys =
     ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%"),
 
     -- Mute Volume
-    ("<XF86AudioMute>", spawn "pactl set-sink-volume @DEFAULT_SINK@ toggle"),
+    ("<XF86AudioMute>", spawn "pactl set-sink-mute @DEFAULT_SINK@ toggle"),
 
     -- Screenshot whole page
     ("M-C-S-3", spawn "scrot"),
