@@ -61,7 +61,10 @@ myKeys =
 
     -- Screenshot whole page
     ("M-C-S-4", spawn "scrot -s"),
-    
+
+    -- Lock the screen
+    ("M1-C-l", spawn "slock"),
+
     -- Launch to show keymapping
     ("M-S-/", spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
   ]
