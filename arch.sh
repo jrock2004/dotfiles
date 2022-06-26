@@ -36,7 +36,7 @@ echo -e "Do we still want to install a tiling manager? \n\n"
 select isTM in yes no; do
   case $isTM in
     yes)
-      yay -S dmenu gpicview polybar picom xmonad xmonad-contrib xmobar xorg-xmessage
+      yay -S dmenu gpicview polybar picom slock xmonad xmonad-contrib xmobar xautolock xorg-xmessage
 
       break ;;
     no)
