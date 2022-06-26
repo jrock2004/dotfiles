@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+CURRENT_OUTPUT=$(pactl get-default-sink)
+
+if [[ "$CURRENT_OUTPUT" == *"14_3F_A6_83_08_17"* ]]; then
+  echo " XM 4"
+elif [[ "$CURRENT_OUTPUT" == *"hdmi-stereo-extra1"* ]]; then
+  echo " Monitor"
+else
+  echo ""
+fi
