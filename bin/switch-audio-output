@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ "$1" == "" ]; then
+    echo "You need to specify a device. Example: default, sony"
+elif [ "$1" == "default" ]; then
+  pactl set-default-sink alsa_output.pci-0000_00_1f.3.hdmi-stereo-extra1
+elif [ "$1" == "sony" ]; then
+  pactl set-default-sink bluez_output.14_3F_A6_83_08_17.a2dp-sink
+else
+  echo "The device $1 that you specified does not exist"
+fi
