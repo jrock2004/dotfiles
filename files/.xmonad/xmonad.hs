@@ -60,7 +60,7 @@ myKeys =
     ("M-C-S-3", spawn "scrot"),
 
     -- Screenshot whole page
-    ("M-C-S-4", spawn "scrot -s"),
+    ("M-C-S-4", spawn "scrot -s ~/foo.png && xclip -selection clipboard -t image/png ~/foo.png && rm ~/foo.png"),
 
     -- Lock the screen
     ("M1-C-l", spawn "slock"),
