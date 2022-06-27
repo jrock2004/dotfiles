@@ -65,12 +65,10 @@ setup_prereq() {
       info "You need to install paru before you can run this script"
 
       git clone https://aur.archlinux.org/paru.git
-
       cd "paru" || error "Something went wrong" && SUCCESS=false
-
       makepkg -si
-
       cd "../"
+      rm -Rf "paru"
     fi
 
     [ "$SUCCESS" = true ] && paru -S base-devel curl

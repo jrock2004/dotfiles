@@ -36,6 +36,13 @@ select isTM in yes no; do
     yes)
       paru -S dmenu gpicview polybar picom slock xmonad xmonad-contrib xmobar xautolock xorg-xmessage
 
+      # Setting up slock to lock screen
+      git clone https://git.suckless.org/slock
+      cd "slock" || echo "Something went wrong with slock setup"
+      makepkg -si
+      cd "../"
+      rm -Rf "slock"
+
       break ;;
     no)
       break ;;
@@ -43,3 +50,7 @@ select isTM in yes no; do
       error "Invalid option $REPLY"
   esac
 done
+
+# Copy bluetooth keyboard rule
+[ -d "/etc/udev/rules.d" ] && cp archfiles/91-keyboard-mouse-wakeup.conf /etc/udev/rules.d/
+
