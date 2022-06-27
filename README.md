@@ -92,13 +92,15 @@ Open up neovim with the command `nvim` and an error will come at bottom of scree
 
 # Setup VSCode
 
-I do use Visual Studio code from time to time. I think mostly for git merge conflicts. I have a [gist setup of the dependencies and settings that I use](https://gist.github.com/jrock2004/34c134d3a4a8bfb84336fd5d52472237).
+I do use [Visual Studio Code](https://code.visualstudio.com) from time to time. I think mostly for git merge conflicts. I have a [gist setup of the dependencies and settings that I use](https://gist.github.com/jrock2004/34c134d3a4a8bfb84336fd5d52472237).
 
 # Mac Specific Setup
 
 There are some things that you will want to set up that are specific for apps that are only on Mac. 
 
 ## iTerm2
+
+On Mac my go to terminal is [iTerm2](https://iterm2.com/)
 
 ``` yml
 General:

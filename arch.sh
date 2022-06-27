@@ -54,3 +54,9 @@ done
 # Copy bluetooth keyboard rule
 [ -d "/etc/udev/rules.d" ] && cp archfiles/91-keyboard-mouse-wakeup.conf /etc/udev/rules.d/
 
+# Setup my Suckless st terminal
+git clone https://github.com/jrock2004/st.git
+cd "st" || echo "Something went wrong with st setup"
+makepkg -si
+cd "../"
+rm -Rf "st"
