@@ -2,7 +2,7 @@
 
 # Need to figure out markdown
 
-paru -S ack alacritty bat bluez bluez-utils cloc cmake diff-so-fancy discord dnsmasq edk2-ovmf fd fzf gcc github-cli gnupg go google-chrome grep htop jq lazygit lobvirt luarocks make mpris-proxy-service neofetch neovim noto-fonts-emoji ninja nitrogen openssh python python-pip qemu-desktop ripgrep shellcheck slack-desktop spotify starship stow stylua tmux tree vim virt-manager xclip xsel xterm z zsh
+paru -S 1password ack alacritty bat bluez bluez-utils cloc cmake diff-so-fancy discord dnsmasq edk2-ovmf fd fzf gcc github-cli gnupg go google-chrome grep htop jq lazygit lobvirt luarocks make mpris-proxy-service neofetch neovim noto-fonts-emoji ninja nitrogen openssh python python-pip qemu-desktop ripgrep shellcheck slack-desktop spotify starship stow stylua tmux tree vim virt-manager xclip xsel xterm z zsh
 
 pip install git+https://github.com/psf/black
 
