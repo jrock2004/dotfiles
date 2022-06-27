@@ -14,10 +14,10 @@ local servers = {
 	"eslint",
 	"html",
 	"jsonls",
+	"pyright",
 	"sumneko_lua",
 	"tailwindcss",
 	"tsserver",
-	"pyright",
 	"vimls",
 	"yamlls",
 }

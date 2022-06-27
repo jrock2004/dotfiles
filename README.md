@@ -1,87 +1,102 @@
-This is a place for me to store my configuration so that when I get a new machine or re-install one, I can set my computer back up as fast as possible.
+# Dotfiles
 
-## before you start
+This holds all my configuration that I use for my linux and mac machines. When ever I get a new computer or reformat one, I clone and run this to get setup fairly quickly. If you find that the script does not work for the OS's listed below or your there is some bug, [please open an issue](https://github.com/jrock2004/dotfiles/issues).
 
-Make sure, that before you start that you install the following apps that are required for everything to work.
+# Current OS's Supported
+- Arch
+- PopOS
+- Mac
 
-<details>
-  <summary>Mac</summary>
+# Pre-req
 
-- Xcode Command Line Tools
+There are a few things that you need to install yourself before you can use the script
+
+## General
+
 - Git
 
-Xcode will give your mac all the tools you will need to run the scripts.
+## Mac
 
-</details>
+- Xcode Command Line Tools - This install the necessary dependencies you will need
 
-## running the install script
+# Run the Script
 
-```bash
+You should now be ready to clone and run the script to get going
+
+``` bash
 > git clone https://github.com/jrock2004/dotfiles.git ~/.dotfiles
 > cd ~/.dotfiles
 
 # If you want to see options, run the following:
 > ./install.sh
-
-# To set up your Mac you can run
-> ./install.sh mac
 ```
 
-## after script has ran
+When you run the script is going to ask you questions so it knows what to set up. If it completes with no errors and you see the success message at the end then everything should be good to go. If not, [please open an issue](https://github.com/jrock2004/dotfiles/issues) with what errored out for you.
 
-So if the script runs through and you receive no errors, open a new terminal window and we will install some things that the installer could not do.
+# SSH Key
 
-I use [Volta](https://volta.sh) at this time to manage my node versions and node dependencies. Lets start off by install LTS version of Node
+I prefer to use SSH to authenticate to Github, so the next thing we should do is create an SSH key.
 
-```bash
-> volta install node@lts
+``` bash
+> ssh-keygen -t ed25519 -C "your_email@example.com"
+> eval "$(ssh-agent -s)"
+> ssh-add ~/.ssh/id_ed25519
+> cat ~/.ssh/id_ed25519.pub
+
+# Then select and copy the contents of the id_ed25519.pub file
+# displayed in the terminal to your clipboard
 ```
 
-Now lets install some global node plugins globally that I use that are not required for my dotfiles.
+Now you can add the SSH key to your account so you will have no issues cloning repos using `git:` protocol. We are ready to open a new terminal which should use our new configurations. It will download some ZSH plugins that I like to use.
 
-```bash
-> volta install yarn
-```
+# NodeJS
 
-```bash
+Currently my favorite node manager is [Volta](https://volta.sh/). We want to run the following to setup node and some global node dependencies that I use on a day to day.
+
+``` bash
+# Install Node LTS version
+> volta install node@lts yarn
+
+# Globalling install some Node dependencies
 > npmpackages
 ```
 
-Now lets install stylua with cargo:
+**Note:** If you are curious which Node dependencies I globally install, [you can view here](https://github.com/jrock2004/dotfiles/blob/main/files/.zshrc#L246).
 
-```bash
-> cargo install stylua
+# Setup Neovim
+
+Open up neovim with the command `nvim` and an error will come at bottom of screen. Hit `enter` and the Packer installer will come up. You may see some errors and that is ok. Once all the plugins have installed, closed Neovim and re-open. Its going to download some other dependencies. This will take a few minutes as there are alot of them. Once that completes, close Neovim and re-open again. We now want to install some LSP Servers. to do this hit the following keys to open the LSP installer, `,lI`(comma, l, I). Navigate down to each of the following in the list and hit `i` to install it. Should take a few seconds to install. You need to wait for install finish before clicking `i` on another one.
+
 ```
-
-## open up neovim
-
-Open up Neovim and we need to run some commands to get us set up and ready
-
-```bash
-:PackerInstall
-```
-
-After this is done, close it out and open it again and run the following to install all the language servers. Open up Neovim and `,lI` and you will want to go in list and hit `I` on the following:
-
-◍ graphql
 ◍ bashls
-◍ dockerls
-◍ eslint
-◍ html
-◍ yamlls
 ◍ cssls
 ◍ cssmodules_ls
 ◍ diagnosticls
+◍ dockerls
 ◍ ember
 ◍ emmet_ls
-◍ tsserver
+◍ eslint
+◍ html
+◍ jsonls
+◍ pyright
+◍ sumneko_lua
 ◍ tailwindcss
+◍ tsserver
+◍ vimls
+◍ yamlls
+```
 
-## settings for iTerm2
+# Setup VSCode
 
-If you are on a mac you will want to use iTerm2 for your terminal. Here are the settings I have configured for it
+I do use Visual Studio code from time to time. I think mostly for git merge conflicts. I have a [gist setup of the dependencies and settings that I use](https://gist.github.com/jrock2004/34c134d3a4a8bfb84336fd5d52472237).
 
-```yml
+# Mac Specific Setup
+
+There are some things that you will want to set up that are specific for apps that are only on Mac. 
+
+## iTerm2
+
+``` yml
 General:
   Closing:
     Confirm Quit: Un-checked
@@ -108,59 +123,42 @@ Profiles:
     Non-ASCII Ligatures: Check
 ```
 
-## vscode
-
-I do not use it as much but I still configure it for when I have to use it. It can be [found on gist](https://gist.github.com/jrock2004/34c134d3a4a8bfb84336fd5d52472237)
-
-## inspiration
-
-My inspiration of my dotfiles comes from [Nick Nisi](https://github.com/nicknisi/dotfiles).
-The next person who got me into converting my neovim setup to Lua is [Chris@Machine](https://www.chrisatmachine.com/neovim). Thank you for showing me the way.
-
-
-
--------
-
 # Arch
 
-There are things you will need to do to get your Arch setup up and running. There is a directory called `archfiles` that you need to move to the right places.
+I have not fully automated my Arch set up so there are some things that you will want to do at this point to get all things working.
 
-```bash
-> cd ~/.dotfiles/archfiles
+## Virtual Machine
+
+From time to time I need to run a VM to play around with things or test. On Arch I use an app called [Virt-Manager](https://wiki.archlinux.org/title/Virt-Manager). My installer installs the application but we need to config it
+
+### /etc/libvirt/libvirtd.conf
+
+Open this file and you will want to uncomment and change the following values:
+
+- unix_sock_group = 'libvirt'
+- unix_sock_rw_perms = '0770'
+
+### /etc/libvirt/qemu.conf
+
+Change the following values of username to the username that you choose for your linux account.
+
+- user = "username"
+- group = "username"
+
+### Add Youself to the Group
+
+You need to add yourself to this group or else you will not be able to run this without root. 
+
+``` bash
+> sudo usermod -a -G libvirt username
 ```
 
-Then you can run the following to install all the packages that are required.
-
-```bash
-> cp 91-keyboard-mouse-wakeup.conf /etc/udev/rules.d/
-```
-
-You will want to clone and install `slock` with the following
-
-```bash
-> git clone https://git.suckless.org/slock
-> cd slock
-> sudo make install
-```
-
-Now lets get audio working
-
-```bash
-> systemctl --user enable pipewire
-> systemctl --user enable pipewire-pulse
-> systemctl --user enable pipewire-media-session
-```
-
-Now lets get virtual machine working
+### Enable the Service on Startup
 
 ```bash
 > sudo systemctl enable libvirtd.service
 ```
 
-Now lets setup things for sony headeset
+# Inspiration
 
-```bash
-> systemctl --user enable mpris-proxy
-```
-
-Then follow here for [configuration](https://wiki.archlinux.org/title/Virt-Manager).
+When I started using Vim, my configs forked off of [Nick Nisi](https://github.com/nicknisi/dotfiles). I found Nick's config off of an awesome [Youtube video explaining Vim and Tmux](https://www.youtube.com/watch?v=5r6yzFEXajQ). A few years later I came acrros Christian Chiarulli videos at got interested in switching my Neovim config from vimscript to lua script. I started to play around with things. Chris then came up with a great [Youtube series](https://www.youtube.com/watch?v=Vghglz2oR0c) on setting up a basic Neovim IDE. [You can view the code for that on his github](https://github.com/LunarVim/nvim-basic-ide).
