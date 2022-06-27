@@ -17,7 +17,11 @@ There are a few things that you need to install yourself before you can use the 
 
 ## Mac
 
-- Xcode Command Line Tools - This install the necessary dependencies you will need
+Xcode Command Line Tools is required to give you some of the needed core dependencies this script will need to run. You can install this by doing the following:
+
+``` bash
+> sudo xcode-select --install
+```
 
 # Run the Script
 
