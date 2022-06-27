@@ -107,7 +107,8 @@ myLogHook = return ()
 myStartupHook = do
   spawnOnce "nitrogen --restore &"
   spawnOnce "picom -b &"
-  spawnOnce "xautolock -time 10 -locker slock"
+  spawnOnce "switch-audio-output default"
+  spawnOnce "xautolock -detectsleep -time 10 -locker slock -killtime 70 -killer \"systemctl suspend\""
 
 --------------------------------------------------------------------------------
 -- MANAGEHOOK
