@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
-sudo pacman -S discord virt-manager qemu-desktop libvirt edk2-ovmf dnsmasq 
-
 # Need to figure out markdown
 
-yay -S ack alacritty bat bluez bluez-utils cloc cmake diff-so-fancy fd fzf gcc github-cli gnupg go google-chrome grep htop jq lazygit luarocks make mpris-proxy-service neofetch neovim noto-fonts-emoji ninja nitrogen openssh python python-pip ripgrep shellcheck slack-desktop spotify starship stow stylua tmux tree vim wget xclip xsel xterm z zsh
+paru -S ack alacritty bat bluez bluez-utils cloc cmake diff-so-fancy discord dnsmasq edk2-ovmf fd fzf gcc github-cli gnupg go google-chrome grep htop jq lazygit lobvirt luarocks make mpris-proxy-service neofetch neovim noto-fonts-emoji ninja nitrogen openssh python python-pip qemu-desktop ripgrep shellcheck slack-desktop spotify starship stow stylua tmux tree vim virt-manager xclip xsel xterm z zsh
 
 pip install git+https://github.com/psf/black
 
@@ -17,7 +15,7 @@ select isWM in yes no; do
     yes)
       USINGWM=true
 
-      yay -S chrome-gnome-shell orchis-theme-git tela-icon-theme
+      paru -S chrome-gnome-shell orchis-theme-git tela-icon-theme
 
       break ;;
     no)
@@ -28,7 +26,7 @@ select isWM in yes no; do
 done
 
 if [ "$USINGWM" == false ]; then
-  yay -S dmenu gpicview pcmanfm polybar picom pulseaudio-bluetooth xautolock xmonad xmonad-contrib xmobar xorg-xmessage
+  paru -S dmenu gpicview pcmanfm polybar picom xautolock xmonad xmonad-contrib xmobar xorg-xmessage
 fi
 
 echo -e "Do we still want to install a tiling manager? \n\n"
@@ -36,7 +34,7 @@ echo -e "Do we still want to install a tiling manager? \n\n"
 select isTM in yes no; do
   case $isTM in
     yes)
-      yay -S dmenu gpicview polybar picom slock xmonad xmonad-contrib xmobar xautolock xorg-xmessage
+      paru -S dmenu gpicview polybar picom slock xmonad xmonad-contrib xmobar xautolock xorg-xmessage
 
       break ;;
     no)

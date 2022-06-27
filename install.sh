@@ -61,13 +61,19 @@ setup_prereq() {
   fi
 
   if [ "$OS" == "arch" ]; then
-    if [ -z "$(command -v yay)" ]; then
-      error "You need to install yay before you can run this script"
+    if [ -z "$(command -v paru)" ]; then
+      info "You need to install paru before you can run this script"
 
-      SUCCESS=false
-    else
-      sudo pacman -S base-devel curl
+      git clone https://aur.archlinux.org/paru.git
+
+      cd "paru" || error "Something went wrong" && SUCCESS=false
+
+      makepkg -si
+
+      cd "../"
     fi
+
+    [ "$SUCCESS" = true ] && paru -S base-devel curl
   fi
 
   # if one of the missing commands is missing, fail the script
@@ -271,43 +277,43 @@ done
 # RUNNING SET UP
 ###########################################
 
-if [ $OS == "mac" ]; then
-  setup_init
-  setup_directories
-  setup_homebrew
-  setup_fzf
-  setup_stow
-  setup_volta
-  setup_lua
-  setup_neovim
-elif [ $OS == "popos" ]; then
-  setup_init
-  setup_directories
-
-  source ./linux.sh # install some things for linux
-
-  if [ $USEBREW == true ]; then
-    setup_homebrew
-  fi
-
-  setup_stow
-  setup_volta
-  setup_lua
-  setup_neovim
-elif [ $OS == "arch" ]; then
-  setup_init
-  setup_directories
-
-  source ./arch.sh # Installing files for arch systems
-
-  setup_stow
-  setup_volta
-  setup_lua
-  setup_neovim
-fi
-
-setup_shell
-
-success "Your system is ready to go. Reboot and read the readme for rest of set up"
+# if [ $OS == "mac" ]; then
+#   setup_init
+#   setup_directories
+#   setup_homebrew
+#   setup_fzf
+#   setup_stow
+#   setup_volta
+#   setup_lua
+#   setup_neovim
+# elif [ $OS == "popos" ]; then
+#   setup_init
+#   setup_directories
+#
+#   source ./linux.sh # install some things for linux
+#
+#   if [ $USEBREW == true ]; then
+#     setup_homebrew
+#   fi
+#
+#   setup_stow
+#   setup_volta
+#   setup_lua
+#   setup_neovim
+# elif [ $OS == "arch" ]; then
+#   setup_init
+#   setup_directories
+#
+#   source ./arch.sh # Installing files for arch systems
+#
+#   setup_stow
+#   setup_volta
+#   setup_lua
+#   setup_neovim
+# fi
+#
+# setup_shell
+#
+# success "Your system is ready to go. Reboot and read the readme for rest of set up"
 
 exit 0
