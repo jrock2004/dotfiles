@@ -45,8 +45,8 @@ success() {
 # SETUP SYSTEM
 ###########################################
 
-setup_prereq() {
-  title "Check if $1 has all the required dependencies before starting"
+setup_init() {
+  title "Check if $OS has all the required dependencies before starting"
 
   SUCCESS=true
 
@@ -69,6 +69,8 @@ setup_prereq() {
       makepkg -si
       cd "../"
       rm -Rf "paru"
+
+      SUCCESS=true
     fi
 
     [ "$SUCCESS" = true ] && paru -S base-devel curl
@@ -275,43 +277,43 @@ done
 # RUNNING SET UP
 ###########################################
 
-# if [ $OS == "mac" ]; then
-#   setup_init
-#   setup_directories
-#   setup_homebrew
-#   setup_fzf
-#   setup_stow
-#   setup_volta
-#   setup_lua
-#   setup_neovim
-# elif [ $OS == "popos" ]; then
-#   setup_init
-#   setup_directories
-#
-#   source ./linux.sh # install some things for linux
-#
-#   if [ $USEBREW == true ]; then
-#     setup_homebrew
-#   fi
-#
-#   setup_stow
-#   setup_volta
-#   setup_lua
-#   setup_neovim
-# elif [ $OS == "arch" ]; then
-#   setup_init
-#   setup_directories
-#
-#   source ./arch.sh # Installing files for arch systems
-#
-#   setup_stow
-#   setup_volta
-#   setup_lua
-#   setup_neovim
-# fi
-#
-# setup_shell
-#
-# success "Your system is ready to go. Reboot and read the readme for rest of set up"
+if [ $OS == "mac" ]; then
+  setup_init
+  setup_directories
+  setup_homebrew
+  setup_fzf
+  setup_stow
+  setup_volta
+  setup_lua
+  setup_neovim
+elif [ $OS == "popos" ]; then
+  setup_init
+  setup_directories
+
+  source ./linux.sh # install some things for linux
+
+  if [ $USEBREW == true ]; then
+    setup_homebrew
+  fi
+
+  setup_stow
+  setup_volta
+  setup_lua
+  setup_neovim
+elif [ $OS == "arch" ]; then
+  setup_init
+  setup_directories
+
+  source ./arch.sh # Installing files for arch systems
+
+  setup_stow
+  setup_volta
+  setup_lua
+  setup_neovim
+fi
+
+setup_shell
+
+success "Your system is ready to go. Reboot and read the readme for rest of set up"
 
 exit 0
