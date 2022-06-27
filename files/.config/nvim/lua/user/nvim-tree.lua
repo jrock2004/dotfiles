@@ -11,6 +11,10 @@ end
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup({
+	update_focused_file = {
+		enable = true,
+		update_cwd = true,
+	},
 	hijack_directories = {
 		enable = true,
 	},
@@ -72,16 +76,6 @@ nvim_tree.setup({
 			warning = "",
 			error = "",
 		},
-	},
-	update_focused_file = {
-		enable = true,
-		update_cwd = true,
-		ignore_list = {},
-	},
-	git = {
-		enable = true,
-		ignore = true,
-		timeout = 500,
 	},
 	view = {
 		width = 30,
