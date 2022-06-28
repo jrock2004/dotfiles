@@ -2,10 +2,23 @@
 .DS_Store
 
 Brewfile.lock.json
+files/.config/1Password
+files/.config/BraveSoftware
 files/.config/configstore
+files/.config/chromium
+files/.config/discord
+files/.config/google*
+files/.config/gtk*
 files/.config/iterm2
 files/.config/jgit
+files/.config/lazygit
+files/.config/libfm
+files/.config/microsoft*
+files/.config/nitrogen
+files/.config/pcmanfm
+files/.config/pulse
 files/.config/nvim/plugin/packer_compiled.lua
+files/.config/vivaldi*
 
 # Xmonad Stuff
 files/.xmonad/xmonad.errors

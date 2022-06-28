@@ -201,6 +201,8 @@ if dotfiles::exists apt-get ; then
   alias update='sudo apt-get update && sudo apt-get upgrade'
 elif dotfiles::exists brew ; then
   alias update='brew update && brew upgrade && brew doctor'
+elif dotfiles::exists paru ; then
+  alias update='paru -Syu'
 elif dotfiles::exists pacman ; then
   alias update='sudo pacman -Syu'
 fi

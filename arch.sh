@@ -2,34 +2,28 @@
 
 # Need to figure out markdown
 
-paru -S 1password ack alacritty bat bluez bluez-utils cloc cmake diff-so-fancy discord dnsmasq edk2-ovmf fd fzf gcc github-cli gnupg go google-chrome grep htop jq lazygit lobvirt luarocks make mpris-proxy-service neofetch neovim noto-fonts-emoji ninja nitrogen openssh python python-pip qemu-desktop ripgrep scrot shellcheck slack-desktop spotify starship stow stylua tmux tree vim virt-manager xclip xsel xterm z zsh
+paru -S 1password ack alacritty bat bluez bluez-utils cloc cmake diff-so-fancy discord dnsmasq edk2-ovmf fd fzf gcc github-cli gnupg go google-chrome grep htop jq lazygit libvirt luarocks make mpris-proxy-service neofetch neovim noto-fonts-emoji ninja nitrogen openssh python python-pip qemu-desktop ripgrep scrot shellcheck slack-desktop spotify starship stow stylua tmux tree vim virt-manager xclip xsel xterm z zsh
 
 pip install git+https://github.com/psf/black
 
 echo -e "Are we installing a Windows Manager? \n\n"
 
-USINGWM=false
-
 select isWM in yes no; do
   case $isWM in
     yes)
-      USINGWM=true
-
       paru -S chrome-gnome-shell orchis-theme-git tela-icon-theme
 
       break ;;
     no)
+      paru -S dmenu gpicview pcmanfm polybar picom sddm xautolock xmonad xmonad-contrib xmobar xorg-xmessage
+
+      sudo systemctl enable sddm.service
+
       break ;;
     *)
       error "Invalid option $REPLY"
   esac
 done
-
-if [ "$USINGWM" == false ]; then
-  paru -S dmenu gpicview pcmanfm polybar picom sddm xautolock xmonad xmonad-contrib xmobar xorg-xmessage
-
-  sudo systemctl enable sddm.service
-fi
 
 echo -e "Do we still want to install a tiling manager? \n\n"
 
