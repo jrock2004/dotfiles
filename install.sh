@@ -290,10 +290,10 @@ elif [ $OS == "popos" ]; then
   setup_init
   setup_directories
 
-  source ./linux.sh # install some things for linux
-
   if [ $USEBREW == true ]; then
     setup_homebrew
+  else
+    source ./linux.sh
   fi
 
   setup_stow
