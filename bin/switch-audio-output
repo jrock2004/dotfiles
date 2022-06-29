@@ -1,11 +1,33 @@
 #!/usr/bin/env bash
 
-if [ "$1" == "" ]; then
-    echo "You need to specify a device. Example: default, sony"
-elif [ "$1" == "default" ]; then
-  pactl set-default-sink alsa_output.pci-0000_00_1f.3.hdmi-stereo-extra1
-elif [ "$1" == "sony" ]; then
-  pactl set-default-sink bluez_output.14_3F_A6_83_08_17.a2dp-sink
+# if an arg is passed then set using that
+if [ $# -gt 0 ]; then
+  if [ "$1" == "default" ]; then
+    pactl set-default-sink alsa_output.pci-0000_00_1f.3.hdmi-stereo-extra1
+  elif [ "$1" == "sony" ]; then
+    pactl set-default-sink bluez_output.14_3F_A6_83_08_17.a2dp-sink
+  else
+    echo "The device $1 that you specified does not exist"
+  fi
 else
-  echo "The device $1 that you specified does not exist"
+  # let the user choose the device from a list
+
+  SINKS=$(pactl list short sinks | awk '{ print $2}')
+
+  PS3="Select sink: "
+
+  select SINK in $SINKS; do
+    case $SINK in
+      "$SINK")
+        pactl set-default-sink "$SINK"
+
+        echo "Setting default sink to $SINK"
+
+        break
+        ;;
+      *) echo "You need to choose a sink"; exit 1;;
+    esac
+  done
 fi
+
+exit 0
