@@ -5,7 +5,7 @@ sudo apt-get install \
   alacritty \
   bat \
   cabextract \
-  clock \
+  cloc \
   cmake \
   fd-find \
   fzf \
@@ -25,7 +25,7 @@ sudo apt-get install \
   neofetch \
   ninja-build \
   python2-dev \
-  rython3-dev \
+  python3-dev \
   ripgrep \
   shellcheck \
   stow \
