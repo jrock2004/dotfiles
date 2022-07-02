@@ -7,6 +7,8 @@ local hide_in_width = function()
 	return vim.fn.winwidth(0) > 80
 end
 
+local gps = require("nvim-gps")
+
 local diagnostics = {
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
@@ -41,6 +43,11 @@ local location = {
 	padding = 0,
 }
 
+local gpsInfo = {
+	gps.get_location,
+  cond = gps.is_available,
+}
+
 local spaces = function()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
@@ -58,7 +65,7 @@ lualine.setup({
 	sections = {
 		lualine_a = { "mode" },
 		lualine_b = { "branch" },
-		lualine_c = { diagnostics },
+		lualine_c = { diagnostics, gpsInfo },
 		lualine_x = { diff, spaces, "encoding", filetype },
 		lualine_y = { location },
 		lualine_z = { "progress" },

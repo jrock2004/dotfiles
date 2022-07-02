@@ -105,6 +105,7 @@ return packer.startup(function(use)
 
 	-- Misc
 	use({ "phaazon/hop.nvim", commit = "03675eba34d416dd22ad49b2d0e52b6113b434ad" })
+	use({ "SmiteshP/nvim-gps", commit = "be4bb5b903af81f04b316425b8ba8142504d023f" })
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
