@@ -58,9 +58,13 @@ setup_init() {
 
   if [ "$OS" == "popos" ]; then
     sudo apt-get install build-essential procps curl file
+
+    curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
   fi
 
   if [ "$OS" == "arch" ]; then
+    curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+
     if [ -z "$(command -v paru)" ]; then
       info "You need to install paru before you can run this script"
 
