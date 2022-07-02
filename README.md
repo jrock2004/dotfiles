@@ -83,6 +83,7 @@ Open up neovim with the command `nvim` and an error will come at bottom of scree
 ◍ html
 ◍ jsonls
 ◍ pyright
+◍ rust_analyzer
 ◍ sumneko_lua
 ◍ tailwindcss
 ◍ tsserver

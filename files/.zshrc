@@ -252,5 +252,4 @@ alias npmpackages='volta install @lifeart/ember-language-server @tailwindcss/lan
 
 eval "$(starship init zsh)"
 
-export TILT_NAMESPACE=john-costanzo
-export AWS_SDK_LOAD_CONFIG=1
+source $HOME/.cargo/env
