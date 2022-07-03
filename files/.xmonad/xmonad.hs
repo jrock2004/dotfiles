@@ -127,7 +127,7 @@ myManageHook = composeAll
 --------------------------------------------------------------------------------
 
 myWorkspaces :: [String]
-myWorkspaces = ["1:dev", "2:chat", "3:email", "4:music", "5:vm"]
+myWorkspaces = ["dev", "chat", "email", "music", "vm"]
 
 --------------------------------------------------------------------------------
 -- MAIN
