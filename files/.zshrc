@@ -179,11 +179,7 @@ else # macOS `ls`
 fi
 
 # use nvim, but don't make me think about it
-if dotfiles::exists apt-get ; then
-  alias vim='~/.local/bin/nvim.appimage'
-else
-  [[ -n "$(command -v nvim)" ]] && alias vim="nvim"
-fi
+[[ -n "$(command -v nvim)" ]] && alias vim="nvim"
 
 # Git Aliases
 alias gs='git status'
