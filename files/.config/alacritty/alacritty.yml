@@ -31,16 +31,16 @@ window.opacity: 1.0
 
 font:
   normal:
-    family: "OperatorMono Nerd Font"
-    style: "Book"
+    family: "Comic Code Ligatures"
+    style: "Regular"
   bold:
-    family: "OperatorMono Nerd Font"
+    family: "Comic Code Ligatures"
     style: "Bold"
   italic:
-    family: "OperatorMono Nerd Font"
+    family: "Comic Code Ligatures"
     style: "Italic"
   bold_italic:
-    family: "OperatorMono Nerd Font"
+    family: "Comic Code Ligatures"
     style: "Bold Italic"
 
   size: 16.0
