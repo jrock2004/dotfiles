@@ -20,3 +20,5 @@ files/.xmonad/xmonad.errors
 files/.xmonad/xmonad.hi
 files/.xmonad/xmonad.o
 files/.xmonad/xmonad-x86_64-linux
+files/.xmonad/build-x86_64-linux/Main.hi
+files/.xmonad/build-x86_64-linux/Main.o
