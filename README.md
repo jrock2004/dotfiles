@@ -25,7 +25,7 @@ Xcode Command Line Tools is required to give you some of the needed core depende
 
 # Run the Script
 
-You should now be ready to clone and run the script to get going
+You should now be ready to clone and run the script to get going.
 
 ``` bash
 > git clone https://github.com/jrock2004/dotfiles.git ~/.dotfiles
