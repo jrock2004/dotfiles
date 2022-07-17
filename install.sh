@@ -107,6 +107,9 @@ setup_homebrew() {
     info "Homebrew is not installed. Installing"
 
     sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash --login
+
+    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/jcostanzo/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
 
   if [ "$(uname)" == "Linux" ]; then
@@ -151,7 +154,10 @@ setup_fzf() {
 setup_stow() {
   title "Linking your files with GNU stow"
 
+
   if [ "$(command -v brew)" ]; then
+    rm -Rf ~/.zprofile
+
     "$(brew --prefix)"/bin/stow --stow --ignore ".DS_Store" --target="$HOME" --dir="$DOTFILES" files
   elif [ "$(command -v stow)" ]; then
     /usr/bin/stow --stow --ignore ".DS_Store" --target="$HOME" --dir="$DOTFILES" files
