@@ -71,7 +71,7 @@ setup_init() {
 
       git clone https://aur.archlinux.org/paru.git
       cd "paru" || error "Something went wrong" && SUCCESS=false
-      makepkg -si
+      sudo -u nobody makepkg -si
       cd "../"
       rm -Rf "paru"
 
