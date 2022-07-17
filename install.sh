@@ -248,46 +248,57 @@ setup_shell() {
 # INITAL QUESTIONS
 ###########################################
 
-title "Which OS are we setting up? "
+if [[ -z "${OPERATING_SYSTEM}" ]]; then
+  title "Which OS are we setting up? "
 
-select os in mac popos arch; do
-  case $os in
-    mac)
-      OS="mac"
-      break ;;
-    popos)
-      OS="popos"
-      break ;;
-    arch)
-      OS="arch"
-      break ;;
-    *)
-      error "Invalid option $REPLY"
-  esac
-done
+  select os in mac popos arch; do
+    case $os in
+      mac)
+        OS="mac"
+        break ;;
+      popos)
+        OS="popos"
+        break ;;
+      arch)
+        OS="arch"
+        break ;;
+      *)
+        error "Invalid option $REPLY"
+    esac
+  done
 
-title "Do you want to use brew? "
+  title "Do you want to use brew? "
 
-select optionBrew in yes no; do
-  case $optionBrew in
-    yes)
-      USEBREW=true
+  select optionBrew in yes no; do
+    case $optionBrew in
+      yes)
+        USEBREW=true
 
-      break ;;
-    no)
-      USEBREW=false
+        break ;;
+      no)
+        USEBREW=false
 
-      break ;;
-    *)
-      error "Invalid option $REPLY"
-  esac
-done
+        break ;;
+      *)
+        error "Invalid option $REPLY"
+    esac
+  done
+else
+  OS="$OPERATING_SYSTEM"
+
+  if [[ -z "${USE_BREW}" ]]; then
+    USEBREW=false
+  else
+    USEBREW="$USE_BREW"
+  fi
+fi
+
 
 ###########################################
 # RUNNING SET UP
 ###########################################
 
-if [ $OS == "mac" ]; then
+if [ "$OS" == "mac" ]; then
   setup_init
   setup_directories
   setup_homebrew
@@ -296,11 +307,11 @@ if [ $OS == "mac" ]; then
   setup_volta
   setup_lua
   setup_neovim
-elif [ $OS == "popos" ]; then
+elif [ "$OS" == "popos" ]; then
   setup_init
   setup_directories
 
-  if [ $USEBREW == true ]; then
+  if [ "$USEBREW" == true ]; then
     setup_homebrew
   else
     source ./linux.sh
@@ -310,7 +321,7 @@ elif [ $OS == "popos" ]; then
   setup_volta
   setup_lua
   setup_neovim
-elif [ $OS == "arch" ]; then
+elif [ "$OS" == "arch" ]; then
   setup_init
   setup_directories
 
