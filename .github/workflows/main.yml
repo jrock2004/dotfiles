@@ -9,7 +9,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@master
-      - name: Setting up the environment
+      - name: Setting up the mac environment
         shell: bash
         run: |
           ./install.sh
@@ -23,6 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: addnab/docker-run-action@v3
+      - name: Setting up the arch environment
         with:
           image: archlinux/archlinux:base-devel
           command: bash
