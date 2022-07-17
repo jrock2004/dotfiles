@@ -64,7 +64,7 @@ setup_init() {
   fi
 
   if [ "$OS" == "arch" ]; then
-    curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+    curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSfy | sh
 
     if [ -z "$(command -v paru)" ]; then
       info "You need to install paru before you can run this script"

@@ -29,7 +29,7 @@ jobs:
           image: archlinux/archlinux:base-devel
           command: bash
           workdir: /root
-          options: -v ${{ github.workspace }}:/root -e OPERATING_SYSTEM=arch -e USE_BREW=true -e DOTFILES_REF=${{ github.sha }} -e REPO=${{ github.workspace }}
+          options: -v ${{ github.workspace }}:/root -e OPERATING_SYSTEM=arch -e USE_BREW=false -e DOTFILES_REF=${{ github.sha }} -e REPO=${{ github.workspace }}
           run: |
             pacman-key --init
             pacman-key --populate
