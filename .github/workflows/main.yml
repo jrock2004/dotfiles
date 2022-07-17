@@ -31,10 +31,10 @@ jobs:
           workdir: /root
           options: -v ${{ github.workspace }}:/root -e OPERATING_SYSTEM=arch -e USE_BREW=true -e DOTFILES_REF=${{ github.sha }} -e REPO=${{ github.workspace }}
           run: |
-            git clone https://github.com/jrock2004/dotfiles.git ~/.dotfiles
-            cd ~/.dotfiles
             pacman-key --init
             pacman-key --populate
             pacman -Syu --noconfirm
             pacman -S --noconfirm --needed git curl wget
+            git clone https://github.com/jrock2004/dotfiles.git ~/.dotfiles
+            cd ~/.dotfiles
             ./install.sh
