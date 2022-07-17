@@ -14,6 +14,7 @@ COLOR_YELLOW="\033[1;33m"
 COLOR_NONE="\033[0m"
 OS=""
 USEBREW=false
+CI=false
 
 ###########################################
 # HELPER FUNCTIONS
@@ -154,6 +155,10 @@ setup_fzf() {
 setup_stow() {
   title "Linking your files with GNU stow"
 
+  if [ "$CI" == true ]; then
+    # Some things to do when running via CI
+    rm -Rf ~/.gitconfig
+  fi
 
   if [ "$(command -v brew)" ]; then
     rm -Rf ~/.zprofile
@@ -284,6 +289,7 @@ if [[ -z "${OPERATING_SYSTEM}" ]]; then
     esac
   done
 else
+  CI=true
   OS="$OPERATING_SYSTEM"
 
   if [[ -z "${USE_BREW}" ]]; then
@@ -291,6 +297,7 @@ else
   else
     USEBREW="$USE_BREW"
   fi
+
 fi
 
 
