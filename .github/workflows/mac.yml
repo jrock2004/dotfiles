@@ -1,4 +1,4 @@
-name: CI for Mac
+name: Test Dotfiles
 
 on:
   pull_request:
