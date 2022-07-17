@@ -22,8 +22,9 @@ jobs:
   build_and_test_arch:
     runs-on: ubuntu-latest
     steps:
-      - uses: addnab/docker-run-action@v3
       - name: Setting up the arch environment
+        uses: actions/checkout@v2
+      - uses: addnab/docker-run-action@v3
         with:
           image: archlinux/archlinux:base-devel
           command: bash
