@@ -9,7 +9,7 @@ This holds all my configuration that I use for my linux and mac machines. When e
 
 # Pre-req
 
-There are a few things that you need to install yourself before you can use the script
+There are a few things that you need to install yourself before you can use the script.
 
 ## General
 
