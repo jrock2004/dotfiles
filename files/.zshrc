@@ -243,6 +243,9 @@ alias disableLaptop='xrandr --output eDP-1 --off'
 # Update/Install Global node dependencies
 alias npmpackages='volta install @lifeart/ember-language-server @tailwindcss/language-server bash-language-server cssmodules-language-server diagnostic-languageserver dockerfile-language-server-nodejs ember-cli ls_emmet neovim typescript typescript-language-server vim-language-server vscode-langservers-extracted yaml-language-server'
 
+# Switching from npm to yarn
+alias switchtoyarn='rm -Rf node_modules && rm -Rf package-lock.json && yarn'
+
 # Need to source these last
 # source "$DOTFILES/zsh/prompt.zsh"
 
