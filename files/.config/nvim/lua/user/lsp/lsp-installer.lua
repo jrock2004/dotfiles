@@ -53,5 +53,10 @@ for _, server in pairs(servers) do
 		opts = vim.tbl_deep_extend("force", emmet_ls_opts, opts)
 	end
 
+	if server == "eslint" then
+		local eslint_opts = require("user.lsp.settings.eslint")
+		opts = vim.tbl_deep_extend("force", eslint_opts, opts)
+	end
+
 	lspconfig[server].setup(opts)
 end
