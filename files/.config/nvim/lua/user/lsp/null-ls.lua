@@ -9,8 +9,8 @@ local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 
 local custom_on_attach = function(client)
-	if client.server_capabilities.document_formatting then
-		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 2000)")
+	if client.server_capabilities.documentFormattingProvider then
+		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ timeout_ms = 2000 })")
 	end
 end
 
