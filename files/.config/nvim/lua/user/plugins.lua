@@ -105,7 +105,11 @@ return packer.startup(function(use)
 
 	-- Misc
 	use({ "phaazon/hop.nvim", commit = "2a1b686aad85a3c241f8cd8fd42eb09c7de5ed79" })
-	use({ "SmiteshP/nvim-gps", commit = "f4734dff6fc2f33b5fd13412e56c4fce06650a74" })
+	use({
+		"SmiteshP/nvim-navic",
+		commit = "132b273773768b36e9ecab2138b82234a9faf5ed",
+		requires = "neovim/nvim-lspconfig",
+	})
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

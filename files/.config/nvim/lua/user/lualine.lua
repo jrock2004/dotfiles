@@ -7,7 +7,7 @@ local hide_in_width = function()
 	return vim.fn.winwidth(0) > 80
 end
 
-local gps = require("nvim-gps")
+local navic = require("nvim-navic")
 
 local diagnostics = {
 	"diagnostics",
@@ -44,8 +44,10 @@ local location = {
 }
 
 local gpsInfo = {
-	gps.get_location,
-  cond = gps.is_available,
+  navic.gpsInfo,
+  cond = navic.is_available,
+  -- gps.get_location,
+  --  cond = gps.is_available,
 }
 
 local spaces = function()

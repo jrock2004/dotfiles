@@ -14,8 +14,6 @@ local custom_on_attach = function(client)
 	end
 end
 
--- https://github.com/prettier-solidity/prettier-plugin-solidity
--- npm install --save-dev prettier prettier-plugin-solidity
 null_ls.setup({
 	debug = false,
 	on_attach = custom_on_attach,
