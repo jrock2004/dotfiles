@@ -252,3 +252,18 @@ alias switchtoyarn='rm -Rf node_modules && rm -Rf package-lock.json && yarn'
 eval "$(starship init zsh)"
 
 source $HOME/.cargo/env
+
+
+# pnpm
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export PNPM_HOME="$HOME/Library/pnpm"
+  export PATH="$PNPM_HOME:$PATH"
+else
+  export PNPM_HOME="$HOME/.config/pnpm"
+fi
+
+# If Mac export pnpm global path
+if dotfiles::exists pnpm ; then
+  export PATH="$PATH:$(pnpm root -g)/.pnpm"
+fi
+
