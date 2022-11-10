@@ -3,7 +3,7 @@
 ###############################################################################
 # VARIABLES
 ###############################################################################
-SPEEDTEST=$(/home/jcostanzo/.local/bin/speedtest-cli --simple)
+SPEEDTEST=$(/usr/bin/speedtest-cli --simple)
 ICON_DOWNLOAD=""
 ICON_UPLOAD=""
 

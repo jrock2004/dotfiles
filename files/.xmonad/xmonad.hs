@@ -117,7 +117,7 @@ myStartupHook = do
 
 myManageHook :: XMonad.Query (Data.Monoid.Endo WindowSet)
 myManageHook = composeAll
-    [ className =? "MPlayer"        --> doFloat
+    [ className =? "Mplayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
     , resource  =? "kdesktop"       --> doIgnore ]
@@ -127,7 +127,7 @@ myManageHook = composeAll
 --------------------------------------------------------------------------------
 
 myWorkspaces :: [String]
-myWorkspaces = ["dev", "chat", "email", "music", "vm"]
+myWorkspaces = ["dev", "chat", "browser", "music", "vm"]
 
 --------------------------------------------------------------------------------
 -- MAIN
