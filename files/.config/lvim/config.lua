@@ -20,6 +20,7 @@ lvim.leader = ","
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<leader>,"] = ":w<cr>"
+lvim.keys.normal_mode["Y"] = "y$"
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- unmap a default keymapping
@@ -227,3 +228,30 @@ lvim.plugins = {
 --     require("nvim-treesitter.highlight").attach(0, "bash")
 --   end,
 -- })
+
+-- Set wrap and spell in markdown and gitcommit
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "gitcommit", "markdown" },
+  callback = function()
+    vim.wo.wrap = true
+    vim.wo.spell = true
+  end,
+})
+
+-- Highlight Yanked Text
+vim.api.nvim_create_autocmd({ "TextYankPost" }, {
+  callback = function()
+    vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
+  end,
+})
+
+-- Set filetypes
+
+-- Set all variations of dockerfile to right type
+vim.cmd("autocmd BufRead *.dockerfile* set filetype=dockerfile")
+
+-- Set all variations of env to right type
+vim.cmd("autocmd BufRead *.env* set filetype=sh")
+
+-- Set all variations of handlebars to right type
+vim.cmd("autocmd BufRead *.handlebars set filetype=handlebars")
