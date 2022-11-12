@@ -71,18 +71,18 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
-	"bash",
-	"c",
-	"javascript",
-	"json",
-	"lua",
-	"python",
-	"typescript",
-	"tsx",
-	"css",
-	"rust",
-	"java",
-	"yaml",
+  "bash",
+  "c",
+  "javascript",
+  "json",
+  "lua",
+  "python",
+  "typescript",
+  "tsx",
+  "css",
+  "rust",
+  "java",
+  "yaml",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -113,6 +113,36 @@ lvim.builtin.treesitter.highlight.enable = true
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
 -- require("lvim.lsp.manager").setup("pyright", opts)
 
+require("lvim.lsp.manager").setup("emmet_ls", {
+  cmd = { "emmet-ls", "--stdio" },
+  filetypes = {
+    "html",
+    "css",
+    "scss",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "haml",
+    "xml",
+    "xsl",
+    "pug",
+    "slim",
+    "sass",
+    "stylus",
+    "less",
+    "sss",
+    "hbs",
+    "handlebars",
+  },
+  init_options = {
+    emmet = {
+      showExpandedAbbreviation = "always",
+      showAbbreviationSuggestions = true,
+    },
+  },
+})
+
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
 -- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
 -- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
@@ -132,21 +162,21 @@ lvim.builtin.treesitter.highlight.enable = true
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
-	{
-		command = "prettier",
-		filetypes = { "typescript", "typescriptreact" },
-	},
-	--   { command = "black", filetypes = { "python" } },
-	--   { command = "isort", filetypes = { "python" } },
-	--   {
-	--     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-	--     command = "prettier",
-	--     ---@usage arguments to pass to the formatter
-	--     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-	--     extra_args = { "--print-with", "100" },
-	--     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-	--     filetypes = { "typescript", "typescriptreact" },
-	--   },
+  {
+    command = "prettier",
+    filetypes = { "typescript", "typescriptreact" },
+  },
+  --   { command = "black", filetypes = { "python" } },
+  --   { command = "isort", filetypes = { "python" } },
+  --   {
+  --     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+  --     command = "prettier",
+  --     ---@usage arguments to pass to the formatter
+  --     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+  --     extra_args = { "--print-with", "100" },
+  --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+  --     filetypes = { "typescript", "typescriptreact" },
+  --   },
 })
 
 -- -- set additional linters
@@ -168,12 +198,21 @@ formatters.setup({
 -- }
 
 -- Additional Plugins
--- lvim.plugins = {
---     {
---       "folke/trouble.nvim",
---       cmd = "TroubleToggle",
---     },
--- }
+lvim.plugins = {
+  {
+    "github/copilot.vim",
+    config = function()
+      vim.g.copilot_filetypes = {
+        ["*"] = true,
+      }
+
+      vim.cmd([[
+        imap <silent><script><expr> <C-A> copilot#Accept("\<CR>")
+        let g:copilot_no_tab_map = v:true
+      ]])
+    end,
+  }
+}
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
