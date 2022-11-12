@@ -57,6 +57,8 @@ setup_init() {
     SUCCESS=false
   fi
 
+  sh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.sh)
+
   if [ "$OS" == "popos" ]; then
     sudo apt-get install build-essential procps curl file
 

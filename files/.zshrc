@@ -7,11 +7,11 @@ export VOLTA_HOME=$HOME/.volta
 export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 
 # Plugins
-zapplug "zap-zsh/supercharge"
-zapplug "zsh-users/zsh-autosuggestions"
-zapplug "zsh-users/zsh-syntax-highlighting"
-zapplug "hlissner/zsh-autopair"
-zapplug "zap-zsh/vim"
+plug "zap-zsh/supercharge"
+plug "zsh-users/zsh-autosuggestions"
+plug "zsh-users/zsh-syntax-highlighting"
+plug "hlissner/zsh-autopair"
+plug "zap-zsh/vim"
 
 # [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
 
@@ -27,10 +27,10 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Theme
-zapplug "zap-zsh/zap-prompt"
+plug "zap-zsh/zap-prompt"
 
 # Completion
-zapcmp "esc/conda-zsh-completion" true
+plug "esc/conda-zsh-completion" true
 
 ## Allow autocomplete to be insensitive
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -74,13 +74,13 @@ if dotfiles::exists xdg-open ; then
 fi
 
 if dotfiles::exists apt-get ; then
-  alias update='sudo apt-get update && sudo apt-get upgrade'
+  alias system-update='sudo apt-get update && sudo apt-get upgrade'
 elif dotfiles::exists brew ; then
-  alias update='brew update && brew upgrade && brew doctor'
+  alias system-update='brew update && brew upgrade && brew doctor'
 elif dotfiles::exists paru ; then
-  alias update='paru -Syu'
+  alias system-update='paru -Syu'
 elif dotfiles::exists pacman ; then
-  alias update='sudo pacman -Syu'
+  alias system-update='sudo pacman -Syu'
 fi
 
 alias grep='grep --color=auto'
