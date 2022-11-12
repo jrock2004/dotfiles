@@ -9,6 +9,7 @@ files/.config/nvim/plugin/packer_compiled.lua
 !files/.config/i3
 !files/.config/i3status
 !files/.config/kitty
+!files/.config/lvim
 !files/.config/nvim
 !files/.config/polybar
 !files/.config/rofi
