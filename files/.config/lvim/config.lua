@@ -10,6 +10,7 @@ an executable
 
 -- general
 lvim.log.level = "warn"
+lvim.format_on_save = { timeout = 2000 }
 lvim.format_on_save.enabled = true
 lvim.colorscheme = "lunar"
 -- to disable icons and use a minimalist setup, uncomment the following
@@ -21,6 +22,7 @@ lvim.leader = ","
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<leader>,"] = ":w<cr>"
 lvim.keys.normal_mode["Y"] = "y$"
+
 -- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- unmap a default keymapping
@@ -144,6 +146,8 @@ require("lvim.lsp.manager").setup("emmet_ls", {
   },
 })
 
+require("lvim.lsp.manager").setup "tailwindcss"
+
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
 -- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
 -- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
@@ -165,6 +169,7 @@ local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
   {
     command = "prettier",
+    args = { "--config-precedence", "prefer-file" },
     filetypes = { "typescript", "typescriptreact" },
   },
   --   { command = "black", filetypes = { "python" } },
@@ -181,7 +186,37 @@ formatters.setup({
 })
 
 -- -- set additional linters
--- local linters = require "lvim.lsp.null-ls.linters"
+local linters = require "lvim.lsp.null-ls.linters"
+
+local function eslint_config()
+  local f = io.open("package.json", "r")
+
+  print "eslint config"
+
+  if f ~= nil then
+    local package = f:read("*all")
+
+    if package:find('"eslintConfig"') then
+      io.close(f)
+      return "package.json"
+    end
+
+    io.close(f)
+
+    return "package.json"
+  end
+
+  return nil
+end
+
+linters.setup {
+  {
+    command = "eslint",
+    filetypes = { "typescript", "typescriptreact" },
+    args = { "--config", eslint_config() },
+  }
+}
+
 -- linters.setup {
 --   { command = "flake8", filetypes = { "python" } },
 --   {
