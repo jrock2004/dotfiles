@@ -264,6 +264,18 @@ lvim.plugins = {
 --   end,
 -- })
 
+-- Setting that when hitting o the next line is not a comment
+lvim.autocommands = {
+  {
+    { "BufWinEnter", "BufRead", "BufNewFile" },
+    {
+      group = "lvim_user",
+      pattern = "*",
+      command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
+    },
+  },
+}
+
 -- Set wrap and spell in markdown and gitcommit
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "gitcommit", "markdown" },
