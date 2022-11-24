@@ -165,9 +165,9 @@ setup_stow() {
   if [ "$(command -v brew)" ]; then
     rm -Rf ~/.zprofile
 
-    "$(brew --prefix)"/bin/stow --stow --ignore ".DS_Store" --target="$HOME" --dir="$DOTFILES" files
+    "$(brew --prefix)"/bin/stow --ignore ".DS_Store" -v -R -t ~ files
   elif [ "$(command -v stow)" ]; then
-    /usr/bin/stow --stow --ignore ".DS_Store" --target="$HOME" --dir="$DOTFILES" files
+    /usr/bin/stow --ignore ".DS_Store" -v -R -t ~ files
   fi
 
   if test ! -f "$HOME/.tmux.conf"; then

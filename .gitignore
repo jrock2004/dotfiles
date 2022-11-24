@@ -10,11 +10,16 @@ files/.config/nvim/plugin/packer_compiled.lua
 !files/.config/i3
 !files/.config/i3status
 !files/.config/kitty
+files/.config/lazygit/state.yml
+!files/.config/lazygit
 !files/.config/lvim
 !files/.config/nvim
+!files/.config/picom
 !files/.config/polybar
 !files/.config/rofi
+!files/.config/stylua
 !files/.config/xmonar
+!files/.config/waybar
 !files/.config/starship.toml
 
 # Xmonad Stuff

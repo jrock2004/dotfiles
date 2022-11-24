@@ -1,33 +1,38 @@
 colors:
   # Default colors
   primary:
-    background: "#1e2127"
-    # background: "#2E3440"
-    foreground: "#D8DEE9"
+    background: "#1f2227"
+    foreground: "#abb2bf"
 
   # Normal colors
   normal:
-    black: "#3B4252"
-    red: "#BF616A"
+    black: "#4C566A"
+    red: "#bf616a"
     green: "#A3BE8C"
-    yellow: "#EBCB8B"
-    blue: "#81A1C1"
+    yellow: "#D7BA7D"
+    blue: "#5e81ac"
     magenta: "#B48EAD"
-    cyan: "#88C0D0"
+    cyan: "#88c0d0"
     white: "#abb2bf"
 
   # Bright colors
   bright:
-    black: "#5c6370"
-    red: "#e06c75"
-    green: "#98c379"
-    yellow: "#d19a66"
-    blue: "#61afef"
-    magenta: "#c678dd"
-    cyan: "#56b6c2"
-    white: "#ECEFF4"
+    black: "#4C566A"
+    red: "#bf616a"
+    green: "#A3BE8C"
+    yellow: "#D7BA7D"
+    blue: "#5e81ac"
+    magenta: "#B48EAD"
+    cyan: "#88c0d0"
+    white: "#abb2bf"
 
-window.opacity: 1.0
+  cursor:
+    text: "#3B4252"
+    cursor: "#ECEFF4"
+
+cursor:
+  style:
+    blinking: Never
 
 font:
   normal:
@@ -45,6 +50,8 @@ font:
 
   size: 16.0
 
+  ligatures: true
+
   offset:
     x: 0
     y: 0
@@ -57,6 +64,8 @@ window:
   padding:
     x: 2
     y: 2
+  save_to_clipboard: true
+  live_config_reload: true
 
 scrolling:
   # Maximum number of lines in the scrollback buffer.
@@ -77,9 +86,14 @@ selection:
 live_config_reload: true
 
 key_bindings:
-  - { key: V,        mods: Alt, action: Paste                  }
-  - { key: C,        mods: Alt, action: Copy                   }
-  - { key: C,        mods: Control|Shift, chars: "\x03"         }
+  - { key: V, mods: Control|Shift, action: Paste }
+  - { key: C, mods: Control|Shift, action: Copy }
+  - { key: Key0, mods: Control, action: ResetFontSize }
+  - { key: Equals, mods: Control, action: IncreaseFontSize }
+  - { key: Minus, mods: Control, action: DecreaseFontSize }
+  # - { key: V,        mods: Alt, action: Paste                  }
+  # - { key: C,        mods: Alt, action: Copy                   }
+  # - { key: C,        mods: Control|Shift, chars: "\x03"         }
 
 shell:
   program: /usr/bin/zsh

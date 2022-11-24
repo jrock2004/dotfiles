@@ -19,14 +19,14 @@ plug "zap-zsh/zap-prompt"
 
 # [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
 
-if [ -f /usr/share/fzf/completion.zsh ]; then
-  source /usr/share/fzf/completion.zsh
-  source /usr/share/fzf/key-bindings.zsh
-elif [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]; then
-  source /usr/share/doc/fzf/examples/key-bindings.zsh
-fi
+# if [ -f /usr/share/fzf/completion.zsh ]; then
+#   source /usr/share/fzf/completion.zsh
+#   source /usr/share/fzf/key-bindings.zsh
+# elif [ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]; then
+#   source /usr/share/doc/fzf/examples/key-bindings.zsh
+# fi
 
-[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+# [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
@@ -37,6 +37,9 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 if [[ -d $DOTFILES/zsh/functions ]]; then
   for func in $DOTFILES/zsh/functions/*(:t); autoload -U $func
 fi
+
+# history
+HISTFILE=$HOME/.zsh_history
 
 # Path
 prepend_path /usr/local/opt/grep/libexec/gnubin
@@ -108,3 +111,6 @@ if dotfiles::exists pnpm ; then
   export PATH="$PATH:$(pnpm root -g)/.pnpm"
 fi
 
+# Stow aliases
+alias sync='stow --ignore ".DS_Store" -v -R -t ~ -d "$DOTFILES" files'
+alias unsync='stow --ignore ".DS_Store" -v -D -t ~ -d "$DOTFILES" files'
