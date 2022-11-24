@@ -7,11 +7,15 @@ export VOLTA_HOME=$HOME/.volta
 export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 
 # Plugins
-plug "zap-zsh/supercharge"
+plug "esc/conda-zsh-completion"
+plug "hlissner/zsh-autopair"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
-plug "hlissner/zsh-autopair"
+plug "zap-zsh/exa"
+plug "zap-zsh/fzf"
+plug "zap-zsh/supercharge"
 plug "zap-zsh/vim"
+plug "zap-zsh/zap-prompt"
 
 # [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
 
@@ -25,12 +29,6 @@ fi
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-# Theme
-plug "zap-zsh/zap-prompt"
-
-# Completion
-plug "esc/conda-zsh-completion" true
 
 ## Allow autocomplete to be insensitive
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
