@@ -29,7 +29,7 @@ import Graphics.X11.ExtraTypes.XF86
 myModMask = mod4Mask
 
 -- Applications
-myTerminal = "kitty"
+myTerminal = "alacritty"
 myStatusBar = "polybar"
 -- myMenu = "xmobar -x 0 /home/jcostanzo/.config/xmobar/xmobarrc"
 myMenu = "dmenu_run -fn \"Operator Mono Nerd Font:size=12\" -p \"➜ \" -nf \"#c5c8c6\" -sf \"#f0c674\" -sb \"#282c34\""

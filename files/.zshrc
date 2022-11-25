@@ -40,6 +40,8 @@ fi
 
 # history
 HISTFILE=$HOME/.zsh_history
+HISTSIZE=1000000000
+SAVEHIST=1000000000
 
 # Path
 prepend_path /usr/local/opt/grep/libexec/gnubin
