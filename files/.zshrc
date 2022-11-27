@@ -11,11 +11,11 @@ plug "esc/conda-zsh-completion"
 plug "hlissner/zsh-autopair"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
-plug "zap-zsh/exa"
 plug "zap-zsh/fzf"
 plug "zap-zsh/supercharge"
 plug "zap-zsh/vim"
 plug "zap-zsh/zap-prompt"
+plug "zap-zsh/exa"
 
 # [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
 
@@ -116,3 +116,4 @@ fi
 # Stow aliases
 alias sync='stow --ignore ".DS_Store" -v -R -t ~ -d "$DOTFILES" files'
 alias unsync='stow --ignore ".DS_Store" -v -D -t ~ -d "$DOTFILES" files'
+
