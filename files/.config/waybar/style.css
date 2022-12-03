@@ -19,7 +19,19 @@ window#waybar.hidden {
 
 #workspaces button {
   background-color: transparent;
+  color: #a9a9a9;
   padding: 0 10px;
+}
+
+#workspaces button:hover {
+  /* border-radius: 10px; */
+  border: none;
+  background: rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+}
+
+#workspaces button.active {
+  color: #fff;
 }
 
 #bluetooth,

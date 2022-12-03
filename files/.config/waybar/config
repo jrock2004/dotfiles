@@ -2,7 +2,7 @@
   "height": 30,
   "layer": "top",
   "modules-center": ["clock"],
-  "modules-left": ["sway/workspaces", "hyprland/window", "sway/mode"],
+  "modules-left": ["wlr/workspaces", "hyprland/window"],
   "modules-right": ["bluetooth", "pulseaudio", "network", "tray"],
   "position": "top",
   "spacing": 4,
@@ -70,18 +70,16 @@
     },
     "on-click": "pavucontrol"
   },
-  "sway/mode": {
-    "format": "<span style=\"italic\">{}</span>"
-  },
-  "sway/workspaces": {
-    "all-outputs": true,
+  "wlr/workspaces": {
+    "active-only": false,
+    "all-outputs": false,
     "format": "{icon} {name}",
     "format-icons": {
-      "0": "",
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": "",
+      "1": "",
+      "2": "",
+      "3": "",
+      "4": "",
+      "5": "",
       "urgent": "",
       "focused": "",
       "default": ""
