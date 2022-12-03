@@ -18,7 +18,7 @@ select isWM in yes no; do
 
       break ;;
     no)
-      paru -S cronie dmenu gpicview pcmanfm polybar picom sddm slock xautolock xmonad xmonad-contrib xorg-xmessage
+      paru -S cronie dmenu gpicview hyprland hyprpaper pcmanfm polybar picom sddm slock waybar xautolock xmonad xmonad-contrib xorg-xmessage
 
       sudo systemctl enable cronie.service
       sudo systemctl enable sddm.service
