@@ -1,6 +1,30 @@
 configuration {
-  modi: "window,drun,combi";
-  font: "Comic Code Ligatures 14";
-  combi-modi: "window,drun";
+  click-to-exit: true;
+  display-drun: "run: ";
+  filebrowser {
+    directories-first: true;
+    sorting-method:    "name";
+  }
+  kb-accept-entry: "Control+m,Return,KP_Enter";
+  kb-remove-to-eol: "";
+  kb-row-down: "Down,Control+n,Control+j";
+  kb-row-up: "Up,Control+p,Control+k";
+  me-accept-entry: "MousePrimary";
+  me-select-entry: "MouseDPrimary";
+  show-icons: true;  
+  steal-focus: true;
+  terminal: "alacritty";
+  timeout {
+    action: "kb-cancel";
+    delay:  10;
+  }
 }
-@import "/usr/share/rofi/themes/gruvbox-dark-soft.rasi"
+@theme "jccenter"
+/* @theme "/usr/share/rofi/themes/c64.rasi" */
+/* @theme "onedarker" */
+
+/* configuration { */
+/*   modi: "window,drun,combi"; */
+/*   font: "Comic Code Ligatures 14"; */
+/*   combi-modi: "window,drun"; */
+/* } */
