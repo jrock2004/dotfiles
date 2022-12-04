@@ -73,19 +73,19 @@
   "wlr/workspaces": {
     "active-only": false,
     "all-outputs": false,
-    "format": "{icon} {name}",
+    "format": "{icon}",
     "format-icons": {
-      "1": "",
-      "2": "",
-      "3": "",
-      "4": "",
-      "5": "",
+      "1": " dev",
+      "2": " chat",
+      "3": " browser",
+      "4": " media",
+      "5": " vm",
       "urgent": "",
       "focused": "",
       "default": ""
     },
     "on-click": "activate",
-    "sort-by-number": true,
+    "sort-by-number": false,
   },
   "tray": {
     "spacing": 10,
