@@ -17,6 +17,10 @@ plug "zap-zsh/vim"
 plug "zap-zsh/zap-prompt"
 plug "zap-zsh/exa"
 
+# pnpm
+export PNPM_HOME="$HOME/.config/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
 # [[ -e ~/.terminfo ]] && export TERMINFO_DIRS=~/.terminfo:/usr/share/terminfo
 
 # if [ -f /usr/share/fzf/completion.zsh ]; then
@@ -116,4 +120,5 @@ fi
 # Stow aliases
 alias sync='stow --ignore ".DS_Store" -v -R -t ~ -d "$DOTFILES" files'
 alias unsync='stow --ignore ".DS_Store" -v -D -t ~ -d "$DOTFILES" files'
+
 

@@ -162,6 +162,8 @@ setup_stow() {
     rm -Rf ~/.gitconfig
   fi
 
+  rm -Rf ~/.zshrc
+
   if [ "$(command -v brew)" ]; then
     rm -Rf ~/.zprofile
 
