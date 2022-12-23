@@ -13,6 +13,7 @@ files/.config/nvim/plugin/packer_compiled.lua
 files/.config/lazygit/state.yml
 !files/.config/lazygit
 !files/.config/lvim
+files/.config/lvim/plugin
 !files/.config/nvim
 !files/.config/picom
 !files/.config/polybar
