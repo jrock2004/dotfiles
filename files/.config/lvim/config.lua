@@ -64,6 +64,15 @@ lvim.keys.normal_mode["Y"] = "y$"
 --   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
 --   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 -- }
+lvim.builtin.which_key.mappings["H"] = {
+  name = "+Harpoon",
+  a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add" },
+  d = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "Delete" },
+  l = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "List" },
+  n = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "Next" },
+  p = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "Prev" },
+  t = { "<cmd>lua require('harpoon.term').gotoTerminal(1)<cr>", "Terminal" },
+}
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -236,6 +245,7 @@ linters.setup {
 
 -- Additional Plugins
 lvim.plugins = {
+  "christianchiarulli/harpoon",
   {
     "github/copilot.vim",
     config = function()
