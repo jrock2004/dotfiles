@@ -19,6 +19,7 @@ lvim.transparent_window = true
 
 -- vim settings override
 vim.opt.showtabline = 0
+vim.opt.wrap = false
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = ","
