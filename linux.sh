@@ -7,6 +7,9 @@ sudo apt-get install \
   cabextract \
   cloc \
   cmake \
+  dconf-editor \
+  discord \
+  exa \
   fd-find \
   fzf \
   gcc \
@@ -16,6 +19,7 @@ sudo apt-get install \
   grep \
   htop \
   jq \
+  kitty \
   libx11-dev \
   libxinerama-dev \
   libxft-dev \
@@ -26,13 +30,17 @@ sudo apt-get install \
   ninja-build \
   python2-dev \
   python3-dev \
+  python3-pip \
+  qemu \
   ripgrep \
   shellcheck \
   stow \
   tmux \
   tree \
   vim \
+  virt-manager \
   wget \
+  sel \
   zsh
 
 
@@ -52,8 +60,19 @@ curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --d
 
 sudo apt update && sudo apt install 1password
 
+# Golang
 curl -OL https://golang.org/dl/go1.16.7.linux-amd64.tar.gz
 sudo tar -C /usr/local -xvf go1.16.7.linux-amd64.tar.gz
 rm go1.16.7.linux-amd64.tar.gz
 
+# Starship
 curl -sS https://starship.rs/install.sh | sh
+
+# Lazygit
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+tar xf lazygit.tar.gz lazygit
+sudo install lazygit /usr/local/bin
+rm lazygit.tar.gz
+rm lazygit
+rm -Rf ~/.config/lazygit
