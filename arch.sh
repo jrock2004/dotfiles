@@ -2,7 +2,7 @@
 
 # Need to figure out markdown
 
-paru -S 1password ack alacritty bat bluez bluez-utils cloc cmake diff-so-fancy discord dnsmasq edk2-ovmf fd fzf gcc github-cli gnupg go google-chrome grep htop isync jq kitty lazygit libvirt luarocks lynx make mpris-proxy-service msmtp mutt-wizard-git neofetch neomutt neovim noto-fonts-emoji ninja nitrogen openssh pam-gnupg pass python python-pip qemu-desktop ripgrep scrot shellcheck slack-desktop spotify starship stow stylua swtpm tmux ttf-inconsolata ttf-linux-libertine ttf-symbola urlview vim virt-manager xclip xsel xterm z zsh
+paru -S 1password ack alacritty bat bluez bluez-utils cava cloc cmake diff-so-fancy discord dnsmasq edk2-ovmf fd fzf gcc github-cli gnupg go google-chrome grep htop isync jq kitty lazygit libvirt luarocks lynx make mpris-proxy-service msmtp mutt-wizard-git neofetch neomutt neovim noto-fonts-emoji ninja nitrogen openssh pam-gnupg pass python python-pip qemu-desktop ripgrep scrot shellcheck slack-desktop spotify starship stow stylua swtpm tmux ttf-inconsolata ttf-linux-libertine ttf-symbola urlview viewnior vim virt-manager xclip xsel xterm z zsh
 
 pip install git+https://github.com/psf/black
 
@@ -18,7 +18,7 @@ select isWM in yes no; do
 
       break ;;
     no)
-      paru -S cronie dmenu gpicview grim hyprland otf-font-awesome pcmanfm polybar picom rofi-lbonn-wayland-git sddm slock slurp-git swappy swaybg swayidle-git swaylock-effects-git waybar-hyprland wl-clipboard xautolock xmonad xmonad-contrib xorg-xmessage
+      paru -S catppuccin-gtk-theme-mocha catppuccin-cursors-mocha catppuccin-mocha-grub-theme-git colord cronie dmenu dunst ffmpegthumbnailer file-roller gpicview grim grimblast-git hyprland-git hyprpicker-git hyprpaper-git imagemagick nwg-look-bin otf-font-awesome pavucontrol pcmanfm polybar picom rofi-lbonn-wayland-git rofi-emoji sddm slock slurp-git swappy swaybg swayidle-git swaylock-effects-git thunar thunar-archive-plugin tumbler waybar-hyprland-git wezterm wf-recorder wl-clipboard wlogout wtype xautolock xmonad xdg-desktop-portal-hyprland-git xmonad-contrib xorg-xmessage
 
       sudo systemctl enable cronie.service
       sudo systemctl enable sddm.service
