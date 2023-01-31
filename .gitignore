@@ -6,6 +6,8 @@ Brewfile.lock.json
 files/.config/*
 files/.config/nvim/plugin/packer_compiled.lua
 !files/.config/alacritty
+!files/.config/cava
+!files/.config/dunst
 !files/.config/hypr
 !files/.config/i3
 !files/.config/i3status
@@ -19,8 +21,11 @@ files/.config/lvim/plugin
 !files/.config/polybar
 !files/.config/rofi
 !files/.config/stylua
+!files/.config/swaylock
 !files/.config/xmonar
 !files/.config/waybar
+!files/.config/wezterm
+!files/.config/wlayout
 !files/.config/starship.toml
 
 # Xmonad Stuff
