@@ -1,5 +1,5 @@
 configuration {
-    font: "Inter Regular 10";
+    font: "Comic Code Ligatures 10";
     sidebar-mode: true;
     show-icons: true;
     icon-theme: "Nordzy";
@@ -41,7 +41,7 @@ prompt {
 button {
     action: "ok";
     str: " ";
-    font: "FantasqueSansMono Nerd Font 16";
+    font: "Comic Code Ligatures Regular 16";
     expand: false;
     text-color: #6e6a86;
     background-color: @transparent;
@@ -50,7 +50,7 @@ button {
 }
 
 entry {
-    font: "Inter Regular 12";
+    font: "Comic Code Ligatures Regular 12";
     background-color: @transparent;
     text-color: #6e6a86;
     expand: true;
@@ -125,7 +125,7 @@ element-icon {
 }
 
 element-text {
-    font: "Inter Regular 11";
+    font: "Comic Code Ligatures Regular 11";
     expand: true;
     horizontal-align: 0;
     vertical-align: 0.5;

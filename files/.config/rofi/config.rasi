@@ -19,7 +19,7 @@ configuration {
     delay:  10;
   }
 }
-@theme "jccenter"
+@theme "themes/sidetab-nord.rasi"
 /* @theme "/usr/share/rofi/themes/c64.rasi" */
 /* @theme "onedarker" */
 

@@ -18,7 +18,7 @@ select isWM in yes no; do
 
       break ;;
     no)
-      paru -S catppuccin-gtk-theme-mocha catppuccin-cursors-mocha catppuccin-mocha-grub-theme-git colord cronie dmenu dunst ffmpegthumbnailer file-roller gpicview grim grimblast-git hyprland-git hyprpicker-git hyprpaper-git imagemagick nwg-look-bin otf-font-awesome pavucontrol pcmanfm polybar picom rofi-lbonn-wayland-git rofi-emoji sddm slock slurp-git swappy swaybg swayidle-git swaylock-effects-git thunar thunar-archive-plugin tumbler waybar-hyprland-git wezterm wf-recorder wl-clipboard wlogout wtype xautolock xmonad xdg-desktop-portal-hyprland-git xmonad-contrib xorg-xmessage
+      paru -S catppuccin-gtk-theme-mocha catppuccin-cursors-mocha catppuccin-mocha-grub-theme-git colord cronie dmenu dunst ffmpegthumbnailer file-roller gpicview grim grimblast-git hyprland-git hyprpicker-git hyprpaper-git imagemagick nwg-look-bin otf-font-awesome pavucontrol pcmanfm polybar picom rofi-lbonn-wayland-git rofi-emoji sddm-git slock slurp-git swappy swaybg swayidle-git swaylock-effects-git thunar thunar-archive-plugin tumbler waybar-hyprland-git wezterm wf-recorder wl-clipboard wlogout wtype xautolock xmonad xdg-desktop-portal-hyprland-git xmonad-contrib xorg-xmessage
 
       sudo systemctl enable cronie.service
       sudo systemctl enable sddm.service
