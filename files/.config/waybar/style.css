@@ -59,6 +59,7 @@ tooltip {
 #network,
 #workspaces,
 #tray,
+#bluetooth,
 #backlight {
     background: #1e1e2e;
     padding: 0px 10px;
@@ -78,6 +79,10 @@ tooltip {
     margin-left: 10px;
     padding-right: 0px;
     padding-left: 5px;
+}
+
+#bluetooth {
+  color: #fab387;
 }
 
 #custom-caffeine {
