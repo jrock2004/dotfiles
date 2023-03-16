@@ -20,13 +20,15 @@ files/.config/lvim/plugin
 !files/.config/picom
 !files/.config/polybar
 !files/.config/rofi
+!files/.config/skhd
+!files/.config/starship.toml
 !files/.config/stylua
 !files/.config/swaylock
 !files/.config/xmonar
 !files/.config/waybar
 !files/.config/wezterm
 !files/.config/wlayout
-!files/.config/starship.toml
+!files/.config/yabai
 
 # Xmonad Stuff
 files/.xmonad/xmonad.errors
