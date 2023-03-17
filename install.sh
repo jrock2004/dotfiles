@@ -193,6 +193,14 @@ setup_volta() {
   success "Volta is setup successfully"
 }
 
+setup_zap() {
+  title "Setting up Zap"
+
+  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh)
+
+  success "Zap is installed"
+}
+
 setup_lua() {
   title "Setting up lua language server"
 
@@ -318,6 +326,7 @@ if [ "$OS" == "mac" ]; then
   setup_volta
   setup_lua
   setup_neovim
+  setup_zap
 elif [ "$OS" == "popos" ]; then
   setup_init
   setup_directories
