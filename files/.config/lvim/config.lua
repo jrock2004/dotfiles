@@ -205,9 +205,19 @@ formatters.setup({
 local linters = require "lvim.lsp.null-ls.linters"
 
 local function eslint_config()
-  local f = io.open("package.json", "r")
+  if vim.fn.filereadable(".eslintrc.json") then
+    return ".eslintrc.json"
+  elseif vim.fn.filereadable(".eslintrc.js") then
+    return ".eslintrc.js"
+  elseif vim.fn.filereadable(".eslintrc.yaml") then
+    return ".eslintrc.yaml"
+  elseif vim.fn.filereadable(".eslintrc.yml") then
+    return ".eslintrc.yml"
+  elseif vim.fn.filereadable(".eslintrc") then
+    return ".eslintrc"
+  end
 
-  print "eslint config"
+  local f = io.open("package.json", "r")
 
   if f ~= nil then
     local package = f:read("*all")
@@ -221,6 +231,7 @@ local function eslint_config()
 
     return "package.json"
   end
+
 
   return nil
 end
