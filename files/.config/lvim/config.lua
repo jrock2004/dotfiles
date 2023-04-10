@@ -9,11 +9,17 @@ an executable
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
 -- general
-lvim.log.level = "warn"
-lvim.format_on_save = { timeout = 2000 }
-lvim.format_on_save.enabled = true
+lvim.log.level = "info"
+lvim.format_on_save = {
+  enabled = true,
+  timeout = 2000
+}
 lvim.colorscheme = "lunar"
 lvim.transparent_window = true
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.relativenumber = true
+
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
 
@@ -69,13 +75,13 @@ lvim.keys.normal_mode["Y"] = "y$"
 --   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 -- }
 lvim.builtin.which_key.mappings["H"] = {
-    name = "+Harpoon",
-    a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add" },
-    d = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "Delete" },
-    l = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "List" },
-    n = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "Next" },
-    p = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "Prev" },
-    t = { "<cmd>lua require('harpoon.term').gotoTerminal(1)<cr>", "Terminal" },
+  name = "+Harpoon",
+  a = { "<cmd>lua require('harpoon.mark').add_file()<cr>", "Add" },
+  d = { "<cmd>lua require('harpoon.ui').nav_file(3)<cr>", "Delete" },
+  l = { "<cmd>lua require('harpoon.ui').toggle_quick_menu()<cr>", "List" },
+  n = { "<cmd>lua require('harpoon.ui').nav_file(2)<cr>", "Next" },
+  p = { "<cmd>lua require('harpoon.ui').nav_file(1)<cr>", "Prev" },
+  t = { "<cmd>lua require('harpoon.term').gotoTerminal(1)<cr>", "Terminal" },
 }
 
 -- TODO: User Config for predefined plugins
@@ -88,21 +94,23 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 
 lvim.builtin.bufferline.active = false
 
+lvim.builtin.treesitter.auto_install = true
+
 -- if you don't want all the parsers change this to a table of the ones you want
-lvim.builtin.treesitter.ensure_installed = {
-    "bash",
-    "c",
-    "javascript",
-    "json",
-    "lua",
-    "python",
-    "typescript",
-    "tsx",
-    "css",
-    "rust",
-    "java",
-    "yaml",
-}
+-- lvim.builtin.treesitter.ensure_installed = {
+--     "bash",
+--     "c",
+--     "javascript",
+--     "json",
+--     "lua",
+--     "python",
+--     "typescript",
+--     "tsx",
+--     "css",
+--     "rust",
+--     "java",
+--     "yaml",
+-- }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enable = true
@@ -133,33 +141,33 @@ lvim.builtin.treesitter.highlight.enable = true
 -- require("lvim.lsp.manager").setup("pyright", opts)
 
 require("lvim.lsp.manager").setup("emmet_ls", {
-    cmd = { "emmet-ls", "--stdio" },
-    filetypes = {
-        "html",
-        "css",
-        "scss",
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "haml",
-        "xml",
-        "xsl",
-        "pug",
-        "slim",
-        "sass",
-        "stylus",
-        "less",
-        "sss",
-        "hbs",
-        "handlebars",
+  cmd = { "emmet-ls", "--stdio" },
+  filetypes = {
+    "html",
+    "css",
+    "scss",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "haml",
+    "xml",
+    "xsl",
+    "pug",
+    "slim",
+    "sass",
+    "stylus",
+    "less",
+    "sss",
+    "hbs",
+    "handlebars",
+  },
+  init_options = {
+    emmet = {
+      showExpandedAbbreviation = "always",
+      showAbbreviationSuggestions = true,
     },
-    init_options = {
-        emmet = {
-            showExpandedAbbreviation = "always",
-            showAbbreviationSuggestions = true,
-        },
-    },
+  },
 })
 
 require("lvim.lsp.manager").setup "tailwindcss"
@@ -183,22 +191,22 @@ require("lvim.lsp.manager").setup "tailwindcss"
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
-    {
-        command = "prettier",
-        args = { "--config-precedence", "prefer-file" },
-        filetypes = { "typescript", "typescriptreact" },
-    },
-    --   { command = "black", filetypes = { "python" } },
-    --   { command = "isort", filetypes = { "python" } },
-    --   {
-    --     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-    --     command = "prettier",
-    --     ---@usage arguments to pass to the formatter
-    --     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-    --     extra_args = { "--print-with", "100" },
-    --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-    --     filetypes = { "typescript", "typescriptreact" },
-    --   },
+  {
+    command = "prettier",
+    args = { "--config-precedence", "prefer-file" },
+    filetypes = { "typescript", "typescriptreact" },
+  },
+  --   { command = "black", filetypes = { "python" } },
+  --   { command = "isort", filetypes = { "python" } },
+  --   {
+  --     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+  --     command = "prettier",
+  --     ---@usage arguments to pass to the formatter
+  --     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+  --     extra_args = { "--print-with", "100" },
+  --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+  --     filetypes = { "typescript", "typescriptreact" },
+  --   },
 })
 
 -- -- set additional linters
@@ -237,11 +245,11 @@ local function eslint_config()
 end
 
 linters.setup {
-    {
-        command = "eslint",
-        filetypes = { "typescript", "typescriptreact" },
-        args = { "--config", eslint_config() },
-    }
+  {
+    command = "eslint",
+    filetypes = { "typescript", "typescriptreact" },
+    args = { "--config", eslint_config() },
+  }
 }
 
 -- linters.setup {
@@ -262,28 +270,49 @@ linters.setup {
 
 -- Additional Plugins
 lvim.plugins = {
-    "christianchiarulli/harpoon",
-    {
-        "github/copilot.vim",
-        config = function()
-          vim.g.copilot_filetypes = {
-              ["*"] = true,
-          }
+  "christianchiarulli/harpoon",
+  {
+    "github/copilot.vim",
+    config = function()
+      vim.g.copilot_filetypes = {
+        ["*"] = true,
+      }
 
-          vim.cmd([[
+      vim.cmd([[
         imap <silent><script><expr> <C-A> copilot#Accept("\<CR>")
-        let g:copilot_no_tab_map = v:true
       ]])
-        end,
-    },
-    {
-        "ggandor/leap.nvim",
-        config = function()
-          require("leap").add_default_mappings()
-        end,
-    },
-    "ggandor/flit.nvim"
+    end,
+  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   event = { "VimEnter" },
+  --   config = function()
+  --     vim.defer_fn(function()
+  --       require("copilot").setup {
+  --         plugin_manager_path = get_runtime_dir() .. "/site/pack/lazy/opt",
+  --         suggestions = {
+  --           enabled = true,
+  --         },
+  --       }
+  --     end, 100)
+  --   end,
+  -- },
+  -- {
+  --   "zbirenbaum/copilot-cmp",
+  --   after = { "copilot.lua", "nvim-cmp" },
+  -- },
+  {
+    "ggandor/leap.nvim",
+    config = function()
+      require("leap").add_default_mappings()
+    end,
+  },
+  "ggandor/flit.nvim"
 }
+
+-- Can not be placed into the config method of the plugins.
+lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
+table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("BufEnter", {
@@ -301,30 +330,30 @@ lvim.plugins = {
 
 -- Setting that when hitting o the next line is not a comment
 lvim.autocommands = {
+  {
+    { "BufWinEnter", "BufRead", "BufNewFile" },
     {
-        { "BufWinEnter", "BufRead", "BufNewFile" },
-        {
-            group = "lvim_user",
-            pattern = "*",
-            command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
-        },
+      group = "lvim_user",
+      pattern = "*",
+      command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
     },
+  },
 }
 
 -- Set wrap and spell in markdown and gitcommit
 vim.api.nvim_create_autocmd({ "FileType" }, {
-    pattern = { "gitcommit", "markdown" },
-    callback = function()
-      vim.wo.wrap = true
-      vim.wo.spell = true
-    end,
+  pattern = { "gitcommit", "markdown" },
+  callback = function()
+    vim.wo.wrap = true
+    vim.wo.spell = true
+  end,
 })
 
 -- Highlight Yanked Text
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-    callback = function()
-      vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
-    end,
+  callback = function()
+    vim.highlight.on_yank({ higroup = "Visual", timeout = 200 })
+  end,
 })
 
 -- Set filetypes
