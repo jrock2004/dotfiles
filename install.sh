@@ -1,208 +1,246 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 ###########################################
 # VARIABLES
 ###########################################
 
-DOTFILES="$(pwd)"
-COLOR_GRAY="\033[1;38;5;243m"
-COLOR_BLUE="\033[1;34m"
-COLOR_GREEN="\033[1;32m"
-COLOR_RED="\033[1;31m"
-COLOR_PURPLE="\033[1;35m"
-COLOR_YELLOW="\033[1;33m"
-COLOR_NONE="\033[0m"
 OS=""
-USEBREW=false
-CI=false
+USE_DESKTOP_ENV=FALSE
+ARCH_APPS=()
+POP_APPS=()
+DOTFILES="$HOME/.dotfiles"
 
 ###########################################
-# HELPER FUNCTIONS
+# HELPER FuNCTIONS
 ###########################################
 
-title() {
-  echo -e "\n${COLOR_PURPLE}$1${COLOR_NONE}"
-  echo -e "${COLOR_GRAY}==============================${COLOR_NONE}\n"
+printBottomBorder () {
+  echo "---------------------------------------------------------------------------"
 }
 
-error() {
-  echo -e "${COLOR_RED}Error: ${COLOR_NONE}$1"
-  # exit 1
+printTopBorder () {
+  printf "\n---------------------------------------------------------------------------\n"
 }
 
-warning() {
-  echo -e "${COLOR_YELLOW}Warning: ${COLOR_NONE}$1"
+initialQuestions () {
+  printTopBorder
+  echo "Going to ask some questions to make setting up your new machine easier"
+  printBottomBorder
+
+  printf "\n"
+  echo "What OS are we setting up today?"
+  read -rp "[1] Arch or [2] Mac OSX or [3] Pop OS (default: exit) : " choice_os
+
+  case $choice_os in
+    1)
+      OS="arch"
+      ;;
+    2)
+      OS="mac"
+      ;;
+    3)
+      OS="debian"
+      ;;
+    *)
+      echo "Invalid choice."
+
+      exit 1
+      ;;
+  esac
+
+  printf "\n"
+
+  echo "Do you have a desktop environment?"
+  read -rp "[y]es or [n]o (default: no) : " choice_desktop
+
+  case $choice_desktop in
+    y)
+      USE_DESKTOP_ENV=TRUE
+      ;;
+    n)
+      USE_DESKTOP_ENV=FALSE
+      ;;
+    *)
+      USE_DESKTOP_ENV=FALSE
+      ;;
+  esac
+
+  echo "$USE_DESKTOP_ENV"
 }
 
-info() {
-  echo -e "${COLOR_BLUE}Info: ${COLOR_NONE}$1"
-}
+initForArch () {
+  printTopBorder
+  echo "Setting up this computer for $OS"
+  printBottomBorder
 
-success() {
-  echo -e "${COLOR_GREEN}$1${COLOR_NONE}"
-}
-
-###########################################
-# SETUP SYSTEM
-###########################################
-
-setup_init() {
-  title "Check if $OS has all the required dependencies before starting"
-
-  SUCCESS=true
+  # Get all the arch apps we are going to install
+  mapfile -t ARCH_APPS < archApps.txt
 
   if [ -z "$(command -v git)" ]; then
-    error "Git is not installed, please install before starting"
+    echo "Git is not installed. Installing now..."
 
-    SUCCESS=false
+    sudo pacman -S git
   fi
 
-  sh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.sh)
+  if [ -z "$(command -v curl)" ]; then
+    echo "Curl is not installed. Installing now..."
 
-  if [ "$OS" == "popos" ]; then
-    sudo apt-get install build-essential procps curl file
-
-    curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+    sudo pacman -S curl
   fi
 
-  if [ "$OS" == "arch" ]; then
-    curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+  if [ -z "$(command -v wget)" ]; then
+    echo "Wget is not installed. Installing now..."
 
-    if [ -z "$(command -v paru)" ]; then
-      info "You need to install paru before you can run this script"
-
-      git clone https://aur.archlinux.org/paru.git
-      cd "paru" || error "Something went wrong" && SUCCESS=false
-      makepkg -si
-      cd "../"
-      rm -Rf "paru"
-
-      SUCCESS=true
-    fi
-
-    [ "$SUCCESS" = true ] && paru -S base-devel curl
+    sudo pacman -S wget
   fi
 
-  # if one of the missing commands is missing, fail the script
-  [ "$SUCCESS" = false ] && exit 1
+  if [ -z "$(command -v paru)" ]; then
+    echo "Paru is not installed. Installing now..."
 
-  success "Your $OS meets all the requirements"
+    git clone https://aur.archlinux.org/paru.git
+    cd paru || exit 1
+    makepkg -si
+    cd ..
+    rm -rf paru
+  fi
 }
 
-setup_directories() {
-  title "Creating directories you use"
+initForDebian () {
+  printTopBorder
+  echo "Setting up this computer for $OS"
+  printBottomBorder
 
-  mkdir -p "$HOME/Development"
+  mapfile -t POP_APPS < popApps.txt
 
-  if [ ! -d "$HOME/Development" ]; then
-    error "Could not find the Dev"
+  if [ -z "$(command -v git)" ]; then
+    echo "Git is not installed. Installing now..."
 
-    exit 1
+    sudo apt-get install git
   fi
 
-  success "Directories created successfully"
+  if [ -z "$(command -v curl)" ]; then
+    echo "Curl is not installed. Installing now..."
+
+    sudo apt-get install curl
+  fi
+
+  if [ -z "$(command -v wget)" ]; then
+    echo "Wget is not installed. Installing now..."
+
+    sudo apt-get install wget
+  fi
 }
 
-setup_homebrew() {
-  title "Setting up Homebrew"
+initForMac () {
+  printTopBorder
+  echo "Setting up this computer for $OS"
+  printBottomBorder
+
+  if [ -z "$(command -v git)" ]; then
+    echo "You need to install command line tools"
+
+    sudo xcode-select --install
+  fi
+}
+
+installAppsForArch () {
+  printTopBorder
+  echo "Installing apps for arch"
+  printBottomBorder
+
+  echo "${ARCH_APPS[@]}" | xargs paru -S
+
+  if [ "$USE_DESKTOP_ENV" = "FALSE" ]; then
+    echo "Installing some apps since we do not have a desktop environment"
+
+    paru -S cronie pavucontrol sddm-git
+
+    sudo systemctl enable cronie.service
+    sudo systemctl enable sddm.service
+
+    sudo cp archfiles/slock@.service /etc/systemd/system/
+
+    sudo systemctl enable slock@jcostanzo.service
+
+    [ -d "/etc/udev/rules.d" ] && sudo cp archfiles/91-keyboard-mouse-wakeup.conf /etc/udev/rules.d/
+  fi
+}
+
+installAppsForDebian () {
+  printTopBorder
+  echo "Installing apps for debian based distro"
+  printBottomBorder
+
+  echo "${POP_APPS[@]}" | xargs sudo apt-get install
+
+  # 1Password
+  curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
+  echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main' | sudo tee /etc/apt/sources.list.d/1password.list
+  sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22
+  curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
+  sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
+  curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+  sudo apt update && sudo apt install 1password
+
+  # Golang
+  curl -OL https://golang.org/dl/go1.16.7.linux-amd64.tar.gz
+  sudo tar -C /usr/local -xvf go1.16.7.linux-amd64.tar.gz
+  rm go1.16.7.linux-amd64.tar.gz
+
+  # Starship
+  # curl -sS https://starship.rs/install.sh | sh
+
+  # Lazygit
+  LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+  curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+  tar xf lazygit.tar.gz lazygit
+  sudo install lazygit /usr/local/bin
+  rm lazygit.tar.gz
+  rm lazygit
+  rm -Rf ~/.config/lazygit
+}
+
+installAppsForMac () {
+  printTopBorder
+  echo "Installing apps for Mac"
+  printBottomBorder
 
   if [ -z "$(command -v brew)" ]; then
-    info "Homebrew is not installed. Installing"
-
     sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash --login
 
-    echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/jcostanzo/.zprofile
+    echo "eval '$(/opt/homebrew/bin/brew shellenv)'" >> /Users/jcostanzo/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
 
-  if [ "$(uname)" == "Linux" ]; then
-    test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
-    test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
-  fi
-
-  if [ "$(command -v brew)" ]; then
-    info "installing software"
-
-    brew bundle
-  else
-    error "Brew command was not found"
-
-    exit 1
-  fi
-
-  if ! [ "$(command -v stow)" ]; then
-    error "Something went wrong with homebrew, try again!"
-
-    exit 1
-  fi
-
-  success "Homebrew setup successfully"
+  brew bundle
 }
 
-setup_fzf() {
-  title "Setting up FZF"
+setupDirectories () {
+  printTopBorder
+  echo "Creating some directories"
+  printBottomBorder
 
-  if [ "$(command -v brew)" ]; then
-    "$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
-  else
-    error "Something went wrong with setting up FZF"
+  mkdir -p "$HOME/Development"
 
-    exit 1
+  if [ "$USE_DESKTOP_ENV" = FALSE ]; then
+    mkdir -p "$HOME/Pictures"
+    mkdir -p "$HOME/Pictures/avatars"
+    mkdir -p "$HOME/Pictures/wallpapers"
   fi
-
-  success "FZF setup successfully"
 }
 
-setup_stow() {
-  title "Linking your files with GNU stow"
+setupFzf () {
+  printTopBorder
+  echo "Setting up FZF"
+  printBottomBorder
 
-  if [ "$CI" == true ]; then
-    # Some things to do when running via CI
-    rm -Rf ~/.gitconfig
-  fi
-
-  rm -Rf ~/.zshrc
-
-  if [ "$(command -v brew)" ]; then
-    rm -Rf ~/.zprofile
-
-    "$(brew --prefix)"/bin/stow --ignore ".DS_Store" -v -R -t ~ files
-  elif [ "$(command -v stow)" ]; then
-    /usr/bin/stow --ignore ".DS_Store" -v -R -t ~ files
-  fi
-
-  if test ! -f "$HOME/.tmux.conf"; then
-    error "Stow did not work"
-    exit 1
-  fi
-
-  success "Stow setup successfully"
+  "$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
 }
 
-setup_volta() {
-  title "Setting up Zolta to manage node and its dependencies"
-
-  curl https://get.volta.sh | bash -s -- --skip-setup
-
-  # For now volta needs this for node and stuff to work
-  if [ "$OS" = "mac" ]; then
-    softwareupdate --install-rosetta
-  fi
-
-  success "Volta is setup successfully"
-}
-
-setup_zap() {
-  title "Setting up Zap"
-
-  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh)
-
-  success "Zap is installed"
-}
-
-setup_lua() {
-  title "Setting up lua language server"
+setupLua () {
+  printTopBorder
+  echo "Setting up Lua"
+  printBottomBorder
 
   git clone https://github.com/sumneko/lua-language-server "$HOME/lua-language-server"
   cd "$HOME/lua-language-server" || exit 1
@@ -216,36 +254,56 @@ setup_lua() {
 
   if [ "$(command -v luarocks)" ]; then
     luarocks install --server=https://luarocks.org/dev luaformatter
-  else
-    warning "luarocks is not in path. Need to run command after restart"
   fi
-
-  success "Setup Lua language server successfully"
 }
 
-setup_neovim() {
-  title "Setting things up for neovim"
+setupNeovim () {
+  printTopBorder
+  echo "Setting up neovim dependencies"
+  printBottomBorder
 
-  if [ "$OS" = "popos" ]; then
+  if [ "$OS" = "debian" ]; then
     python3 -m pip install --upgrade pynvim
   elif [ "$OS" = "arch" ]; then
     python3 -m pip install --upgrade pynvim
   elif [ "$(command -v python)" ]; then
     python -m pip install --upgrade pynvim
-
-    success "Neovim is setup successfully"
-  else
-    warning "Neovim will need pynvim setup after script is done"
   fi
-
-  info "Installing Rust"
-  curl https://sh.rustup.rs -sSf | sh
-
-  success "Finished setting up Neovim"
 }
 
-setup_shell() {
-  title "Configuring shell"
+setupStow () {
+  printTopBorder
+  echo "Using stow to manage symlinking dotfiles"
+  printBottomBorder
+
+  if [ "$CI" == true ]; then
+    # Some things to do when running via CI
+    rm -Rf ~/.gitconfig
+  fi
+
+  rm -Rf ~/.zshrc
+
+  if [ "$(command -v brew)" ]; then
+    rm -Rf ~/.zprofile
+
+    "$(brew --prefix)"/bin/stow --ignore ".DS_Store" -v -R -t ~ -d "$DOTFILES" files
+  elif [ "$(command -v stow)" ]; then
+    /usr/bin/stow --ignore ".DS_Store" -v -R -t ~ -d "$DOTFILES" files
+  fi
+}
+
+setupRust () {
+  printTopBorder
+  echo "Setting up rust"
+  printBottomBorder
+
+  curl https://sh.rustup.rs -sSf | sh
+}
+
+setupShell () {
+  printTopBorder
+  echo "Switching SHELL to zsh"
+  printBottomBorder
 
   [[ -n "$(command -v brew)" ]] && zsh_path="$(brew --prefix)/bin/zsh" || zsh_path="$(which zsh)"
   if ! grep "$zsh_path" /etc/shells; then
@@ -257,104 +315,69 @@ setup_shell() {
     chsh -s "$zsh_path"
     info "default shell changed to $zsh_path"
   fi
+}
 
-  success "Configuring shell was successfully"
+setupVolta () {
+  printTopBorder
+  echo "Going to use Volta for managing node versions"
+  printBottomBorder
+
+  curl https://get.volta.sh | bash -s -- --skip-setup
+
+  # For now volta needs this for node and stuff to work
+  if [ "$OS" = "mac" ]; then
+    softwareupdate --install-rosetta
+  fi
+
+  if [ "$(command -v volta)" ]; then
+    volta install node@16 yarn@1.22.19 pnpm
+  else
+    echo "After restarting the terminal, you will want to volta install node and yarn"
+  fi
+}
+
+setupZap () {
+  printTopBorder
+  echo "Setting up Zap for terminal prompt"
+  printBottomBorder
+
+  zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh)
 }
 
 ###########################################
-# INITAL QUESTIONS
+# INIT OF APPLICATION
 ###########################################
 
-if [[ -z "${OPERATING_SYSTEM}" ]]; then
-  title "Which OS are we setting up? "
+initialQuestions
 
-  select os in mac popos arch; do
-    case $os in
-      mac)
-        OS="mac"
-        break ;;
-      popos)
-        OS="popos"
-        break ;;
-      arch)
-        OS="arch"
-        break ;;
-      *)
-        error "Invalid option $REPLY"
-    esac
-  done
-
-  title "Do you want to use brew? "
-
-  select optionBrew in yes no; do
-    case $optionBrew in
-      yes)
-        USEBREW=true
-
-        break ;;
-      no)
-        USEBREW=false
-
-        break ;;
-      *)
-        error "Invalid option $REPLY"
-    esac
-  done
+if [ "$OS" = "arch" ]; then
+  initForArch
+  installAppsForArch
+elif [ "$OS" = "debian" ]; then
+  initForDebian
+  installAppsForDebian
+elif [ "$OS" = "mac" ]; then
+  initForMac
+  installAppsForMac
 else
-  CI=true
-  OS="$OPERATING_SYSTEM"
+  echo "Something went wrong, try again and if it still fails, open an issue on Github"
 
-  if [[ -z "${USE_BREW}" ]]; then
-    USEBREW=false
-  else
-    USEBREW="$USE_BREW"
-  fi
-
+  exit 1
 fi
 
+setupDirectories
+setupStow
+setupVolta
+setupLua
+setupRust
+setupNeovim
+setupZap
+setupShell
 
-###########################################
-# RUNNING SET UP
-###########################################
-
-if [ "$OS" == "mac" ]; then
-  setup_init
-  setup_directories
-  setup_homebrew
-  setup_fzf
-  setup_stow
-  setup_volta
-  setup_lua
-  setup_neovim
-  setup_zap
-elif [ "$OS" == "popos" ]; then
-  setup_init
-  setup_directories
-
-  if [ "$USEBREW" == true ]; then
-    setup_homebrew
-  else
-    source ./linux.sh
-  fi
-
-  setup_stow
-  setup_volta
-  setup_lua
-  setup_neovim
-elif [ "$OS" == "arch" ]; then
-  setup_init
-  setup_directories
-
-  source ./arch.sh # Installing files for arch systems
-
-  setup_stow
-  setup_volta
-  setup_lua
-  setup_neovim
+if [ "$OS" = "mac" ]; then
+  setupFzf
 fi
 
-setup_shell
-
-success "Your system is ready to go. Reboot and read the readme for rest of set up"
-
-exit 0
+printTopBorder
+echo "Machine is now setup. Restart machine and everything should take effect"
+printBottomBorder

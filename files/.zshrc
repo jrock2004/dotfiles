@@ -104,7 +104,7 @@ alias switchtopnpm='rm -Rf node_modules && rm -Rf *-lock.json && pnpm install'
 alias switchtonpm='rm -Rf node_modules && rm -Rf *-lock.json && npm install'
 source $HOME/.cargo/env
 
-alias npmpackages='volta install @lifeart/ember-language-server @tailwindcss/language-server bash-language-server cssmodules-language-server diagnostic-languageserver dockerfile-language-server-nodejs ember-cli ls_emmet neovim typescript typescript-language-server vim-language-server vscode-langservers-extracted yaml-language-server'
+alias npmpackages='volta install @lifeart/ember-language-server @tailwindcss/language-server bash-language-server cssmodules-language-server diagnostic-languageserver dockerfile-language-server-nodejs ember-cli ls_emmet neovim pnpm typescript typescript-language-server vim-language-server vscode-langservers-extracted yaml-language-server'
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PNPM_HOME="$HOME/Library/pnpm"
