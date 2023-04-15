@@ -326,11 +326,7 @@ setupVolta() {
     softwareupdate --install-rosetta
   fi
 
-  if [ "$(command -v volta)" ]; then
-    volta install node@16 yarn@1.22.19 pnpm
-  else
-    echo "After restarting the terminal, you will want to volta install node and yarn"
-  fi
+  $HOME/.volta/bin/volta install node@16 yarn@1.22.19 pnpm
 }
 
 setupZap() {
@@ -363,12 +359,12 @@ else
 fi
 
 setupDirectories
-setupStow
 setupVolta
 setupLua
 setupRust
 setupNeovim
 setupZap
+setupStow
 setupShell
 
 if [ "$OS" = "mac" ]; then
