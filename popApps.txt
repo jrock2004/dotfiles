@@ -13,6 +13,7 @@ gcc
 gh
 git
 gnupg
+golang-go
 grep
 htop
 jq
@@ -37,5 +38,4 @@ tree
 vim
 virt-manager
 wget
-sel
 zsh
