@@ -1,22 +1,22 @@
 gui:
-  theme:
-    activeBorderColor:
-      - blue
-      - bold
-    inactiveBorderColor:
-      - white
-    optionsTextColor:
-      - blue
-    selectedLineBgColor:
-      - default # set to `default` to have no background colour
-    selectedRangeBgColor:
-      - default
-    cherryPickedCommitBgColor:
-      - cyan
-    cherryPickedCommitFgColor:
-      - blue
-    unstagedChangesColor:
-      - red
+  # theme:
+  #   activeBorderColor:
+  #     - blue
+  #     - bold
+  #   inactiveBorderColor:
+  #     - white
+  #   optionsTextColor:
+  #     - blue
+  #   selectedLineBgColor:
+  #     - default # set to `default` to have no background colour
+  #   selectedRangeBgColor:
+  #     - default
+  #   cherryPickedCommitBgColor:
+  #     - cyan
+  #   cherryPickedCommitFgColor:
+  #     - blue
+  #   unstagedChangesColor:
+  #     - red
 
   showFileTree: true # for rendering changes files in a tree format
   showListFooter: false # for seeing the '5 of 20' message in list panels
@@ -28,4 +28,4 @@ gui:
 disableStartupPopups: true
 notARepository: 'skip' # one of: 'prompt' | 'create' | 'skip'
 os:
-  editCommand: 'nvim' 
+  editCommand: 'nvim'

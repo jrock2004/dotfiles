@@ -14,15 +14,15 @@ DOTFILES="$HOME/.dotfiles"
 # HELPER FuNCTIONS
 ###########################################
 
-printBottomBorder () {
+printBottomBorder() {
   echo "---------------------------------------------------------------------------"
 }
 
-printTopBorder () {
+printTopBorder() {
   printf "\n---------------------------------------------------------------------------\n"
 }
 
-initialQuestions () {
+initialQuestions() {
   printTopBorder
   echo "Going to ask some questions to make setting up your new machine easier"
   printBottomBorder
@@ -32,20 +32,20 @@ initialQuestions () {
   read -rp "[1] Arch or [2] Mac OSX or [3] Pop OS (default: exit) : " choice_os
 
   case $choice_os in
-    1)
-      OS="arch"
-      ;;
-    2)
-      OS="mac"
-      ;;
-    3)
-      OS="debian"
-      ;;
-    *)
-      echo "Invalid choice."
+  1)
+    OS="arch"
+    ;;
+  2)
+    OS="mac"
+    ;;
+  3)
+    OS="debian"
+    ;;
+  *)
+    echo "Invalid choice."
 
-      exit 1
-      ;;
+    exit 1
+    ;;
   esac
 
   printf "\n"
@@ -54,27 +54,27 @@ initialQuestions () {
   read -rp "[y]es or [n]o (default: no) : " choice_desktop
 
   case $choice_desktop in
-    y)
-      USE_DESKTOP_ENV=TRUE
-      ;;
-    n)
-      USE_DESKTOP_ENV=FALSE
-      ;;
-    *)
-      USE_DESKTOP_ENV=FALSE
-      ;;
+  y)
+    USE_DESKTOP_ENV=TRUE
+    ;;
+  n)
+    USE_DESKTOP_ENV=FALSE
+    ;;
+  *)
+    USE_DESKTOP_ENV=FALSE
+    ;;
   esac
 
   echo "$USE_DESKTOP_ENV"
 }
 
-initForArch () {
+initForArch() {
   printTopBorder
   echo "Setting up this computer for $OS"
   printBottomBorder
 
   # Get all the arch apps we are going to install
-  mapfile -t ARCH_APPS < archApps.txt
+  mapfile -t ARCH_APPS <archApps.txt
 
   if [ -z "$(command -v git)" ]; then
     echo "Git is not installed. Installing now..."
@@ -105,12 +105,12 @@ initForArch () {
   fi
 }
 
-initForDebian () {
+initForDebian() {
   printTopBorder
   echo "Setting up this computer for $OS"
   printBottomBorder
 
-  mapfile -t POP_APPS < popApps.txt
+  mapfile -t POP_APPS <popApps.txt
 
   if [ -z "$(command -v git)" ]; then
     echo "Git is not installed. Installing now..."
@@ -131,7 +131,7 @@ initForDebian () {
   fi
 }
 
-initForMac () {
+initForMac() {
   printTopBorder
   echo "Setting up this computer for $OS"
   printBottomBorder
@@ -143,7 +143,7 @@ initForMac () {
   fi
 }
 
-installAppsForArch () {
+installAppsForArch() {
   printTopBorder
   echo "Installing apps for arch"
   printBottomBorder
@@ -166,7 +166,7 @@ installAppsForArch () {
   fi
 }
 
-installAppsForDebian () {
+installAppsForDebian() {
   printTopBorder
   echo "Installing apps for debian based distro"
   printBottomBorder
@@ -198,9 +198,13 @@ installAppsForDebian () {
   rm lazygit.tar.gz
   rm lazygit
   rm -Rf ~/.config/lazygit
+
+  # Neovim
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+  chmod u+x nvim.appimage
 }
 
-installAppsForMac () {
+installAppsForMac() {
   printTopBorder
   echo "Installing apps for Mac"
   printBottomBorder
@@ -208,14 +212,14 @@ installAppsForMac () {
   if [ -z "$(command -v brew)" ]; then
     sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash --login
 
-    echo "eval '$(/opt/homebrew/bin/brew shellenv)'" >> /Users/jcostanzo/.zprofile
+    echo "eval '$(/opt/homebrew/bin/brew shellenv)'" >>/Users/jcostanzo/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
 
   brew bundle
 }
 
-setupDirectories () {
+setupDirectories() {
   printTopBorder
   echo "Creating some directories"
   printBottomBorder
@@ -229,7 +233,7 @@ setupDirectories () {
   fi
 }
 
-setupFzf () {
+setupFzf() {
   printTopBorder
   echo "Setting up FZF"
   printBottomBorder
@@ -237,7 +241,7 @@ setupFzf () {
   "$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
 }
 
-setupLua () {
+setupLua() {
   printTopBorder
   echo "Setting up Lua"
   printBottomBorder
@@ -257,7 +261,7 @@ setupLua () {
   fi
 }
 
-setupNeovim () {
+setupNeovim() {
   printTopBorder
   echo "Setting up neovim dependencies"
   printBottomBorder
@@ -271,7 +275,7 @@ setupNeovim () {
   fi
 }
 
-setupStow () {
+setupStow() {
   printTopBorder
   echo "Using stow to manage symlinking dotfiles"
   printBottomBorder
@@ -292,7 +296,7 @@ setupStow () {
   fi
 }
 
-setupRust () {
+setupRust() {
   printTopBorder
   echo "Setting up rust"
   printBottomBorder
@@ -300,7 +304,7 @@ setupRust () {
   curl https://sh.rustup.rs -sSf | sh
 }
 
-setupShell () {
+setupShell() {
   printTopBorder
   echo "Switching SHELL to zsh"
   printBottomBorder
@@ -317,7 +321,7 @@ setupShell () {
   fi
 }
 
-setupVolta () {
+setupVolta() {
   printTopBorder
   echo "Going to use Volta for managing node versions"
   printBottomBorder
@@ -336,7 +340,7 @@ setupVolta () {
   fi
 }
 
-setupZap () {
+setupZap() {
   printTopBorder
   echo "Setting up Zap for terminal prompt"
   printBottomBorder
