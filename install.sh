@@ -7,7 +7,6 @@
 OS=""
 USE_DESKTOP_ENV=FALSE
 ARCH_APPS=()
-POP_APPS=()
 DOTFILES="$HOME/.dotfiles"
 
 ###########################################
@@ -110,8 +109,6 @@ initForDebian() {
   echo "Setting up this computer for $OS"
   printBottomBorder
 
-  mapfile -t POP_APPS <popApps.txt
-
   if [ -z "$(command -v git)" ]; then
     echo "Git is not installed. Installing now..."
 
@@ -171,7 +168,7 @@ installAppsForDebian() {
   echo "Installing apps for debian based distro"
   printBottomBorder
 
-  echo "${POP_APPS[@]}" | xargs sudo apt-get install
+  xargs sudo apt-get -y install <popApps.txt
 
   # 1Password
   curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
@@ -181,11 +178,6 @@ installAppsForDebian() {
   sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
   curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
   sudo apt update && sudo apt install 1password
-
-  # Golang
-  curl -OL https://golang.org/dl/go1.16.7.linux-amd64.tar.gz
-  sudo tar -C /usr/local -xvf go1.16.7.linux-amd64.tar.gz
-  rm go1.16.7.linux-amd64.tar.gz
 
   # Starship
   # curl -sS https://starship.rs/install.sh | sh
