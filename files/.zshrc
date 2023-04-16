@@ -69,8 +69,8 @@ fi
 
 # Alias
 alias reload!='RELOAD=1 source ~/.zshrc'
-# [[ -n "$(command -v nvim)" ]] && alias vim="nvim"
-[[ -n "$(command -v lvim)" ]] && alias vim="lvim"
+[[ -n "$(command -v nvim)" ]] && alias vim="nvim"
+# [[ -n "$(command -v lvim)" ]] && alias vim="lvim"
 alias gs='git status'
 alias glog="git l"
 alias gcorb='git checkout --track $(git branch -r | fzf)'
