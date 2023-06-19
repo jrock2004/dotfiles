@@ -1,0 +1,101 @@
+colors:
+  # Default colors
+  primary:
+    background: "#1f2227"
+    foreground: "#abb2bf"
+
+  # Normal colors
+  normal:
+    black: "#4C566A"
+    red: "#bf616a"
+    green: "#A3BE8C"
+    yellow: "#D7BA7D"
+    blue: "#5e81ac"
+    magenta: "#B48EAD"
+    cyan: "#88c0d0"
+    white: "#abb2bf"
+
+  # Bright colors
+  bright:
+    black: "#4C566A"
+    red: "#bf616a"
+    green: "#A3BE8C"
+    yellow: "#D7BA7D"
+    blue: "#5e81ac"
+    magenta: "#B48EAD"
+    cyan: "#88c0d0"
+    white: "#abb2bf"
+
+  cursor:
+    text: "#3B4252"
+    cursor: "#ECEFF4"
+
+cursor:
+  style:
+    blinking: Never
+
+font:
+  normal:
+    family: "Comic Code Ligatures"
+    style: "Regular"
+  bold:
+    family: "Comic Code Ligatures"
+    style: "Bold"
+  italic:
+    family: "Comic Code Ligatures"
+    style: "Italic"
+  bold_italic:
+    family: "Comic Code Ligatures"
+    style: "Bold Italic"
+
+  size: 16.0
+
+  ligatures: true
+
+  offset:
+    x: 0
+    y: 0
+  glyph_offset:
+    x: 0
+    y: 0
+
+window:
+  dynamic_title: true
+  padding:
+    x: 2
+    y: 2
+  save_to_clipboard: true
+  live_config_reload: true
+
+scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  # Specifying '0' will disable scrolling.
+  history: 10000
+
+  # Number of lines the viewport will move for every line scrolled when
+  # scrollback is enabled (history > 0).
+  multiplier: 10
+
+# If `true`, bold text is drawn using the bright color variants.
+draw_bold_text_with_bright_colors: true
+
+selection:
+  semantic_escape_chars: ',│`|:"'' ()[]{}<>'
+  save_to_clipboard: true
+
+live_config_reload: true
+
+key_bindings:
+  - { key: V, mods: Control|Shift, action: Paste }
+  - { key: C, mods: Control|Shift, action: Copy }
+  - { key: Key0, mods: Control, action: ResetFontSize }
+  - { key: Equals, mods: Control, action: IncreaseFontSize }
+  - { key: Minus, mods: Control, action: DecreaseFontSize }
+  # - { key: V,        mods: Alt, action: Paste                  }
+  # - { key: C,        mods: Alt, action: Copy                   }
+  # - { key: C,        mods: Control|Shift, chars: "\x03"         }
+
+shell:
+  program: /usr/bin/zsh
+  args:
+    - --login
