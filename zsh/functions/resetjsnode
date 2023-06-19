@@ -1,0 +1,13 @@
+rm -Rf node_modules
+
+if [ -e pnpm-lock.yaml ]; then
+  pnpm install
+fi
+
+if [ -e yarn-lock.yaml ]; then
+  yarn install
+fi
+
+if [ -e package-lock.yaml ]; then
+  npm install
+fi

@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <b>:sparkles: Dorian's Dotfiles :sparkles:</b>
+  <b>:sparkles: John's Dotfiles :sparkles:</b>
 </p>
 
 <br />
