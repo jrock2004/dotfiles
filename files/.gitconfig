@@ -1,0 +1,34 @@
+[user]
+  name = John Costanzo
+  email = jrock2004@gmail.com
+[github]
+  user = jrock2004
+[pull]
+  rebase = false
+[push]
+  # push will only do the current branch, not all branches
+  default = current
+[credential]
+  helper = osxkeychain
+[alias]
+  co = checkout
+  cob = checkout -b
+  la = "!git config -l | grep alias | cut -c 7-"
+  poh = push -u origin head
+  s = status --short
+  ss  = status
+
+  l = log --graph --pretty=format:'%Cred%h%Creset %C(bold blue)%an%C(reset) - %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+
+  day = "!sh -c 'git log --reverse --no-merges --branches=* --date=local --after=\"yesterday 11:59PM\" --author=\"`git config --get user.name`\"'"
+
+  undo = reset --hard HEAD
+
+  cleanup = "!git remote prune origin && git gc && git clean -df && git stash clear"
+
+  forget = "!git fetch -p origin && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D"
+
+  # gh commands
+  browse = "!gh repo view --web"
+[init]
+  defaultBranch = main
