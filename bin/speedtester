@@ -1,0 +1,26 @@
+#!/bin/sh
+
+###############################################################################
+# VARIABLES
+###############################################################################
+SPEEDTEST=
+ICON_DOWNLOAD=""
+ICON_UPLOAD=""
+
+if [ -e "/opt/homebrew/bin/speedtest-cli" ]; then
+  SPEEDTEST=$(/opt/homebrew/bin/speedtest-cli --simple)
+else
+  SPEEDTEST=$(/usr/bin/speedtest-cli --simple)
+fi
+
+###############################################################################
+# FUNCTIONS
+###############################################################################
+DOWNLOADSPEED=$(echo $SPEEDTEST | awk '{print $5, $6}')
+UPLOADSPEED=$(echo $SPEEDTEST | awk '{print $8, $9}')
+
+###############################################################################
+# MAIN
+###############################################################################
+echo "$ICON_DOWNLOAD $DOWNLOADSPEED $ICON_UPLOAD $UPLOADSPEED"
+
