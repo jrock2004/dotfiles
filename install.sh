@@ -81,6 +81,16 @@ initForArch() {
     echo "Installing apps for arch"
     printBottomBorder
 
+    if [ -z "$(command -v paru)" ]; then
+        echo "Paru is not installed. Installing now..."
+
+        git clone https://aur.archlinux.org/paru.git
+        cd paru || exit 1
+        makepkg -si
+        cd ..
+        rm -rf paru
+    fi
+
     if [ "$USE_DESKTOP_ENV" = "TRUE" ]; then
         paru -Rns xdg-desktop-portal-gnome
     fi
