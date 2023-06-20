@@ -20,7 +20,7 @@ This repository contains my personal dotfiles, which are configuration files and
   <img
     src="docs/nvim-code.png"
     alt="Screenshot of sample code in my lazyvim editor"
-    width="400"
+    width="700"
   />
 </p>
 
