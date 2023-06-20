@@ -62,7 +62,6 @@ openssh
 otf-font-awesome
 pam-gnupg
 pass
-polybar-git
 python
 python-pip
 qemu-desktop
