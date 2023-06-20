@@ -16,6 +16,20 @@
 
 This repository contains my personal dotfiles, which are configuration files and scripts that customize various aspects of my system. By keeping my dotfiles under version control, I can easily synchronize them across multiple machines and ensure consistency in my development environment.
 
+<p align="center">
+  <img
+    src="docs/nvim-code.png"
+    alt="Screenshot of sample code in my lazyvim editor"
+    width="400"
+  />
+</p>
+
+# Tested OS
+
+- Arch Linux
+- Mac OSX
+- Ubuntu
+
 # Installation
 
 Clone this repository to your home directory:
