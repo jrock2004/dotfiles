@@ -77,11 +77,64 @@ initialQuestions() {
 }
 
 initForArch() {
-    echo "Arch is not configured yet"
+    printTopBorder
+    echo "Installing apps for arch"
+    printBottomBorder
+
+    if [ "$USE_DESKTOP_ENV" = "TRUE" ]; then
+        paru -Rns xdg-desktop-portal-gnome
+    fi
+
+    paru -S $(cat ./docs/archApps.txt)
+
+    if [ "$USE_DESKTOP_ENV" = "FALSE" ]; then
+        echo "Installing some apps since we do not have a desktop environment"
+
+        paru -S cronie pavucontrol sddm-git
+
+        sudo systemctl enable cronie.service
+        sudo systemctl enable sddm.service
+
+        sudo cp archfiles/slock@.service /etc/systemd/system/
+
+        sudo systemctl enable slock@jcostanzo.service
+
+        [ -d "/etc/udev/rules.d" ] && sudo cp archfiles/91-keyboard-mouse-wakeup.conf /etc/udev/rules.d/
+    fi
 }
 
 initForDebian() {
-    echo "Debian is not configured yet"
+    printTopBorder
+    echo "Installing apps for debian based distro"
+    printBottomBorder
+
+    xargs sudo apt-get -y install <docs/debianApps.txt
+
+    # 1Password
+    curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
+    echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main' | sudo tee /etc/apt/sources.list.d/1password.list
+    sudo mkdir -p /etc/debsig/policies/AC2D62742012EA22
+    curl -sS https://downloads.1password.com/linux/debian/debsig/1password.pol | sudo tee /etc/debsig/policies/AC2D62742012EA22/1password.pol
+    sudo mkdir -p /usr/share/debsig/keyrings/AC2D62742012EA22
+    curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/debsig/keyrings/AC2D62742012EA22/debsig.gpg
+    sudo apt update && sudo apt install 1password
+
+    # Starship
+    # curl -sS https://starship.rs/install.sh | sh
+
+    # Lazygit
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar xf lazygit.tar.gz lazygit
+    sudo install lazygit /usr/local/bin
+    rm lazygit.tar.gz
+    rm lazygit
+    rm -Rf ~/.config/lazygit
+
+    # Neovim
+    curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+    chmod u+x nvim.appimage
+    sudo mv nvim.appimage /usr/local/bin/
 }
 
 initForMac() {
@@ -102,18 +155,18 @@ initForMac() {
 }
 
 installAppsForMac() {
-  printTopBorder
-  echo "Installing apps for Mac"
-  printBottomBorder
+    printTopBorder
+    echo "Installing apps for Mac"
+    printBottomBorder
 
-  if [ -z "$(command -v brew)" ]; then
-    sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash --login
+    if [ -z "$(command -v brew)" ]; then
+        sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash --login
 
-    echo "eval '$(/opt/homebrew/bin/brew shellenv)'" >>/Users/jcostanzo/.zprofile
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  fi
+        echo "eval '$(/opt/homebrew/bin/brew shellenv)'" >>/Users/jcostanzo/.zprofile
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+    fi
 
-  brew bundle
+    brew bundle
 }
 
 setupDirectories() {
@@ -272,7 +325,7 @@ setupStow
 setupShell
 
 if [ "$OS" = "mac" ]; then
-  setupFzf
+    setupFzf
 fi
 
 printTopBorder
