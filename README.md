@@ -16,13 +16,10 @@
 
 This repository contains my personal dotfiles, which are configuration files and scripts that customize various aspects of my system. By keeping my dotfiles under version control, I can easily synchronize them across multiple machines and ensure consistency in my development environment.
 
-<p align="center">
-  <img
-    src="docs/nvim-code.png"
-    alt="Screenshot of sample code in my lazyvim editor"
-    width="700"
-  />
-</p>
+![neovim showing autocomplete of an object](https://github.com/jrock2004/dotfiles/assets/655716/e191fd91-4e12-44c2-969b-f8702ca05c16)
+![neovim searching for a file](https://github.com/jrock2004/dotfiles/assets/655716/954260a0-1476-4b33-ba13-c0c7d502109d)
+
+
 
 # Tested OS
 
