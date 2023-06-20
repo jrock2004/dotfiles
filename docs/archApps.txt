@@ -30,7 +30,7 @@ gnupg
 go
 google-chrome
 gpicview
-grim
+grim-git
 grimblast-git
 hyprland-git
 hyprpaper-git
@@ -77,7 +77,7 @@ spotify
 starship
 stow
 stylua
-swappy
+swappy-git
 swaybg
 swayidle-git
 swaylock-effects-git
