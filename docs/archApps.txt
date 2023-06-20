@@ -62,6 +62,7 @@ openssh
 otf-font-awesome
 pam-gnupg
 pass
+polybar-git
 python
 python-pip
 qemu-desktop
@@ -72,6 +73,7 @@ scrot
 shellcheck
 slack-desktop
 slurp-git
+speedtest-cli
 spotify
 starship
 stow
