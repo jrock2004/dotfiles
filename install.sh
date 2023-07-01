@@ -319,6 +319,7 @@ elif [ "$OS" = "debian" ]; then
     initForDebian
 elif [ "$OS" = "mac" ]; then
     initForMac
+    installAppsForMac
 else
     echo "Something went wrong, try again and if it still fails, open an issue on Github"
 

@@ -3,3 +3,7 @@
 
 # Node.js
 node_modules
+
+# Project Specific Stuff
+Brewfile.lock.json
+files/.config/github-copilot
