@@ -8,9 +8,12 @@ tmux new-session -ds "Sign in" -c ~/Development/class-check-in -n "() => {}"
 tmux new-window -t "Sign in": -n "Tests" -c ~/Development/class-check-in
 tmux new-window -t "Sign in": -n "Git" -c ~/Development/class-check-in
 tmux next-window -t "Sign in":
-tmux new-session -ds Components -c ~/Development/library-components -n "() => {}"
-tmux new-window -t Components: -n "Tests" -c ~/Development/library-components
-tmux new-window -t Components: -n "Git" -c ~/Development/library-components
+tmux new-session -ds Components -c ~/Development/library-components-beta -n "() => {}"
+tmux new-window -t Components: -n "Tests" -c ~/Development/library-components-beta
+tmux new-window -t Components: -n "Git" -c ~/Development/library-components-beta
 tmux next-window -t Components:
+tmux new-session -ds "Components Old" -c ~/Development/library-components -n "() => {}"
+tmux new-window -t "Components Old": -n "Tests" -c ~/Development/library-components
+tmux new-window -t "Components Old": -n "Git" -c ~/Development/library-components
+tmux next-window -t "Components Old":
 tmux new-session -ds Dotfiles -c ~/.dotfiles -n "() => {}"
-
