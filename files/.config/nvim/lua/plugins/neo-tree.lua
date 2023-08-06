@@ -1,6 +1,5 @@
 return {
   'nvim-neo-tree/neo-tree.nvim',
-  branch = 'main',
   opts = {
     buffers = {
       follow_current_file = {
