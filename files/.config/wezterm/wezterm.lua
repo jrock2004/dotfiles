@@ -1,16 +1,16 @@
-local wezterm = require("wezterm")
+local wezterm = require 'wezterm'
 
 local function font_with_fallback(name, params)
-  local names = { name, "Apple Color Emoji", "azuki_font" }
+  local names = { name, 'Apple Color Emoji', 'azuki_font', 'FiraMono Nerd Font', 'JetBrains Mono' }
   return wezterm.font_with_fallback(names, params)
 end
 
-local font_name = "Comic Code Ligatures"
+local font_name = 'Comic Code Ligatures'
 
 return {
-  front_end = "OpenGL",
+  front_end = 'OpenGL',
 
-  color_scheme = "Catppuccin Mocha",
+  color_scheme = 'Catppuccin Mocha',
 
   -- Font Config
   font = font_with_fallback(font_name),
@@ -24,7 +24,7 @@ return {
       font = font_with_fallback(font_name, { bold = true }),
     },
     {
-      intensity = "Bold",
+      intensity = 'Bold',
       font = font_with_fallback(font_name, { bold = true }),
     },
   },
@@ -34,7 +34,7 @@ return {
   dpi = 96.0,
 
   -- Cursor style
-  default_cursor_style = "BlinkingUnderline",
+  default_cursor_style = 'BlinkingUnderline',
 
   -- X11
   enable_wayland = true,
@@ -59,6 +59,6 @@ return {
   automatically_reload_config = true,
   inactive_pane_hsb = { saturation = 1.0, brightness = 1.0 },
   window_background_opacity = 0.9,
-  window_close_confirmation = "NeverPrompt",
-  window_frame = { active_titlebar_bg = "#45475a", font = font_with_fallback(font_name, { bold = true }) },
+  window_close_confirmation = 'NeverPrompt',
+  window_frame = { active_titlebar_bg = '#45475a', font = font_with_fallback(font_name, { bold = true }) },
 }
