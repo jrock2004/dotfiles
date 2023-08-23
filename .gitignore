@@ -8,3 +8,4 @@ node_modules
 Brewfile.lock.json
 files/.config/github-copilot
 files/.config/configstore
+files/.tmux/plugins
