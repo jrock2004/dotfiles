@@ -111,3 +111,19 @@ fi
 # Stow aliases
 alias sync='stow --ignore ".DS_Store" -v -R -t ~ -d "$DOTFILES" files'
 alias unsync='stow --ignore ".DS_Store" -v -D -t ~ -d "$DOTFILES" files'
+
+alias nvim-lazy="NVIM_APPNAME=LazyVim nvim"
+alias nvim-kick="NVIM_APPNAME=nvim nvim"
+alias nvim-default="NVIM_APPNAME=default nvim"
+
+function nvims() {
+  items=("default" "nvim" "LazyVim")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config="default"
+  fi
+  NVIM_APPNAME=$config nvim $@
+}
