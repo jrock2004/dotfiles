@@ -19,3 +19,7 @@ end
 map("n", "<leader>,", ":w<CR>", { remap = true })
 
 -- map("i", "<C-A>", "copilot#Accept()", { expr = true })
+
+-- Treesitter stuff
+map("n", "<leader>sf", Util.telescope("files", { cwd = false }), { silent = true })
+map("n", "<leader>sF", Util.telescope("files"), { silent = true })

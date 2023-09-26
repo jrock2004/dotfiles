@@ -5,8 +5,14 @@ return {
   },
   opts = {
     pickers = {
+      find_files = {
+        hidden = true,
+        file_ignore_patterns = { "node_modules", ".git" },
+      },
       live_grep = {
-        find_command = { "rg", "--hidden" },
+        additional_args = function(opts)
+          return { "--hidden" }
+        end,
       },
     },
   },
