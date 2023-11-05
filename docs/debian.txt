@@ -6,7 +6,7 @@ cloc
 cmake
 dconf-editor
 discord
-exa
+eza
 fd-find
 fzf
 gcc

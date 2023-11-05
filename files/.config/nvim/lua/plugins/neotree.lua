@@ -1,5 +1,5 @@
 return {
-  'nvim-neo-tree/neo-tree.nvim',
+  "nvim-neo-tree/neo-tree.nvim",
   opts = {
     buffers = {
       follow_current_file = {
@@ -22,8 +22,8 @@ return {
     },
     window = {
       mappings = {
-        ['<C-x>'] = 'open_split',
-        ['<C-v>'] = 'open_vsplit',
+        ["<C-x>"] = "open_split",
+        ["<C-v>"] = "open_vsplit",
       },
     },
   },

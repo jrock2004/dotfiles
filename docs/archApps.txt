@@ -18,7 +18,7 @@ dmenu
 dnsmasq
 dunst
 edk2-ovmf
-exa
+eza
 fd
 ffmpegthumbnailer
 file-roller
