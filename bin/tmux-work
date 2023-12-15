@@ -24,9 +24,9 @@ tmux new-session -ds "Common API" -c ~/Development/library-appshell-apis -n "() 
 tmux new-window -t "Common API": -n "Tests" -c ~/Development/library-appshell-apis
 tmux new-window -t "Common API": -n "Git" -c ~/Development/library-appshell-apis
 tmux next-window -t "Common API":
-tmux new-session -ds "Component Library" -c ~/Development/library-components-beta -n "() => {}"
-tmux new-window -t "Component Library": -n "Tests" -c ~/Development/library-components-beta
-tmux new-window -t "Component Library": -n "Git" -c ~/Development/library-components-beta
+tmux new-session -ds "Component Library" -c ~/Development/library-components -n "() => {}"
+tmux new-window -t "Component Library": -n "Tests" -c ~/Development/library-components
+tmux new-window -t "Component Library": -n "Git" -c ~/Development/library-components
 tmux next-window -t "Component Library":
 tmux new-session -ds "Dotfiles" -c ~/.dotfiles -n "() => {}"
 tmux next-window -t "Dotfiles":
