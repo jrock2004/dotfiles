@@ -1,22 +1,24 @@
-vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
+local autocmd = vim.api.nvim_create_autocmd
+
+autocmd({ 'BufWinEnter' }, {
   callback = function()
     vim.cmd 'set formatoptions-=cro'
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'FileType' }, {
+autocmd({ 'FileType' }, {
   pattern = {
-    'netrw',
+    'DressingSelect',
+    'help',
     'Jaq',
+    'lir',
+    'lspinfo',
+    'man',
+    'netrw',
+    'oil',
     'qf',
     'git',
-    'help',
-    'man',
-    'lspinfo',
-    'oil',
     'spectre_panel',
-    'lir',
-    'DressingSelect',
     'tsplayground',
     '',
   },
@@ -28,32 +30,32 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'CmdWinEnter' }, {
+autocmd({ 'CmdWinEnter' }, {
   callback = function()
     vim.cmd 'quit'
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'VimResized' }, {
+autocmd({ 'VimResized' }, {
   callback = function()
     vim.cmd 'tabdo wincmd ='
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
+autocmd({ 'BufWinEnter' }, {
   pattern = { '*' },
   callback = function()
     vim.cmd 'checktime'
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'TextYankPost' }, {
+autocmd({ 'TextYankPost' }, {
   callback = function()
     vim.highlight.on_yank { higroup = 'Visual', timeout = 40 }
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'FileType' }, {
+autocmd({ 'FileType' }, {
   pattern = { 'gitcommit', 'markdown', 'NeogitCommitMessage' },
   callback = function()
     vim.opt_local.wrap = true
@@ -61,7 +63,7 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'CursorHold' }, {
+autocmd({ 'CursorHold' }, {
   callback = function()
     local status_ok, luasnip = pcall(require, 'luasnip')
     if not status_ok then
@@ -73,4 +75,16 @@ vim.api.nvim_create_autocmd({ 'CursorHold' }, {
       vim.cmd [[silent! lua require("luasnip").unlink_current()]]
     end
   end,
+})
+
+autocmd({ 'BufNewFile', 'BufRead' }, {
+  pattern = { '*.mdx' },
+  callback = function()
+    local buf = vim.api.nvim_get_current_buf()
+
+    vim.opt_local.spell = true
+    vim.opt_local.wrap = true
+    vim.api.nvim_buf_set_option(buf, 'filetype', 'jsx')
+  end,
+  desc = 'Working with mdx files',
 })

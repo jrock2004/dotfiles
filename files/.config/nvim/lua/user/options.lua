@@ -51,3 +51,7 @@ vim.cmd [[set iskeyword+=-]]
 
 vim.g.netrw_banner = 0
 vim.g.netrw_mouse = 2
+
+vim.cmd 'autocmd BufRead *.dockerfile* set filetype=dockerfile'
+vim.cmd 'autocmd BufRead *.env* set filetype=sh'
+vim.cmd 'autocmd BufRead *.handlebars set filetype=handlebars'
