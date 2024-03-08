@@ -4,23 +4,9 @@ local M = {
 }
 
 function M.config()
-  local lspconfig = require 'lspconfig'
-  local tree = require("nvim-tree.api").tree
-  local root_patterns = { ".git" }
-  local root_dir = lspconfig.util.root_pattern(unpack(root_patterns))
-
   local wk = require 'which-key'
   wk.register {
-    ['<leader>e'] = { function ()
-      tree.toggle({
-        update_focused_file = {
-          enable = false,
-          debounce_delay = 15,
-          update_root = false,
-          ignore_list = {},
-        },
-      })
-    end, 'Explorer' },
+    ['<leader>e'] = { '<cmd>NvimTreeToggle<CR>', 'Explorer' },
   }
 
   local icons = require 'user.icons'
