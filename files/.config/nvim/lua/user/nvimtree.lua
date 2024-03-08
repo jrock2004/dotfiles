@@ -13,7 +13,7 @@ function M.config()
 
   require('nvim-tree').setup {
     hijack_netrw = false,
-    sync_root_with_cwd = true,
+    sync_root_with_cwd = false,
     view = {
       relativenumber = true,
     },

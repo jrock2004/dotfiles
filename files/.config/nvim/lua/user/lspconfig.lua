@@ -34,10 +34,9 @@ function M.common_capabilities()
 end
 
 M.toggle_inlay_hints = function()
-  -- vim.lsp.buf.inlay_hint(0, true)
-
   local bufnr = vim.api.nvim_get_current_buf()
-  vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
+
+  vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled(bufnr))
 end
 
 function M.config()
@@ -90,7 +89,7 @@ function M.config()
         { name = 'DiagnosticSignInfo', text = icons.diagnostics.Information },
       },
     },
-    virtual_text = true,
+    virtual_text = false,
     update_in_insert = false,
     underline = true,
     severity_sort = true,
