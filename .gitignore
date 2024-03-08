@@ -1,0 +1,13 @@
+# OS Specific stuff
+.DS_Store
+
+# Node.js
+node_modules
+
+# Project Specific Stuff
+Brewfile.lock.json
+files/.config/github-copilot
+files/.config/gtk-2.0
+files/.config/configstore
+files/.config/zed
+files/.tmux/plugins
