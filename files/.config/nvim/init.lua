@@ -21,7 +21,7 @@ spec 'user.comment'
 spec 'user.lualine'
 spec 'user.navic'
 spec 'user.breadcrumbs'
-spec 'user.harpoon'
+-- spec 'user.harpoon'
 spec 'user.neotest'
 spec 'user.autopairs'
 -- spec 'user.neogit'
@@ -41,10 +41,12 @@ spec 'user.extras.dressing'
 -- spec "user.extras.fidget"
 -- spec "user.extras.gitlinker"
 -- spec "user.extras.lab"
+spec 'user.extras.leap'
 -- spec "user.extras.modicator"
--- spec "user.extras.navbuddy"
+spec "user.extras.navbuddy"
 spec 'user.extras.neoscroll'
 spec 'user.extras.neotab'
+spec 'user.extras.noice'
 -- spec "user.extras.oil"
 -- spec "user.extras.tabby"
 -- spec "user.extras.tabnine"
