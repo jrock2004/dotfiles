@@ -63,19 +63,21 @@ function M.config()
     },
   }
 
+  vim.lsp.set_log_level 'debug'
+
   local lspconfig = require 'lspconfig'
   local icons = require 'user.icons'
 
   local servers = {
-    'lua_ls',
-    'cssls',
-    'html',
-    'tsserver',
-    'eslint',
-    'tsserver',
-    'pyright',
     'bashls',
+    'cssls',
+    'eslint',
+    'html',
     'jsonls',
+    'lua_ls',
+    'pyright',
+    'tailwindcss',
+    'tsserver',
     'yamlls',
   }
 
