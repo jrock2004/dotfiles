@@ -76,6 +76,7 @@ setupDirectories() {
     printBottomBorder
 
     mkdir -p "$HOME/Development"
+    mkdir -p "$HOME/.tmux/plugins"
 
     # if [ "$USE_DESKTOP_ENV" = FALSE ]; then
     #     mkdir -p "$HOME/Pictures"
@@ -173,6 +174,14 @@ setupStow() {
     fi
 }
 
+setupTmux() {
+    printTopBorder
+    echo "Setting up tmux plugin manager"
+    printBottomBorder
+
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+}
+
 setupVolta() {
     printTopBorder
     echo "Going to use Volta for managing node versions"
@@ -217,6 +226,7 @@ setupForMac() {
     setupRust
     setupStow
     setupShell
+    setupTmux
     setupVolta
 
     # disables the hold key menu to allow key repeat
