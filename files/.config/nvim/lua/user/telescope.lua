@@ -69,9 +69,9 @@ function M.config()
 
       find_files = {
         theme = 'dropdown',
-        file_ignore_patterns = { "node_modules", ".git" },
+        file_ignore_patterns = { 'node_modules', 'git/' },
         hidden = true,
-        previewer = false,
+        previewer = true,
       },
 
       buffers = {

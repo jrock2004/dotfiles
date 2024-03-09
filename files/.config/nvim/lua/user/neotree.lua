@@ -51,51 +51,38 @@ function M.config()
         enabled = true,
       },
     },
-    -- close_if_last_window = true,
-    -- hijack_netrw = false,
-    -- open_on_setup = false,
-    -- auto_close = true,
-    -- update_to_buf_dir = {
-    --   enable = true,
-    --   auto_open = true,
-    -- },
-    -- view = {
-    --   width = 30,
-    --   side = 'left',
-    --   auto_resize = true,
-    -- },
-    -- ignore = { '.git', '.cache', '.local', '.npm', '.rustup', '.stack', '.svn', '.vscode', '.yarn' },
-    -- tree = {
-    --   show_icons = {
-    --     git = false,
-    --     folders = true,
-    --     files = true,
-    --   },
-    --   icons = {
-    --     default = icons.ui.Text,
-    --     symlink = icons.ui.FileSymlink,
-    --     bookmark = icons.ui.BookMark,
-    --     folder = {
-    --       arrow_closed = icons.ui.ChevronRight,
-    --       arrow_open = icons.ui.ChevronShortDown,
-    --       default = icons.ui.Folder,
-    --       open = icons.ui.FolderOpen,
-    --       empty = icons.ui.EmptyFolder,
-    --       empty_open = icons.ui.EmptyFolderOpen,
-    --       symlink = icons.ui.FolderSymlink,
-    --       symlink_open = icons.ui.FolderOpen,
-    --     },
-    --     git = {
-    --       unstaged = icons.git.FileUnstaged,
-    --       staged = icons.git.FileStaged,
-    --       unmerged = icons.git.FileUnmerged,
-    --       renamed = icons.git.FileRenamed,
-    --       untracked = icons.git.FileUntracked,
-    --       deleted = icons.git.FileDeleted,
-    --       ignored = icons.git.FileIgnored,
-    --     },
-    --   },
-    -- },
+    default_component_configs = {
+      icon = {
+        folder_closed = icons.ui.Folder,
+        folder_open = icons.ui.FolderOpen,
+        folder_empty = icons.ui.EmptyFolder,
+        -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
+        -- then these will never be used.
+        default = '*',
+        highlight = 'NeoTreeFileIcon',
+      },
+      git_status = {
+        symbols = {
+          -- Change type
+          added = icons.git.LineAdded, -- or "✚", but this is redundant info if you use git_status_colors on the name
+          modified = icons.git.LineModified, -- or "", but this is redundant info if you use git_status_colors on the name
+          deleted = icons.git.FileDeleted, -- this can only be used in the git_status source
+          renamed = icons.git.FileRenamed, -- this can only be used in the git_status source
+          -- Status type
+          untracked = icons.git.FileUntracked,
+          ignored = icons.git.FileIgnored,
+          unstaged = icons.git.FileUnstaged,
+          staged = icons.git.FileStaged,
+          conflict = '',
+        },
+      },
+    },
+    window = {
+      mappings = {
+        ['<C-x>'] = 'open_split',
+        ['<C-v>'] = 'open_vsplit',
+      },
+    },
   }
 end
 
