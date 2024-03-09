@@ -22,7 +22,7 @@ function M.config()
       enabled = true,
       auto_trigger = true,
       keymap = {
-        accept = '<c-l>',
+        accept = '<m-l>',
         next = '<c-j>',
         prev = '<c-k>',
         dismiss = '<c-h>',
