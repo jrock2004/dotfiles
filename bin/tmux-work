@@ -1,48 +1,27 @@
 #!/usr/bin/env bash
 
-# tmux new-session -ds "Appshell Service" -c ~/Development/library-appshell-service -n "() => {}"
-# tmux new-window -t "Appshell Service": -n "Tests" -c ~/Development/library-appshell-service
-# tmux new-window -t "Appshell Service": -n "Git" -c ~/Development/library-appshell-service
-# tmux next-window -t "Appshell Service":
-# tmux new-session -ds "Calendar" -c ~/Development/calendar -n "() => {}"
-# tmux new-window -t "Calendar": -n "Tests"
-# tmux new-window -t "Calendar": -n "Git" -c ~/Development/calendar
-# tmux next-window -t "Calendar":
-tmux new-session -ds "Calendar Widget" -c ~/Development/calendar-widgets -n "() => {}"
-tmux new-window -t "Calendar Widget": -n "Tests"
-tmux new-window -t "Calendar Widget": -n "Git" -c ~/Development/calendar-widgets
-tmux next-window -t "Calendar Widget":
-# tmux new-session -ds "Class Checkin" -c ~/Development/class-check-in -n "() => {}"
-# tmux new-window -t "Class Checkin": -n "Tests" -c ~/Development/class-check-in
-# tmux new-window -t "Class Checkin": -n "Git" -c ~/Development/class-check-in
-# tmux next-window -t "Class Checkin":
-tmux new-session -ds "Client Search Organism" -c ~/Development/organism-clientsearch -n "() => {}"
-tmux new-window -t "Client Search Organism": -n "Tests" -c ~/Development/organism-clientsearch
-tmux new-window -t "Client Search Organism": -n "Git" -c ~/Development/organism-clientsearch
-tmux next-window -t "Client Search Organism":
+tmux new-session -ds "Appshell Service" -c ~/Development/library-appshell-service -n "() => {}"
+tmux new-window -t "Appshell Service": -n "Tests" -c ~/Development/library-appshell-service
+tmux new-window -t "Appshell Service": -n "Git" -c ~/Development/library-appshell-service
+
+tmux new-session -ds "Client Profile Tabs" -c ~/Development/client-profile-tabs -n "() => {}"
+tmux new-window -t "Client Profile Tabs": -n "Tests" -c ~/Development/client-profile-tabs
+tmux new-window -t "Client Profile Tabs": -n "Git" -c ~/Development/client-profile-tabs
+
 tmux new-session -ds "Common API" -c ~/Development/library-appshell-apis -n "() => {}"
 tmux new-window -t "Common API": -n "Tests" -c ~/Development/library-appshell-apis
 tmux new-window -t "Common API": -n "Git" -c ~/Development/library-appshell-apis
-tmux next-window -t "Common API":
+
 tmux new-session -ds "Component Library" -c ~/Development/library-components -n "() => {}"
 tmux new-window -t "Component Library": -n "Tests" -c ~/Development/library-components
 tmux new-window -t "Component Library": -n "Git" -c ~/Development/library-components
-tmux next-window -t "Component Library":
+
 tmux new-session -ds "Dotfiles" -c ~/.dotfiles -n "() => {}"
-tmux next-window -t "Dotfiles":
-tmux new-session -ds "E2e Automation" -c ~/Development/tools-e2e-automation -n "() => {}"
-tmux new-window -t "E2e Automation": -n "Tests" -c ~/Development/tools-e2e-automation
-tmux new-window -t "E2e Automation": -n "Git" -c ~/Development/tools-e2e-automation
-tmux next-window -t "E2e Automation":
+
 tmux new-session -ds "Nextjs Framework" -c ~/Development/next-foundation -n "() => {}"
 tmux new-window -t "Nextjs Framework": -n "Tests" -c ~/Development/next-foundation
 tmux new-window -t "Nextjs Framework": -n "Git" -c ~/Development/next-foundation
-tmux next-window -t "Nextjs Framework":
-tmux new-session -ds "Online Booking" -c ~/Development/consumer-online-booking -n "() => {}"
-tmux new-window -t "Online Booking": -n "Tests" -c ~/Development/consumer-online-booking
-tmux new-window -t "Online Booking": -n "Git" -c ~/Development/consumer-online-booking
-tmux next-window -t "Online Booking":
+
 tmux new-session -ds "React Core" -c ~/Development/react-core -n "() => {}"
 tmux new-window -t "React Core": -n "Tests" -c ~/Development/react-core
 tmux new-window -t "React Core": -n "Git" -c ~/Development/react-core
-tmux next-window -t "React Core":

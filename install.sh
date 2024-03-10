@@ -243,7 +243,7 @@ setupForMac() {
 # INIT OF APPLICATION
 ###########################################
 
-# initialQuestions
+initialQuestions
 
 if [ "$OS" = "mac" ]; then
     setupForMac
