@@ -2,8 +2,8 @@ local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- keymap("n", "<Space>", "", opts)
-vim.g.mapleader = ','
-vim.g.maplocalleader = ','
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 keymap('n', '<C-i>', '<C-i>', opts)
 
@@ -44,4 +44,4 @@ keymap({ 'n', 'x' }, 'k', 'gk', opts)
 keymap('n', '<leader>w', ':lua vim.wo.wrap = not vim.wo.wrap<CR>', opts)
 
 vim.api.nvim_set_keymap('t', '<C-;>', '<C-\\><C-n>', opts)
-keymap('n', '<leader>,', '<cmd>:w<CR>')
+keymap('n', '<leader><leader>', '<cmd>:w<CR>')
