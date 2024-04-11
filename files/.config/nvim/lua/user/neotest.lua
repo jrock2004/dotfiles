@@ -8,6 +8,7 @@ local M = {
     -- language specific tests
     'nvim-neotest/neotest-jest',
     'marilari88/neotest-vitest',
+    'nvim-neotest/nvim-nio',
     -- 'nvim-neotest/neotest-python',
     -- 'nvim-neotest/neotest-plenary',
     -- "thenbe/neotest-playwright",
