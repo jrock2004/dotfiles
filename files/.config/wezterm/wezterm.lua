@@ -30,7 +30,7 @@ return {
     },
   },
   warn_about_missing_glyphs = true,
-  font_size = 14,
+  font_size = 18,
   line_height = 1.0,
   dpi = 96.0,
 
@@ -65,5 +65,5 @@ return {
 
   colors = {
     background = '#1e1e1e',
-  }
+  },
 }
