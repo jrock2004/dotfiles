@@ -44,10 +44,10 @@ return {
   bold_brightens_ansi_colors = true,
   -- Padding
   window_padding = {
-    left = 25,
-    right = 25,
-    top = 25,
-    bottom = 25,
+    left = 10,
+    right = 10,
+    top = 10,
+    bottom = 10,
   },
 
   -- Tab Bar
@@ -59,9 +59,10 @@ return {
   -- General
   automatically_reload_config = true,
   inactive_pane_hsb = { saturation = 1.0, brightness = 1.0 },
-  window_background_opacity = 1,
+  window_background_opacity = 0.9,
   window_close_confirmation = 'NeverPrompt',
   window_frame = { active_titlebar_bg = '#45475a', font = font_with_fallback(font_name, { bold = true }) },
+  window_decorations = 'RESIZE',
 
   colors = {
     background = '#1e1e1e',

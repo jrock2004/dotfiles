@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
 source "$DOTFILES/zsh/utils.zsh"
 
@@ -84,6 +91,7 @@ elif dotfiles::exists pacman ; then
 fi
 
 alias grep='grep --color=auto'
+alias ls='eza --color=always --icons=always'
 alias ios='open -a /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 alias clsym="find -L . -name . -o -type d -prune -o -type l -exec rm {} +"
@@ -101,6 +109,12 @@ alias npmpackages='volta install @lifeart/ember-language-server @tailwindcss/lan
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PNPM_HOME="$HOME/Library/pnpm"
   export PATH="$PNPM_HOME:$PATH"
+
+  source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+
+  # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+  [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 else
   export PNPM_HOME="$HOME/.config/pnpm"
 fi
@@ -112,3 +126,4 @@ fi
 # Stow aliases
 alias sync='stow --ignore ".DS_Store" -v -R -t ~ -d "$DOTFILES" files'
 alias unsync='stow --ignore ".DS_Store" -v -D -t ~ -d "$DOTFILES" files'
+
