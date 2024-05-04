@@ -4,6 +4,9 @@
 # Node.js
 node_modules
 
+# Tmux
+tmux-client*
+
 # Project Specific Stuff
 Brewfile.lock.json
 files/.config/github-copilot
