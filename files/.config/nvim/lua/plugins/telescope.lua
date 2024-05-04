@@ -4,6 +4,7 @@ return {
   "nvim-telescope/telescope.nvim",
   keys = {
     { "<leader>,", false },
+    { "<leader><space>", false },
     { "<leader>sf", Util.telescope("files", { cwd = false }), desc = "Search for files" },
     { "<leader>sF", Util.telescope("files", { silent = true }), desc = "Search for files monorepo" },
   },
