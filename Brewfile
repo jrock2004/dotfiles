@@ -15,7 +15,7 @@ cask "font-source-code-pro"
 cask "font-symbols-only-nerd-font"
 cask "font-victor-mono"
 
-cask alacritty
+cask "alacritty"
 cask "brave-browser"
 cask "discord"
 cask "kitty"
