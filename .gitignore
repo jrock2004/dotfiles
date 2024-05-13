@@ -9,8 +9,9 @@ tmux-client*
 
 # Project Specific Stuff
 Brewfile.lock.json
+files/.config/configstore
 files/.config/github-copilot
 files/.config/gtk-2.0
-files/.config/configstore
+files/.config/raycast
 files/.config/zed
 files/.tmux/plugins
