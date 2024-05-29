@@ -1,27 +1,27 @@
 #!/usr/bin/env bash
 
 tmux new-session -ds "Appshell Service" -c ~/Development/library-appshell-service -n "() => {}"
-tmux new-window -t "Appshell Service": -n "Tests" -c ~/Development/library-appshell-service
-tmux new-window -t "Appshell Service": -n "Git" -c ~/Development/library-appshell-service
+tmux new-window -d -t "Appshell Service": -n "Tests" -c ~/Development/library-appshell-service
+tmux new-window -d -t "Appshell Service": -n "Git" -c ~/Development/library-appshell-service
 
 tmux new-session -ds "Client Profile Tabs" -c ~/Development/client-profile-tabs -n "() => {}"
-tmux new-window -t "Client Profile Tabs": -n "Tests" -c ~/Development/client-profile-tabs
-tmux new-window -t "Client Profile Tabs": -n "Git" -c ~/Development/client-profile-tabs
+tmux new-window -d -t "Client Profile Tabs": -n "Tests" -c ~/Development/client-profile-tabs
+tmux new-window -d -t "Client Profile Tabs": -n "Git" -c ~/Development/client-profile-tabs
 
 tmux new-session -ds "Common API" -c ~/Development/library-appshell-apis -n "() => {}"
-tmux new-window -t "Common API": -n "Tests" -c ~/Development/library-appshell-apis
-tmux new-window -t "Common API": -n "Git" -c ~/Development/library-appshell-apis
+tmux new-window -d -t "Common API": -n "Tests" -c ~/Development/library-appshell-apis
+tmux new-window -d -t "Common API": -n "Git" -c ~/Development/library-appshell-apis
 
 tmux new-session -ds "Component Library" -c ~/Development/library-components -n "() => {}"
-tmux new-window -t "Component Library": -n "Tests" -c ~/Development/library-components
-tmux new-window -t "Component Library": -n "Git" -c ~/Development/library-components
+tmux new-window -d -t "Component Library": -n "Tests" -c ~/Development/library-components
+tmux new-window -d -t "Component Library": -n "Git" -c ~/Development/library-components
 
 tmux new-session -ds "Dotfiles" -c ~/.dotfiles -n "() => {}"
 
 tmux new-session -ds "Nextjs Framework" -c ~/Development/next-foundation -n "() => {}"
-tmux new-window -t "Nextjs Framework": -n "Tests" -c ~/Development/next-foundation
-tmux new-window -t "Nextjs Framework": -n "Git" -c ~/Development/next-foundation
+tmux new-window -d -t "Nextjs Framework": -n "Tests" -c ~/Development/next-foundation
+tmux new-window -d -t "Nextjs Framework": -n "Git" -c ~/Development/next-foundation
 
 tmux new-session -ds "React Core" -c ~/Development/react-core -n "() => {}"
-tmux new-window -t "React Core": -n "Tests" -c ~/Development/react-core
-tmux new-window -t "React Core": -n "Git" -c ~/Development/react-core
+tmux new-window -d -t "React Core": -n "Tests" -c ~/Development/react-core
+tmux new-window -d -t "React Core": -n "Git" -c ~/Development/react-core
