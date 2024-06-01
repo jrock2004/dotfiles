@@ -91,7 +91,8 @@ elif dotfiles::exists pacman ; then
 fi
 
 alias grep='grep --color=auto'
-alias ls='eza --color=always --icons=always'
+alias ls='eza -lah --git --no-permissions --no-filesize --no-user --icons=always $@'
+alias ll='eza --icons=always'
 alias ios='open -a /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
 alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
 alias clsym="find -L . -name . -o -type d -prune -o -type l -exec rm {} +"
