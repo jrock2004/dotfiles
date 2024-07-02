@@ -30,7 +30,9 @@ return {
     },
   },
   warn_about_missing_glyphs = true,
-  font_size = 18,
+  -- When not connected to external monitor
+  -- font_size = 18,
+  font_size = 16,
   line_height = 1.0,
   dpi = 96.0,
 
