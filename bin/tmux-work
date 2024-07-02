@@ -1,27 +1,50 @@
 #!/usr/bin/env bash
 
-tmux new-session -ds "Appshell Service" -c ~/Development/library-appshell-service -n "() => {}"
-tmux new-window -d -t "Appshell Service": -n "Tests" -c ~/Development/library-appshell-service
-tmux new-window -d -t "Appshell Service": -n "Git" -c ~/Development/library-appshell-service
+#######################################
+## Using multiple windows            ##
+#######################################
 
-tmux new-session -ds "Client Profile Tabs" -c ~/Development/client-profile-tabs -n "() => {}"
-tmux new-window -d -t "Client Profile Tabs": -n "Tests" -c ~/Development/client-profile-tabs
-tmux new-window -d -t "Client Profile Tabs": -n "Git" -c ~/Development/client-profile-tabs
+# tmux new-session -ds "Appshell Service" -c ~/Development/library-appshell-service -n "() => {}"
+# tmux new-window -d -t "Appshell Service": -n "Tests" -c ~/Development/library-appshell-service
+# tmux new-window -d -t "Appshell Service": -n "Git" -c ~/Development/library-appshell-service
+#
+# tmux new-session -ds "Client Profile Tabs" -c ~/Development/client-profile-tabs -n "() => {}"
+# tmux new-window -d -t "Client Profile Tabs": -n "Tests" -c ~/Development/client-profile-tabs
+# tmux new-window -d -t "Client Profile Tabs": -n "Git" -c ~/Development/client-profile-tabs
+#
+# tmux new-session -ds "Common API" -c ~/Development/library-appshell-apis -n "() => {}"
+# tmux new-window -d -t "Common API": -n "Tests" -c ~/Development/library-appshell-apis
+# tmux new-window -d -t "Common API": -n "Git" -c ~/Development/library-appshell-apis
+#
+# tmux new-session -ds "Component Library" -c ~/Development/library-components -n "() => {}"
+# tmux new-window -d -t "Component Library": -n "Tests" -c ~/Development/library-components
+# tmux new-window -d -t "Component Library": -n "Git" -c ~/Development/library-components
+#
+# tmux new-session -ds "Dotfiles" -c ~/.dotfiles -n "() => {}"
+#
+# tmux new-session -ds "Nextjs Framework" -c ~/Development/next-foundation -n "() => {}"
+# tmux new-window -d -t "Nextjs Framework": -n "Tests" -c ~/Development/next-foundation
+# tmux new-window -d -t "Nextjs Framework": -n "Git" -c ~/Development/next-foundation
+#
+# tmux new-session -ds "React Core" -c ~/Development/react-core -n "() => {}"
+# tmux new-window -d -t "React Core": -n "Tests" -c ~/Development/react-core
+# tmux new-window -d -t "React Core": -n "Git" -c ~/Development/react-core
 
-tmux new-session -ds "Common API" -c ~/Development/library-appshell-apis -n "() => {}"
-tmux new-window -d -t "Common API": -n "Tests" -c ~/Development/library-appshell-apis
-tmux new-window -d -t "Common API": -n "Git" -c ~/Development/library-appshell-apis
-
-tmux new-session -ds "Component Library" -c ~/Development/library-components -n "() => {}"
-tmux new-window -d -t "Component Library": -n "Tests" -c ~/Development/library-components
-tmux new-window -d -t "Component Library": -n "Git" -c ~/Development/library-components
+#######################################
+## Using new way of thinking         ##
+#######################################
 
 tmux new-session -ds "Dotfiles" -c ~/.dotfiles -n "() => {}"
+tmux split-window -h -d -t "Dotfiles" '/usr/bin/env sh -c "lazygit"'
+
+tmux new-session -ds "Component Library" -c ~/Development/library-components -n "() => {}"
+tmux split-window -h -t "Component Library"
+tmux split-window -d -t "Component Library" '/usr/bin/env sh -c "lazygit"'
+tmux select-pane -l -t "Component Library"
 
 tmux new-session -ds "Nextjs Framework" -c ~/Development/next-foundation -n "() => {}"
-tmux new-window -d -t "Nextjs Framework": -n "Tests" -c ~/Development/next-foundation
-tmux new-window -d -t "Nextjs Framework": -n "Git" -c ~/Development/next-foundation
+tmux split-window -h -t "Nextjs Framework"
+tmux split-window -d -t "Nextjs Framework" '/usr/bin/env sh -c "lazygit"'
+tmux select-pane -l -t "Nextjs Framework"
 
-tmux new-session -ds "React Core" -c ~/Development/react-core -n "() => {}"
-tmux new-window -d -t "React Core": -n "Tests" -c ~/Development/react-core
-tmux new-window -d -t "React Core": -n "Git" -c ~/Development/react-core
+tm
