@@ -38,3 +38,4 @@ yabai -m mouse_drop_action swap
 # disable specific apps
 yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^zoom.us$" manage=off
+yabai -m rule --add app="OBS" manage=off
