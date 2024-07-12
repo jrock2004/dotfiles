@@ -219,6 +219,8 @@ setupForMac() {
         echo "Code is not in path so extensions are not installed"
     fi
 
+    curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v1.0.16/sketchybar-app-font.ttf -o $HOME/Library/Fonts/sketchybar-app-font.ttf
+
     setupDirectories
     setupFzf
     setupLua

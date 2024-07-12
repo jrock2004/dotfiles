@@ -1,7 +1,7 @@
 local wezterm = require 'wezterm'
 
 local function font_with_fallback(name, params)
-  local names = { name, 'Apple Color Emoji', 'azuki_font', 'FiraMono Nerd Font', 'JetBrains Mono' }
+  local names = { name, 'Apple Color Emoji', 'azuki_font', 'FiraMono Nerd Font', 'JetBrains Mono', 'SF Pro' }
   return wezterm.font_with_fallback(names, params)
 end
 
