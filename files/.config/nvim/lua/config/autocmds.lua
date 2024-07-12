@@ -3,91 +3,91 @@
 -- Add any additional autocmds here
 local autocmd = vim.api.nvim_create_autocmd
 
-autocmd({ 'BufWinEnter' }, {
+autocmd({ "BufWinEnter" }, {
   callback = function()
-    vim.cmd 'set formatoptions-=cro'
+    vim.cmd("set formatoptions-=cro")
   end,
 })
 
-autocmd({ 'FileType' }, {
+autocmd({ "FileType" }, {
   pattern = {
-    'DressingSelect',
-    'help',
-    'Jaq',
-    'lir',
-    'lspinfo',
-    'man',
-    'netrw',
-    'oil',
-    'qf',
-    'git',
-    'spectre_panel',
-    'tsplayground',
-    '',
+    "DressingSelect",
+    "help",
+    "Jaq",
+    "lir",
+    "lspinfo",
+    "man",
+    "netrw",
+    "oil",
+    "qf",
+    "git",
+    "spectre_panel",
+    "tsplayground",
+    "",
   },
   callback = function()
-    vim.cmd [[
+    vim.cmd([[
       nnoremap <silent> <buffer> q :close<CR>
       set nobuflisted
-    ]]
+    ]])
   end,
 })
 
-autocmd({ 'CmdWinEnter' }, {
+autocmd({ "CmdWinEnter" }, {
   callback = function()
-    vim.cmd 'quit'
+    vim.cmd("quit")
   end,
 })
 
-autocmd({ 'VimResized' }, {
+autocmd({ "VimResized" }, {
   callback = function()
-    vim.cmd 'tabdo wincmd ='
+    vim.cmd("tabdo wincmd =")
   end,
 })
 
-autocmd({ 'BufWinEnter' }, {
-  pattern = { '*' },
+autocmd({ "BufWinEnter" }, {
+  pattern = { "*" },
   callback = function()
-    vim.cmd 'checktime'
+    vim.cmd("checktime")
   end,
 })
 
-autocmd({ 'TextYankPost' }, {
+autocmd({ "TextYankPost" }, {
   callback = function()
-    vim.highlight.on_yank { higroup = 'Visual', timeout = 40 }
+    vim.highlight.on_yank({ higroup = "Visual", timeout = 40 })
   end,
 })
 
-autocmd({ 'FileType' }, {
-  pattern = { 'gitcommit', 'markdown', 'NeogitCommitMessage' },
+autocmd({ "FileType" }, {
+  pattern = { "gitcommit", "markdown", "NeogitCommitMessage" },
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
   end,
 })
 
-autocmd({ 'CursorHold' }, {
+autocmd({ "CursorHold" }, {
   callback = function()
-    local status_ok, luasnip = pcall(require, 'luasnip')
+    local status_ok, luasnip = pcall(require, "luasnip")
     if not status_ok then
       return
     end
     if luasnip.expand_or_jumpable() then
       -- ask maintainer for option to make this silent
       -- luasnip.unlink_current()
-      vim.cmd [[silent! lua require("luasnip").unlink_current()]]
+      vim.cmd([[silent! lua require("luasnip").unlink_current()]])
     end
   end,
 })
 
-autocmd({ 'BufNewFile', 'BufRead' }, {
-  pattern = { '*.mdx' },
+autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = { "*.mdx" },
   callback = function()
     local buf = vim.api.nvim_get_current_buf()
 
     vim.opt_local.spell = true
     vim.opt_local.wrap = true
-    vim.api.nvim_buf_set_option(buf, 'filetype', 'jsx')
+    vim.api.nvim_set_option_value("filetype", "jsx", { buf = buf })
   end,
-  desc = 'Working with mdx files',
+  desc = "Working with mdx files",
 })

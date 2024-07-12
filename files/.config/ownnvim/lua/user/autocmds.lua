@@ -84,7 +84,7 @@ autocmd({ 'BufNewFile', 'BufRead' }, {
 
     vim.opt_local.spell = true
     vim.opt_local.wrap = true
-    vim.api.nvim_buf_set_option(buf, 'filetype', 'jsx')
+    vim.api.nvim_set_option_value('filetype', 'jsx', { buf = buf })
   end,
   desc = 'Working with mdx files',
 })
