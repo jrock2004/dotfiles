@@ -19,10 +19,10 @@ yabai -m config insert_feedback_color 0xFFA3BE8C
 # -- mouse settings --
 
 # center mouse on window with focus
-yabai -m config mouse_follows_focus on
+yabai -m config mouse_follows_focus off
 
 # mouse follows focus when window is moved
-yabai -m config focus_follows_mouse autoraise
+# yabai -m config focus_follows_mouse autoraise
 
 # modifier for clicking and dragging with mouse
 yabai -m config mouse_modifier alt
