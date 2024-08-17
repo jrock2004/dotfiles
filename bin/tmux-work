@@ -35,16 +35,15 @@
 #######################################
 
 tmux new-session -ds "Dotfiles" -c ~/.dotfiles -n "() => {}"
-tmux split-window -h -d -t "Dotfiles" '/usr/bin/env sh -c "lazygit"'
+# tmux split-window -h -d -t "Dotfiles" '/usr/bin/env sh -c "lazygit"'
 
 tmux new-session -ds "Component Library" -c ~/Development/library-components -n "() => {}"
-tmux split-window -h -t "Component Library"
-tmux split-window -d -t "Component Library" '/usr/bin/env sh -c "lazygit"'
+tmux split-window -h -d -t "Component Library" -c ~/Development/library-components
 tmux select-pane -l -t "Component Library"
 
 tmux new-session -ds "Nextjs Framework" -c ~/Development/next-foundation -n "() => {}"
-tmux split-window -h -t "Nextjs Framework"
-tmux split-window -d -t "Nextjs Framework" '/usr/bin/env sh -c "lazygit"'
+tmux split-window -h -d -t "Nextjs Framework" -c ~/Development/next-foundation -n "() => {}"
 tmux select-pane -l -t "Nextjs Framework"
+# tmux split-window -d -t "Nextjs Framework" '/usr/bin/env sh -c "lazygit"'
 
 tm
