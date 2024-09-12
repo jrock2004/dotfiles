@@ -28,6 +28,8 @@
 
   forget = "!git fetch -p origin && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D"
 
+  count = git branch -r | wc -l
+
   # gh commands
   browse = "!gh repo view --web"
 [init]
