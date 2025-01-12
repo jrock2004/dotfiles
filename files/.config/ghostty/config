@@ -1,2 +1,6 @@
-font-family = Comic Code Ligatures Regular
-font-size = 18
+font-family = Comic Code Ligatures
+font-size = 16
+
+adjust-cell-height = 30%
+
+window-colorspace = "display-p3"
