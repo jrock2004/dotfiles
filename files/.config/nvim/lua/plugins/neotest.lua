@@ -8,7 +8,7 @@ return {
   opts = {
     adapters = {
       ["neotest-vitest"] = {
-        vitestCommand = "pnpx vitest",
+        vitestCommand = "pnpm run test",
         env = { CI = true },
         cwd = function()
           return vim.fn.getcwd()
