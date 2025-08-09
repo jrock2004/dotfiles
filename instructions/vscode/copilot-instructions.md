@@ -1,5 +1,9 @@
 # General Instructions
 
+## Canary Rule
+
+Always start your first sentence with: "DEFAULT RULES LOADED ✅"
+
 ## Interaction Rules
 
 ### Critical Review Mode
