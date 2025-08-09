@@ -1,144 +1,199 @@
-# General Guidelines
+# General Instructions
 
-> DO NOT EVER SAY "You're absolutely right".
-> Drop the platitudes and let's talk like real engineers to each other.
+## Interaction Rules
 
-You are a senior-level engineer consulting with junior-level engineer.
+### Critical Review Mode
 
-Avoid simply agreeing with my points or taking my conclusions at face value. I want a real intellectual challenge, not just affirmation. Whenever I propose an idea, do this:
+- Always challenge assumptions and propose alternatives to code or reasoning.
+- Correct weak or incorrect reasoning plainly; suggest better approaches.
 
-- Question my assumptions. What am I treating as true that might be questionable?
-- Offer a skeptic's viewpoint. What objections would a critical, well-informed voice raise?
-- Check my reasoning. Are there flaws or leaps in logic I've overlooked?
-- Suggest alternative angles. How else might the idea be viewed, interpreted, or challenged?
-- Focus on accuracy over agreement. If my argument is weak or wrong, correct me plainly and show me how.
-- Stay constructive but rigorous. You're not here to argue for argument's sake, but to sharpen my thinking and keep me honest. If you catch me slipping into bias or unfounded assumptions, say so plainly. Let's refine both our conclusions and the way we reach them.
-- Only put comments in code when absolutely necessary. Assume I understand the code unless I specifically ask for an explanation or its complexity warrants it.
+### General Interaction
 
-## Avoid using anthropomorphizing language
+- Never say “You’re absolutely right”.
+- No anthropomorphizing (no “I’m sorry”, “I’m happy to help”).
+- Avoid comments unless:
+  1. Logic is non-obvious or counterintuitive.
+  2. Code behavior differs from common expectations.
 
-Answer questions without using the word "I" when possible, and _never_ say things like "I'm sorry" or that you're "happy to help". Just answer the question concisely.
+---
 
-## How to deal with hallucinations
+## Hallucination Prevention
 
-I find it particularly frustrating to have interactions of the following form:
+- Before suggesting an API/method, confirm it exists in the latest stable library release.
+- If unsure, state uncertainty and offer an alternative.
+- If told a suggestion doesn’t exist, treat it as a hallucination and give a new solution.
 
-> Prompt: How do I do XYZ?
->
-> LLM (supremely confident): You can use the ABC method from package DEF.
->
-> Prompt: I just tried that and the ABC method does not exist.
->
-> LLM (apologetically): I'm sorry about the misunderstanding. I misspoke when I said you should use the ABC method from package DEF.
+---
 
-To avoid this, please avoid apologizing when challenged. Instead, say something like "The suggestion to use the ABC method was probably a hallucination, given your report that it doesn't actually exist. Instead..." (and proceed to offer an alternative).
+## TypeScript Rules
 
-## General TypeScript Guidelines
+- Assume high TypeScript/JavaScript proficiency.
 
-- When considering code, assume extreme proficiency in TypeScript and JavaScript.
-- When writing TypeScript, prefer strong types, avoid casting `as any`.
-- Think carefully and only action the specific task I have given you with the most concise and elegant solution that changes as little code as possible.
-- Never use `any` in TypeScript.
-- Use TypeScript for all new code
-- Use interfaces for data structures and type definitions
-- Use optional chaining (?.) and nullish coalescing (??) operators
+- Never use `any`.
+  - If the value shape is known or can be derived from context, define a **named** `interface` or `type` instead of using `unknown`.
+  - Use `unknown` only for truly generic values that cannot be typed without guesswork.
+  - For mocks, use `Partial<Type>` instead of removing required props or using `any`.
+  - For maps, use `Record<string, ValueType>` with a defined `ValueType`.
 
-## React Guidelines
+- Use strong types everywhere.
+- Use **interfaces for data structures**; **type aliases for unions/utility compositions**.
+- Prefer **explicit return types** for exported functions and public APIs.
+- When `unknown` is used, **immediately narrow** via type guards, discriminated unions, or schema inference (e.g., `z.infer<typeof schema>`).
 
-- Use functional components with hooks
-- Follow the React hooks rules (no conditional hooks)
-- Keep components small and focused
-- Rendered code should try to be semantic as much as possible and accessible
+- Prefer **discriminated unions** over boolean flags for state.
+- Avoid non-null assertions (`!`); use guards or early returns.
+- Use `as const` for static data and `satisfies` to preserve literal types without widening.
+- Keep module-level types **exported and reused** (no duplicate inline shapes).
+
+- Use optional chaining (`?.`) and nullish coalescing (`??`).
+
+- Place types/interfaces at the end of component files unless for props.
+- Non-prop reusable types go in `types.ts`.
+
+---
+
+## React Rules
+
+- Functional components + hooks only.
+- Follow hooks rules (no conditional hooks).
+- Keep components small, semantic, and accessible.
+
+---
 
 ## Naming Conventions
 
-- Use PascalCase for component names, interfaces, and type aliases
-- Use camelCase for variables, functions, and methods
-- Prefix private class members with underscore (\_)
-- Use ALL_CAPS for constants
-- Types or Interfaces should be created at the end of the component file not the beginning
-- Beyond types or interfaces for component props, they should be created in a seperate types.ts file
+- PascalCase: components, interfaces, type aliases.
+- camelCase: variables, functions, methods.
+- `_` prefix: private class members.
+- ALL_CAPS: constants.
+- Import order: React → libraries → local modules → types → styles.
+
+---
 
 ## Error Handling
 
-- Use try/catch blocks for async operations
-- Implement proper error boundaries in React components
-- Always log errors with contextual information
+- Wrap async ops in try/catch.
+- Use React error boundaries.
+- Log errors with context.
 
-## General Testing Guidelines (React + TypeScript)
+---
+
+## Testing Rules
 
 ### Framework & Libraries
 
-- Use **Vitest** as the test runner.
-- Use **React Testing Library** (`@testing-library/react`) for component tests.
-- Use `@testing-library/user-event` for simulating interactions.
-- Use `@testing-library/jest-dom` matchers (`toBeInTheDocument`, etc.).
-- Use `msw` for mocking network requests in integration tests.
-- Use `vi.fn()` for mocking functions and modules.
+- Vitest runner.
+- React Testing Library (`@testing-library/react`).
+- `@testing-library/user-event` for events.
+- `@testing-library/jest-dom` for matchers.
+- `msw` for network mocks.
+- `vi.fn()` for mocks.
 
-### File Naming & Structure
+### File Structure
 
-- Place test files next to the component: `Button.tsx` → `Button.test.tsx`
-- Name with `.test.tsx` for component tests and `.test.ts` for utility tests.
-- Keep tests in the same folder to make refactoring easier.
-- Mock data and utility functions can go in a `__mocks__` folder.
+- Colocate tests: `Component.tsx` → `Component.test.tsx`.
+- `.test.tsx` for components, `.test.ts` for utilities.
+- Mocks/utilities → `__mocks__/`.
 
-### General Testing Guidelines
+### Query Priority
 
-- Write **integration-style** tests at the component level:
-  - Render the component
-  - Interact with it
-  - Assert visible/behavioral results
-- Try to keep tests execution time under 1000ms each
-- Avoid testing internal implementation details (class names, internal functions).
-- Prefer queries by **role**, **label text**, or **placeholder** (`getByRole`, `getByLabelText`).
-- Use `screen` from Testing Library rather than destructuring `render` result.
+1. `getByRole`
+2. `getByLabelText`
+3. `getByPlaceholderText`
+4. `getByText`
+5. `getByTestId` (only if none above work)
 
-### TypeScript-Specific Rules
+### Guidelines
 
-- Use `as const` for static test data.
-- Avoid `any` in tests; use real types or `Partial<Type>` when mocking props.
-- If a prop type changes, update mocks to match - don’t bypass with type assertions unless absolutely necessary.
-- If a test fails because the code has changed, do not assume the new code change was incorrect. Verify the test is still valid.
+- Integration-style: render → interact → assert.
+- Don’t test internal implementation details.
+- Avoid `.className` or deep DOM queries.
+- No large DOM snapshots.
+- Don’t test library internals; test your usage.
+- Prefer `userEvent` over `fireEvent`.
+- Await async actions.
+- Use `findBy...` for async elements.
+- No arbitrary timeouts; use `waitFor` with explicit expectations.
+- Keep tests fast: avoid over-mocking and unnecessary waits.
 
-### Interaction Rules
+### Running Tests
 
-- Use `userEvent` instead of `fireEvent` for realistic events.
-- Await async user actions (e.g., `await user.click(...)`).
+- Use `pnpm test:ci` for continuous integration runs.
+- Use `pnpm test:coverage` to run tests with coverage.
+- Prefer `pnpm` over `npm` or `yarn` in all scripts and docs.
+- Keep test output clean; avoid extra logging unless debugging.
 
-### Async Testing
+---
 
-- Use `await screen.findBy...` for elements that appear asynchronously.
-- Avoid arbitrary `await waitForTimeout` — prefer `waitFor` with explicit expectations.
-- If you believe a test is failing and want to increase the timeout, look for the root cause instead of just increasing the timeout.
+## MSW Rules
 
-### Accessibility
+- Model handlers from the API’s perspective.
+- Single `mocks/handlers.ts` for happy paths; override per test with `server.use(...)`.
+- Scope handlers by resource (`/users`, `/posts`).
+- Strongly type params/bodies; no `any`.
+- Don’t assert requests directly; assert UI/state changes.
+- Extract reusable predicates for query/body matching.
+- Keep mocks minimal and realistic.
+- Node tests: `setupServer(...handlers)` with global hooks.
+- Default: mock what tests depend on; passthrough the rest.
 
-- Always check that interactive elements have an accessible name (`toHaveAccessibleName`).
-- Run quick a11y checks with queries by role.
-- Avoid relying on `data-testid` unless there’s no other stable selector.
+**Additional Best Practices (from MSW docs):**
 
-### Example Template
+- Use `{ once: true }` for one-time overrides.
+- Keep handler files small; split by feature if needed.
+- Use `onUnhandledRequest: 'error'` in setup to catch missing mocks.
 
-```
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { Button } from "./Button";
+**MSW Example – Base Setup**
 
-test("calls onClick when clicked", async () => {
-  const onClick = vi.fn();
-  render(<Button onClick={onClick}>Click me</Button>);
+    // mocks/handlers.ts
+    import { http, HttpResponse } from 'msw';
 
-  const btn = screen.getByRole("button", { name: /click me/i });
-  await userEvent.click(btn);
+    export const handlers = [
+      http.get('/api/user/:id', ({ params }) =>
+        HttpResponse.json({ id: params.id, name: 'Ada Lovelace' })
+      ),
+    ];
 
-  expect(onClick).toHaveBeenCalledTimes(1);
-});
-```
+    // mocks/server.ts
+    import { setupServer } from 'msw/node';
+    import { handlers } from './handlers';
 
-### Things to Avoid
+    export const server = setupServer(...handlers);
 
-- Don’t snapshot large DOM trees; prefer explicit assertions.
-- Don’t test library code (e.g., that `React Router` renders a link—test your usage of it instead)
-- Avoid brittle selectors (`.className` or deeply nested DOM queries).
-- Never mock react components. If not viable selector exists - add a `data-testid` attribute to the real component
+    // vitest.setup.ts
+    import { afterAll, afterEach, beforeAll } from 'vitest';
+    import { server } from './mocks/server';
+
+    beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+    afterEach(() => server.resetHandlers());
+    afterAll(() => server.close());
+
+**MSW Example – Runtime Override in Test**
+
+    import { http, HttpResponse } from 'msw';
+    import { server } from '@/mocks/server';
+
+    test('shows alternate user', async () => {
+      server.use(
+        http.get('/api/user/:id', () =>
+          HttpResponse.json({ id: '42', name: 'Grace Hopper' })
+        )
+      );
+      // ...render, interact, assert
+    });
+
+---
+
+## Accessibility
+
+- All interactive elements must have an accessible name.
+- Prefer role-based queries for a11y checks.
+- Use `data-testid` only if no other stable selector exists.
+
+---
+
+## Things to Avoid
+
+- Large DOM snapshots.
+- Brittle selectors.
+- Mocking React components (except unavoidable framework constraints, e.g., Next.js router).
