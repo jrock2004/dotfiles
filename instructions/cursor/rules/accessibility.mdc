@@ -1,0 +1,8 @@
+---
+description: Accessibility checks for components
+globs:
+  - '**/*.{ts,tsx}'
+---
+
+- All interactive elements must have an accessible name.
+- Prefer role-based queries; only use `data-testid` when no stable selector exists.

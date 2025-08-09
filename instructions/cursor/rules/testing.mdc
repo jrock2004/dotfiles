@@ -1,0 +1,33 @@
+---
+description: Testing standards (Vitest, RTL, user-event, msw)
+globs:
+  - '**/*.test.ts'
+  - '**/*.test.tsx'
+---
+
+### Framework & Libraries
+
+- Vitest, RTL, user-event, jest-dom, msw, vi.fn()
+
+### File Structure
+
+- Colocate: `Component.tsx` → `Component.test.tsx`
+- Mocks/utilities → `__mocks__/`
+
+### Query Priority
+
+1. getByRole → 2. getByLabelText → 3. getByPlaceholderText → 4. getByText → 5. getByTestId (last resort)
+
+### Guidelines
+
+- Integration-style: render → interact → assert
+- Don’t test internals; avoid `.className`/deep selectors; no large snapshots
+- Prefer `userEvent`; await async actions; `findBy...` for async elements
+- No arbitrary delays; use `waitFor` with explicit expectations
+- Keep tests fast; avoid over-mocking, noisy logs
+
+### Running Tests
+
+- `pnpm test:ci` for CI
+- `pnpm test:coverage` for coverage
+- Prefer `pnpm` over `npm`/`yarn`

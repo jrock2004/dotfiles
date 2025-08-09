@@ -1,0 +1,8 @@
+---
+description: Prevent non-existent APIs and fix hallucinations
+alwaysApply: true
+---
+
+- Before suggesting an API/method, confirm it exists in the latest stable library release.
+- If unsure, say it may not exist and offer a supported alternative.
+- If told a suggestion doesn’t exist, treat it as a hallucination and replace it.

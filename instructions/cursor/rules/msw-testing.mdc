@@ -1,0 +1,52 @@
+---
+description: MSW patterns for Node/Vitest and runtime overrides
+globs:
+  - 'mocks/**/*'
+  - '**/*.test.ts'
+  - '**/*.test.tsx'
+---
+
+## MSW Rules
+
+- Single `mocks/handlers.ts` for happy paths; override in tests with `server.use(...)`.
+- Model handlers from the API’s perspective; scope by resource.
+- Strongly type params/bodies; never `any`.
+- Assert on UI/state, not requests.
+- Extract reusable predicates for query/body matching.
+- Node tests: `setupServer(...handlers)` with global hooks (`listen`/`resetHandlers`/`close`).
+- Default: mock what tests depend on; passthrough the rest.
+
+**Base Setup**
+
+    // mocks/handlers.ts
+    import { http, HttpResponse } from 'msw';
+    export const handlers = [
+      http.get('/api/user/:id', ({ params }) =>
+        HttpResponse.json({ id: params.id, name: 'Ada Lovelace' })
+      ),
+    ];
+
+    // mocks/server.ts
+    import { setupServer } from 'msw/node';
+    import { handlers } from './handlers';
+    export const server = setupServer(...handlers);
+
+    // vitest.setup.ts
+    import { afterAll, afterEach, beforeAll } from 'vitest';
+    import { server } from './mocks/server';
+    beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
+    afterEach(() => server.resetHandlers());
+    afterAll(() => server.close());
+
+**Runtime Override Example**
+
+    import { http, HttpResponse } from 'msw';
+    import { server } from '@/mocks/server';
+    test('shows alternate user', async () => {
+      server.use(
+        http.get('/api/user/:id', () =>
+          HttpResponse.json({ id: '42', name: 'Grace Hopper' })
+        )
+      );
+      // render → interact → assert
+    });

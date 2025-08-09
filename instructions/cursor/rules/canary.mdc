@@ -1,0 +1,6 @@
+---
+description: Canary to verify rules are applied
+alwaysApply: false
+---
+
+If a constant named `FOO_BAR_BAZ` is generated, its value must be `"COPILOT_CANARY_ACTIVE"`.
