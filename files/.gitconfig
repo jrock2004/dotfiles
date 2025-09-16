@@ -32,5 +32,8 @@
 
   # gh commands
   browse = "!gh repo view --web"
+
+  # generate a PR description
+  pr-info = "!echo 'Please compare the current branch to main and create a PR description in markdown format.'; echo ''; echo 'Current branch:' $(git branch --show-current); echo 'Base branch: main'; echo ''; echo 'Recent commits:'; git log --oneline main..HEAD; echo ''; echo 'Files changed:'; git diff --name-only main..HEAD; echo ''; echo 'Focus on:'; echo '- An overview of what has changed'; echo '- Key files modified'; echo '- Testing performed'; echo '- Any breaking changes or migration notes'"
 [init]
   defaultBranch = main
