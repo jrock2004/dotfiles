@@ -7,3 +7,5 @@ vim.cmd("autocmd BufRead *.env* set filetype=sh")
 vim.cmd("autocmd BufRead *.handlebars set filetype=handlebars")
 
 vim.g.lazyvim_eslint_auto_format = true
+
+vim.lsp.enable("copilot")
