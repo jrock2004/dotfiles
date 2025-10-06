@@ -85,5 +85,6 @@ brew "viu"
 brew "wget"
 brew "koekeishiya/formulae/yabai"
 brew "z"
+brew "zellij"
 brew "zsh"
 

@@ -1,6 +1,7 @@
 return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    enabled = false,
     opts = function(_, opts)
       local uv = vim.uv or vim.loop
 
