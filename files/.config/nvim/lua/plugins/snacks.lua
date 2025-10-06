@@ -27,19 +27,33 @@ return {
           -- your explorer picker configuration comes here
           -- or leave it empty to use the default settings
           hidden = true,
-          win = {
-            list = {
-              keys = {
-                ["<C-x>"] = "edit_split",
-              },
-            },
-          },
         },
         files = {
           hidden = true,
         },
         grep = {
           hidden = true,
+        },
+      },
+      win = {
+        input = {
+          keys = {
+            ["<c-j>"] = { "select_and_next", mode = { "i", "n" } },
+            ["<c-k>"] = { "select_and_prev", mode = { "i", "n" } },
+            ["<C-x>"] = { "edit_split", mode = { "n", "i" } },
+            ["<C-v>"] = { "edit_vsplit", mode = { "n", "i" } },
+            ["<Tab>"] = { "list_down", mode = { "i", "n" } },
+            ["<S-Tab>"] = { "list_up", mode = { "i", "n" } },
+          },
+        },
+        list = {
+          keys = {
+            ["<c-j>"] = { "select_and_next", mode = { "n", "x" } },
+            ["<Tab>"] = "list_down",
+
+            ["<c-k>"] = { "select_and_prev", mode = { "n", "x" } },
+            ["<S-Tab>"] = "list_up",
+          },
         },
       },
     },
