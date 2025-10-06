@@ -12,6 +12,9 @@ Brewfile.lock.json
 files/.config/configstore
 files/.config/github-copilot
 files/.config/gtk-2.0
+files/.config/jgit
+files/.config/pipemind
 files/.config/raycast
+files/.config/uv
 files/.config/zed
 files/.tmux/plugins
