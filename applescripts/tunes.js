@@ -1,5 +1,6 @@
+// const symbol = '';
 const symbol = '♫';
-const maxLen = 50;
+const maxLen = 40;
 let output = '';
 
 const music = Application('Music');
@@ -127,6 +128,11 @@ if (music.running()) {
     title = track.name();
 
   output = `${symbol} ${title} - ${artist}`.substr(0, 50);
+}
+
+if (output === '♫ YouTube Music') {
+  // if (output === ' YouTube Music') {
+  output = '';
 }
 
 output;
