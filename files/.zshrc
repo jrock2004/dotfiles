@@ -81,13 +81,13 @@ if dotfiles::exists xdg-open ; then
 fi
 
 if dotfiles::exists apt-get ; then
-  alias update='sudo apt-get update && sudo apt-get upgrade'
+  alias updateSystem='sudo apt-get update && sudo apt-get upgrade'
 elif dotfiles::exists brew ; then
-  alias update='brew update && brew upgrade && brew doctor'
+  alias updateSystem='brew update && brew upgrade && brew doctor'
 elif dotfiles::exists paru ; then
-  alias update='paru -Syu'
+  alias updateSystem='paru -Syu'
 elif dotfiles::exists pacman ; then
-  alias update='sudo pacman -Syu'
+  alias updateSystem='sudo pacman -Syu'
 fi
 
 alias grep='grep --color=auto'

@@ -1,0 +1,37 @@
+#!/usr/bin/env zsh
+
+source ~/.zshrc
+
+echo -e "Upgrading system"
+updateSystem
+
+echo -e
+
+reload!
+
+echo -e
+
+echo -e "Upgrade Node"
+volta install node@lts
+
+echo -e
+
+reload!
+
+echo -e
+
+echo -e "Upgrade NPM Dependencies"
+npmpackages
+
+echo -e
+
+reload!
+
+echo -e
+
+echo -e "Updating Neovim plugins..."
+nvim --headless "+Lazy! sync" +qa
+
+echo -e
+
+echo -e "Finished updating"
