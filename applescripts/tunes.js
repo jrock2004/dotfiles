@@ -2,6 +2,7 @@
 const symbol = '♫';
 const maxLen = 40;
 let output = '';
+const musicDomains = ['music.youtube.com', 'youtube.com'];
 
 const music = Application('Music');
 
@@ -24,7 +25,7 @@ function scanChromium(appName) {
     app.windows().forEach((win) => {
       win.tabs().forEach((tab) => {
         const url = typeof tab.url === 'function' ? tab.url() : tab.url;
-        if (!url || !url.includes('music.youtube.com')) return;
+        if (!url || !musicDomains.some((domain) => url.includes(domain))) return;
 
         const rawTitle = typeof tab.title === 'function' ? tab.title() : tab.title;
         const cleaned = cleanYtMusicTitle(rawTitle);
@@ -60,7 +61,7 @@ function scanSafari() {
     safari.windows().forEach((win) => {
       win.tabs().forEach((tab) => {
         const url = tab.url();
-        if (!url || !url.includes('music.youtube.com')) return;
+        if (!url || !musicDomains.some((domain) => url.includes(domain))) return;
 
         const cleaned = cleanYtMusicTitle(tab.name());
         const looksLikeTrack = /[-–•]/.test(cleaned);
