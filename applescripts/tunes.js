@@ -98,14 +98,40 @@ function scanSpotify() {
   }
 }
 
+function scanQuickTime() {
+  try {
+    const qt = Application('QuickTime Player');
+    if (!qt.running()) return null;
+
+    const docs = qt.documents();
+    if (docs.length === 0) return null;
+
+    const doc = docs[0];
+    const isPlaying = doc.playing();
+    if (!isPlaying) return null;
+
+    // Prefer metadata title if available; otherwise use filename
+    let title = '';
+    try {
+      title = doc.name().replace(/\.[^/.]+$/, ''); // strip extension
+    } catch (_) {
+      title = '';
+    }
+
+    return title ? `${title}` : null;
+  } catch (_) {
+    return null;
+  }
+}
+
 function main() {
   const hits = [
     scanChromium('Google Chrome'),
     scanChromium('Brave Browser'),
     scanSafari(),
-    // optional native fallbacks:
     scanMusic(),
     scanSpotify(),
+    scanQuickTime(),
   ].filter(Boolean);
 
   if (hits.length === 0) return '';
@@ -123,16 +149,24 @@ if (music.running()) {
   output = `${symbol} ${title} - ${artist}`.substr(0, 50);
 } else if (browserMusic !== '') {
   output = browserMusic;
-} else if (Application('Spotify')) {
+} else if (Application('Spotify').running()) {
   const track = Application('Spotify').currentTrack,
     artist = track.artist(),
     title = track.name();
 
   output = `${symbol} ${title} - ${artist}`.substr(0, 50);
+} else if (Application('QuickTime Player').running()) {
+  const qt = Application('QuickTime Player');
+  try {
+    const doc = qt.documents()[0];
+    if (doc && doc.playing()) {
+      const name = doc.name().replace(/\.[^/.]+$/, '');
+      output = `${symbol} ${name}`.substr(0, 50);
+    }
+  } catch (_) {}
 }
 
 if (output === '♫ YouTube Music') {
-  // if (output === ' YouTube Music') {
   output = '';
 }
 
