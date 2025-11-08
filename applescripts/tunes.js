@@ -1,4 +1,3 @@
-// const symbol = '';
 const symbol = '♫';
 const maxLen = 40;
 let output = '';
@@ -113,7 +112,7 @@ function scanQuickTime() {
     // Prefer metadata title if available; otherwise use filename
     let title = '';
     try {
-      title = doc.name().replace(/\.[^/.]+$/, ''); // strip extension
+      title = doc.name().replace(/\.[^/.]+$/, '');
     } catch (_) {
       title = '';
     }
@@ -130,8 +129,8 @@ function main() {
     scanChromium('Brave Browser'),
     scanSafari(),
     scanMusic(),
-    scanSpotify(),
     scanQuickTime(),
+    scanSpotify(),
   ].filter(Boolean);
 
   if (hits.length === 0) return '';
