@@ -1,6 +1,32 @@
 {
   "extras": [
-
+    "lazyvim.plugins.extras.coding.mini-surround",
+    "lazyvim.plugins.extras.coding.neogen",
+    "lazyvim.plugins.extras.editor.illuminate",
+    "lazyvim.plugins.extras.editor.inc-rename",
+    "lazyvim.plugins.extras.editor.leap",
+    "lazyvim.plugins.extras.editor.navic",
+    "lazyvim.plugins.extras.editor.overseer",
+    "lazyvim.plugins.extras.editor.refactoring",
+    "lazyvim.plugins.extras.formatting.prettier",
+    "lazyvim.plugins.extras.lang.docker",
+    "lazyvim.plugins.extras.lang.dotnet",
+    "lazyvim.plugins.extras.lang.elixir",
+    "lazyvim.plugins.extras.lang.ember",
+    "lazyvim.plugins.extras.lang.git",
+    "lazyvim.plugins.extras.lang.helm",
+    "lazyvim.plugins.extras.lang.json",
+    "lazyvim.plugins.extras.lang.tailwind",
+    "lazyvim.plugins.extras.lang.typescript",
+    "lazyvim.plugins.extras.lang.yaml",
+    "lazyvim.plugins.extras.linting.eslint",
+    "lazyvim.plugins.extras.test.core",
+    "lazyvim.plugins.extras.ui.mini-animate",
+    "lazyvim.plugins.extras.util.dot",
+    "lazyvim.plugins.extras.util.mini-hipatterns",
+    "lazyvim.plugins.extras.util.project",
+    "lazyvim.plugins.extras.util.rest",
+    "lazyvim.plugins.extras.util.startuptime"
   ],
   "install_version": 8,
   "news": {
