@@ -197,6 +197,14 @@ setupVolta() {
     "$HOME"/.volta/bin/volta install node@lts yarn@1.22.19 pnpm
 }
 
+setupClaudeCli() {
+    printTopBorder
+    echo "Installing Claude Code CLI"
+    printBottomBorder
+
+    curl -fsSL https://claude.ai/install.sh | bash
+}
+
 setupForMac() {
     printTopBorder
     echo "Installing apps for Mac"
@@ -222,6 +230,7 @@ setupForMac() {
     curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v1.0.16/sketchybar-app-font.ttf -o $HOME/Library/Fonts/sketchybar-app-font.ttf
 
     setupDirectories
+    setupClaudeCli
     setupFzf
     setupLua
     setupNeovim
