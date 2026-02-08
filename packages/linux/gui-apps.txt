@@ -1,0 +1,14 @@
+# Linux GUI applications
+# TODO: Populate with Linux GUI apps
+
+# Terminal emulators
+# alacritty
+# kitty
+# wezterm
+
+# Browsers
+# firefox
+# chromium
+
+# Development
+# code (VS Code)

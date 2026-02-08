@@ -1,0 +1,5 @@
+# WSL-specific packages and configurations
+# TODO: Populate with WSL-specific needs
+
+# Windows interop utilities
+# wslu (if available)

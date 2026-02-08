@@ -1,0 +1,8 @@
+# Package name mappings from common.txt to Fedora/RHEL package names
+# Format: common-name=fedora-package-name
+
+# File utilities
+fd=fd-find
+
+# Most packages in common.txt have the same name on Fedora
+# If a package name differs, add it here

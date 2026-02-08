@@ -1,0 +1,26 @@
+# macOS GUI applications (Homebrew casks)
+
+# Terminal emulators
+alacritty
+ghostty
+kitty
+wezterm
+
+# Web browsers
+brave-browser
+firefox
+google-chrome
+
+# Development tools
+visual-studio-code
+postman
+
+# Communication
+discord
+slack
+
+# Productivity
+notion
+
+# Development frameworks
+dotnet-sdk

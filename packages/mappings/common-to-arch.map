@@ -1,0 +1,8 @@
+# Package name mappings from common.txt to Arch Linux package names
+# Format: common-name=arch-package-name
+
+# GitHub CLI has different package name
+gh=github-cli
+
+# Most packages in common.txt have the same name on Arch
+# If a package name differs, add it here

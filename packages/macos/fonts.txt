@@ -1,0 +1,21 @@
+# Fonts for macOS (Homebrew casks)
+
+# Nerd Fonts
+font-3270-nerd-font
+font-fira-code-nerd-font
+font-geist-mono-nerd-font
+font-hack-nerd-font
+font-symbols-only-nerd-font
+
+# Programming fonts
+font-cascadia-mono
+font-fira-code
+font-geist
+font-geist-mono
+font-input
+font-jetbrains-mono
+font-source-code-pro
+font-victor-mono
+
+# System fonts
+font-sf-pro

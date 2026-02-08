@@ -1,0 +1,9 @@
+# Package name mappings from common.txt to Ubuntu/Debian package names
+# Format: common-name=ubuntu-package-name
+
+# File utilities with different names
+fd=fd-find
+bat=batcat
+
+# All other packages in common.txt typically have the same name on Ubuntu
+# If a package name differs, add it here
