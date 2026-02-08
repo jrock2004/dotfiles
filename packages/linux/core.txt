@@ -1,0 +1,7 @@
+# Linux-specific core packages
+# TODO: Populate with Linux-specific packages
+
+# Build tools (if not in common)
+build-essential
+
+# Linux-specific utilities

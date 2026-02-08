@@ -1,0 +1,51 @@
+# Common packages that should exist on all platforms
+# These are cross-platform CLI tools
+
+# Version control & collaboration
+git
+gh
+
+# Shell & terminal utilities
+bash
+zsh
+tmux
+fzf
+starship
+
+# File management & search
+fd
+ripgrep
+eza
+tree
+bat
+
+# Text processing
+jq
+grep
+ack
+
+# Development tools
+neovim
+vim
+make
+cmake
+gcc
+
+# Programming languages
+python
+go
+
+# Code quality & formatting
+shellcheck
+prettier
+stylua
+
+# Container & cloud tools
+lazydocker
+lazygit
+
+# Utilities
+wget
+htop
+stow
+gnupg

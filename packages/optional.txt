@@ -1,0 +1,27 @@
+# Optional packages (nice-to-have, may not be available on all platforms)
+
+# Advanced CLI tools
+ast-grep
+chafa
+viu
+noti
+highlight
+
+# Development utilities
+diff-so-fancy
+cloc
+imagemagick
+ninja
+
+# Language servers & formatters
+efm-langserver
+markdown-toc
+markdownlint-cli2
+black
+flake8
+
+# Terminal multiplexers
+zellij
+
+# Shell enhancements
+z

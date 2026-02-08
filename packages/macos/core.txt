@@ -1,0 +1,10 @@
+# macOS-specific core packages (Homebrew formulae)
+
+# macOS package manager utilities
+mas
+
+# Lua development
+luarocks
+
+# Markdown tools
+markdown
