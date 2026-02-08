@@ -170,6 +170,211 @@ backup_dotfiles() {
 }
 
 ###########################################
+# PACKAGE MANAGEMENT ABSTRACTION
+###########################################
+
+# Detect operating system and package manager
+detect_package_manager() {
+    if command -v brew &> /dev/null; then
+        echo "brew"
+    elif command -v apt-get &> /dev/null; then
+        echo "apt"
+    elif command -v pacman &> /dev/null; then
+        echo "pacman"
+    elif command -v dnf &> /dev/null; then
+        echo "dnf"
+    elif command -v yum &> /dev/null; then
+        echo "yum"
+    else
+        echo "unknown"
+    fi
+}
+
+# Get platform for package mapping
+get_platform() {
+    local pkg_manager=$(detect_package_manager)
+
+    case "$pkg_manager" in
+        brew)
+            echo "macos"
+            ;;
+        apt)
+            echo "ubuntu"
+            ;;
+        pacman)
+            echo "arch"
+            ;;
+        dnf|yum)
+            echo "fedora"
+            ;;
+        *)
+            echo "unknown"
+            ;;
+    esac
+}
+
+# Read packages from file (ignore comments and empty lines)
+read_package_file() {
+    local file=$1
+    if [ -f "$file" ]; then
+        grep -v '^#' "$file" | grep -v '^$' | sed 's/[[:space:]]*$//'
+    fi
+}
+
+# Get mapped package name for current platform
+get_mapped_package_name() {
+    local package=$1
+    local platform=$(get_platform)
+    local mapping_file="$DOTFILES/packages/mappings/common-to-${platform}.map"
+
+    # If mapping file exists and has a mapping for this package, use it
+    if [ -f "$mapping_file" ]; then
+        local mapped=$(grep "^${package}=" "$mapping_file" 2>/dev/null | cut -d'=' -f2)
+        if [ -n "$mapped" ]; then
+            echo "$mapped"
+            return 0
+        fi
+    fi
+
+    # Otherwise return the original package name
+    echo "$package"
+}
+
+# Install a single package using the appropriate package manager
+pkg_install_single() {
+    local package=$1
+    local pkg_manager=$(detect_package_manager)
+    local mapped_package=$(get_mapped_package_name "$package")
+
+    log_info "Installing: $package $([ "$mapped_package" != "$package" ] && echo "($mapped_package)")"
+
+    if [ "$DRY_RUN" = true ]; then
+        echo "[DRY RUN] Would install: $mapped_package via $pkg_manager"
+        return 0
+    fi
+
+    case "$pkg_manager" in
+        brew)
+            brew install "$mapped_package" || log_warning "Failed to install $mapped_package"
+            ;;
+        apt)
+            sudo apt-get install -y "$mapped_package" || log_warning "Failed to install $mapped_package"
+            ;;
+        pacman)
+            sudo pacman -S --noconfirm "$mapped_package" || log_warning "Failed to install $mapped_package"
+            ;;
+        dnf)
+            sudo dnf install -y "$mapped_package" || log_warning "Failed to install $mapped_package"
+            ;;
+        yum)
+            sudo yum install -y "$mapped_package" || log_warning "Failed to install $mapped_package"
+            ;;
+        *)
+            log_error "Unknown package manager. Cannot install $package"
+            return 1
+            ;;
+    esac
+}
+
+# Install packages from a package file
+pkg_install_from_file() {
+    local package_file=$1
+    local description=${2:-"packages"}
+
+    if [ ! -f "$package_file" ]; then
+        log_warning "Package file not found: $package_file"
+        return 1
+    fi
+
+    log_info "Installing $description from $(basename $package_file)..."
+
+    local packages=$(read_package_file "$package_file")
+    local count=0
+    local failed=0
+
+    while IFS= read -r package; do
+        if [ -n "$package" ]; then
+            if pkg_install_single "$package"; then
+                ((count++))
+            else
+                ((failed++))
+            fi
+        fi
+    done <<< "$packages"
+
+    if [ $failed -eq 0 ]; then
+        log_success "Installed $count $description successfully"
+    else
+        log_warning "Installed $count $description ($failed failed)"
+    fi
+}
+
+# Install optional packages (don't fail if they don't exist)
+pkg_install_optional() {
+    local package=$1
+    local pkg_manager=$(detect_package_manager)
+    local mapped_package=$(get_mapped_package_name "$package")
+
+    log_info "Installing optional: $package"
+
+    if [ "$DRY_RUN" = true ]; then
+        echo "[DRY RUN] Would install optional: $mapped_package via $pkg_manager"
+        return 0
+    fi
+
+    case "$pkg_manager" in
+        brew)
+            brew install "$mapped_package" 2>/dev/null || log_info "Skipped unavailable package: $package"
+            ;;
+        apt)
+            sudo apt-get install -y "$mapped_package" 2>/dev/null || log_info "Skipped unavailable package: $package"
+            ;;
+        pacman)
+            sudo pacman -S --noconfirm "$mapped_package" 2>/dev/null || log_info "Skipped unavailable package: $package"
+            ;;
+        dnf)
+            sudo dnf install -y "$mapped_package" 2>/dev/null || log_info "Skipped unavailable package: $package"
+            ;;
+        yum)
+            sudo yum install -y "$mapped_package" 2>/dev/null || log_info "Skipped unavailable package: $package"
+            ;;
+        *)
+            log_info "Skipped unavailable package: $package"
+            ;;
+    esac
+}
+
+# Install Homebrew taps
+pkg_tap() {
+    local tap=$1
+
+    if [ "$DRY_RUN" = true ]; then
+        echo "[DRY RUN] Would tap: $tap"
+        return 0
+    fi
+
+    if command -v brew &> /dev/null; then
+        log_info "Tapping: $tap"
+        brew tap "$tap" || log_warning "Failed to tap $tap"
+    fi
+}
+
+# Install Homebrew cask
+pkg_install_cask() {
+    local cask=$1
+
+    if [ "$DRY_RUN" = true ]; then
+        echo "[DRY RUN] Would install cask: $cask"
+        return 0
+    fi
+
+    if command -v brew &> /dev/null; then
+        log_info "Installing cask: $cask"
+        brew install --cask "$cask" || log_warning "Failed to install cask $cask"
+    fi
+}
+
+###########################################
 # RETRY LOGIC
 ###########################################
 
@@ -608,12 +813,50 @@ setupForMac() {
             fi
         fi
 
-        if [ "$DRY_RUN" = true ]; then
-            echo "[DRY RUN] Would run: brew bundle"
-        else
-            brew bundle
+        # Install packages using new package management system
+        log_info "Installing packages from new package system..."
+
+        # Install Homebrew taps first
+        if [ -f "$DOTFILES/packages/macos/taps.txt" ]; then
+            while IFS= read -r tap; do
+                [ -n "$tap" ] && ! [[ "$tap" =~ ^# ]] && pkg_tap "$tap"
+            done < "$DOTFILES/packages/macos/taps.txt"
         fi
-        log_success "Homebrew packages installed"
+
+        # Install common packages
+        pkg_install_from_file "$DOTFILES/packages/common.txt" "common packages"
+
+        # Install macOS core packages
+        pkg_install_from_file "$DOTFILES/packages/macos/core.txt" "macOS core packages"
+
+        # Install macOS-only packages (yabai, skhd, sketchybar, etc.)
+        pkg_install_from_file "$DOTFILES/packages/macos/macos-only.txt" "macOS-only packages"
+
+        # Install optional packages (don't fail if they don't exist)
+        if [ -f "$DOTFILES/packages/optional.txt" ]; then
+            log_info "Installing optional packages..."
+            while IFS= read -r package; do
+                [ -n "$package" ] && ! [[ "$package" =~ ^# ]] && pkg_install_optional "$package"
+            done < "$DOTFILES/packages/optional.txt"
+        fi
+
+        # Install GUI apps
+        if [ -f "$DOTFILES/packages/macos/gui-apps.txt" ]; then
+            log_info "Installing GUI applications..."
+            while IFS= read -r app; do
+                [ -n "$app" ] && ! [[ "$app" =~ ^# ]] && pkg_install_cask "$app"
+            done < "$DOTFILES/packages/macos/gui-apps.txt"
+        fi
+
+        # Install fonts
+        if [ -f "$DOTFILES/packages/macos/fonts.txt" ]; then
+            log_info "Installing fonts..."
+            while IFS= read -r font; do
+                [ -n "$font" ] && ! [[ "$font" =~ ^# ]] && pkg_install_cask "$font"
+            done < "$DOTFILES/packages/macos/fonts.txt"
+        fi
+
+        log_success "All packages installed successfully"
     fi
 
     if should_install_component "vscode"; then
