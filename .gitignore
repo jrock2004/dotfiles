@@ -18,3 +18,4 @@ files/.config/raycast
 files/.config/uv
 files/.config/zed
 files/.tmux/plugins
+.install.log
