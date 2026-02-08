@@ -100,15 +100,19 @@ setupLua() {
     echo "Setting up Lua"
     printBottomBorder
 
-    git clone https://github.com/sumneko/lua-language-server "$HOME/lua-language-server"
-    cd "$HOME/lua-language-server" || exit 1
-    git submodule update --init --recursive
-    cd 3rd/luamake || exit 1
-    compile/install.sh
-    cd ../..
-    ./3rd/luamake/luamake rebuild
+    if [ ! -d "$HOME/lua-language-server" ]; then
+        git clone https://github.com/LuaLS/lua-language-server "$HOME/lua-language-server"
+        cd "$HOME/lua-language-server" || exit 1
+        git submodule update --init --recursive
+        cd 3rd/luamake || exit 1
+        compile/install.sh
+        cd ../..
+        ./3rd/luamake/luamake rebuild
 
-    cd "$DOTFILES" || exit 1
+        cd "$DOTFILES" || exit 1
+    else
+        echo "Lua language server already installed, skipping"
+    fi
 
     if [ "$(command -v luarocks)" ]; then
         luarocks install --server=https://luarocks.org/dev luaformatter
@@ -130,7 +134,12 @@ setupRust() {
     echo "Setting up rust"
     printBottomBorder
 
-    curl https://sh.rustup.rs -sSf | sh
+    curl https://sh.rustup.rs -sSf | sh -s -- -y
+
+    # Source cargo environment for current session
+    if [ -f "$HOME/.cargo/env" ]; then
+        source "$HOME/.cargo/env"
+    fi
 }
 
 setupShell() {
@@ -141,13 +150,21 @@ setupShell() {
     [[ -n "$(command -v brew)" ]] && zsh_path="$(brew --prefix)/bin/zsh" || zsh_path="$(which zsh)"
 
     if ! grep "$zsh_path" /etc/shells; then
-        info "adding $zsh_path to /etc/shells"
+        echo "adding $zsh_path to /etc/shells"
         echo "$zsh_path" | sudo tee -a /etc/shells
     fi
 
     if [[ "$SHELL" != "$zsh_path" ]]; then
         chsh -s "$zsh_path"
-        info "default shell changed to $zsh_path"
+        echo "default shell changed to $zsh_path"
+    fi
+
+    # Install zap plugin manager if not already installed
+    if [ ! -d "$HOME/.local/share/zap" ]; then
+        echo "Installing zap plugin manager"
+        zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
+    else
+        echo "zap plugin manager already installed, skipping"
     fi
 }
 
@@ -179,7 +196,11 @@ setupTmux() {
     echo "Setting up tmux plugin manager"
     printBottomBorder
 
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    if [ ! -d ~/.tmux/plugins/tpm ]; then
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    else
+        echo "tmux plugin manager already installed, skipping"
+    fi
 }
 
 setupVolta() {
@@ -213,7 +234,7 @@ setupForMac() {
     if [ -z "$(command -v brew)" ]; then
         sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash --login
 
-        echo "eval '$(/opt/homebrew/bin/brew shellenv)'" >>/Users/jcostanzo/.zprofile
+        echo "eval '$(/opt/homebrew/bin/brew shellenv)'" >>"$HOME/.zprofile"
         eval "$(/opt/homebrew/bin/brew shellenv)"
     fi
 
