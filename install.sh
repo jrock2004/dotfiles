@@ -21,6 +21,20 @@ ONLY_COMPONENTS=()
 VERSION="1.0.0"
 
 ###########################################
+# LOAD UI LIBRARIES
+###########################################
+
+# Source UI library for colors and styled output
+if [ -f "$DOTFILES/lib/ui.sh" ]; then
+    source "$DOTFILES/lib/ui.sh"
+fi
+
+# Source gum wrapper for interactive prompts
+if [ -f "$DOTFILES/lib/gum-wrapper.sh" ]; then
+    source "$DOTFILES/lib/gum-wrapper.sh"
+fi
+
+###########################################
 # ERROR HANDLING
 ###########################################
 
@@ -565,7 +579,12 @@ execute_or_dry_run() {
 ###########################################
 
 initialQuestions() {
-    if [ -f docs/title.txt ]; then
+    # Show banner
+    if command -v show_banner &> /dev/null; then
+        show_banner
+        echo ""
+        show_header "Dotfiles Installation System" 75
+    elif [ -f docs/title.txt ]; then
         cat docs/title.txt
     fi
 
@@ -576,43 +595,100 @@ initialQuestions() {
         return
     fi
 
-    printTopBorder
-    echo "Going to ask some questions to make setting up your new machine easier"
-    printBottomBorder
+    # Welcome message
+    if command -v section &> /dev/null; then
+        section "Welcome to Dotfiles Setup"
+        print_info "This installer will guide you through setting up your development environment"
+    else
+        printTopBorder
+        echo "Going to ask some questions to make setting up your new machine easier"
+        printBottomBorder
+    fi
+    echo ""
 
-    printf "\n"
-    echo "What OS are we setting up today?"
-    read -rp "[1] Mac OSX (default: exit) : " choice_os
+    # OS Selection
+    if command -v print_step &> /dev/null; then
+        print_step "Select your operating system"
+    else
+        echo "What OS are we setting up today?"
+    fi
+    echo ""
 
-    case $choice_os in
-    1)
-        OS="mac"
-        ;;
-    *)
-        echo "Invalid choice."
+    local os_choice
+    if command -v ui_choose &> /dev/null; then
+        os_choice=$(ui_choose "Choose your OS:" "Mac OSX" "Exit")
+    else
+        read -rp "[1] Mac OSX (default: exit) : " choice_num
+        case $choice_num in
+            1) os_choice="Mac OSX" ;;
+            *) os_choice="Exit" ;;
+        esac
+    fi
 
-        exit 1
-        ;;
+    case "$os_choice" in
+        "Mac OSX")
+            OS="mac"
+            if command -v print_success &> /dev/null; then
+                print_success "Selected: Mac OSX"
+            fi
+            ;;
+        *)
+            if command -v print_error &> /dev/null; then
+                print_error "Installation cancelled"
+            else
+                echo "Installation cancelled"
+            fi
+            exit 1
+            ;;
     esac
 
-    printf "\n"
+    echo ""
 
-    echo "Do you have a desktop environment?"
-    read -rp "[y]es or [n]o (default: no) : " choice_desktop
+    # Desktop Environment Question
+    if command -v print_step &> /dev/null; then
+        print_step "Desktop environment configuration"
+    else
+        echo "Do you have a desktop environment?"
+    fi
+    echo ""
 
-    case $choice_desktop in
-    y)
-        USE_DESKTOP_ENV=TRUE
-        ;;
-    n)
-        USE_DESKTOP_ENV=FALSE
-        ;;
-    *)
-        USE_DESKTOP_ENV=FALSE
-        ;;
-    esac
+    if command -v ui_confirm &> /dev/null; then
+        if ui_confirm "Do you have a desktop environment?" "No"; then
+            USE_DESKTOP_ENV=TRUE
+            print_success "Desktop environment: Yes"
+        else
+            USE_DESKTOP_ENV=FALSE
+            print_info "Desktop environment: No"
+        fi
+    else
+        read -rp "[y]es or [n]o (default: no) : " choice_desktop
+        case $choice_desktop in
+            y)
+                USE_DESKTOP_ENV=TRUE
+                ;;
+            *)
+                USE_DESKTOP_ENV=FALSE
+                ;;
+        esac
+    fi
 
-    echo "$USE_DESKTOP_ENV"
+    echo ""
+
+    # Show installation summary
+    if [ ${#ONLY_COMPONENTS[@]:-0} -eq 0 ] && [ ${#SKIP_COMPONENTS[@]:-0} -eq 0 ]; then
+        if command -v section &> /dev/null; then
+            section "Installation Summary"
+            print_info "OS: Mac OSX"
+            print_info "Desktop Environment: $USE_DESKTOP_ENV"
+            print_info "Components: All (default)"
+            echo ""
+
+            if ! ui_confirm "Proceed with installation?" "Yes"; then
+                print_warning "Installation cancelled"
+                exit 0
+            fi
+        fi
+    fi
 }
 
 setupDirectories() {

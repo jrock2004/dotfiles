@@ -1,5 +1,8 @@
 # Optional packages (nice-to-have, may not be available on all platforms)
 
+# UI/UX tools
+gum
+
 # Advanced CLI tools
 ast-grep
 chafa
