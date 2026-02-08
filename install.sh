@@ -298,12 +298,12 @@ parse_args() {
                 ;;
             --skip)
                 IFS=',' read -ra SKIP_COMPONENTS <<< "$2"
-                log_info "Skipping components: ${SKIP_COMPONENTS[*]}"
+                log_info "Skipping components: ${SKIP_COMPONENTS[*]:-none}"
                 shift 2
                 ;;
             --only)
                 IFS=',' read -ra ONLY_COMPONENTS <<< "$2"
-                log_info "Installing only components: ${ONLY_COMPONENTS[*]}"
+                log_info "Installing only components: ${ONLY_COMPONENTS[*]:-none}"
                 shift 2
                 ;;
             --list-components)
@@ -324,8 +324,8 @@ should_install_component() {
     local component=$1
 
     # If --only is specified, only install those components
-    if [ ${#ONLY_COMPONENTS[@]} -gt 0 ]; then
-        for only in "${ONLY_COMPONENTS[@]}"; do
+    if [ ${#ONLY_COMPONENTS[@]:-0} -gt 0 ]; then
+        for only in "${ONLY_COMPONENTS[@]:-}"; do
             if [ "$only" = "$component" ]; then
                 return 0
             fi
@@ -334,12 +334,14 @@ should_install_component() {
     fi
 
     # If --skip is specified, skip those components
-    for skip in "${SKIP_COMPONENTS[@]}"; do
-        if [ "$skip" = "$component" ]; then
-            log_info "Skipping component: $component"
-            return 1
-        fi
-    done
+    if [ ${#SKIP_COMPONENTS[@]:-0} -gt 0 ]; then
+        for skip in "${SKIP_COMPONENTS[@]:-}"; do
+            if [ "$skip" = "$component" ]; then
+                log_info "Skipping component: $component"
+                return 1
+            fi
+        done
+    fi
 
     return 0
 }
@@ -597,20 +599,31 @@ setupForMac() {
     if should_install_component "homebrew"; then
         show_step "Installing Homebrew and packages"
         if [ -z "$(command -v brew)" ]; then
-            execute_or_dry_run sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash --login
-
-            echo "eval '$(/opt/homebrew/bin/brew shellenv)'" >>"$HOME/.zprofile"
-            eval "$(/opt/homebrew/bin/brew shellenv)"
+            if [ "$DRY_RUN" = true ]; then
+                echo "[DRY RUN] Would install Homebrew"
+            else
+                sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash --login
+                echo "eval '$(/opt/homebrew/bin/brew shellenv)'" >>"$HOME/.zprofile"
+                eval "$(/opt/homebrew/bin/brew shellenv)"
+            fi
         fi
 
-        execute_or_dry_run brew bundle
+        if [ "$DRY_RUN" = true ]; then
+            echo "[DRY RUN] Would run: brew bundle"
+        else
+            brew bundle
+        fi
         log_success "Homebrew packages installed"
     fi
 
     if should_install_component "vscode"; then
         show_step "Installing VS Code extensions"
         if [ -x "$(command -v code)" ] && [ -f ./scripts/vscode-extensions.txt ]; then
-            execute_or_dry_run cat ./scripts/vscode-extensions.txt | xargs -L1 code --install-extension
+            if [ "$DRY_RUN" = true ]; then
+                echo "[DRY RUN] Would install VS Code extensions from ./scripts/vscode-extensions.txt"
+            else
+                cat ./scripts/vscode-extensions.txt | xargs -L1 code --install-extension
+            fi
             log_success "VS Code extensions installed"
         else
             log_warning "Code is not in path or extensions file not found"
@@ -619,7 +632,11 @@ setupForMac() {
 
     if should_install_component "fonts"; then
         show_step "Installing fonts"
-        execute_or_dry_run retry_command curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v1.0.16/sketchybar-app-font.ttf -o $HOME/Library/Fonts/sketchybar-app-font.ttf
+        if [ "$DRY_RUN" = true ]; then
+            echo "[DRY RUN] Would download sketchybar-app-font.ttf to $HOME/Library/Fonts/"
+        else
+            retry_command curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v1.0.16/sketchybar-app-font.ttf -o $HOME/Library/Fonts/sketchybar-app-font.ttf
+        fi
         log_success "Fonts installed"
     fi
 
