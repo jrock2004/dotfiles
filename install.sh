@@ -260,6 +260,12 @@ pkg_install_single() {
     local pkg_manager=$(detect_package_manager)
     local mapped_package=$(get_mapped_package_name "$package")
 
+    # Skip packages that shouldn't be installed on WSL
+    if command -v should_skip_package &>/dev/null && should_skip_package "$package"; then
+        log_info "Skipping $package (not needed on WSL)"
+        return 0
+    fi
+
     log_info "Installing: $package $([ "$mapped_package" != "$package" ] && echo "($mapped_package)")"
 
     if [ "$DRY_RUN" = true ]; then
@@ -1030,9 +1036,13 @@ setupForLinux() {
 
     # Detect distribution
     source "$DOTFILES/lib/detect.sh" 2>/dev/null || true
+    source "$DOTFILES/lib/wsl.sh" 2>/dev/null || true
     local distro="${DISTRO:-unknown}"
 
     log_info "Detected distribution: $distro"
+    if [ "${IS_WSL:-false}" = "true" ]; then
+        log_info "WSL ${WSL_VERSION:-unknown} detected"
+    fi
 
     # Install build tools first
     show_step "Installing build tools"
@@ -1112,6 +1122,19 @@ setupForLinux() {
     if should_install_component "stow"; then
         show_step "Symlinking dotfiles"
         setupStow
+    fi
+
+    # WSL-specific setup
+    if [ "${IS_WSL:-false}" = "true" ]; then
+        show_step "Configuring WSL-specific features"
+
+        # Install WSL-specific packages
+        if [ -f "$DOTFILES/packages/wsl/wsl-specific.txt" ]; then
+            pkg_install_from_file "$DOTFILES/packages/wsl/wsl-specific.txt" "WSL-specific packages"
+        fi
+
+        # Run WSL setup
+        setup_wsl
     fi
 
     log_success "Linux installation completed!"

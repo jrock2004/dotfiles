@@ -91,7 +91,10 @@ detect_wsl() {
 # Detect WSL version (1 or 2)
 detect_wsl_version() {
     if [ "$(detect_wsl)" = "true" ]; then
-        if grep -qi "WSL2" /proc/version; then
+        # WSL2 has a different kernel version format
+        # WSL2 kernel: 4.19+ or 5.x+ with "-microsoft-standard"
+        # WSL1 kernel: 4.4.x with "-microsoft"
+        if grep -qi "WSL2\|microsoft-standard" /proc/version; then
             echo "2"
         else
             echo "1"
