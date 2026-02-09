@@ -1,0 +1,5 @@
+# Flatpak GUI applications
+
+com.discordapp.Discord
+com.slack.Slack
+com.visualstudio.code

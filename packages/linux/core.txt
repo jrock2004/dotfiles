@@ -1,7 +1,8 @@
 # Linux-specific core packages
-# TODO: Populate with Linux-specific packages
 
-# Build tools (if not in common)
-build-essential
+# Build tools (will be mapped per distro)
+build-essential   # Ubuntu/Debian
+base-devel        # Arch
 
-# Linux-specific utilities
+# System utilities
+software-properties-common  # Ubuntu/Debian (for adding PPAs)

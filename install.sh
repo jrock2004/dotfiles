@@ -616,11 +616,15 @@ initialQuestions() {
 
     local os_choice
     if command -v ui_choose &> /dev/null; then
-        os_choice=$(ui_choose "Choose your OS:" "Mac OSX" "Exit")
+        os_choice=$(ui_choose "Choose your OS:" "Mac OSX" "Linux" "Exit")
     else
-        read -rp "[1] Mac OSX (default: exit) : " choice_num
+        echo "1) Mac OSX"
+        echo "2) Linux"
+        echo "3) Exit"
+        read -rp "Choose [1-3]: " choice_num
         case $choice_num in
             1) os_choice="Mac OSX" ;;
+            2) os_choice="Linux" ;;
             *) os_choice="Exit" ;;
         esac
     fi
@@ -630,6 +634,12 @@ initialQuestions() {
             OS="mac"
             if command -v print_success &> /dev/null; then
                 print_success "Selected: Mac OSX"
+            fi
+            ;;
+        "Linux")
+            OS="linux"
+            if command -v print_success &> /dev/null; then
+                print_success "Selected: Linux"
             fi
             ;;
         *)
@@ -1011,6 +1021,102 @@ setupForMac() {
     log_success "Dotfiles installation completed"
 }
 
+setupForLinux() {
+    log_info "Starting Linux installation"
+    echo ""
+    echo "╔═══════════════════════════════════════════════════════════════════════════╗"
+    echo "║                    Dotfiles Installation for Linux                        ║"
+    echo "╚═══════════════════════════════════════════════════════════════════════════╝"
+
+    # Detect distribution
+    source "$DOTFILES/lib/detect.sh" 2>/dev/null || true
+    local distro="${DISTRO:-unknown}"
+
+    log_info "Detected distribution: $distro"
+
+    # Install build tools first
+    show_step "Installing build tools"
+    case "$distro" in
+        ubuntu|debian)
+            if [ "$DRY_RUN" != true ]; then
+                sudo apt-get update
+                sudo apt-get install -y build-essential software-properties-common
+            else
+                echo "[DRY RUN] Would install build-essential on Ubuntu/Debian"
+            fi
+            ;;
+        fedora|rhel)
+            if [ "$DRY_RUN" != true ]; then
+                sudo dnf groupinstall -y "Development Tools"
+            else
+                echo "[DRY RUN] Would install Development Tools on Fedora/RHEL"
+            fi
+            ;;
+        arch)
+            if [ "$DRY_RUN" != true ]; then
+                sudo pacman -S --noconfirm base-devel
+            else
+                echo "[DRY RUN] Would install base-devel on Arch"
+            fi
+            ;;
+    esac
+
+    # Install common packages
+    show_step "Installing common packages"
+    pkg_install_from_file "$DOTFILES/packages/common.txt" "common packages"
+
+    # Install Linux core packages
+    if [ -f "$DOTFILES/packages/linux/core.txt" ]; then
+        pkg_install_from_file "$DOTFILES/packages/linux/core.txt" "Linux core packages"
+    fi
+
+    # Install optional packages
+    if [ -f "$DOTFILES/packages/optional.txt" ]; then
+        log_info "Installing optional packages..."
+        while IFS= read -r package; do
+            [ -n "$package" ] && ! [[ "$package" =~ ^# ]] && pkg_install_optional "$package"
+        done < "$DOTFILES/packages/optional.txt"
+    fi
+
+    # Setup directories
+    if should_install_component "directories"; then
+        show_step "Creating directories"
+        setupDirectories
+    fi
+
+    # Setup development tools
+    show_step "Installing development tools"
+    should_install_component "fzf" && setupFzf
+    should_install_component "neovim" && setupNeovim
+    should_install_component "rust" && setupRust
+
+    # Setup shell
+    if should_install_component "shell"; then
+        show_step "Configuring shell (zsh + zap)"
+        setupShell
+    fi
+
+    # Setup tmux
+    if should_install_component "tmux"; then
+        show_step "Setting up tmux"
+        setupTmux
+    fi
+
+    # Setup Volta
+    if should_install_component "volta"; then
+        show_step "Setting up Node.js (Volta)"
+        setupVolta
+    fi
+
+    # Stow dotfiles
+    if should_install_component "stow"; then
+        show_step "Symlinking dotfiles"
+        setupStow
+    fi
+
+    log_success "Linux installation completed!"
+}
+
 ###########################################
 # INIT OF APPLICATION
 ###########################################
@@ -1022,8 +1128,9 @@ initialQuestions
 
 if [ "$OS" = "mac" ]; then
     setupForMac
+elif [ "$OS" = "linux" ]; then
+    setupForLinux
 else
     echo "Something went wrong, try again and if it still fails, open an issue on Github"
-
     exit 1
 fi

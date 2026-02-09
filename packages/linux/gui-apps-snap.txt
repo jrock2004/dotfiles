@@ -1,0 +1,5 @@
+# Snap GUI applications
+
+discord
+slack
+postman

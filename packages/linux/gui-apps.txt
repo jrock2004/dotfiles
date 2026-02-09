@@ -1,14 +1,10 @@
 # Linux GUI applications
-# TODO: Populate with Linux GUI apps
+# Native package manager installation
 
 # Terminal emulators
-# alacritty
-# kitty
-# wezterm
+alacritty
+kitty
 
-# Browsers
-# firefox
-# chromium
-
-# Development
-# code (VS Code)
+# Web browsers
+firefox
+chromium
