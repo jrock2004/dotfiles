@@ -1,5 +1,45 @@
-# WSL-specific packages and configurations
-# TODO: Populate with WSL-specific needs
+# WSL-specific packages and utilities
+# These are additional packages useful specifically for WSL environments
 
 # Windows interop utilities
-# wslu (if available)
+wslu                    # WSL utilities for Windows interop
+
+# GUI support (WSLg dependencies)
+libgl1-mesa-glx        # OpenGL support
+libglib2.0-0           # GLib library
+libsm6                 # Session Management library
+libxrender1            # X Rendering Extension
+libxext6               # X11 extensions
+
+# Font rendering for GUI apps
+fontconfig             # Font configuration
+fonts-liberation       # Liberation fonts (Windows font alternatives)
+
+# X11 utilities (for non-WSLg setups)
+x11-apps               # Basic X11 apps (xeyes, xclock for testing)
+x11-utils              # X11 utilities (xdpyinfo, xev)
+
+# Clipboard utilities
+xclip                  # X11 clipboard integration
+wl-clipboard           # Wayland clipboard (for WSLg)
+
+# Development tools
+build-essential        # Build tools (gcc, make, etc.)
+pkg-config             # Package config tool
+
+# Network utilities
+net-tools              # Network tools (ifconfig, etc.)
+iputils-ping           # Ping utility
+dnsutils               # DNS utilities (dig, nslookup)
+
+# System utilities
+sudo                   # Sudo access
+wget                   # File downloader
+curl                   # URL transfer tool
+unzip                  # Unzip utility
+zip                    # Zip utility
+ca-certificates        # SSL certificates
+gnupg                  # GPG encryption
+
+# Optional: Windows Terminal integration
+# Note: Requires manual Windows Terminal config
