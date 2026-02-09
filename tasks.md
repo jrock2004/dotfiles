@@ -7,26 +7,26 @@
 ## Phase 1: Fix Critical Bugs (Priority: HIGH)
 **Estimated Time**: 1-2 hours
 
-- [ ] ⬜ **Fix hardcoded username** (install.sh:216)
+- [x] ✅ **Fix hardcoded username** (install.sh:216)
   - Change `/Users/jcostanzo/.zprofile` to `$HOME/.zprofile`
 
-- [ ] ⬜ **Fix undefined `info` function** (install.sh:144, 150)
+- [x] ✅ **Fix undefined `info` function** (install.sh:144, 150)
   - Replace `info` calls with `echo` or define the function
 
-- [ ] ⬜ **Update Lua Language Server repository**
+- [x] ✅ **Update Lua Language Server repository**
   - Change from `sumneko/lua-language-server` to `LuaLS/lua-language-server`
 
-- [ ] ⬜ **Make setupTmux idempotent**
+- [x] ✅ **Make setupTmux idempotent**
   - Check if `~/.tmux/plugins/tpm` exists before cloning
 
-- [ ] ⬜ **Make setupLua idempotent**
+- [x] ✅ **Make setupLua idempotent**
   - Check if `~/lua-language-server` exists before cloning
 
-- [ ] ⬜ **Make setupRust non-interactive**
+- [x] ✅ **Make setupRust non-interactive**
   - Add `-y` flag to rustup install command
   - Source cargo env after installation
 
-- [ ] ⬜ **Add zap plugin manager installation**
+- [x] ✅ **Add zap plugin manager installation**
   - Install zap in setupShell (currently missing but required by .zshrc)
   - Use: `zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1`
   - Make it idempotent (check if already installed)
@@ -36,36 +36,36 @@
 ## Phase 2: Improve Reliability (Priority: HIGH)
 **Estimated Time**: 3-5 hours
 
-- [ ] ⬜ **Add error handling**
+- [x] ✅ **Add error handling**
   - Add `set -euo pipefail` to all scripts
   - Create error handling functions
   - Add trap for cleanup on error
 
-- [ ] ⬜ **Add logging system**
+- [x] ✅ **Add logging system**
   - Create `log()`, `log_error()`, `log_success()` functions
   - Add timestamps to log messages
   - Optional: log to file for debugging
 
-- [ ] ⬜ **Add retry logic for network operations**
+- [x] ✅ **Add retry logic for network operations**
   - Create `retry_command()` function
   - Apply to curl, git clone operations
   - Add exponential backoff
 
-- [ ] ⬜ **Add progress tracking**
+- [x] ✅ **Add progress tracking**
   - Implement step counter (e.g., "Step 3/10")
   - Show what's being installed/configured
 
-- [ ] ⬜ **Make all setup functions idempotent**
+- [x] ✅ **Make all setup functions idempotent**
   - Check if tool already installed before installing
   - Skip if already configured
   - Add `--force` flag to override
 
-- [ ] ⬜ **Backup existing dotfiles before stowing**
+- [x] ✅ **Backup existing dotfiles before stowing**
   - Create backup directory `~/.dotfiles.backup.<timestamp>`
   - Backup any existing files that would be overwritten
   - Add restore functionality if installation fails
 
-- [ ] ⬜ **Add CLI flags support**
+- [x] ✅ **Add CLI flags support**
   - Add `--help` flag with usage information
   - Add `--version` flag
   - Add `--list-components` to show available components
@@ -80,7 +80,7 @@
 ## Phase 3: Package Management System (Priority: HIGH)
 **Estimated Time**: 4-6 hours
 
-- [ ] ⬜ **Create package directory structure**
+- [x] ✅ **Create package directory structure**
   ```
   packages/
   ├── common.txt              # Cross-platform essentials
@@ -108,44 +108,44 @@
       └── common-to-windows.map
   ```
 
-- [ ] ⬜ **Populate package files from current Brewfile**
+- [x] ✅ **Populate package files from current Brewfile**
   - Extract common tools to `common.txt`
   - Extract GUI apps to `macos/gui-apps.txt`
   - Extract fonts to `macos/fonts.txt`
   - Extract macOS-only to `macos/macos-only.txt`
 
-- [ ] ⬜ **Create mapping files for package name differences**
+- [x] ✅ **Create mapping files for package name differences**
   - `common-to-ubuntu.map` (e.g., fd=fd-find)
   - `common-to-arch.map` (e.g., gh=github-cli)
   - Other distro mappings
 
-- [ ] ⬜ **Build package sync validator script**
+- [x] ✅ **Build package sync validator script**
   - Create `scripts/validate-packages.sh`
   - Check that common.txt packages have mappings
   - Report missing packages per OS
   - Show diff between platforms
   - Verify no duplicate packages across files
 
-- [ ] ⬜ **Handle optional packages gracefully**
+- [x] ✅ **Handle optional packages gracefully**
   - If optional.txt package unavailable, warn but continue
   - Log which optional packages were skipped
   - Don't fail installation for optional packages
 
-- [ ] ⬜ **Create package manager abstraction layer**
+- [x] ✅ **Create package manager abstraction layer**
   - Implement `pkg_install()` function that reads from package files
   - Implement `pkg_update()` function
   - Support brew, apt, pacman, dnf, winget
   - Handle package name lookups via mapping files
   - Return exit codes for success/failure/skipped
 
-- [ ] ⬜ **Brewfile migration strategy**
+- [x] ✅ **Brewfile migration strategy**
   - Keep Brewfile temporarily during transition
   - Add deprecation notice to Brewfile
   - Create `scripts/migrate-brewfile.sh` to convert to new format
   - Test both systems work in parallel
   - Plan removal date for Brewfile
 
-- [ ] ⬜ **Update documentation for new package system**
+- [x] ✅ **Update documentation for new package system**
   - Document how to add new packages
   - Document OS-specific vs common packages
   - Add examples of when to use each file
@@ -157,12 +157,12 @@
 ## Phase 4: UI/UX Improvements (Priority: MEDIUM)
 **Estimated Time**: 3-4 hours
 
-- [ ] ⬜ **Install gum as optional dependency**
+- [x] ✅ **Install gum as optional dependency**
   - Add gum to `packages/optional.txt`
   - Check if gum is available before using it
   - Gracefully fallback if not installed
 
-- [ ] ⬜ **Create UI library (lib/ui.sh)**
+- [x] ✅ **Create UI library (lib/ui.sh)**
   - Implement color constants (RED, GREEN, YELLOW, etc.)
   - Implement symbols (✓, ✗, →, ℹ, ⚠)
   - Create `show_header()` function with ASCII art
@@ -170,7 +170,7 @@
   - Create `spinner()` function for background tasks
   - Create `box()` function for styled output
 
-- [ ] ⬜ **Implement gum integration with fallbacks**
+- [x] ✅ **Implement gum integration with fallbacks**
   - Create `ui_choose()` wrapper:
     - First choice: gum choose (if available)
     - Fallback: fzf (already have this)
@@ -180,7 +180,7 @@
   - Create `ui_input()` wrapper (gum input or read -p)
   - Create `ui_multi_select()` for component selection (gum choose --no-limit or fzf --multi)
 
-- [ ] ⬜ **Replace interactive prompts**
+- [x] ✅ **Replace interactive prompts**
   - Use `ui_choose()` for OS selection
   - Use `ui_multi_select()` for component selection
   - Add component descriptions in selection UI
@@ -192,67 +192,67 @@
 ## Phase 5: Linux Support (Priority: HIGH)
 **Estimated Time**: 6-10 hours
 
-- [ ] ⬜ **Create OS detection system**
+- [x] ✅ **Create OS detection system**
   - Create `lib/detect.sh`
   - Detect macOS (Intel vs ARM)
   - Detect Linux distro (Ubuntu, Debian, Fedora, Arch)
   - Detect architecture (x86_64, arm64, aarch64)
   - Export OS variables (OS, DISTRO, ARCH, BREW_PREFIX)
 
-- [ ] ⬜ **Update curl-install.sh for cross-platform**
+- [x] ✅ **Update curl-install.sh for cross-platform**
   - Remove macOS-specific xcode-select check
   - Detect OS before cloning
   - Install git if not present (per OS)
   - Call correct setup based on detected OS
 
-- [ ] ⬜ **Create Linux-specific setup script**
+- [x] ✅ **Create Linux-specific setup script**
   - Create `os/linux.sh`
   - Implement `setup_linux_prerequisites()`
   - Install build-essential (Ubuntu) / base-devel (Arch) / Development Tools (Fedora)
   - Handle distro-specific package managers
 
-- [ ] ⬜ **Populate Linux package files**
+- [x] ✅ **Populate Linux package files**
   - Create initial `packages/linux/core.txt`
   - Research package names for Ubuntu/Debian/Fedora/Arch
   - Create mapping files for common packages
   - Document any packages not available on Linux
 
-- [ ] ⬜ **Implement distro-specific package installation**
+- [x] ✅ **Implement distro-specific package installation**
   - Ubuntu/Debian: apt-get (add PPAs for newer packages like neovim)
   - Fedora/RHEL: dnf
   - Arch: pacman (and yay for AUR if needed)
   - Handle sudo requirements appropriately
 
-- [ ] ⬜ **Handle GUI apps on Linux**
+- [x] ✅ **Handle GUI apps on Linux**
   - Strategy: Try native package first, then Flatpak, then Snap
   - Detect if Flatpak/Snap available
   - Create `packages/linux/gui-apps-flatpak.txt` and `gui-apps-snap.txt`
   - Some apps may not be available (macOS-specific like Ghostty)
 
-- [ ] ⬜ **Handle fonts on Linux**
+- [x] ✅ **Handle fonts on Linux**
   - Download Nerd Fonts from GitHub releases
   - Install to `~/.local/share/fonts`
   - Run `fc-cache -fv` to refresh font cache
   - Create `scripts/install-fonts-linux.sh`
 
-- [ ] ⬜ **Port macOS-specific functions to Linux**
+- [x] ✅ **Port macOS-specific functions to Linux**
   - setupShell: handle /etc/shells on Linux (may need sudo)
   - setupFzf: install via package manager
   - setupStow: ensure Linux compatibility (should already work)
   - setupVolta: test on Linux x86_64 and ARM
 
-- [ ] ⬜ **Handle Powerlevel10k vs Starship**
+- [x] ✅ **Handle Powerlevel10k vs Starship**
   - Decision: Use Starship on Linux (already cross-platform)
   - Keep Powerlevel10k on macOS (optional)
   - Update .zshrc to detect OS and load appropriate theme
   - Add Starship config to files/.config/
 
-- [ ] ⬜ **Test Volta on Linux**
+- [x] ✅ **Test Volta on Linux**
   - Test if Volta works on Linux ARM and x86_64
   - If issues, add support for nvm or fnm as alternative
   - Make Node.js version manager configurable
 
-- [ ] ⬜ **Create conditional config stowing**
+- [x] ✅ **Create conditional config stowing**
   - Detect OS before stowing
   - Skip macOS-only configs (yabai, skhd, sketchybar) on Linux
   - Skip Linux-only configs (i3, rofi, etc.) on macOS
@@ -263,23 +263,23 @@
 ## Phase 6: WSL Support (Priority: MEDIUM)
 **Estimated Time**: 2-4 hours
 
-- [ ] ⬜ **Implement WSL detection**
+- [x] ✅ **Implement WSL detection**
   - Check for `/proc/version` containing "microsoft"
   - Detect WSL1 vs WSL2
   - Detect underlying distro
 
-- [ ] ⬜ **Create WSL-specific setup script**
+- [x] ✅ **Create WSL-specific setup script**
   - Create `os/wsl.sh`
   - Enable systemd on WSL2
   - Configure Windows interop
   - Fix clock drift issues
 
-- [ ] ⬜ **Handle WSL-specific paths**
+- [x] ✅ **Handle WSL-specific paths**
   - Windows drives mounted at `/mnt/c`, etc.
   - Set BROWSER to Windows browser
   - Handle clipboard integration
 
-- [ ] ⬜ **Conditional features for WSL**
+- [x] ✅ **Conditional features for WSL**
   - Skip display manager configs
   - Skip audio configs
   - Optional: integrate with Windows Terminal
