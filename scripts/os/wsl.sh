@@ -3,6 +3,10 @@
 # WSL-Specific Setup Library
 # Handles WSL-specific configurations and integrations
 
+# Source required libraries
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+source "$SCRIPT_DIR/lib/common.sh"
+
 ###########################################
 # CONSTANTS
 ###########################################

@@ -4,8 +4,9 @@
 # Provides UI functions with graceful fallbacks: gum → fzf → bash built-ins
 
 # Source UI library for colors and symbols
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/ui.sh"
+# Use a local variable to avoid overriding the global SCRIPT_DIR
+_GUM_LIB_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$_GUM_LIB_DIR/ui.sh"
 
 ###########################################
 # DETECTION FUNCTIONS
