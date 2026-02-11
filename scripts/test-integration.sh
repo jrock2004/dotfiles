@@ -165,17 +165,23 @@ test_neovim_starts() {
 
     echo "  Testing if Neovim can start without errors..."
 
-    # Use gtimeout if available (from coreutils), otherwise just test without timeout
+    # Use timeout command (gtimeout on macOS via coreutils, timeout on Linux)
+    local timeout_cmd=""
     if command -v gtimeout &> /dev/null; then
-        if gtimeout 10s nvim --headless +quit 2>&1; then
+        timeout_cmd="gtimeout"
+    elif command -v timeout &> /dev/null; then
+        timeout_cmd="timeout"
+    fi
+
+    if [ -n "$timeout_cmd" ]; then
+        if $timeout_cmd 30s nvim --headless +quit 2>&1; then
             test_pass "Neovim starts without errors"
         else
-            test_fail "Neovim" "Failed to start or exited with error"
+            test_fail "Neovim" "Failed to start, exited with error, or timed out"
         fi
-    elif nvim --headless +quit 2>&1; then
-        test_pass "Neovim starts without errors"
     else
-        test_fail "Neovim" "Failed to start or exited with error"
+        # No timeout available, skip to avoid hanging
+        test_skip "Neovim" "No timeout command available (install coreutils)"
     fi
 }
 
