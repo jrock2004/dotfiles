@@ -2,7 +2,9 @@
 # Shellcheck Test Script
 # Runs shellcheck on all shell scripts and generates a report
 
-set -euo pipefail
+# Note: We use -u and pipefail but NOT -e so that shellcheck failures
+# don't cause the script to exit before showing the summary
+set -uo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOTFILES="$(dirname "$SCRIPT_DIR")"
