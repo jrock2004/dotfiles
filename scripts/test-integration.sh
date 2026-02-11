@@ -132,23 +132,29 @@ test_shell_is_zsh() {
     echo "  Test: Shell Configuration"
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
+    # Check if zsh is available
+    if ! command -v zsh &> /dev/null; then
+        echo "  ✗ zsh binary is NOT available"
+        test_fail "Shell configuration" "zsh is not installed"
+        return
+    fi
+
+    echo "  ✓ zsh binary is available: $(command -v zsh)"
+
+    # Check current SHELL
     if [ -n "${SHELL:-}" ]; then
         echo "  Current SHELL: $SHELL"
 
         if [[ "$SHELL" == *"zsh"* ]]; then
             test_pass "Shell is set to zsh"
+        elif [ "${NON_INTERACTIVE:-false}" = "true" ] || [ "${CI:-false}" = "true" ]; then
+            echo "  ⓘ Non-interactive/CI mode: shell change skipped (expected)"
+            test_pass "Shell is available (non-interactive mode)"
         else
             test_fail "Shell configuration" "SHELL is $SHELL, expected zsh"
         fi
     else
         test_fail "Shell configuration" "SHELL variable is not set"
-    fi
-
-    # Check if zsh is available
-    if command -v zsh &> /dev/null; then
-        echo "  ✓ zsh binary is available: $(command -v zsh)"
-    else
-        echo "  ✗ zsh binary is NOT available"
     fi
 }
 
