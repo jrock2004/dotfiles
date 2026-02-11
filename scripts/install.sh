@@ -202,8 +202,22 @@ initialQuestions() {
 
     if [ "$NON_INTERACTIVE" = true ]; then
         log_info "Non-interactive mode: using defaults"
-        OS="mac"
+        # Auto-detect OS instead of assuming macOS
+        local detected_os=$(detect_os)
+        case "$detected_os" in
+            macos)
+                OS="mac"
+                ;;
+            linux)
+                OS="linux"
+                ;;
+            *)
+                log_error "Unsupported OS: $detected_os"
+                exit 1
+                ;;
+        esac
         USE_DESKTOP_ENV=FALSE
+        log_info "Detected OS: $OS"
         return
     fi
 
