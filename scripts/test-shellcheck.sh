@@ -64,8 +64,8 @@ echo "" >> "$REPORT_FILE"
 for script in "${ALL_SCRIPTS[@]}"; do
     RELATIVE_PATH="${script#"$DOTFILES"/}"
 
-    # Capture shellcheck output
-    SHELLCHECK_OUTPUT=$(shellcheck -x "$script" 2>&1)
+    # Capture shellcheck output (without -x flag for compatibility with older versions)
+    SHELLCHECK_OUTPUT=$(shellcheck "$script" 2>&1)
     SHELLCHECK_EXIT=$?
 
     # Write to report file
