@@ -64,16 +64,27 @@ echo "" >> "$REPORT_FILE"
 for script in "${ALL_SCRIPTS[@]}"; do
     RELATIVE_PATH="${script#"$DOTFILES"/}"
 
-    if shellcheck -x "$script" >> "$REPORT_FILE" 2>&1; then
+    # Capture shellcheck output
+    SHELLCHECK_OUTPUT=$(shellcheck -x "$script" 2>&1)
+    SHELLCHECK_EXIT=$?
+
+    # Write to report file
+    echo "=== $RELATIVE_PATH ===" >> "$REPORT_FILE"
+    echo "$SHELLCHECK_OUTPUT" >> "$REPORT_FILE"
+    echo "" >> "$REPORT_FILE"
+
+    if [ $SHELLCHECK_EXIT -eq 0 ]; then
         echo "✓ $RELATIVE_PATH"
         PASSED=$((PASSED + 1))
     else
-        EXIT_CODE=$?
-        if [ $EXIT_CODE -eq 1 ]; then
+        if [ $SHELLCHECK_EXIT -eq 1 ]; then
             echo "✗ $RELATIVE_PATH (errors found)"
+            # Show errors in output for CI visibility
+            echo "$SHELLCHECK_OUTPUT"
             FAILED=$((FAILED + 1))
         else
             echo "⚠ $RELATIVE_PATH (warnings)"
+            echo "$SHELLCHECK_OUTPUT"
             WARNINGS=$((WARNINGS + 1))
         fi
     fi
