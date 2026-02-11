@@ -67,7 +67,7 @@ log() {
     local message="$1"
     local timestamp
     timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "[$timestamp] $message" | tee -a "$LOG_FILE"
+    echo "[$timestamp] $message" | tee -a "$LOG_FILE" 2>/dev/null || echo "[$timestamp] $message"
 }
 
 # Log success message
@@ -75,7 +75,7 @@ log_success() {
     local message="$1"
     local timestamp
     timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "[$timestamp] ✅ $message" | tee -a "$LOG_FILE"
+    echo "[$timestamp] ✅ $message" | tee -a "$LOG_FILE" 2>/dev/null || echo "[$timestamp] ✅ $message"
 }
 
 # Log error message
@@ -83,7 +83,7 @@ log_error() {
     local message="$1"
     local timestamp
     timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "[$timestamp] ❌ $message" | tee -a "$LOG_FILE" >&2
+    echo "[$timestamp] ❌ $message" | tee -a "$LOG_FILE" 2>/dev/null >&2 || echo "[$timestamp] ❌ $message" >&2
 }
 
 # Log warning message
@@ -91,7 +91,7 @@ log_warning() {
     local message="$1"
     local timestamp
     timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "[$timestamp] ⚠️  $message" | tee -a "$LOG_FILE"
+    echo "[$timestamp] ⚠️  $message" | tee -a "$LOG_FILE" 2>/dev/null || echo "[$timestamp] ⚠️  $message"
 }
 
 # Log info message
@@ -99,7 +99,7 @@ log_info() {
     local message="$1"
     local timestamp
     timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "[$timestamp] ℹ️  $message" | tee -a "$LOG_FILE"
+    echo "[$timestamp] ℹ️  $message" | tee -a "$LOG_FILE" 2>/dev/null || echo "[$timestamp] ℹ️  $message"
 }
 
 # Show step progress
@@ -110,7 +110,10 @@ show_step() {
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
     echo "  Step $CURRENT_STEP/$TOTAL_STEPS: $step_name"
     echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-    log_info "Step $CURRENT_STEP/$TOTAL_STEPS: $step_name"
+    # Log to file if possible, otherwise just echo
+    local timestamp
+    timestamp=$(date '+%Y-%m-%d %H:%M:%S')
+    echo "[$timestamp] ℹ️  Step $CURRENT_STEP/$TOTAL_STEPS: $step_name" >> "$LOG_FILE" 2>/dev/null || true
 }
 
 ###########################################
