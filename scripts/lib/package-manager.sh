@@ -134,7 +134,7 @@ pkg_install_from_file() {
         return 1
     fi
 
-    log_info "Installing $description from $(basename $package_file)..."
+    log_info "Installing $description from $(basename "$package_file")..."
 
     local packages=$(read_package_file "$package_file")
     local count=0

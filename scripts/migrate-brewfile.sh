@@ -33,7 +33,7 @@ echo ""
 count_packages() {
     local file=$1
     if [ -f "$file" ]; then
-        grep -v '^#' "$file" | grep -v '^$' | wc -l | tr -d ' '
+        grep -v '^#' "$file" | grep -c -v '^$'
     else
         echo "0"
     fi

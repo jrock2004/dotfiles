@@ -1,0 +1,34 @@
+# ShellCheck configuration for dotfiles project
+# See: https://www.shellcheck.net/wiki/
+
+# Disable SC2155 - Declare and assign separately to avoid masking return values
+# While this is a good practice, it makes the code more verbose without significant benefit
+# in our use case. We handle errors with set -e and proper error handling.
+disable=SC2155
+
+# Disable SC1091 - Not following sourced files
+# Our scripts source library files that exist at runtime but may not be found
+# during static analysis. We verify these files exist in integration tests.
+disable=SC1091
+
+# Disable SC2034 for library files that define variables for external use
+# These variables are intentionally defined for sourcing by other scripts
+# (colors, symbols, configuration variables, etc.)
+disable=SC2034
+
+# Disable SC2086 - Double quote to prevent globbing
+# In many cases in our scripts, we intentionally use unquoted variables
+# where the context is safe (seq, basename, etc.)
+disable=SC2086
+
+# Disable SC2059 - Don't use variables in printf format string
+# Our UI library uses color variables in format strings, which is intentional
+# and safe in our controlled environment
+disable=SC2059
+
+# Disable SC2129 - Consider using { cmd1; cmd2; } >> file
+# This is a style preference. Individual redirects are more readable in our scripts
+disable=SC2129
+
+# Note: We keep most other checks enabled to maintain code quality
+# Any disabled checks should be documented here with justification

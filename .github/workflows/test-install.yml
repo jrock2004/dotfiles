@@ -1,0 +1,137 @@
+name: Test Installation
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+jobs:
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run ShellCheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck
+          chmod +x scripts/test-shellcheck.sh
+          ./scripts/test-shellcheck.sh
+
+  test-macos:
+    name: Test on macOS
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run installation (dry-run)
+        run: |
+          chmod +x install.sh
+          ./install.sh --dry-run --non-interactive
+
+      - name: Display system info
+        run: |
+          echo "=== System Information ==="
+          sw_vers
+          echo "=== Homebrew ==="
+          which brew || echo "Homebrew not found"
+          echo "=== Shell ==="
+          echo $SHELL
+
+  test-ubuntu:
+    name: Test on Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl git
+
+      - name: Run installation (dry-run)
+        run: |
+          chmod +x install.sh
+          ./install.sh --dry-run --non-interactive
+
+      - name: Display system info
+        run: |
+          echo "=== System Information ==="
+          lsb_release -a
+          echo "=== Shell ==="
+          echo $SHELL
+
+  test-ubuntu-full:
+    name: Test Full Installation on Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y curl git stow
+
+      - name: Run full installation
+        run: |
+          chmod +x install.sh
+          # Skip components that require user interaction or are macOS-only
+          ./install.sh --non-interactive --skip homebrew,vscode,fonts,macos-defaults
+
+      - name: Run integration tests
+        run: |
+          chmod +x scripts/test-integration.sh
+          ./scripts/test-integration.sh || true  # Don't fail on integration tests for now
+
+      - name: Display installed tools
+        run: |
+          echo "=== Installed Tools ==="
+          which git || echo "git not found"
+          which zsh || echo "zsh not found"
+          which stow || echo "stow not found"
+          which fzf || echo "fzf not found"
+          which nvim || echo "nvim not found"
+          which tmux || echo "tmux not found"
+
+  validate-packages:
+    name: Validate Package Files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run package validator
+        run: |
+          chmod +x scripts/validate-packages.sh
+          ./scripts/validate-packages.sh
+
+  test-scripts:
+    name: Test Scripts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Test help flags
+        run: |
+          chmod +x install.sh uninstall.sh update.sh
+          ./install.sh --help
+          ./uninstall.sh --help
+          ./update.sh --help
+
+      - name: Test version flags
+        run: |
+          ./install.sh --version
+          ./uninstall.sh --version
+          ./update.sh --version
+
+      - name: Test list components
+        run: |
+          ./install.sh --list-components

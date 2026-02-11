@@ -32,7 +32,7 @@ cleanup_on_error() {
     echo "Performing cleanup..."
 
     # Restore from backup if it exists
-    if [ -d "$BACKUP_DIR" ] && [ "$(ls -A $BACKUP_DIR)" ]; then
+    if [ -d "$BACKUP_DIR" ] && [ "$(ls -A "$BACKUP_DIR")" ]; then
         log_warning "Restoring backup from $BACKUP_DIR"
         cp -r "$BACKUP_DIR"/. "$HOME/"
         log_info "Backup restored"
