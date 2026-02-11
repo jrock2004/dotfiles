@@ -51,9 +51,15 @@ setup_shell() {
         echo "$zsh_path" | sudo tee -a /etc/shells
     fi
 
+    # Skip changing default shell in non-interactive mode (CI/automation)
+    # chsh requires password authentication which fails in CI
     if [[ "$SHELL" != "$zsh_path" ]]; then
-        chsh -s "$zsh_path"
-        log_success "default shell changed to $zsh_path"
+        if [ "$NON_INTERACTIVE" = true ]; then
+            log_info "Non-interactive mode: skipping default shell change (use 'chsh -s $zsh_path' manually)"
+        else
+            chsh -s "$zsh_path"
+            log_success "default shell changed to $zsh_path"
+        fi
     fi
 
     # Install zap plugin manager if not already installed

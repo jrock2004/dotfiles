@@ -94,7 +94,7 @@ setup_macos() {
             if [ "$DRY_RUN" = true ]; then
                 echo "[DRY RUN] Would install VS Code extensions from ./scripts/vscode-extensions.txt"
             else
-                cat ./scripts/vscode-extensions.txt | xargs -L1 code --install-extension
+                xargs -L1 code --install-extension < ./scripts/vscode-extensions.txt
             fi
             log_success "VS Code extensions installed"
         else
