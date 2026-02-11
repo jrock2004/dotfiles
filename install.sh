@@ -5,8 +5,8 @@
 # Exit on error
 set -e
 
-# Get the directory where this script is located
-DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Get the directory where this script is located and export it
+export DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Execute the new modular installation script
 exec "$DOTFILES/scripts/install.sh" "$@"

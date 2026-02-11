@@ -9,7 +9,11 @@ set -euo pipefail
 # GLOBAL VARIABLES
 ###########################################
 
-DOTFILES="${DOTFILES:-$HOME/.dotfiles}"
+# Calculate DOTFILES based on script location (scripts/ is subdirectory of repo root)
+# If DOTFILES is already set (e.g., from root install.sh), use that value
+if [ -z "$DOTFILES" ]; then
+    DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 VERSION="2.0.0"
 OS=""

@@ -14,6 +14,12 @@ BACKUP_DIR="${BACKUP_DIR:-$HOME/.dotfiles.backup.$(date +%Y%m%d_%H%M%S)}"
 CURRENT_STEP="${CURRENT_STEP:-0}"
 TOTAL_STEPS="${TOTAL_STEPS:-10}"
 
+# Ensure log file directory exists
+if [ -n "$LOG_FILE" ]; then
+    LOG_DIR="$(dirname "$LOG_FILE")"
+    mkdir -p "$LOG_DIR" 2>/dev/null || true
+fi
+
 ###########################################
 # ERROR HANDLING
 ###########################################
