@@ -280,6 +280,8 @@ optimize_wsl_performance() {
     # Try to find Windows username
     if [ -d "$windows_user_dir" ]; then
         for dir in "$windows_user_dir"/*; do
+            # Skip if glob didn't match any files
+            [ -e "$dir" ] || continue
             local dirname=$(basename "$dir")
             if [[ "$dirname" != "Public" && "$dirname" != "Default" && "$dirname" != "All Users" ]]; then
                 username="$dirname"

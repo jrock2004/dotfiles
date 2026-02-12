@@ -265,7 +265,7 @@ reapply_stow() {
         "$(brew --prefix)"/bin/stow --ignore ".DS_Store" -v -R -t ~ -d "$DOTFILES" files
         log_success "Symlinks updated successfully"
     elif command -v stow >/dev/null 2>&1; then
-        /usr/bin/stow --ignore ".DS_Store" -v -R -t ~ -d "$DOTFILES" files
+        stow --ignore ".DS_Store" -v -R -t ~ -d "$DOTFILES" files
         log_success "Symlinks updated successfully"
     else
         log_error "stow command not found. Please install GNU Stow."

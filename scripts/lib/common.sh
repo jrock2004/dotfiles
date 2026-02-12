@@ -15,7 +15,7 @@ CURRENT_STEP="${CURRENT_STEP:-0}"
 TOTAL_STEPS="${TOTAL_STEPS:-10}"
 
 # Ensure log file directory exists
-if [ -n "$LOG_FILE" ]; then
+if [ -n "${LOG_FILE:-}" ]; then
     LOG_DIR="$(dirname "$LOG_FILE")"
     mkdir -p "$LOG_DIR" 2>/dev/null || true
 fi
@@ -73,7 +73,11 @@ log() {
     local message="$1"
     local timestamp
     timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "[$timestamp] $message" | tee -a "$LOG_FILE" 2>/dev/null || echo "[$timestamp] $message"
+    if [ -n "${LOG_FILE:-}" ]; then
+        echo "[$timestamp] $message" | tee -a "$LOG_FILE" 2>/dev/null || echo "[$timestamp] $message"
+    else
+        echo "[$timestamp] $message"
+    fi
 }
 
 # Log success message
@@ -81,7 +85,11 @@ log_success() {
     local message="$1"
     local timestamp
     timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "[$timestamp] ✅ $message" | tee -a "$LOG_FILE" 2>/dev/null || echo "[$timestamp] ✅ $message"
+    if [ -n "${LOG_FILE:-}" ]; then
+        echo "[$timestamp] ✅ $message" | tee -a "$LOG_FILE" 2>/dev/null || echo "[$timestamp] ✅ $message"
+    else
+        echo "[$timestamp] ✅ $message"
+    fi
 }
 
 # Log error message
@@ -89,7 +97,11 @@ log_error() {
     local message="$1"
     local timestamp
     timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "[$timestamp] ❌ $message" | tee -a "$LOG_FILE" 2>/dev/null >&2 || echo "[$timestamp] ❌ $message" >&2
+    if [ -n "${LOG_FILE:-}" ]; then
+        echo "[$timestamp] ❌ $message" | tee -a "$LOG_FILE" 2>/dev/null >&2 || echo "[$timestamp] ❌ $message" >&2
+    else
+        echo "[$timestamp] ❌ $message" >&2
+    fi
 }
 
 # Log warning message
@@ -97,7 +109,11 @@ log_warning() {
     local message="$1"
     local timestamp
     timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "[$timestamp] ⚠️  $message" | tee -a "$LOG_FILE" 2>/dev/null || echo "[$timestamp] ⚠️  $message"
+    if [ -n "${LOG_FILE:-}" ]; then
+        echo "[$timestamp] ⚠️  $message" | tee -a "$LOG_FILE" 2>/dev/null || echo "[$timestamp] ⚠️  $message"
+    else
+        echo "[$timestamp] ⚠️  $message"
+    fi
 }
 
 # Log info message
@@ -105,7 +121,11 @@ log_info() {
     local message="$1"
     local timestamp
     timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "[$timestamp] ℹ️  $message" | tee -a "$LOG_FILE" 2>/dev/null || echo "[$timestamp] ℹ️  $message"
+    if [ -n "${LOG_FILE:-}" ]; then
+        echo "[$timestamp] ℹ️  $message" | tee -a "$LOG_FILE" 2>/dev/null || echo "[$timestamp] ℹ️  $message"
+    else
+        echo "[$timestamp] ℹ️  $message"
+    fi
 }
 
 # Show step progress
@@ -119,7 +139,9 @@ show_step() {
     # Log to file if possible, otherwise just echo
     local timestamp
     timestamp=$(date '+%Y-%m-%d %H:%M:%S')
-    echo "[$timestamp] ℹ️  Step $CURRENT_STEP/$TOTAL_STEPS: $step_name" >> "$LOG_FILE" 2>/dev/null || true
+    if [ -n "${LOG_FILE:-}" ]; then
+        echo "[$timestamp] ℹ️  Step $CURRENT_STEP/$TOTAL_STEPS: $step_name" >> "$LOG_FILE" 2>/dev/null || true
+    fi
 }
 
 ###########################################

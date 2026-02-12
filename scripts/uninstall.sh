@@ -156,7 +156,7 @@ remove_symlinks() {
         "$(brew --prefix)"/bin/stow --ignore ".DS_Store" -v -D -t ~ -d "$DOTFILES" files
         log_success "Symlinks removed successfully via Homebrew stow"
     elif command -v stow >/dev/null 2>&1; then
-        /usr/bin/stow --ignore ".DS_Store" -v -D -t ~ -d "$DOTFILES" files
+        stow --ignore ".DS_Store" -v -D -t ~ -d "$DOTFILES" files
         log_success "Symlinks removed successfully via system stow"
     else
         log_error "stow command not found. Cannot remove symlinks automatically."
