@@ -83,6 +83,11 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
         --backup-dir)
+            if [ $# -lt 2 ] || [ -z "${2:-}" ]; then
+                log_error "--backup-dir requires a non-empty argument"
+                echo "Run '$0 --help' for usage information." >&2
+                exit 1
+            fi
             BACKUP_DIR="$2"
             shift 2
             ;;

@@ -92,6 +92,11 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
         --backup-dir)
+            if [ $# -lt 2 ] || [ -z "${2:-}" ]; then
+                log_error "Missing value for --backup-dir; expected a path argument."
+                echo "Run '$0 --help' for usage information." >&2
+                exit 1
+            fi
             BACKUP_DIR="$2"
             shift 2
             ;;

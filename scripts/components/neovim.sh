@@ -58,7 +58,7 @@ setup_neovim() {
     fi
 
     # Install Python dependencies
-    if [ "$(command -v python)" ]; then
+    if command -v python >/dev/null 2>&1; then
         python -m pip install --upgrade pynvim
         log_success "Neovim dependencies installed"
     else
