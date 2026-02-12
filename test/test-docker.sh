@@ -79,7 +79,7 @@ run_test() {
             /bin/bash
     else
         # Run installation and tests
-        docker run --rm \
+        if docker run --rm \
             -v "$DOTFILES:/home/testuser/.dotfiles:ro" \
             "dotfiles-test:$distro" \
             /bin/bash -c "
@@ -93,9 +93,7 @@ run_test() {
                 echo '  Running Integration Tests' && \
                 echo '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━' && \
                 ./scripts/test-integration.sh
-            "
-
-        if [ $? -eq 0 ]; then
+            "; then
             echo -e "${GREEN}✅ Tests passed on $distro${NC}"
             return 0
         else

@@ -261,10 +261,10 @@ reapply_stow() {
 
     cd "$DOTFILES"
 
-    if [ "$(command -v brew)" ]; then
+    if command -v brew >/dev/null 2>&1; then
         "$(brew --prefix)"/bin/stow --ignore ".DS_Store" -v -R -t ~ -d "$DOTFILES" files
         log_success "Symlinks updated successfully"
-    elif [ "$(command -v stow)" ]; then
+    elif command -v stow >/dev/null 2>&1; then
         /usr/bin/stow --ignore ".DS_Store" -v -R -t ~ -d "$DOTFILES" files
         log_success "Symlinks updated successfully"
     else
@@ -289,9 +289,9 @@ update_packages() {
 
     detect_os
 
-    case "$OS" in
+    case "$DETECTED_OS" in
         macos)
-            if [ "$(command -v brew)" ]; then
+            if command -v brew >/dev/null 2>&1; then
                 log_info "Updating Homebrew packages..."
                 brew update
                 brew upgrade
@@ -301,7 +301,7 @@ update_packages() {
         linux)
             case "$DISTRO" in
                 ubuntu|debian)
-                    if [ "$(command -v apt)" ]; then
+                    if command -v apt >/dev/null 2>&1; then
                         log_info "Updating APT packages..."
                         sudo apt update
                         sudo apt upgrade -y
@@ -309,14 +309,14 @@ update_packages() {
                     fi
                     ;;
                 fedora|rhel)
-                    if [ "$(command -v dnf)" ]; then
+                    if command -v dnf >/dev/null 2>&1; then
                         log_info "Updating DNF packages..."
                         sudo dnf update -y
                         log_success "DNF packages updated"
                     fi
                     ;;
                 arch)
-                    if [ "$(command -v pacman)" ]; then
+                    if command -v pacman >/dev/null 2>&1; then
                         log_info "Updating Pacman packages..."
                         sudo pacman -Syu --noconfirm
                         log_success "Pacman packages updated"
@@ -339,14 +339,14 @@ update_packages() {
     esac
 
     # Update Node.js via Volta
-    if [ "$(command -v volta)" ]; then
+    if command -v volta >/dev/null 2>&1; then
         log_info "Updating Node.js via Volta..."
         volta install node@lts
         log_success "Node.js updated"
     fi
 
     # Update Neovim plugins
-    if [ "$(command -v nvim)" ]; then
+    if command -v nvim >/dev/null 2>&1; then
         log_info "Updating Neovim plugins..."
         nvim --headless "+Lazy! sync" +qa 2>/dev/null || true
         log_success "Neovim plugins updated"
@@ -369,7 +369,7 @@ restart_services() {
 
     detect_os
 
-    case "$OS" in
+    case "$DETECTED_OS" in
         macos)
             # Restart yabai, skhd, sketchybar if running
             if pgrep -x "yabai" > /dev/null; then

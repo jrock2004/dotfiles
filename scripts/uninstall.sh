@@ -152,10 +152,10 @@ remove_symlinks() {
         return 0
     fi
 
-    if [ "$(command -v brew)" ]; then
+    if command -v brew >/dev/null 2>&1; then
         "$(brew --prefix)"/bin/stow --ignore ".DS_Store" -v -D -t ~ -d "$DOTFILES" files
         log_success "Symlinks removed successfully via Homebrew stow"
-    elif [ "$(command -v stow)" ]; then
+    elif command -v stow >/dev/null 2>&1; then
         /usr/bin/stow --ignore ".DS_Store" -v -D -t ~ -d "$DOTFILES" files
         log_success "Symlinks removed successfully via system stow"
     else
@@ -172,7 +172,7 @@ list_packages() {
 
     detect_os
 
-    case "$OS" in
+    case "$DETECTED_OS" in
         macos)
             if [ -f "$DOTFILES/Brewfile" ]; then
                 echo "📦 Homebrew packages from Brewfile:"
@@ -211,9 +211,9 @@ remove_packages() {
 
     detect_os
 
-    case "$OS" in
+    case "$DETECTED_OS" in
         macos)
-            if [ -f "$DOTFILES/Brewfile" ] && [ "$(command -v brew)" ]; then
+            if [ -f "$DOTFILES/Brewfile" ] && command -v brew >/dev/null 2>&1; then
                 log_info "Removing Homebrew packages..."
                 # Note: This is dangerous and may remove packages used by other apps
                 # We'll only remove formulae, not casks or mas apps for safety

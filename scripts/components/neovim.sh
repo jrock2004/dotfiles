@@ -24,13 +24,23 @@ setup_neovim() {
     if [[ "$OSTYPE" == "linux-gnu"* ]]; then
         if command -v nvim &> /dev/null; then
             local nvim_version
-            nvim_version=$(nvim --version | head -n1 | grep -oP 'v\K[0-9]+\.[0-9]+' || echo "0.0")
-            local major minor
+            nvim_version=$(nvim --version | head -n1 | grep -oP 'v\K[0-9]+\.[0-9]+\.[0-9]+' || echo "0.0.0")
+            local major minor patch
             major=$(echo "$nvim_version" | cut -d. -f1)
             minor=$(echo "$nvim_version" | cut -d. -f2)
+            patch=$(echo "$nvim_version" | cut -d. -f3)
 
-            # Check if version is less than 0.11
-            if [ "$major" -eq 0 ] && [ "$minor" -lt 11 ]; then
+            # Check if version is less than 0.11.2
+            local needs_upgrade=false
+            if [ "$major" -eq 0 ]; then
+                if [ "$minor" -lt 11 ]; then
+                    needs_upgrade=true
+                elif [ "$minor" -eq 11 ] && [ "$patch" -lt 2 ]; then
+                    needs_upgrade=true
+                fi
+            fi
+
+            if [ "$needs_upgrade" = true ]; then
                 log_warning "Neovim $nvim_version is too old for LazyVim (requires >= 0.11.2)"
                 log_info "Installing latest Neovim from unstable PPA..."
 

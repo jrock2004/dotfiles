@@ -86,9 +86,10 @@ jobs:
           ./install.sh --non-interactive --skip homebrew,vscode,fonts,macos-defaults
 
       - name: Run integration tests
+        continue-on-error: true  # Don't fail the job on integration test failures for now
         run: |
           chmod +x scripts/test-integration.sh
-          ./scripts/test-integration.sh || true  # Don't fail on integration tests for now
+          ./scripts/test-integration.sh
 
       - name: Display installed tools
         run: |

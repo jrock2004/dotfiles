@@ -11,7 +11,7 @@ set -euo pipefail
 
 # Calculate DOTFILES based on script location (scripts/ is subdirectory of repo root)
 # If DOTFILES is already set (e.g., from root install.sh), use that value
-if [ -z "$DOTFILES" ]; then
+if [ -z "${DOTFILES:-}" ]; then
     DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
