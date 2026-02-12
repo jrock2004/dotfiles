@@ -134,7 +134,7 @@ pkg_install_from_file() {
         return 1
     fi
 
-    log_info "Installing $description from $(basename $package_file)..."
+    log_info "Installing $description from $(basename "$package_file")..."
 
     local packages=$(read_package_file "$package_file")
     local count=0
@@ -143,9 +143,9 @@ pkg_install_from_file() {
     while IFS= read -r package; do
         if [ -n "$package" ]; then
             if pkg_install_single "$package"; then
-                ((count++))
+                count=$((count + 1))
             else
-                ((failed++))
+                failed=$((failed + 1))
             fi
         fi
     done <<< "$packages"

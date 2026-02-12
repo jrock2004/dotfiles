@@ -9,7 +9,11 @@ set -euo pipefail
 # GLOBAL VARIABLES
 ###########################################
 
-DOTFILES="${DOTFILES:-$HOME/.dotfiles}"
+# Calculate DOTFILES based on script location (scripts/ is subdirectory of repo root)
+# If DOTFILES is already set (e.g., from root install.sh), use that value
+if [ -z "${DOTFILES:-}" ]; then
+    DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+fi
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 VERSION="2.0.0"
 OS=""
@@ -198,8 +202,22 @@ initialQuestions() {
 
     if [ "$NON_INTERACTIVE" = true ]; then
         log_info "Non-interactive mode: using defaults"
-        OS="mac"
+        # Auto-detect OS instead of assuming macOS
+        local detected_os=$(detect_os)
+        case "$detected_os" in
+            macos)
+                OS="mac"
+                ;;
+            linux)
+                OS="linux"
+                ;;
+            *)
+                log_error "Unsupported OS: $detected_os"
+                exit 1
+                ;;
+        esac
         USE_DESKTOP_ENV=FALSE
+        log_info "Detected OS: $OS"
         return
     fi
 

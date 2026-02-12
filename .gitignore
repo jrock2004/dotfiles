@@ -19,3 +19,10 @@ files/.config/uv
 files/.config/zed
 files/.tmux/plugins
 .install.log
+
+# Test artifacts
+shellcheck-report.txt
+.install.log
+
+# cagent files
+files/.config/cagent/
