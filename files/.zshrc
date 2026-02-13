@@ -129,3 +129,5 @@ fi
 alias sync='stow --ignore ".DS_Store" -v -R -t ~ -d "$DOTFILES" files'
 alias unsync='stow --ignore ".DS_Store" -v -D -t ~ -d "$DOTFILES" files'
 
+# VS Code shell integration (must be after p10k to avoid conflicts)
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
