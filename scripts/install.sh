@@ -5,6 +5,14 @@
 # Exit on error, undefined variables, and pipe failures
 set -euo pipefail
 
+# Reconnect stdin to the terminal if it is not already a TTY.
+# This is needed when the script is invoked via `bash <(curl ...)` where
+# stdin may be the process substitution pipe instead of the terminal,
+# causing interactive read/select calls to receive EOF immediately.
+if [ ! -t 0 ] && [ -c /dev/tty ]; then
+    exec < /dev/tty
+fi
+
 ###########################################
 # GLOBAL VARIABLES
 ###########################################
