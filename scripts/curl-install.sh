@@ -21,4 +21,11 @@ fi
 
 cd "$HOME"/.dotfiles || exit
 
-exec ./install.sh
+# Reconnect stdin to the terminal so interactive prompts work correctly.
+# When running via `bash <(curl ...)`, stdin may be the process substitution
+# pipe rather than the terminal, causing read/select to receive EOF immediately.
+if [ -t 0 ]; then
+    exec ./install.sh
+else
+    exec ./install.sh < /dev/tty
+fi
