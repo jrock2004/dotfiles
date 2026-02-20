@@ -18,7 +18,6 @@ plug "esc/conda-zsh-completion"
 plug "hlissner/zsh-autopair"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
-plug "zap-zsh/fzf"
 plug "zap-zsh/supercharge"
 plug "zap-zsh/vim"
 plug "zap-zsh/zap-prompt"
@@ -28,7 +27,8 @@ plug "zap-zsh/exa"
 export PNPM_HOME="$HOME/.config/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
-# [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+# Set up fzf key bindings and fuzzy completion
+command -v fzf &> /dev/null && source <(fzf --zsh)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
