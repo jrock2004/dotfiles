@@ -22,8 +22,13 @@ setup_fzf() {
     fi
 
     if [ -x "$(command -v brew)" ]; then
-        "$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
-        log_success "FZF setup completed"
+        fzf_install_script="$(brew --prefix)/opt/fzf/install"
+        if [ -f "$fzf_install_script" ]; then
+            "$fzf_install_script" --key-bindings --completion --no-update-rc --no-bash --no-fish
+            log_success "FZF setup completed"
+        else
+            log_warning "FZF install script not found at $fzf_install_script. Ensure fzf is installed via 'brew install fzf'."
+        fi
     else
         log_warning "Homebrew not found, skipping FZF setup"
     fi
