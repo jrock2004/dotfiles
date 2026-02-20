@@ -4,6 +4,7 @@
 # File utilities with different names
 fd=fd-find
 bat=batcat
+ninja=ninja-build
 
 # All other packages in common.txt typically have the same name on Ubuntu
 # If a package name differs, add it here

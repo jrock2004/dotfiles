@@ -30,6 +30,7 @@ vim
 make
 cmake
 gcc
+ninja
 
 # Programming languages
 python
