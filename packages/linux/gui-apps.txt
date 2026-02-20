@@ -1,0 +1,10 @@
+# Linux GUI applications
+# Native package manager installation
+
+# Terminal emulators
+alacritty
+kitty
+
+# Web browsers
+firefox
+chromium

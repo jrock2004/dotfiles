@@ -1,0 +1,14 @@
+# macOS-only packages (window managers, system utilities)
+
+# Window management
+koekeishiya/formulae/yabai
+koekeishiya/formulae/skhd
+
+# Status bar
+sketchybar
+
+# macOS theme
+powerlevel10k
+
+# macOS symbols
+sf-symbols

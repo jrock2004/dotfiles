@@ -1,0 +1,8 @@
+# Linux-specific core packages
+
+# Build tools (will be mapped per distro)
+build-essential   # Ubuntu/Debian
+base-devel        # Arch
+
+# System utilities
+software-properties-common  # Ubuntu/Debian (for adding PPAs)

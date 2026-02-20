@@ -1,0 +1,5 @@
+# Homebrew taps (custom repositories)
+
+homebrew/bundle
+FelixKratz/formulae
+koekeishiya/formulae

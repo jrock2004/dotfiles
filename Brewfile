@@ -1,3 +1,28 @@
+# ============================================================================
+# DEPRECATION NOTICE
+# ============================================================================
+#
+# This Brewfile is kept for reference but is NO LONGER USED by install.sh
+#
+# The dotfiles now use a new cross-platform package management system located
+# in the packages/ directory. This provides:
+#
+# - Cross-platform support (macOS, Linux, WSL)
+# - Better organization (common, optional, platform-specific)
+# - Package name mappings for different package managers
+# - Validation tools to ensure consistency
+#
+# To see the migration status:
+#   ./scripts/migrate-brewfile.sh
+#
+# To install packages:
+#   ./install.sh (now uses packages/ directory automatically)
+#
+# For more information:
+#   See packages/README.md
+#
+# ============================================================================
+
 brew "mas"
 brew "neovim"
 brew "noti"

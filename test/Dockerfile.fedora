@@ -1,0 +1,26 @@
+# Fedora Test Environment for Dotfiles
+FROM fedora:39
+
+# Install basic dependencies
+RUN dnf install -y \
+    curl \
+    git \
+    sudo \
+    && dnf clean all
+
+# Create a test user
+RUN useradd -m -s /bin/bash testuser && \
+    echo "testuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+# Switch to test user
+USER testuser
+WORKDIR /home/testuser
+
+# Copy dotfiles (done at build time or via volume mount)
+# COPY --chown=testuser:testuser . /home/testuser/.dotfiles
+
+# Set up environment
+ENV HOME=/home/testuser
+ENV DOTFILES=/home/testuser/.dotfiles
+
+CMD ["/bin/bash"]

@@ -1,0 +1,7 @@
+# Package name mappings from common.txt to macOS/Homebrew package names
+# Format: common-name=brew-package-name
+
+# Most packages in common.txt have the same name in Homebrew
+# This file exists for consistency but may be mostly empty
+
+# No mappings needed currently - Homebrew names match common names

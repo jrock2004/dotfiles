@@ -1,0 +1,28 @@
+# Arch Linux Test Environment for Dotfiles
+FROM archlinux:latest
+
+# Update package database and install basic dependencies
+RUN pacman -Syu --noconfirm && \
+    pacman -S --noconfirm \
+    curl \
+    git \
+    sudo \
+    base-devel \
+    && pacman -Scc --noconfirm
+
+# Create a test user
+RUN useradd -m -s /bin/bash testuser && \
+    echo "testuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+# Switch to test user
+USER testuser
+WORKDIR /home/testuser
+
+# Copy dotfiles (done at build time or via volume mount)
+# COPY --chown=testuser:testuser . /home/testuser/.dotfiles
+
+# Set up environment
+ENV HOME=/home/testuser
+ENV DOTFILES=/home/testuser/.dotfiles
+
+CMD ["/bin/bash"]
