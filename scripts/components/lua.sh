@@ -38,7 +38,11 @@ setup_lua() {
     fi
 
     if [ "$(command -v luarocks)" ]; then
-        luarocks install --server=https://luarocks.org/dev luaformatter
+        if [ "$(command -v cmake)" ]; then
+            luarocks install --server=https://luarocks.org/dev luaformatter
+        else
+            log_warning "cmake not found, skipping luaformatter installation. Install cmake and re-run to install luaformatter."
+        fi
     fi
 }
 
