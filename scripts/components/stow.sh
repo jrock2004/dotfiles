@@ -23,7 +23,7 @@ setup_stow() {
         return 0
     fi
 
-    if [ "$CI" == true ]; then
+    if [ "${CI:-}" == true ]; then
         # Some things to do when running via CI
         rm -Rf ~/.gitconfig
     fi
