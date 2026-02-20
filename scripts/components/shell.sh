@@ -21,11 +21,10 @@ setup_fzf() {
         return 0
     fi
 
-    if [ -x "$(command -v brew)" ]; then
-        "$(brew --prefix)"/opt/fzf/install --key-bindings --completion --no-update-rc --no-bash --no-fish
-        log_success "FZF setup completed"
+    if command -v fzf &> /dev/null; then
+        log_success "FZF is installed. Shell integration is handled via .zshrc (source <(fzf --zsh))"
     else
-        log_warning "Homebrew not found, skipping FZF setup"
+        log_warning "FZF binary not found. Install via your package manager (e.g., 'brew install fzf')"
     fi
 }
 
