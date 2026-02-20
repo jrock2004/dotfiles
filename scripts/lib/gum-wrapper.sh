@@ -39,7 +39,7 @@ ui_choose() {
         printf "%s\n" "${options[@]}" | fzf --prompt="$prompt > " --height=40% --reverse
     else
         # Use bash select
-        echo "$prompt"
+        echo "$prompt" >&2
         select option in "${options[@]}"; do
             if [ -n "$option" ]; then
                 echo "$option"
@@ -64,17 +64,17 @@ ui_multi_select() {
         printf "%s\n" "${options[@]}" | fzf --multi --prompt="$prompt > " --height=60% --reverse
     else
         # Use bash with manual multi-select
-        echo "$prompt"
-        echo "(Enter numbers separated by spaces, e.g., '1 3 5')"
-        echo ""
+        echo "$prompt" >&2
+        echo "(Enter numbers separated by spaces, e.g., '1 3 5')" >&2
+        echo "" >&2
 
         local i=1
         for option in "${options[@]}"; do
-            echo "  $i) $option"
+            echo "  $i) $option" >&2
             ((i++))
         done
 
-        echo ""
+        echo "" >&2
         read -rp "Your selection: " selection
 
         # Convert selection to options
@@ -256,19 +256,19 @@ select_components() {
         echo "$selected" | tr '\n' ' '
     else
         # Fallback: show all components with descriptions
-        echo "$prompt"
-        echo ""
+        echo "$prompt" >&2
+        echo "" >&2
 
         local i=1
         for item in "${components[@]}"; do
             local name="${item%%:*}"
             local desc="${item#*:}"
-            printf "  ${CYAN}%2d)${RESET} %-20s ${BLUE}%s${RESET}\n" $i "$name" "$desc"
+            printf "  ${CYAN}%2d)${RESET} %-20s ${BLUE}%s${RESET}\n" $i "$name" "$desc" >&2
             ((i++))
         done
 
-        echo ""
-        echo "Enter component numbers (space-separated, e.g., '1 3 5'), or press Enter for all:"
+        echo "" >&2
+        echo "Enter component numbers (space-separated, e.g., '1 3 5'), or press Enter for all:" >&2
         read -rp "> " selection
 
         if [ -z "$selection" ]; then
