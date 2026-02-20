@@ -1,11 +1,12 @@
 #!/bin/bash
 # Component: Lua
 # Description: Install Lua language server (complex build process with submodules)
-# Dependencies: git, curl, luarocks (optional)
+# Dependencies: git, curl, cmake, luarocks (optional)
 
 # Source required libraries
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 source "$SCRIPT_DIR/lib/common.sh"
+source "$SCRIPT_DIR/lib/package-manager.sh"
 
 ###########################################
 # SETUP FUNCTION
@@ -38,6 +39,10 @@ setup_lua() {
     fi
 
     if [ "$(command -v luarocks)" ]; then
+        if [ ! "$(command -v cmake)" ]; then
+            log_info "cmake not found, installing it as a prerequisite for luaformatter..."
+            pkg_install_single cmake
+        fi
         luarocks install --server=https://luarocks.org/dev luaformatter
     fi
 }
