@@ -3,6 +3,7 @@
 
 # File utilities
 fd=fd-find
+ninja=ninja-build
 
 # Most packages in common.txt have the same name on Fedora
 # If a package name differs, add it here
