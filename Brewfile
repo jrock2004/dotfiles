@@ -20,6 +20,7 @@ cask "font-victor-mono"
 
 cask "alacritty"
 cask "brave-browser"
+cask "cursor"
 cask "discord"
 cask "dotnet-sdk"
 cask "ghostty"
