@@ -205,6 +205,14 @@ setupClaudeCli() {
     curl -fsSL https://claude.ai/install.sh | bash
 }
 
+setupCursorCli() {
+    printTopBorder
+    echo "Installing Cursor CLI"
+    printBottomBorder
+
+    curl https://cursor.com/install -fsS | bash
+}
+
 setupForMac() {
     printTopBorder
     echo "Installing apps for Mac"
@@ -231,6 +239,7 @@ setupForMac() {
 
     setupDirectories
     setupClaudeCli
+    setupCursorCli
     setupFzf
     setupLua
     setupNeovim
