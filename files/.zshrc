@@ -132,6 +132,7 @@ alias unsync='stow --ignore ".DS_Store" -v -D -t ~ -d "$DOTFILES" files'
 
 # AWS Easy Command
 alias awsprofile='source ~/.aws/set_aws_profile.sh'
+
 function s2alogin {
   saml2aws login --browser-autofill --skip-prompt --force
   if [ $? -eq 0 ]; then
