@@ -53,6 +53,8 @@ prepend_path $VOLTA_HOME/bin
 prepend_path $HOME/.local/lib/python3.9/site-packages
 prepend_path $HOME/.local/bin
 
+
+
 if [[ -d /usr/local/go/bin ]]; then
   prepend_path /usr/local/go/bin
 fi
@@ -139,3 +141,5 @@ function s2alogin {
     source ~/.aws/set_aws_profile.sh
   fi
 }
+
+export SAML2AWS_BROWSER_EXECUTABLE_PATH="$HOME/Library/Caches/ms-playwright/chromium-1217/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
