@@ -25,8 +25,9 @@ plug "zap-zsh/zap-prompt"
 plug "zap-zsh/exa"
 
 # pnpm
-export PNPM_HOME="$HOME/.config/pnpm"
+export PNPM_HOME=/Users/john.costanzo/Library/pnpm
 export PATH="$PNPM_HOME:$PATH"
+export PATH="$PNPM_HOME/bin:$PATH"
 
 # [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
@@ -126,7 +127,6 @@ fi
 if dotfiles::exists pnpm ; then
   export PATH="$PATH:$(pnpm root -g)/.pnpm"
 fi
-
 # Stow aliases
 alias sync='stow --ignore ".DS_Store" -v -R -t ~ -d "$DOTFILES" files'
 alias unsync='stow --ignore ".DS_Store" -v -D -t ~ -d "$DOTFILES" files'
