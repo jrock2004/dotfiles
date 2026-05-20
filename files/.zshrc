@@ -65,7 +65,7 @@ fi
 
 if dotfiles::exists brew ; then
   # source z.sh if it exists
-  zpath="$(brew --prefix)/etc/profile.d/z.sh"
+  zpath="$(brew --prefix 2>/dev/null)/etc/profile.d/z.sh"
   if [ -f "$zpath" ]; then
       source "$zpath"
   fi
@@ -126,7 +126,7 @@ else
 fi
 
 if dotfiles::exists pnpm ; then
-  export PATH="$PATH:$(pnpm root -g)/.pnpm"
+  export PATH="$PATH:$(pnpm root -g 2>/dev/null)/.pnpm"
 fi
 # Stow aliases
 alias sync='stow --ignore ".DS_Store" -v -R -t ~ -d "$DOTFILES" files'
