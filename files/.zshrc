@@ -1,3 +1,6 @@
+# Source cargo env before instant prompt to avoid p10k console output warning
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -107,8 +110,6 @@ alias disableLaptop='xrandr --output eDP-1 --off'
 alias switchtoyarn='rm -Rf node_modules && rm -Rf *-lock.json && yarn install'
 alias switchtopnpm='rm -Rf node_modules && rm -Rf *-lock.json && pnpm install'
 alias switchtonpm='rm -Rf node_modules && rm -Rf *-lock.json && npm install'
-source $HOME/.cargo/env
-
 alias npmpackages='volta install @github/copilot @githubnext/github-copilot-cli @lifeart/ember-language-server @tailwindcss/language-server bash-language-server cssmodules-language-server diagnostic-languageserver dockerfile-language-server-nodejs ember-cli ls_emmet neovim pnpm prettier typescript typescript-language-server vim-language-server vscode-langservers-extracted yaml-language-server'
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
