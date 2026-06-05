@@ -8,10 +8,12 @@ export VIM_TMP="$HOME/.vim-tmp"
 fpath=(
   $DOTFILES/zsh/functions
   /usr/local/share/zsh/site-functions
+  /opt/homebrew/share/zsh/functions
   $fpath
 )
 
 typeset -aU path
+typeset -aU fpath
 
 export EDITOR='nvim'
 export GIT_EDITOR='nvim'
