@@ -17,6 +17,6 @@ typeset -aU fpath
 
 export EDITOR='nvim'
 export GIT_EDITOR='nvim'
-export LANG='en_US'
+export LANG='en_US.UTF-8'
 export LC_ALL='en_US.UTF-8'
-. "$HOME/.cargo/env"
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"

@@ -1,5 +1,4 @@
-# Source cargo env before instant prompt to avoid p10k console output warning
-[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+# cargo env is sourced in .zshenv (before p10k instant prompt runs)
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -12,7 +11,6 @@ fi
 source "$DOTFILES/zsh/utils.zsh"
 
 # Variables
-export DOTFILES=$HOME/.dotfiles
 export VOLTA_HOME=$HOME/.volta
 export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 
