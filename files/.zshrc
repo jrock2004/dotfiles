@@ -27,12 +27,6 @@ plug "zap-zsh/vim"
 plug "zap-zsh/zap-prompt"
 plug "zap-zsh/exa"
 
-# pnpm
-export PNPM_HOME=/Users/john.costanzo/Library/pnpm
-export PATH="$PNPM_HOME:$PATH"
-export PATH="$PNPM_HOME/bin:$PATH"
-
-# [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
@@ -48,6 +42,9 @@ fi
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=1000000000
 SAVEHIST=1000000000
+setopt SHARE_HISTORY
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
 
 # Path
 prepend_path /usr/local/opt/grep/libexec/gnubin
@@ -74,7 +71,6 @@ fi
 # Alias
 alias reload!='RELOAD=1 source ~/.zshrc'
 [[ -n "$(command -v nvim)" ]] && alias vim="nvim"
-# [[ -n "$(command -v lvim)" ]] && alias vim="lvim"
 alias vim2='NVIM_APPNAME=ownnvim nvim'
 alias gs='git status'
 alias glog="git l"
@@ -97,7 +93,6 @@ elif dotfiles::exists pacman ; then
 fi
 
 alias grep='grep --color=auto'
-# alias ls='eza -lah --git --no-permissions --no-filesize --no-user --icons=always $@'
 alias ls="eza -GHF \$@"
 alias ll='eza --icons=always'
 alias ios='open -a /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
@@ -106,7 +101,6 @@ alias clsym="find -L . -name . -o -type d -prune -o -type l -exec rm {} +"
 alias lpath='echo $PATH | tr ":" "\n"'
 alias wtfport="lsof -i -P -n | grep LISTEN"
 alias luamake=$HOME/lua-language-server/3rd/luamake/luamake
-alias disableLaptop='xrandr --output eDP-1 --off'
 alias switchtoyarn='rm -Rf node_modules && rm -Rf *-lock.json && yarn install'
 alias switchtopnpm='rm -Rf node_modules && rm -Rf *-lock.json && pnpm install'
 alias switchtonpm='rm -Rf node_modules && rm -Rf *-lock.json && npm install'
@@ -114,7 +108,6 @@ alias npmpackages='volta install @github/copilot @githubnext/github-copilot-cli 
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PNPM_HOME="$HOME/Library/pnpm"
-  export PATH="$PNPM_HOME:$PATH"
 
   source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 
@@ -124,6 +117,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 else
   export PNPM_HOME="$HOME/.config/pnpm"
 fi
+export PATH="$PNPM_HOME/bin:$PNPM_HOME:$PATH"
 
 if dotfiles::exists pnpm ; then
   export PATH="$PATH:$(pnpm root -g 2>/dev/null)/.pnpm"
