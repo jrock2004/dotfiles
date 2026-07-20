@@ -8,7 +8,6 @@ This is a personal dotfiles repository for macOS that manages system configurati
 - **Shell**: zsh with Powerlevel10k theme and zap plugin manager
 - **Editors**: Neovim (LazyVim), VS Code, Cursor
 - **Terminal emulators**: Ghostty, WezTerm
-- **Window management**: sketchybar
 - **Terminal multiplexers**: tmux, zellij
 - **Version managers**: Volta (Node.js), rustup (Rust)
 
@@ -54,7 +53,6 @@ unsync
 │   ├── .config/        # XDG config directory
 │   │   ├── nvim/       # LazyVim configuration
 │   │   ├── ghostty/    # Ghostty terminal config
-│   │   ├── sketchybar/ # macOS status bar
 │   │   └── ...         # Other app configs
 │   ├── .zshrc          # Main zsh config
 │   ├── .zprofile       # Zsh profile
@@ -215,6 +213,5 @@ From Brewfile (83 total packages):
 - **Languages**: go, python, lua, rust (via rustup)
 - **Shells**: zsh, bash, tmux, zellij
 - **Editors**: neovim, vim
-- **macOS tools**: sketchybar
 - **Dev tools**: lazygit, lazydocker, prettier, stylua, shellcheck
 - **Terminals**: ghostty, wezterm
