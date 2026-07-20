@@ -99,9 +99,9 @@ alias clsym="find -L . -name . -o -type d -prune -o -type l -exec rm {} +"
 alias lpath='echo $PATH | tr ":" "\n"'
 alias wtfport="lsof -i -P -n | grep LISTEN"
 alias luamake=$HOME/lua-language-server/3rd/luamake/luamake
-alias switchtoyarn='rm -Rf node_modules && rm -Rf *-lock.json && yarn install'
-alias switchtopnpm='rm -Rf node_modules && rm -Rf *-lock.json && pnpm install'
-alias switchtonpm='rm -Rf node_modules && rm -Rf *-lock.json && npm install'
+alias switchtoyarn='rm -Rf node_modules && rm -f package-lock.json yarn.lock pnpm-lock.yaml && yarn install'
+alias switchtopnpm='rm -Rf node_modules && rm -f package-lock.json yarn.lock pnpm-lock.yaml && pnpm install'
+alias switchtonpm='rm -Rf node_modules && rm -f package-lock.json yarn.lock pnpm-lock.yaml && npm install'
 alias npmpackages='volta install @github/copilot @githubnext/github-copilot-cli @lifeart/ember-language-server @tailwindcss/language-server bash-language-server cssmodules-language-server diagnostic-languageserver dockerfile-language-server-nodejs ember-cli ls_emmet neovim pnpm prettier typescript typescript-language-server vim-language-server vscode-langservers-extracted yaml-language-server'
 
 if [[ "$OSTYPE" == "darwin"* ]]; then

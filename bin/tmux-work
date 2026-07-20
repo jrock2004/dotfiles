@@ -42,7 +42,7 @@ tmux split-window -h -d -t "Component Library" -c ~/Development/library-componen
 tmux select-pane -l -t "Component Library"
 
 tmux new-session -ds "Nextjs Framework" -c ~/Development/next-foundation -n "() => {}"
-tmux split-window -h -d -t "Nextjs Framework" -c ~/Development/next-foundation -n "() => {}"
+tmux split-window -h -d -t "Nextjs Framework" -c ~/Development/next-foundation
 tmux select-pane -l -t "Nextjs Framework"
 # tmux split-window -d -t "Nextjs Framework" '/usr/bin/env sh -c "lazygit"'
 

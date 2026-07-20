@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # List out the pid for the process that is currently listening on the provided port
-# Usage: wtfport find <port>
-# Usage: wtfport kill <port>
-# Example: wtfport find 3000
-# Example: wtfport kill 3000
+# Usage: pt find <port>
+# Usage: pt kill <port>
+# Example: pt find 3000
+# Example: pt kill 3000
 
 find_port() {
   local port=$1
-  line="$(lsof -i -P -n | grep LISTEN | grep ":$port")"
-  pid=$(echo "$line" | awk '{print $2}')
-  pid_name=$(echo "$line" | awk '{print $1}')
+  line="$(lsof -nP -iTCP:"$port" -sTCP:LISTEN)"
+  pid=$(echo "$line" | awk 'NR==2{print $2}')
+  pid_name=$(echo "$line" | awk 'NR==2{print $1}')
 
   # If there's nothing running, exit
   if [[ -z "$pid" ]]; then
@@ -26,9 +26,9 @@ find_port() {
 
 kill_port() {
   local port=$1
-  line="$(lsof -i -P -n | grep LISTEN | grep ":$port")"
-  pid=$(echo "$line" | awk '{print $2}')
-  pid_name=$(echo "$line" | awk '{print $1}')
+  line="$(lsof -nP -iTCP:"$port" -sTCP:LISTEN)"
+  pid=$(echo "$line" | awk 'NR==2{print $2}')
+  pid_name=$(echo "$line" | awk 'NR==2{print $1}')
 
   # If there's nothing running, exit
   if [[ -z "$pid" ]]; then

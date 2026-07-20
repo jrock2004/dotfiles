@@ -22,6 +22,7 @@ globs:
 
 - Integration-style: render → interact → assert
 - Don’t test internals; avoid `.className`/deep selectors; no large snapshots
+- Don’t mock React components, except for unavoidable framework constraints (e.g., Next.js router)
 - Prefer `userEvent`; await async actions; `findBy...` for async elements
 - No arbitrary delays; use `waitFor` with explicit expectations
 - Keep tests fast; avoid over-mocking, noisy logs

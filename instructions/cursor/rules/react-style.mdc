@@ -6,5 +6,5 @@ globs:
 
 - Functional components + hooks only; follow hooks rules.
 - Components small, semantic, accessible.
-- Naming: PascalCase components/types; camelCase vars/functions; ALL_CAPS constants.
+- Naming: PascalCase components/types; camelCase vars/functions; `_` prefix for private class members; ALL_CAPS constants.
 - Import order: React → libraries → local modules → types → styles.

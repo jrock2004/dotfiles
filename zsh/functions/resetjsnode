@@ -4,10 +4,10 @@ if [ -e pnpm-lock.yaml ]; then
   pnpm install
 fi
 
-if [ -e yarn-lock.yaml ]; then
+if [ -e yarn.lock ]; then
   yarn install
 fi
 
-if [ -e package-lock.yaml ]; then
+if [ -e package-lock.json ]; then
   npm install
 fi

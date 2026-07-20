@@ -1,6 +1,6 @@
 # A nice way to remove images
 function rimage() {
-  IMAGE=`docker images | fzf | awk '{print $1}'`
+  IMAGE=`docker images | fzf | awk '{print $3}'`
 
   docker rmi $IMAGE
 }

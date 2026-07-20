@@ -1,0 +1,8 @@
+---
+description: Error handling conventions
+alwaysApply: true
+---
+
+- Wrap async ops in try/catch.
+- Use React error boundaries.
+- Log errors with context.
