@@ -52,7 +52,8 @@ prepend_path $VOLTA_HOME/bin
 prepend_path $HOME/.local/lib/python3.9/site-packages
 prepend_path $HOME/.local/bin
 
-
+# Work Stuff
+export SONARQUBE_TOKEN=$(security find-generic-password -s sonarqube-token -w)
 
 if [[ -d /usr/local/go/bin ]]; then
   prepend_path /usr/local/go/bin
