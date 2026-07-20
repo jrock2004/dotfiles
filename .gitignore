@@ -12,6 +12,7 @@ Brewfile.lock.json
 files/.config/cagent
 files/.config/configstore
 files/.config/github-copilot
+files/.config/gh/hosts.yml
 files/.config/gtk-2.0
 files/.config/jgit
 files/.config/pipemind

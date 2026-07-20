@@ -17,8 +17,7 @@ ITEM_DIR="$CONFIG_DIR/items"
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
-sketchybar --bar height=37 \
-  position=top \
+sketchybar --bar position=top \
   height=40 \
   blur_radius=30 \
   sticky=off \

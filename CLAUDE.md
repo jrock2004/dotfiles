@@ -7,8 +7,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a personal dotfiles repository for macOS that manages system configuration through GNU Stow for symlinking. The setup includes configurations for:
 - **Shell**: zsh with Powerlevel10k theme and zap plugin manager
 - **Editors**: Neovim (LazyVim), VS Code, Cursor
-- **Terminal emulators**: Ghostty, Alacritty, Kitty, WezTerm
-- **Window management**: yabai + skhd + sketchybar
+- **Terminal emulators**: Ghostty, WezTerm
+- **Window management**: sketchybar
 - **Terminal multiplexers**: tmux, zellij
 - **Version managers**: Volta (Node.js), rustup (Rust)
 
@@ -55,8 +55,6 @@ unsync
 │   │   ├── nvim/       # LazyVim configuration
 │   │   ├── ghostty/    # Ghostty terminal config
 │   │   ├── sketchybar/ # macOS status bar
-│   │   ├── yabai/      # Window manager
-│   │   ├── skhd/       # Hotkey daemon
 │   │   └── ...         # Other app configs
 │   ├── .zshrc          # Main zsh config
 │   ├── .zprofile       # Zsh profile
@@ -212,11 +210,11 @@ switchtonpm
 
 ## Key Dependencies
 
-From Brewfile (91 total packages):
+From Brewfile (83 total packages):
 - **Core tools**: git, gh, stow, fzf, ripgrep, fd, eza, bat, jq
 - **Languages**: go, python, lua, rust (via rustup)
 - **Shells**: zsh, bash, tmux, zellij
 - **Editors**: neovim, vim
-- **macOS tools**: yabai, skhd, sketchybar
+- **macOS tools**: sketchybar
 - **Dev tools**: lazygit, lazydocker, prettier, stylua, shellcheck
-- **Terminals**: ghostty, alacritty, kitty, wezterm
+- **Terminals**: ghostty, wezterm

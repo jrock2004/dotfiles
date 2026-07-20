@@ -6,7 +6,6 @@
 
 DOTFILES="$HOME/.dotfiles"
 OS=""
-USE_DESKTOP_ENV=FALSE
 
 ###########################################
 # HELPER FUNCTIONS
@@ -49,25 +48,6 @@ initialQuestions() {
         exit 1
         ;;
     esac
-
-    printf "\n"
-
-    echo "Do you have a desktop environment?"
-    read -rp "[y]es or [n]o (default: no) : " choice_desktop
-
-    case $choice_desktop in
-    y)
-        USE_DESKTOP_ENV=TRUE
-        ;;
-    n)
-        USE_DESKTOP_ENV=FALSE
-        ;;
-    *)
-        USE_DESKTOP_ENV=FALSE
-        ;;
-    esac
-
-    echo "$USE_DESKTOP_ENV"
 }
 
 setupDirectories() {
@@ -77,12 +57,6 @@ setupDirectories() {
 
     mkdir -p "$HOME/Development"
     mkdir -p "$HOME/.tmux/plugins"
-
-    # if [ "$USE_DESKTOP_ENV" = FALSE ]; then
-    #     mkdir -p "$HOME/Pictures"
-    #     mkdir -p "$HOME/Pictures/avatars"
-    #     mkdir -p "$HOME/Pictures/wallpapers"
-    # fi
 }
 
 setupFzf() {
@@ -95,33 +69,13 @@ setupFzf() {
     fi
 }
 
-setupLua() {
-    printTopBorder
-    echo "Setting up Lua"
-    printBottomBorder
-
-    git clone https://github.com/sumneko/lua-language-server "$HOME/lua-language-server"
-    cd "$HOME/lua-language-server" || exit 1
-    git submodule update --init --recursive
-    cd 3rd/luamake || exit 1
-    compile/install.sh
-    cd ../..
-    ./3rd/luamake/luamake rebuild
-
-    cd "$DOTFILES" || exit 1
-
-    if [ "$(command -v luarocks)" ]; then
-        luarocks install --server=https://luarocks.org/dev luaformatter
-    fi
-}
-
 setupNeovim() {
     printTopBorder
     echo "Setting up neovim dependencies"
     printBottomBorder
 
-    if [ "$(command -v python)" ]; then
-        python -m pip install --upgrade pynvim
+    if [ "$(command -v python3)" ]; then
+        python3 -m pip install --upgrade pynvim
     fi
 }
 
@@ -141,13 +95,13 @@ setupShell() {
     [[ -n "$(command -v brew)" ]] && zsh_path="$(brew --prefix)/bin/zsh" || zsh_path="$(which zsh)"
 
     if ! grep "$zsh_path" /etc/shells; then
-        info "adding $zsh_path to /etc/shells"
+        echo "adding $zsh_path to /etc/shells"
         echo "$zsh_path" | sudo tee -a /etc/shells
     fi
 
     if [[ "$SHELL" != "$zsh_path" ]]; then
         chsh -s "$zsh_path"
-        info "default shell changed to $zsh_path"
+        echo "default shell changed to $zsh_path"
     fi
 }
 
@@ -166,8 +120,6 @@ setupStow() {
     rm -Rf ~/.zshenv
 
     if [ "$(command -v brew)" ]; then
-        rm -Rf ~/.zprofile
-
         "$(brew --prefix)"/bin/stow --ignore ".DS_Store" -v -R -t ~ -d "$DOTFILES" files
     elif [ "$(command -v stow)" ]; then
         /usr/bin/stow --ignore ".DS_Store" -v -R -t ~ -d "$DOTFILES" files
@@ -221,7 +173,7 @@ setupForMac() {
     if [ -z "$(command -v brew)" ]; then
         sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash --login
 
-        echo "eval '$(/opt/homebrew/bin/brew shellenv)'" >>/Users/jcostanzo/.zprofile
+        echo "eval '$(/opt/homebrew/bin/brew shellenv)'" >>"$HOME/.zprofile"
         eval "$(/opt/homebrew/bin/brew shellenv)"
     fi
 
@@ -241,7 +193,6 @@ setupForMac() {
     setupClaudeCli
     setupCursorCli
     setupFzf
-    setupLua
     setupNeovim
     setupRust
     setupStow

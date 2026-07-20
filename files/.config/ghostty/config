@@ -1,6 +1,5 @@
 # Theme Settings
 #########################################
-# theme = argonaut
 bold-is-bright = true
 
 # Window Settings
@@ -16,17 +15,12 @@ window-colorspace = "display-p3"
 adjust-cell-height = 10%
 cursor-invert-fg-bg = true
 
-shell-integration-features = no-cursor,sudo
 confirm-close-surface = false
 
 macos-icon = "custom-style"
 macos-icon-frame = "plastic"
 macos-icon-ghost-color = "#8839ef"
 macos-icon-screen-color = "#1E1E2D"
-
-# adjust-cell-height = 30%
-
-# window-colorspace = "display-p3"
 
 # Mouse Settings
 #########################################
