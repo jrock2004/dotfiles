@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 ###########################################
 # VARIABLES
 ###########################################
@@ -84,7 +86,7 @@ setupRust() {
     echo "Setting up rust"
     printBottomBorder
 
-    curl https://sh.rustup.rs -sSf | sh
+    curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
 }
 
 setupShell() {
@@ -131,7 +133,9 @@ setupTmux() {
     echo "Setting up tmux plugin manager"
     printBottomBorder
 
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    if [ ! -d ~/.tmux/plugins/tpm ]; then
+        git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    fi
 }
 
 setupVolta() {
@@ -171,7 +175,7 @@ setupForMac() {
     printBottomBorder
 
     if [ -z "$(command -v brew)" ]; then
-        sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh | bash --login
+        curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
 
         echo "eval '$(/opt/homebrew/bin/brew shellenv)'" >>"$HOME/.zprofile"
         eval "$(/opt/homebrew/bin/brew shellenv)"
