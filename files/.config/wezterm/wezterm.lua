@@ -21,11 +21,8 @@ return {
       font = font_with_fallback(font_name, { italic = true }),
     },
     {
-      italic = false,
-      font = font_with_fallback(font_name, { bold = true }),
-    },
-    {
       intensity = 'Bold',
+      italic = false,
       font = font_with_fallback(font_name, { bold = true }),
     },
   },
