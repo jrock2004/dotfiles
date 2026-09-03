@@ -1,0 +1,9 @@
+# Personal mise overrides. mise merges every ~/.config/mise/conf.d/*.toml on top
+# of ~/.config/mise/config.toml. Omarchy manages config.toml (its installer and
+# migrations rewrite it), but never touches conf.d/ - so personal settings live
+# here and survive `omarchy update`.
+
+[settings]
+# Refuse tool versions published less than 7 days ago (supply-chain cooldown).
+# One-off bypass: mup   (alias for MISE_MINIMUM_RELEASE_AGE=0 mise up)
+minimum_release_age = "7d"

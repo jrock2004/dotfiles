@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+# Manage personal tweaks to Omarchy-managed config files.
+#
+# Omarchy owns files like ~/.config/hypr/*, ~/.config/omarchy/*,
+# ~/.config/mise/config.toml and rewrites them on `omarchy update` and
+# `omarchy-refresh-*`. So personal copies are kept in $DOTFILES/omarchy/
+# (mirroring their $HOME path) and COPIED in/out, never symlinked.
+#
+#   omarchy-config diff              show tracked files that differ from ~/  (exit 1 if any)
+#   omarchy-config capture           refresh every tracked file FROM ~/
+#   omarchy-config capture <path>..  start tracking (or update) specific file(s)
+#   omarchy-config apply             copy every tracked file TO ~/  (backs up differing files)
+#
+# `install.sh` runs `omarchy-config apply` during Omarchy setup.
+set -euo pipefail
+
+DOTFILES="${DOTFILES:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
+OVERLAY="$DOTFILES/omarchy"
+
+die() {
+    echo "omarchy-config: $*" >&2
+    exit 1
+}
+
+tracked() { # NUL-separated absolute paths of tracked overlay files
+    [ -d "$OVERLAY" ] || return 0
+    find "$OVERLAY" -type f ! -name 'README.md' -print0
+}
+
+rel_under_home() { # abs path -> path relative to $HOME, or fail
+    case "$1" in
+    "$HOME"/*) printf '%s\n' "${1#"$HOME"/}" ;;
+    *) return 1 ;;
+    esac
+}
+
+cmd_diff() {
+    local src rel dst any=0
+    while IFS= read -r -d '' src; do
+        rel="${src#"$OVERLAY"/}"
+        dst="$HOME/$rel"
+        if [ ! -e "$dst" ]; then
+            printf 'only in overlay : %s\n' "$rel"
+            any=1
+        elif ! cmp -s "$src" "$dst"; then
+            printf 'differs         : %s\n' "$rel"
+            any=1
+        fi
+    done < <(tracked)
+    if [ "$any" -eq 0 ]; then
+        echo "overlay in sync with ~/"
+    fi
+    return "$any"
+}
+
+cmd_capture() {
+    if [ "$#" -gt 0 ]; then
+        local p abs rel dst
+        for p in "$@"; do
+            [ -f "$p" ] || die "not a file: $p"
+            abs="$(cd "$(dirname "$p")" && pwd)/$(basename "$p")"
+            rel="$(rel_under_home "$abs")" || die "not under \$HOME: $p"
+            dst="$OVERLAY/$rel"
+            mkdir -p "$(dirname "$dst")"
+            cp "$abs" "$dst"
+            echo "captured  $rel"
+        done
+    else
+        local src rel n=0
+        while IFS= read -r -d '' src; do
+            rel="${src#"$OVERLAY"/}"
+            if [ -f "$HOME/$rel" ]; then
+                cp "$HOME/$rel" "$src"
+                echo "refreshed $rel"
+                n=$((n + 1))
+            else
+                echo "skip (missing in ~/): $rel" >&2
+            fi
+        done < <(tracked)
+        [ "$n" -gt 0 ] || echo "nothing tracked yet - pass a path to start"
+    fi
+    echo
+    git -C "$DOTFILES" status --short omarchy/ 2>/dev/null || true
+}
+
+cmd_apply() {
+    local src rel dst n=0
+    while IFS= read -r -d '' src; do
+        rel="${src#"$OVERLAY"/}"
+        dst="$HOME/$rel"
+        mkdir -p "$(dirname "$dst")"
+        if [ -e "$dst" ] && ! cmp -s "$src" "$dst"; then
+            cp "$dst" "$dst.bak.$(date +%s)"
+            echo "backed up $rel"
+        fi
+        cp "$src" "$dst"
+        echo "applied   $rel"
+        n=$((n + 1))
+    done < <(tracked)
+    [ "$n" -gt 0 ] || echo "nothing to apply"
+}
+
+case "${1:-}" in
+diff | status) shift; cmd_diff "$@" ;;
+capture | pull) shift; cmd_capture "$@" ;;
+apply | push) shift; cmd_apply "$@" ;;
+"" | -h | --help | help)
+    awk 'NR>1 && !/^#/ {exit} NR>1 {sub(/^#[ ]?/, ""); print}' "$0"
+    ;;
+*) die "unknown command: $1 (try: diff | capture | apply)" ;;
+esac

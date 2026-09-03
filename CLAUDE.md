@@ -32,6 +32,7 @@ The installer will:
 
 - Shell stays bash; `bash/omarchy.bash` is sourced from `~/.bashrc` (installer appends the line, idempotent). It sources `shell/common.sh`, the portable alias/function set shared with `.zshrc`. Add new cross-shell aliases there, not in a single rc file.
 - `setupStowOmarchy` runs stow with `--ignore` for `nvim`, `ghostty`, `lazygit`, `.tmux.conf` (Omarchy owns those) and the macOS-only `.zshrc`/`.zprofile`/`.zshenv`/`.p10k.zsh`. No `setupTmux` on Omarchy (its tmux.conf uses no tpm).
+- **Omarchy-managed config tweaks** (`~/.config/hypr/*`, `~/.config/mise/conf.d/*`, ...): tracked in `omarchy/` (mirrors `$HOME` paths), **copied** in/out by `bin/omarchy-config` (`capture` / `apply` / `diff`) — not symlinked, because Omarchy migrations / `omarchy-refresh-*` rewrite these files. `setupOmarchyOverlay` runs `omarchy-config apply`. See `omarchy/README.md`.
 - This repo's nvim config is symlinked to `~/.config/ownnvim`, launched with `vim2` (`NVIM_APPNAME=ownnvim`). Default `nvim` is Omarchy's.
 - No Volta on Omarchy — `mise` is the version manager and is already present.
 

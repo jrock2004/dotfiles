@@ -43,6 +43,22 @@ The installer asks which OS to set up: `[1] Mac OSX` or `[2] Omarchy / Arch`.
 - **git:** `credential.helper` is written to `~/.gitconfig.local` per platform
   (`osxkeychain` on Mac, `git-credential-libsecret` on Omarchy).
 
+### Personal tweaks to Omarchy-managed configs
+
+Omarchy owns `~/.config/hypr/*`, `~/.config/omarchy/*`, `~/.config/mise/config.toml`
+etc. and **rewrites them** on `omarchy update` (migrations) and `omarchy-refresh-*`.
+Symlinking them from `files/` would break. Instead:
+
+- Personal copies live in `omarchy/` (mirroring their `$HOME` path). `bin/omarchy-config`
+  manages them: `capture` (`~/` → repo), `apply` (repo → `~/`, backs up differing
+  files), `diff` (list drift). `setupOmarchyOverlay` runs `omarchy-config apply`.
+- After editing a live Omarchy config: `omarchy-config capture ~/.config/<path>`, then commit.
+  Periodically / after `omarchy update`: `omarchy-config diff` to spot drift.
+- mise: personal `[settings]` go in `omarchy/.config/mise/conf.d/personal.toml`
+  (mise merges `conf.d/*.toml`; Omarchy never touches `conf.d/`).
+- Omarchy's own override dirs (`~/.config/omarchy/themes/<name>/`,
+  `~/.config/omarchy/hooks/`) are yours by design.
+
 ### Installed by hand (not the installer)
 
 - **1Password** — deliberately left out of `setupOmarchyApps`. There is no package

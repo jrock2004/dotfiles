@@ -338,6 +338,19 @@ setupBashrcOmarchy() {
     fi
 }
 
+# Copy personal tweaks onto Omarchy-managed config files (~/.config/hypr/*,
+# ~/.config/mise/conf.d/*, etc). Copied, not symlinked: Omarchy migrations and
+# `omarchy-refresh-*` rewrite these files and would clobber a symlink.
+# `omarchy-config` (capture | apply | diff) manages the omarchy/ overlay.
+setupOmarchyOverlay() {
+    printTopBorder
+    echo "Applying personal Omarchy config overlay"
+    printBottomBorder
+
+    [ -d "$DOTFILES/omarchy" ] || return 0
+    "$DOTFILES/bin/omarchy-config" apply
+}
+
 setupForOmarchy() {
     printTopBorder
     echo "Setting up Omarchy"
@@ -352,6 +365,7 @@ setupForOmarchy() {
     setupGitLocal
     setupStowOmarchy
     setupBashrcOmarchy
+    setupOmarchyOverlay
 
     printTopBorder
     echo "Done. Open a new terminal or run: source ~/.bashrc"

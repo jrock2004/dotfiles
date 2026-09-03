@@ -48,4 +48,13 @@ if command -v tmux >/dev/null 2>&1 && [ -x "$HOME/.tmux/plugins/tpm/bin/update_p
     "$HOME/.tmux/plugins/tpm/bin/update_plugins" all
 fi
 
+# --- Omarchy overlay drift ----------------------------------------------- - -
+# `omarchy update` migrations can rewrite tracked configs; surface any drift.
+if [ -x "$DOTFILES/bin/omarchy-config" ] && [ -d "$DOTFILES/omarchy" ]; then
+    banner "Omarchy config overlay"
+    if ! "$DOTFILES/bin/omarchy-config" diff; then
+        echo "  -> reconcile, then: omarchy-config capture && git -C \"$DOTFILES\" commit"
+    fi
+fi
+
 banner "Done"
