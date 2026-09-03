@@ -1,4 +1,4 @@
-!/usr/bin/env bash
+#!/usr/bin/env bash
 # Cross-platform system + tooling update (macOS / Omarchy / Arch).
 set -uo pipefail
 
