@@ -38,7 +38,8 @@ The installer asks which OS to set up: `[1] Mac OSX` or `[2] Omarchy / Arch`.
   (`pnpm`, `go`, `rust`) instead of Volta.
 - **Neovim:** Omarchy's own config stays as the default `nvim`. This repo's config
   is linked to `~/.config/ownnvim` — launch it with `vim2` (`NVIM_APPNAME=ownnvim`).
-- **Kept as-is:** Omarchy's `ghostty` and `lazygit` configs are not overwritten.
+- **Kept as-is:** Omarchy's `ghostty`, `lazygit`, and `tmux` configs are not
+  overwritten (stow skips them). `bin/update` is cross-platform.
 - **git:** `credential.helper` is written to `~/.gitconfig.local` per platform
   (`osxkeychain` on Mac, `git-credential-libsecret` on Omarchy).
 

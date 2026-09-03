@@ -310,10 +310,11 @@ setupStowOmarchy() {
     echo "Symlinking dotfiles with stow (Omarchy-safe subset)"
     printBottomBorder
 
-    # A slashless pattern is matched against every path segment (so "nvim"
-    # skips the whole .config/nvim subtree); anchors break that, so keep it bare.
+    # First pattern (bare, no anchors): matched against each path segment, so
+    # "nvim" skips the whole .config/nvim subtree. Second (anchored): whole
+    # basenames. nvim/ghostty/lazygit/.tmux.conf: Omarchy ships its own.
     stow --ignore='(nvim|ghostty|lazygit)' \
-        --ignore='^\.(zshrc|zprofile|zshenv|p10k\.zsh)$' \
+        --ignore='^\.(zshrc|zprofile|zshenv|p10k\.zsh|tmux\.conf)$' \
         --ignore='\.DS_Store' \
         -v -R -t ~ -d "$DOTFILES" files
 
@@ -348,7 +349,6 @@ setupForOmarchy() {
     setupCursorCli
     setupVSCode
     setupOmarchyApps
-    setupTmux
     setupGitLocal
     setupStowOmarchy
     setupBashrcOmarchy
