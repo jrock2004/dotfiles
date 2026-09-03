@@ -1,6 +1,9 @@
-#!/usr/bin/env bash
+!/usr/bin/env bash
 # Cross-platform system + tooling update (macOS / Omarchy / Arch).
 set -uo pipefail
+
+DOTFILES="${DOTFILES:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
+NPM_PKG_FILE="$DOTFILES/scripts/npm-global-packages.txt"
 
 banner() { printf '\n==> %s\n' "$1"; }
 
@@ -22,13 +25,11 @@ if command -v volta >/dev/null 2>&1; then
     banner "Node LTS (volta)"
     volta install node@lts
 
-    banner "Global npm tooling (volta)"
-    volta install \
-        @github/copilot @githubnext/github-copilot-cli @lifeart/ember-language-server \
-        @tailwindcss/language-server bash-language-server cssmodules-language-server \
-        diagnostic-languageserver dockerfile-language-server-nodejs ember-cli ls_emmet \
-        neovim pnpm prettier typescript typescript-language-server vim-language-server \
-        vscode-langservers-extracted yaml-language-server
+    if [ -f "$NPM_PKG_FILE" ]; then
+        banner "Global npm tooling (volta)"
+        # shellcheck disable=SC2046  # intentional word-splitting, one pkg per line
+        volta install $(cat "$NPM_PKG_FILE")
+    fi
 elif command -v mise >/dev/null 2>&1; then
     banner "Runtimes (mise)"
     mise upgrade

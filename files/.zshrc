@@ -73,7 +73,13 @@ source "$DOTFILES/shell/common.sh"
 # zsh / macOS-only aliases
 alias ios='open -a /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
 alias luamake=$HOME/lua-language-server/3rd/luamake/luamake
-alias npmpackages='volta install @github/copilot @githubnext/github-copilot-cli @lifeart/ember-language-server @tailwindcss/language-server bash-language-server cssmodules-language-server diagnostic-languageserver dockerfile-language-server-nodejs ember-cli ls_emmet neovim pnpm prettier typescript typescript-language-server vim-language-server vscode-langservers-extracted yaml-language-server'
+
+# Install/update the global npm tooling (list shared with bin/update)
+npmpackages() {
+  local pkgs
+  pkgs="$(cat "$DOTFILES/scripts/npm-global-packages.txt")"
+  volta install ${=pkgs}
+}
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   export PNPM_HOME="$HOME/Library/pnpm"
