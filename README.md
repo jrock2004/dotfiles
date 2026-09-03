@@ -43,6 +43,23 @@ The installer asks which OS to set up: `[1] Mac OSX` or `[2] Omarchy / Arch`.
 - **git:** `credential.helper` is written to `~/.gitconfig.local` per platform
   (`osxkeychain` on Mac, `git-credential-libsecret` on Omarchy).
 
+### Installed by hand (not the installer)
+
+- **1Password** — deliberately left out of `setupOmarchyApps`. There is no package
+  in the Arch official repos, and installing a password manager through a
+  `yay -S` batch invites skimming past the `PKGBUILD`. Install it on its own and
+  review the build script first:
+
+  ```bash
+  yay -G 1password && $EDITOR 1password/PKGBUILD   # confirm URL is 1password.com + signature check intact
+  yay -S 1password 1password-cli
+  ```
+
+  The AUR packages pull AgileBits-signed binaries and verify the GPG signature
+  (`3FEF9748469ADBE15DA7CA80AC2D62742012EA22`). For a smaller trust surface on the
+  GUI, use the 1Password-published Flathub build instead:
+  `flatpak install flathub com.onepassword.OnePassword` (no Flatpak for the CLI).
+
 # Customize and Extend
 
 Feel free to modify and customize these dotfiles to suit your needs. Add your own configurations, aliases, and functions, or remove those that you don't find useful. Don't forget to keep your modifications under version control to track your changes.
