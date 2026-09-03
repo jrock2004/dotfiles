@@ -245,12 +245,46 @@ setupOmarchyPackages() {
         stylua shellcheck
         zellij tree wget gnupg chafa
         fd ripgrep eza bat jq fzf lazygit
+        ast-grep cmake ninja cloc htop highlight vim
     )
 
     sudo pacman -S --needed "${pac[@]}"
 
     if [ -x "$(command -v yay)" ]; then
-        yay -S --needed diff-so-fancy prettier || true
+        yay -S --needed diff-so-fancy prettier markdownlint-cli2 viu || true
+    fi
+}
+
+setupVSCode() {
+    printTopBorder
+    echo "Installing VS Code + extensions"
+    printBottomBorder
+
+    if [ -x "$(command -v yay)" ]; then
+        yay -S --needed visual-studio-code-bin || true
+    fi
+
+    if [ -x "$(command -v code)" ]; then
+        xargs -L1 code --install-extension <./scripts/vscode-extensions.txt || true
+    else
+        echo "code not in PATH; skipping extensions"
+    fi
+}
+
+# Desktop apps mirrored from the macOS Brewfile casks. pacman where available,
+# AUR (yay) otherwise. Comment out anything you do not want.
+setupOmarchyApps() {
+    printTopBorder
+    echo "Installing desktop apps"
+    printBottomBorder
+
+    sudo pacman -S --needed discord wezterm
+
+    if [ -x "$(command -v yay)" ]; then
+        yay -S --needed \
+            brave-bin google-chrome \
+            slack-desktop \
+            postman-bin notion-app-electron || true
     fi
 }
 
@@ -311,6 +345,9 @@ setupForOmarchy() {
     setupDirectories
     setupOmarchyPackages
     setupMiseTools
+    setupCursorCli
+    setupVSCode
+    setupOmarchyApps
     setupTmux
     setupGitLocal
     setupStowOmarchy

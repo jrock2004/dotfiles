@@ -25,7 +25,7 @@ bash <(curl -L https://raw.githubusercontent.com/jrock2004/dotfiles/main/scripts
 The installer will:
 1. Ask for OS choice: `[1] Mac OSX` or `[2] Omarchy / Arch`
 2. **Mac:** install Homebrew, `brew bundle`, set up FZF/Neovim/Rust/Volta/tmux/Claude CLI, Stow all of `files/`
-3. **Omarchy:** install packages via `pacman`/`yay`, language runtimes via `mise` (`pnpm`, `go`, `rust`), tmux, then Stow an Omarchy-safe subset of `files/`
+3. **Omarchy:** packages via `pacman`/`yay`, runtimes via `mise` (`pnpm`, `go`, `rust`), Cursor CLI, VS Code + `scripts/vscode-extensions.txt`, desktop apps (`setupOmarchyApps` — browsers/slack/discord/postman/notion/wezterm, mirrored from the Brewfile casks), tmux, then Stow an Omarchy-safe subset of `files/`
 4. Both write `~/.gitconfig.local` with the platform's `credential.helper`
 
 ### Omarchy specifics
