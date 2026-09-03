@@ -38,11 +38,14 @@ initialQuestions() {
 
     printf "\n"
     echo "What OS are we setting up today?"
-    read -rp "[1] Mac OSX (default: exit) : " choice_os
+    read -rp "[1] Mac OSX  [2] Omarchy / Arch  (default: exit) : " choice_os
 
     case $choice_os in
     1)
         OS="mac"
+        ;;
+    2)
+        OS="omarchy"
         ;;
     *)
         echo "Invalid choice."
@@ -213,6 +216,113 @@ setupForMac() {
 }
 
 ###########################################
+# OMARCHY / ARCH STEP FUNCTIONS
+###########################################
+
+# files/.gitconfig ships the macOS credential.helper (osxkeychain). On other
+# platforms that binary does not exist, so write a ~/.gitconfig.local that
+# resets the helper list (empty `helper =`) and points at libsecret instead.
+# macOS needs nothing here - the committed default already works.
+setupGitLocal() {
+    printTopBorder
+    echo "Writing ~/.gitconfig.local"
+    printBottomBorder
+
+    cat >"$HOME/.gitconfig.local" <<'EOF'
+[credential]
+	helper =
+	helper = /usr/lib/git-core/git-credential-libsecret
+EOF
+}
+
+setupOmarchyPackages() {
+    printTopBorder
+    echo "Installing packages via pacman + yay"
+    printBottomBorder
+
+    local pac=(
+        stow tmux zsh
+        stylua shellcheck
+        zellij tree wget gnupg chafa
+        fd ripgrep eza bat jq fzf lazygit
+    )
+
+    sudo pacman -S --needed "${pac[@]}"
+
+    if [ -x "$(command -v yay)" ]; then
+        yay -S --needed diff-so-fancy prettier || true
+    fi
+}
+
+setupMiseTools() {
+    printTopBorder
+    echo "Installing language runtimes via mise"
+    printBottomBorder
+
+    if [ -x "$(command -v mise)" ]; then
+        mise use -g pnpm@latest || true
+        mise use -g go@latest || true
+        mise use -g rust@latest || true
+    else
+        echo "mise not found; skipping runtime setup"
+    fi
+}
+
+# Stow a Omarchy-safe subset: keep Omarchy's own nvim/ghostty/lazygit configs
+# and skip the macOS-only zsh dotfiles. Our nvim config is linked side-by-side
+# as ~/.config/ownnvim (launch with `vim2` / NVIM_APPNAME=ownnvim).
+setupStowOmarchy() {
+    printTopBorder
+    echo "Symlinking dotfiles with stow (Omarchy-safe subset)"
+    printBottomBorder
+
+    # A slashless pattern is matched against every path segment (so "nvim"
+    # skips the whole .config/nvim subtree); anchors break that, so keep it bare.
+    stow --ignore='(nvim|ghostty|lazygit)' \
+        --ignore='^\.(zshrc|zprofile|zshenv|p10k\.zsh)$' \
+        --ignore='\.DS_Store' \
+        -v -R -t ~ -d "$DOTFILES" files
+
+    mkdir -p "$HOME/.config"
+    ln -sfn "$DOTFILES/files/.config/nvim" "$HOME/.config/ownnvim"
+}
+
+setupBashrcOmarchy() {
+    printTopBorder
+    echo "Wiring dotfiles into ~/.bashrc"
+    printBottomBorder
+
+    local marker="bash/omarchy.bash"
+    local line='[ -f "$HOME/.dotfiles/bash/omarchy.bash" ] && source "$HOME/.dotfiles/bash/omarchy.bash"'
+
+    if grep -qF "$marker" "$HOME/.bashrc" 2>/dev/null; then
+        echo "~/.bashrc already sources dotfiles"
+    else
+        printf '\n# Load dotfiles bash config\n%s\n' "$line" >>"$HOME/.bashrc"
+        echo "added source line to ~/.bashrc"
+    fi
+}
+
+setupForOmarchy() {
+    printTopBorder
+    echo "Setting up Omarchy"
+    printBottomBorder
+
+    setupDirectories
+    setupOmarchyPackages
+    setupMiseTools
+    setupTmux
+    setupGitLocal
+    setupStowOmarchy
+    setupBashrcOmarchy
+
+    printTopBorder
+    echo "Done. Open a new terminal or run: source ~/.bashrc"
+    echo "Default 'nvim' stays Omarchy's. Your config: 'vim2' (NVIM_APPNAME=ownnvim)."
+    printBottomBorder
+}
+
+###########################################
 # INIT OF APPLICATION
 ###########################################
 
@@ -220,6 +330,8 @@ initialQuestions
 
 if [ "$OS" = "mac" ]; then
     setupForMac
+elif [ "$OS" = "omarchy" ]; then
+    setupForOmarchy
 else
     echo "Something went wrong, try again and if it still fails, open an issue on Github"
 

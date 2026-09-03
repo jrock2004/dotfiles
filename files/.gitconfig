@@ -9,6 +9,8 @@
   # push will only do the current branch, not all branches
   default = current
 [credential]
+  # macOS default. Non-macOS overrides this in ~/.gitconfig.local
+  # (an empty `helper =` there resets the list before setting its own).
   helper = osxkeychain
 [alias]
   co = checkout
@@ -37,3 +39,7 @@
   pr-info = "!echo 'Please compare the current branch to main and create a PR description in markdown format.'; echo ''; echo 'Current branch:' $(git branch --show-current); echo 'Base branch: main'; echo ''; echo 'Recent commits:'; git log --oneline main..HEAD; echo ''; echo 'Files changed:'; git diff --name-only main..HEAD; echo ''; echo 'Focus on:'; echo '- An overview of what has changed'; echo '- Key files modified'; echo '- Testing performed'; echo '- Any breaking changes or migration notes'"
 [init]
   defaultBranch = main
+# Per-machine overrides (e.g. non-macOS credential.helper). Written by
+# install.sh; not tracked in git. A missing file here is ignored by git.
+[include]
+  path = ~/.gitconfig.local

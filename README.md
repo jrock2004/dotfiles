@@ -19,12 +19,28 @@ This repository contains my personal dotfiles, which are configuration files and
 # Tested OS
 
 - Mac OSX
+- Omarchy (Arch + Hyprland)
 
 # Installation
 
 ```bash
 bash <(curl -L https://raw.githubusercontent.com/jrock2004/dotfiles/main/scripts/curl-install.sh)
 ```
+
+The installer asks which OS to set up: `[1] Mac OSX` or `[2] Omarchy / Arch`.
+
+## Omarchy notes
+
+- **Shell:** stays on Omarchy's bash. `bash/omarchy.bash` is sourced from `~/.bashrc`;
+  it pulls in `shell/common.sh` — the portable aliases/functions shared with `.zshrc`.
+  Shell-specific bits (p10k, zap, Mac paths) stay in each shell's own rc file.
+- **Packages:** `pacman` + `yay` instead of Homebrew; language runtimes via `mise`
+  (`pnpm`, `go`, `rust`) instead of Volta.
+- **Neovim:** Omarchy's own config stays as the default `nvim`. This repo's config
+  is linked to `~/.config/ownnvim` — launch it with `vim2` (`NVIM_APPNAME=ownnvim`).
+- **Kept as-is:** Omarchy's `ghostty` and `lazygit` configs are not overwritten.
+- **git:** `credential.helper` is written to `~/.gitconfig.local` per platform
+  (`osxkeychain` on Mac, `git-credential-libsecret` on Omarchy).
 
 # Customize and Extend
 

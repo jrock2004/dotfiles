@@ -1,11 +1,15 @@
 #!/bin/bash
 
 if [ -z "$(command -v git)" ]; then
-    echo "You need to install command line tools"
+    if [ "$(uname)" = "Darwin" ]; then
+        echo "You need to install command line tools"
 
-    sudo xcode-select --install
+        sudo xcode-select --install
 
-    echo "After installing command line tools, run this script again"
+        echo "After installing command line tools, run this script again"
+    else
+        echo "git is required. Install it with your package manager (e.g. sudo pacman -S git)"
+    fi
 
     exit 1
 fi

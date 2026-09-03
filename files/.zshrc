@@ -67,42 +67,12 @@ if dotfiles::exists brew ; then
   fi
 fi
 
-# Alias
-alias reload!='RELOAD=1 source ~/.zshrc'
-[[ -n "$(command -v nvim)" ]] && alias vim="nvim"
-alias vim2='NVIM_APPNAME=ownnvim nvim'
-alias gs='git status'
-alias glog="git l"
-alias gcorb='git checkout --track $(git branch -r | fzf)'
-alias gcob='git checkout $(git branch | fzf)'
-alias gpo='git pull origin'
+# Aliases + functions shared with bash (see shell/common.sh)
+source "$DOTFILES/shell/common.sh"
 
-if dotfiles::exists xdg-open ; then
-  alias open='xdg-open'
-fi
-
-if dotfiles::exists apt-get ; then
-  alias updateSystem='sudo apt-get update && sudo apt-get upgrade'
-elif dotfiles::exists brew ; then
-  alias updateSystem='brew update && brew upgrade && brew doctor'
-elif dotfiles::exists paru ; then
-  alias updateSystem='paru -Syu'
-elif dotfiles::exists pacman ; then
-  alias updateSystem='sudo pacman -Syu'
-fi
-
-alias grep='grep --color=auto'
-alias ls="eza -GHF \$@"
-alias ll='eza --icons=always'
+# zsh / macOS-only aliases
 alias ios='open -a /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
-alias cleanup="find . -name '*.DS_Store' -type f -ls -delete"
-alias clsym="find -L . -name . -o -type d -prune -o -type l -exec rm {} +"
-alias lpath='echo $PATH | tr ":" "\n"'
-alias wtfport="lsof -i -P -n | grep LISTEN"
 alias luamake=$HOME/lua-language-server/3rd/luamake/luamake
-alias switchtoyarn='rm -Rf node_modules && rm -f package-lock.json yarn.lock pnpm-lock.yaml && yarn install'
-alias switchtopnpm='rm -Rf node_modules && rm -f package-lock.json yarn.lock pnpm-lock.yaml && pnpm install'
-alias switchtonpm='rm -Rf node_modules && rm -f package-lock.json yarn.lock pnpm-lock.yaml && npm install'
 alias npmpackages='volta install @github/copilot @githubnext/github-copilot-cli @lifeart/ember-language-server @tailwindcss/language-server bash-language-server cssmodules-language-server diagnostic-languageserver dockerfile-language-server-nodejs ember-cli ls_emmet neovim pnpm prettier typescript typescript-language-server vim-language-server vscode-langservers-extracted yaml-language-server'
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -121,10 +91,6 @@ export PATH="$PNPM_HOME/bin:$PNPM_HOME:$PATH"
 if dotfiles::exists pnpm ; then
   export PATH="$PATH:$(pnpm root -g 2>/dev/null)/.pnpm"
 fi
-# Stow aliases
-alias sync='stow --ignore ".DS_Store" -v -R -t ~ -d "$DOTFILES" files'
-alias unsync='stow --ignore ".DS_Store" -v -D -t ~ -d "$DOTFILES" files'
-
 
 # AWS Easy Command
 alias awsprofile='source ~/.aws/set_aws_profile.sh'

@@ -23,11 +23,17 @@ bash <(curl -L https://raw.githubusercontent.com/jrock2004/dotfiles/main/scripts
 ```
 
 The installer will:
-1. Ask for OS choice (Mac OSX only currently supported)
-2. Install Homebrew if not present
-3. Run `brew bundle` to install all dependencies from Brewfile
-4. Set up directories, FZF, Lua, Neovim, Rust, Volta, tmux, and Claude CLI
-5. Use Stow to symlink all files from `files/` to `$HOME`
+1. Ask for OS choice: `[1] Mac OSX` or `[2] Omarchy / Arch`
+2. **Mac:** install Homebrew, `brew bundle`, set up FZF/Neovim/Rust/Volta/tmux/Claude CLI, Stow all of `files/`
+3. **Omarchy:** install packages via `pacman`/`yay`, language runtimes via `mise` (`pnpm`, `go`, `rust`), tmux, then Stow an Omarchy-safe subset of `files/`
+4. Both write `~/.gitconfig.local` with the platform's `credential.helper`
+
+### Omarchy specifics
+
+- Shell stays bash; `bash/omarchy.bash` is sourced from `~/.bashrc` (installer appends the line, idempotent). It sources `shell/common.sh`, the portable alias/function set shared with `.zshrc`. Add new cross-shell aliases there, not in a single rc file.
+- `setupStowOmarchy` runs stow with `--ignore` for `nvim`, `ghostty`, `lazygit` (Omarchy owns those) and the macOS-only `.zshrc`/`.zprofile`/`.zshenv`/`.p10k.zsh`.
+- This repo's nvim config is symlinked to `~/.config/ownnvim`, launched with `vim2` (`NVIM_APPNAME=ownnvim`). Default `nvim` is Omarchy's.
+- No Volta on Omarchy — `mise` is the version manager and is already present.
 
 ### Managing Dotfiles with Stow
 
@@ -198,7 +204,7 @@ switchtonpm
 
 ## Important Notes
 
-- **macOS only**: Currently only supports Mac OSX
+- **macOS + Omarchy**: `install.sh` branches on the OS prompt (`setupForMac` / `setupForOmarchy`)
 - **Stow-based**: Never edit files in `$HOME` directly; edit in `files/` then run `sync`
 - **Homebrew**: Main package manager, uses rosetta for Volta/Node compatibility
 - **Volta**: Manages Node.js versions (not nvm/fnm)
