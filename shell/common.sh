@@ -28,8 +28,8 @@ dotfiles::exists open || { dotfiles::exists xdg-open && alias open='xdg-open'; }
 alias gs='git status'
 alias glog='git l'
 alias gpo='git pull origin'
-alias gcob='git checkout "$(git branch | fzf)"'
-alias gcorb='git checkout --track "$(git branch -r | fzf)"'
+alias gcob='git checkout "$(git branch | sed "s/^[* ]*//" | fzf)"'
+alias gcorb='git checkout --track "$(git branch -r | sed "s/^[* ]*//" | fzf)"'
 
 # --- system update (first match wins) --------------------------------------
 if dotfiles::exists omarchy; then
