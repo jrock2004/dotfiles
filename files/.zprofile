@@ -1,3 +1,9 @@
+# The following lines were added by Docker Desktop to add commands to your PATH.
+if [[ -d $HOME/.docker ]]; then
+  export PATH="$PATH:$HOME/.docker/bin"
+fi
+# End of Docker Desktop section.
+
 if [[ -f /opt/homebrew/bin/brew ]]; then
   # Homebrew exists at /opt/homebrew for arm64 macos
   eval $(/opt/homebrew/bin/brew shellenv)
