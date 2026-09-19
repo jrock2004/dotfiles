@@ -58,7 +58,11 @@ prepend_path $HOME/.local/lib/python3.9/site-packages
 prepend_path $HOME/.local/bin
 
 # Work Stuff
-export SONARQUBE_TOKEN=$(security find-generic-password -s sonarqube-token -w)
+# Lazy-load the Sonar token: the Keychain lookup blocks every shell (and so
+# every tmux pane), so defer it to when it's actually needed.
+sonar-token() {
+  export SONARQUBE_TOKEN=$(security find-generic-password -s sonarqube-token -w)
+}
 
 if [[ -d /usr/local/go/bin ]]; then
   prepend_path /usr/local/go/bin
@@ -99,8 +103,17 @@ else
 fi
 export PATH="$PNPM_HOME/bin:$PNPM_HOME:$PATH"
 
+# Cache the pnpm global root so we don't spawn Node on every shell start.
+# Refresh the cache with `rm ~/.cache/pnpm-global-root`.
 if dotfiles::exists pnpm ; then
-  export PATH="$PATH:$(pnpm root -g 2>/dev/null)/.pnpm"
+  _pnpm_root_cache="${XDG_CACHE_HOME:-$HOME/.cache}/pnpm-global-root"
+  if [[ ! -s "$_pnpm_root_cache" ]]; then
+    mkdir -p "${_pnpm_root_cache:h}"
+    pnpm root -g 2>/dev/null > "$_pnpm_root_cache"
+  fi
+  _pnpm_root="$(<"$_pnpm_root_cache")"
+  [[ -n "$_pnpm_root" ]] && export PATH="$PATH:$_pnpm_root/.pnpm"
+  unset _pnpm_root_cache _pnpm_root
 fi
 
 # AWS Easy Command
