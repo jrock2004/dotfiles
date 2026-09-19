@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Cached weather for the tmux status line.
+#
+# The status line calls this every status-interval. To avoid a blocking network
+# request on every refresh (which stalls the whole status bar when the network
+# is slow), we cache the result and only hit wttr.in when the cache is stale.
+# The status line should `cat` the cache file directly; this script refreshes it.
+
+set -euo pipefail
+
+LOCATION="${TMUX_WEATHER_LOCATION:-Honey Brook}"
+FORMAT="${TMUX_WEATHER_FORMAT:-%t H:%h %C}"
+UNITS="${TMUX_WEATHER_UNITS:-u}" # u = USCS (Fahrenheit), m = metric
+MAX_AGE="${TMUX_WEATHER_MAX_AGE:-900}" # seconds (15 min)
+
+cache="${XDG_CACHE_HOME:-$HOME/.cache}/tmux-weather"
+mkdir -p "$(dirname "$cache")"
+
+# Serve fresh-enough cache (non-empty only) without touching the network.
+if [[ -s "$cache" ]]; then
+  age=$(( $(date +%s) - $(stat -f %m "$cache" 2>/dev/null || echo 0) ))
+  if (( age < MAX_AGE )); then
+    cat "$cache"
+    exit 0
+  fi
+fi
+
+# Refresh. On failure, fall back to the stale cache rather than showing nothing.
+# wttr.in wants spaces in the query encoded as '+'.
+loc_encoded="${LOCATION// /+}"
+fmt_encoded="${FORMAT// /+}"
+if curl -fsS --max-time 6 "wttr.in/${loc_encoded}?format=${fmt_encoded}&${UNITS}" -o "$cache.tmp" 2>/dev/null \
+   && [[ -s "$cache.tmp" ]]; then
+  # Drop wttr.in's leading '+' on the temperature for a cleaner display.
+  sed 's/^+//' "$cache.tmp" > "$cache" && rm -f "$cache.tmp"
+  cat "$cache"
+else
+  rm -f "$cache.tmp"
+  [[ -s "$cache" ]] && cat "$cache"
+fi

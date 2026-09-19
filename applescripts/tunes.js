@@ -3,14 +3,12 @@ const maxLen = 40;
 let output = '';
 const musicDomains = ['music.youtube.com', 'youtube.com'];
 
-const music = Application('Music');
-
 function cleanYtMusicTitle(title) {
   if (!title) return '';
   return (
     title
-      // strip trailing "YouTube Music" with common separators
-      .replace(/\s*[-–•]\s*YouTube Music\s*$/i, '')
+      // strip trailing "YouTube Music" with common separators (incl. pipe)
+      .replace(/\s*[-–•|]\s*YouTube Music\s*$/i, '')
       .trim()
   );
 }
@@ -124,13 +122,15 @@ function scanQuickTime() {
 }
 
 function main() {
+  // Each scan* is self-guarded (checks .running(), wrapped in try/catch), so an
+  // uninstalled or closed app is skipped rather than throwing. Order = priority.
   const hits = [
+    scanMusic(),
     scanChromium('Google Chrome'),
     scanChromium('Brave Browser'),
     scanSafari(),
-    scanMusic(),
-    scanQuickTime(),
     scanSpotify(),
+    scanQuickTime(),
   ].filter(Boolean);
 
   if (hits.length === 0) return '';
@@ -138,34 +138,9 @@ function main() {
   return `${symbol} ${hits[0]}`.substring(0, maxLen);
 }
 
-const browserMusic = main();
+output = main();
 
-if (music.running()) {
-  const track = music.currentTrack,
-    artist = track.artist(),
-    title = track.name();
-
-  output = `${symbol} ${title} - ${artist}`.substr(0, 50);
-} else if (browserMusic !== '') {
-  output = browserMusic;
-} else if (Application('Spotify').running()) {
-  const track = Application('Spotify').currentTrack,
-    artist = track.artist(),
-    title = track.name();
-
-  output = `${symbol} ${title} - ${artist}`.substr(0, 50);
-} else if (Application('QuickTime Player').running()) {
-  const qt = Application('QuickTime Player');
-  try {
-    const doc = qt.documents()[0];
-    if (doc && doc.playing()) {
-      const name = doc.name().replace(/\.[^/.]+$/, '');
-      output = `${symbol} ${name}`.substr(0, 50);
-    }
-  } catch (_) {}
-}
-
-if (output === '♫ YouTube Music') {
+if (output === `${symbol} YouTube Music`) {
   output = '';
 }
 
