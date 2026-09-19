@@ -3,6 +3,7 @@
 @lifeart/ember-language-server
 @tailwindcss/language-server
 bash-language-server
+ccusage
 cssmodules-language-server
 diagnostic-languageserver
 dockerfile-language-server-nodejs

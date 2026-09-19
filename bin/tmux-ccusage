@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+# Claude Code current 5-hour block usage for the tmux status line.
+#
+# On a flat-fee subscription the actionable number isn't dollar cost (ccusage's
+# cost is only the API-equivalent price); it's the rate-limit window. So this
+# shows tokens used in the active 5-hour block and how long until it resets.
+#
+# Output (leading robot glyph is emitted only when there IS an active block, so
+# the whole widget disappears when Claude Code is idle):
+#     <glyph> 12.7M · 1h25m
+#
+# Cached so ccusage isn't spawned on every status refresh. The status line
+# should call this directly; it serves the cache when fresh.
+
+set -uo pipefail
+
+MAX_AGE="${TMUX_CCUSAGE_MAX_AGE:-45}" # seconds
+cache="${XDG_CACHE_HOME:-$HOME/.cache}/tmux-ccusage"
+mkdir -p "$(dirname "$cache")"
+
+# Serve fresh cache (may legitimately be empty when idle) without spawning node.
+if [[ -f "$cache" ]]; then
+  age=$(( $(date +%s) - $(stat -f %m "$cache" 2>/dev/null || echo 0) ))
+  if (( age < MAX_AGE )); then
+    cat "$cache"
+    exit 0
+  fi
+fi
+
+# No ccusage installed -> cache an empty result so we don't retry every refresh.
+if ! command -v ccusage >/dev/null 2>&1; then
+  : > "$cache"
+  exit 0
+fi
+
+json="$(ccusage blocks --active --json 2>/dev/null)"
+out="$(printf '%s' "$json" | python3 -c '
+import sys, json
+try:
+    d = json.load(sys.stdin)
+    blocks = [b for b in d.get("blocks", []) if b.get("isActive")]
+    if not blocks:
+        print("", end=""); sys.exit()
+    b = blocks[0]
+    tok = b.get("totalTokens", 0)
+    if tok >= 1_000_000:
+        t = f"{tok/1_000_000:.1f}M"
+    elif tok >= 1_000:
+        t = f"{tok/1_000:.0f}K"
+    else:
+        t = str(tok)
+    glyph = chr(0xF06A9)  # nf-md-robot
+    rem = b.get("projection", {}).get("remainingMinutes")
+    if rem is None:
+        print(f"{glyph} {t}", end=""); sys.exit()
+    h, m = divmod(int(rem), 60)
+    left = f"{h}h{m:02d}m" if h else f"{m}m"
+    print(f"{glyph} {t} · {left}", end="")
+except Exception:
+    print("", end="")
+' 2>/dev/null)"
+
+printf '%s' "$out" > "$cache"
+printf '%s' "$out"
