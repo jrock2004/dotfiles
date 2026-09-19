@@ -1,5 +1,10 @@
 # cargo env is sourced in .zshenv (before p10k instant prompt runs)
 
+# Announce a `reload` (shell/common.sh) here — before the instant prompt block
+# below captures console output — so it doesn't trip p10k's warning. Consuming
+# the flag now also stops common.sh from printing it again when sourced later.
+[[ -n "$_RELOADED" ]] && { print -P "🔄 Shell reloaded"; unset _RELOADED; }
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.

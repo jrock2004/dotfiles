@@ -10,7 +10,8 @@ dotfiles::exists nvim && alias vim='nvim'
 alias vim2='NVIM_APPNAME=ownnvim nvim'
 
 # --- shell ---------------------------------------------------------------- -
-alias reload='exec "$SHELL"'
+reload() { export _RELOADED=1; exec "$SHELL"; }
+[ -n "$_RELOADED" ] && { echo "🔄 Shell reloaded"; unset _RELOADED; }
 alias grep='grep --color=auto'
 alias lpath='echo "$PATH" | tr ":" "\n"'
 alias wtfport='lsof -i -P -n | grep LISTEN'
