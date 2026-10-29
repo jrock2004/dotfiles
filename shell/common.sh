@@ -18,7 +18,7 @@ alias wtfport='lsof -i -P -n | grep LISTEN'
 
 # --- listing (eza) -------------------------------------------------------- -
 if dotfiles::exists eza; then
-    alias ls='eza -GHF'
+    alias ls='eza -GH --classify=auto'
     alias ll='eza --icons=always'
 fi
 
