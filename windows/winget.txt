@@ -20,8 +20,6 @@ RazerInc.RazerInstaller.Synapse4
 [gaming]
 Valve.Steam
 Blizzard.BattleNet
-Jagex.Runescape
-ebkr.r2modman
 
 [poe]
 PathofBuildingCommunity.PathofBuildingCommunity
@@ -36,4 +34,3 @@ wez.wezterm
 Python.Python.3.13
 astral-sh.uv
 Anthropic.ClaudeCode
-Oracle.VirtualBox
