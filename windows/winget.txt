@@ -36,3 +36,4 @@ wez.wezterm
 Python.Python.3.13
 astral-sh.uv
 Anthropic.ClaudeCode
+Anthropic.Claude
