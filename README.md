@@ -48,8 +48,11 @@ irm https://raw.githubusercontent.com/jrock2004/dotfiles/main/windows/install.ps
   backed up to `<file>.bak` first. Re-run the installer after changing them.
 - **git:** `~/.gitconfig.local` sets `credential.helper = manager` (Git Credential Manager).
 - **VS Code:** extensions from `scripts/vscode-extensions.txt`.
-- **Not on winget:** the installer ends by listing what to download by hand (GPU and
-  chipset drivers, Samsung Magician, a few PoE tools, fonts).
+- **Not on winget:** apps published as GitHub releases (Path of Building PoE2, Exiled
+  Exchange 2) are downloaded to your Downloads folder, not run. Ones with no stable
+  download link (AMD chipset, ASUS board drivers, NVIDIA App, Samsung Magician, Path of
+  Exile) open their download page in the browser. Both lists are at the top of
+  `windows/install.ps1`.
 - **Dry run:** `$env:DOTFILES_DRYRUN = '1'` before running prints every step without
   doing it (run from a checkout: `powershell -ExecutionPolicy Bypass -File windows\install.ps1`).
 

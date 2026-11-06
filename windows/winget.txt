@@ -3,6 +3,7 @@
 # Comment out (#) anything you don't want.
 
 [everyday]
+AgileBits.1Password
 Brave.Brave
 Google.Chrome
 Discord.Discord
@@ -16,6 +17,7 @@ Elgato.StreamDeck
 [peripherals]
 Corsair.iCUE.5
 RazerInc.RazerInstaller.Synapse4
+# Dell.DisplayAndPeripheralManager   # optional: monitor settings + window layouts for Dell monitors
 
 [gaming]
 Valve.Steam

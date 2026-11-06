@@ -35,6 +35,8 @@ The installer will:
 - Copies (not symlinks) `files/.gitconfig` and the WezTerm config into `$HOME`, backing up a
   differing file to `.bak`; writes `~/.gitconfig.local` with `credential.helper = manager`;
   installs `scripts/vscode-extensions.txt`.
+- Apps not on winget: `$GITHUB_INSTALLERS` (latest GitHub release asset, downloaded to the
+  Downloads folder, never run) and `$DOWNLOAD_PAGES` (opened in the browser) at the top of the script.
 - Must run on Windows PowerShell 5.1: ASCII only, no `param()` block (breaks `irm | iex`), no
   `exit` (closes the user's terminal under `iex`; use `throw`). `$env:DOTFILES_DRYRUN = '1'`
   prints steps without doing them.

@@ -23,6 +23,23 @@ $DRYRUN = $env:DOTFILES_DRYRUN -eq '1'
 # winget exit codes that mean "nothing to do", not failure
 $WINGET_ALREADY_INSTALLED = @(-1978335189, -1978335135)
 
+# Not on winget, but published as GitHub release assets: downloaded to Downloads.
+# Pattern picks the installer out of the release's assets.
+$GITHUB_INSTALLERS = @(
+    @{ Name = 'Path of Building (PoE2)'; Repo = 'PathOfBuildingCommunity/PathOfBuilding-PoE2'; Pattern = 'Setup\.exe$' }
+    @{ Name = 'Exiled Exchange 2'; Repo = 'Kvan7/Exiled-Exchange-2'; Pattern = '^Exiled-Exchange-2-Setup-.*\.exe$' }
+)
+
+# Not on winget and no stable direct link (versioned URLs, or the site blocks scripted
+# downloads): opened in the browser instead.
+$DOWNLOAD_PAGES = @(
+    @{ Name = 'AMD chipset driver'; Url = 'https://www.amd.com/en/support/download/drivers.html' }
+    @{ Name = 'ASUS TUF B650-E WIFI drivers (MediaTek Bluetooth + Wi-Fi, Realtek audio)'; Url = 'https://www.asus.com/us/motherboards-components/motherboards/tuf-gaming/tuf-gaming-b650-e-wifi/helpdesk_download?model2Name=TUF-GAMING-B650-E-WIFI' }
+    @{ Name = 'NVIDIA App'; Url = 'https://www.nvidia.com/en-us/software/nvidia-app/' }
+    @{ Name = 'Samsung Magician'; Url = 'https://semiconductor.samsung.com/consumer-storage/support/tools/' }
+    @{ Name = 'Path of Exile (sign in to see the download)'; Url = 'https://www.pathofexile.com/download' }
+)
+
 ###########################################
 # HELPER FUNCTIONS
 ###########################################
@@ -201,6 +218,52 @@ function Install-VSCodeExtensions($root) {
     }
 }
 
+function Get-DownloadsFolder {
+    # Resolves a moved/redirected Downloads folder, unlike $HOME\Downloads
+    return (New-Object -ComObject Shell.Application).NameSpace('shell:Downloads').Self.Path
+}
+
+# Downloads installers to the Downloads folder; does not run them.
+function Get-GitHubInstallers {
+    Write-Step 'Downloading installers that are not on winget'
+
+    # Windows PowerShell 5.1 defaults to TLS 1.0, which GitHub refuses; the progress
+    # bar makes Invoke-WebRequest many times slower there.
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+    $ProgressPreference = 'SilentlyContinue'
+
+    $downloads = Get-DownloadsFolder
+    $failed = @()
+    foreach ($app in $GITHUB_INSTALLERS) {
+        try {
+            $release = Invoke-RestMethod "https://api.github.com/repos/$($app.Repo)/releases/latest" `
+                -Headers @{ 'User-Agent' = 'dotfiles-install' }
+            $asset = $release.assets | Where-Object { $_.name -match $app.Pattern } | Select-Object -First 1
+            if (-not $asset) { throw "no installer matching '$($app.Pattern)' in $($release.tag_name)" }
+
+            $target = Join-Path $downloads $asset.name
+            if ($DRYRUN) { Write-Host "[dry run] download $($asset.browser_download_url) -> $target"; continue }
+
+            Invoke-WebRequest $asset.browser_download_url -OutFile $target -UseBasicParsing
+            Write-Host "downloaded: $($app.Name) $($release.tag_name) -> $target"
+        }
+        catch {
+            Write-Host "could not download $($app.Name): $($_.Exception.Message)" -ForegroundColor Yellow
+            $failed += "$($app.Name) - github.com/$($app.Repo)/releases"
+        }
+    }
+    return $failed
+}
+
+function Open-DownloadPages {
+    Write-Step 'Opening download pages'
+
+    foreach ($page in $DOWNLOAD_PAGES) {
+        Write-Host "$($page.Name): $($page.Url)"
+        if (-not $DRYRUN) { Start-Process $page.Url }
+    }
+}
+
 function Set-Directories {
     $dev = Join-Path $HOME 'Development'
     if ($DRYRUN) { Write-Host "[dry run] mkdir $dev"; return }
@@ -216,16 +279,8 @@ function Write-ManualSteps($failed) {
         Write-Host ''
     }
 
-    Write-Host @'
-Not on winget - install these yourself:
-  - GPU driver app ........... NVIDIA App (nvidia.com) / AMD Software (amd.com)
-  - Chipset + board drivers .. amd.com / your motherboard's support page
-  - SSD tool ................. Samsung Magician (semiconductor.samsung.com)
-  - Path of Exile (PoE1) ..... pathofexile.com, or through Steam
-  - Path of Building (PoE2) .. github.com/PathOfBuildingCommunity/PathOfBuilding-PoE2/releases
-  - Exiled Exchange 2 ........ github.com/Kvan7/Exiled-Exchange-2/releases
-  - Fonts for WezTerm ........ Geist Mono (vercel.com/font); WezTerm falls back to its built-in font
-'@
+    Write-Host "Installers downloaded to $(Get-DownloadsFolder) are not run - double-click them."
+    Write-Host 'Fonts for WezTerm: Geist Mono (vercel.com/font); until then WezTerm uses its built-in font.'
 }
 
 ###########################################
@@ -251,6 +306,12 @@ function Invoke-DotfilesInstall {
         Set-GitConfig $root
         Set-WezTerm $root
         Install-VSCodeExtensions $root
+    }
+
+    $answer = "$(Read-Host "`nDownload the installers winget doesn't have, and open the driver download pages? [Y/n]")".Trim()
+    if ($answer -notmatch '^n') {
+        $failed += Get-GitHubInstallers
+        Open-DownloadPages
     }
 
     Write-ManualSteps $failed
