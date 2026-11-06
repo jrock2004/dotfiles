@@ -38,7 +38,7 @@ initialQuestions() {
 
     printf "\n"
     echo "What OS are we setting up today?"
-    read -rp "[1] Mac OSX  [2] Omarchy / Arch  (default: exit) : " choice_os
+    read -rp "[1] Mac OSX  [2] Omarchy / Arch  [3] Windows  (default: exit) : " choice_os
 
     case $choice_os in
     1)
@@ -46,6 +46,12 @@ initialQuestions() {
         ;;
     2)
         OS="omarchy"
+        ;;
+    3)
+        echo "Windows has its own installer. In Windows PowerShell run:"
+        echo "  irm https://raw.githubusercontent.com/jrock2004/dotfiles/main/windows/install.ps1 | iex"
+
+        exit 0
         ;;
     *)
         echo "Invalid choice."

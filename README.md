@@ -20,6 +20,7 @@ This repository contains my personal dotfiles, which are configuration files and
 
 - Mac OSX
 - Omarchy (Arch + Hyprland)
+- Windows 11 (apps + git / WezTerm / VS Code only)
 
 # Installation
 
@@ -27,7 +28,30 @@ This repository contains my personal dotfiles, which are configuration files and
 bash <(curl -L https://raw.githubusercontent.com/jrock2004/dotfiles/main/scripts/curl-install.sh)
 ```
 
-The installer asks which OS to set up: `[1] Mac OSX` or `[2] Omarchy / Arch`.
+The installer asks which OS to set up: `[1] Mac OSX`, `[2] Omarchy / Arch`, or `[3] Windows`
+(which points you to the Windows installer below).
+
+## Windows
+
+Windows has its own PowerShell installer, since a fresh install has no bash or stow. In
+Windows PowerShell (nothing needs to be installed first):
+
+```powershell
+irm https://raw.githubusercontent.com/jrock2004/dotfiles/main/windows/install.ps1 | iex
+```
+
+- **Apps:** installed with `winget` from `windows/winget.txt`, which groups them
+  (`everyday`, `streaming`, `peripherals`, `gaming`, `poe`, `dev`). The installer asks
+  which groups to install. Add apps there; find IDs with `winget search <name>`.
+- **Config:** `files/.gitconfig` and the WezTerm config are **copied** into `$HOME`, not
+  symlinked (Windows symlinks need Developer Mode or admin). A differing existing file is
+  backed up to `<file>.bak` first. Re-run the installer after changing them.
+- **git:** `~/.gitconfig.local` sets `credential.helper = manager` (Git Credential Manager).
+- **VS Code:** extensions from `scripts/vscode-extensions.txt`.
+- **Not on winget:** the installer ends by listing what to download by hand (GPU and
+  chipset drivers, Samsung Magician, a few PoE tools, fonts).
+- **Dry run:** `$env:DOTFILES_DRYRUN = '1'` before running prints every step without
+  doing it (run from a checkout: `powershell -ExecutionPolicy Bypass -File windows\install.ps1`).
 
 ## Omarchy notes
 

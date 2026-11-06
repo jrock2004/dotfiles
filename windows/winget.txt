@@ -1,0 +1,39 @@
+# Windows apps for windows/install.ps1, by group.
+# One winget ID per line under a [group] heading. Find IDs with: winget search <name>
+# Comment out (#) anything you don't want.
+
+[everyday]
+Brave.Brave
+Google.Chrome
+Discord.Discord
+VideoLAN.VLC
+Notepad++.Notepad++
+
+[streaming]
+OBSProject.OBSStudio
+Elgato.StreamDeck
+
+[peripherals]
+Corsair.iCUE.5
+RazerInc.RazerInstaller.Synapse4
+
+[gaming]
+Valve.Steam
+Blizzard.BattleNet
+Jagex.Runescape
+ebkr.r2modman
+
+[poe]
+PathofBuildingCommunity.PathofBuildingCommunity
+SnosMe.AwakenedPoETrade
+
+[dev]
+Git.Git
+GitHub.cli
+GitHub.GitHubDesktop
+Microsoft.VisualStudioCode
+wez.wezterm
+Python.Python.3.13
+astral-sh.uv
+Anthropic.ClaudeCode
+Oracle.VirtualBox

@@ -23,10 +23,21 @@ bash <(curl -L https://raw.githubusercontent.com/jrock2004/dotfiles/main/scripts
 ```
 
 The installer will:
-1. Ask for OS choice: `[1] Mac OSX` or `[2] Omarchy / Arch`
+1. Ask for OS choice: `[1] Mac OSX`, `[2] Omarchy / Arch`, or `[3] Windows` (prints the Windows command and exits)
 2. **Mac:** install Homebrew, `brew bundle`, set up FZF/Neovim/Rust/Volta/tmux/Claude CLI, Stow all of `files/`
 3. **Omarchy:** packages via `pacman`/`yay`, runtimes via `mise` (`pnpm`, `go`, `rust`), Cursor CLI, VS Code + `scripts/vscode-extensions.txt`, desktop apps (`setupOmarchyApps` — browsers/slack/discord/postman/notion/wezterm, mirrored from the Brewfile casks), tmux, then Stow an Omarchy-safe subset of `files/`
 4. Both write `~/.gitconfig.local` with the platform's `credential.helper`
+
+**Windows** does not go through `install.sh` (no bash/stow on a fresh install). It has its own
+`windows/install.ps1`, run with `irm .../windows/install.ps1 | iex`:
+- Apps via `winget` from `windows/winget.txt` (`[group]` headings, one ID per line); the user
+  picks groups at a prompt. Clones the repo to `~/.dotfiles` first when run through `iex`.
+- Copies (not symlinks) `files/.gitconfig` and the WezTerm config into `$HOME`, backing up a
+  differing file to `.bak`; writes `~/.gitconfig.local` with `credential.helper = manager`;
+  installs `scripts/vscode-extensions.txt`.
+- Must run on Windows PowerShell 5.1: ASCII only, no `param()` block (breaks `irm | iex`), no
+  `exit` (closes the user's terminal under `iex`; use `throw`). `$env:DOTFILES_DRYRUN = '1'`
+  prints steps without doing them.
 
 ### Omarchy specifics
 
