@@ -23,6 +23,12 @@ $DRYRUN = $env:DOTFILES_DRYRUN -eq '1'
 # winget exit codes that mean "nothing to do", not failure
 $WINGET_ALREADY_INSTALLED = @(-1978335189, -1978335135)
 
+# Packages whose manifest requires an install location. Without --location winget
+# waits at a hidden prompt for one, which hangs the script.
+$WINGET_LOCATIONS = @{
+    'Blizzard.BattleNet' = "${env:ProgramFiles(x86)}\Battle.net"
+}
+
 # Not on winget, but published as GitHub release assets: downloaded to Downloads.
 # Pattern picks the installer out of the release's assets.
 $GITHUB_INSTALLERS = @(
@@ -102,9 +108,13 @@ function Read-AppGroups($path) {
 function Install-WingetPackage($id) {
     if ($DRYRUN) { Write-Host "[dry run] winget install $id"; return $true }
 
-    # Out-Host so winget's output is shown, not returned along with the result
-    winget install --id $id --exact --source winget --silent `
-        --accept-package-agreements --accept-source-agreements | Out-Host
+    $extra = @()
+    if ($WINGET_LOCATIONS.ContainsKey($id)) { $extra = @('--location', $WINGET_LOCATIONS[$id]) }
+
+    # Out-Host so winget's output is shown, not returned along with the result.
+    # --disable-interactivity: fail instead of waiting at a prompt nobody can see.
+    winget install --id $id --exact --source winget --silent --disable-interactivity `
+        --accept-package-agreements --accept-source-agreements @extra | Out-Host
     return ($LASTEXITCODE -eq 0 -or $WINGET_ALREADY_INSTALLED -contains $LASTEXITCODE)
 }
 
