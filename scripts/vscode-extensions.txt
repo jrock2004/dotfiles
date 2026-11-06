@@ -6,7 +6,6 @@ dbaeumer.vscode-eslint
 EditorConfig.EditorConfig
 eamodio.gitlens
 esbenp.prettier-vscode
-github.copilot
 mikestead.dotenv
 ms-azuretools.vscode-docker
 ms-playwright.playwright
